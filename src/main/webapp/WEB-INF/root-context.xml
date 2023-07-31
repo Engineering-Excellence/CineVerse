@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+             xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans.xsd
+                                 http://www.springframework.org/schema/context
+                                 http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                                 http://www.springframework.org/schema/tx
+                                 http://www.springframework.org/schema/tx/spring-tx.xsd
+                                 http://mybatis.org/schema/mybatis-spring
+                                 http://mybatis.org/schema/mybatis-spring.xsd">
+
+    <tx:annotation-driven/>
+    <context:annotation-config/>
+    <mybatis-spring:scan base-package="kr.or.sw.mapper"/>
+
+    <context:component-scan base-package="kr.or.sw.model"/>
+    <context:component-scan base-package="kr.or.sw.service"/>
+    <context:component-scan base-package="kr.or.sw.aop"/>
+    <aop:aspectj-autoproxy/>
+</beans:beans>
