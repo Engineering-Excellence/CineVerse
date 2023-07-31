@@ -15,7 +15,7 @@
 
     <!-- ViewResolver 빈 객체 생성 -->
     <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <beans:property name="prefix" value="/WEB-INF/jsp/"/>
+        <beans:property name="prefix" value="/WEB-INF/views/"/>
         <beans:property name="suffix" value=".jsp"/>
     </beans:bean>
 
