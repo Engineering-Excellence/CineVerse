@@ -150,13 +150,6 @@
             <version>${org.apache.tomcat-version}</version>
         </dependency>
 
-        <!-- HikariCP -->
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>4.0.3</version>
-        </dependency>
-
         <!-- ORACLE -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
