@@ -41,3 +41,4 @@ build/
 !*.secret
 src/main/resources/mybatis/db.properties
 bin/
+src/main/resources/db.properties
