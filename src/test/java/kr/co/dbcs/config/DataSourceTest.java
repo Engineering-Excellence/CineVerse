@@ -28,11 +28,13 @@ class DataSourceTest {
 
     @Test
     void dataSourceNotNullTest() {
+        
         assertNotNull(dataSource, "dataSource == null");
     }
 
     @Test
     void dbConnectionTest() {
+
         try (Connection connection = dataSource.getConnection()) {
             assertNotNull(connection, "connection == null");
         } catch (SQLException e) {
@@ -41,7 +43,8 @@ class DataSourceTest {
     }
 
     @Test
-    void testSelect1FromDualUsingMyBatis() {
+    void ConnectionTestQueryUsingMyBatis() {
+
         try (SqlSession session = sqlSessionFactory.openSession()) {
             Connection connection = session.getConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT 1 FROM DUAL");
@@ -50,7 +53,7 @@ class DataSourceTest {
                 int result = resultSet.getInt(1);
                 assertEquals(1, result, "result != 1");
             } catch (SQLException e) {
-                throw new RuntimeException("SELECT 1 FROM DUAL 쿼리 실행 중 오류 발생", e);
+                throw new RuntimeException("Connection Test Query 실행 중 오류 발생", e);
             }
         }
     }

@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableTransactionManagement
 @EnableAspectJAutoProxy
+@EnableTransactionManagement
 @AllArgsConstructor(onConstructor_ = @Autowired)
 @PropertySource("classpath:db.properties")
 @MapperScan(basePackages = "kr.co.dbcs.mapper")
@@ -28,8 +28,8 @@ public class RootConfig {
 
     @Bean
     public DataSource dataSource() {
-        // DBCP 설정
 
+        // DBCP 설정
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(env.getProperty("oracle.jdbc.driverClassName"));
         dataSource.setUrl(env.getProperty("oracle.jdbc.url"));

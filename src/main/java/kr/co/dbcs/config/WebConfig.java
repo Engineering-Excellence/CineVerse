@@ -17,12 +17,12 @@ public class WebConfig implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
-        // Root application context 설정
+        // Root Application Context 설정
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.register(RootConfig.class);
         servletContext.addListener(new ContextLoaderListener(rootContext));
 
-        // DispatcherServlet 설정
+        // Dispatcher Servlet 설정
         AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
         dispatcherContext.register(ServletConfig.class);
 
@@ -31,7 +31,7 @@ public class WebConfig implements WebApplicationInitializer {
         dispatcher.addMapping("/");
         dispatcher.setInitParameter("throwExceptionIfNoHandlerFound", "true");
 
-        // EncodingFilter 설정
+        // Encoding Filter 설정
         FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
         encodingFilter.setInitParameter("encoding", "UTF-8");
         encodingFilter.setInitParameter("forceEncoding", "true");
