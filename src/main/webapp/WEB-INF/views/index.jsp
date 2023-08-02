@@ -8,7 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="">
+    <meta name="description" content="Spring Legacy Project for Daebo">
+    <meta name="author" content="Team Annotation">
     <title>index.jsp</title>
     <link rel="icon" href="#">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"

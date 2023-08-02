@@ -32,6 +32,6 @@ public class LogAdvice {
         }
         logMsg.append(")");
 
-        log.info(logMsg.toString());
+        log.info(logMsg);
     }
 }
