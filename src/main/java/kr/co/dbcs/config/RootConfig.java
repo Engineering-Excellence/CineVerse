@@ -1,9 +1,11 @@
 package kr.co.dbcs.config;
 
 import lombok.AllArgsConstructor;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
@@ -62,6 +64,12 @@ public class RootConfig {
 //        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
 
         return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public SqlSession sqlSession(SqlSessionFactory sqlSessionFactory) {
+
+        return new SqlSessionTemplate(sqlSessionFactory);
     }
 
     @Bean
