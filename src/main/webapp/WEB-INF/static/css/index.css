@@ -1,0 +1,86 @@
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #F2F2F2;
+}
+
+#wrap {
+  width: 100%;
+  height: 100%;
+  background-color: #F2F2F2;
+}
+
+#header {
+  text-align: center;
+  vertical-align: middle;
+  height: 45px;
+  background-color: #110235;
+  color: white;
+  font-weight: bold;
+  font-family: Dancing Script;
+  font-size: 20px;
+}
+
+hr {
+  border: 0.2px solid black;
+}
+
+.thTag {
+  width: 120px;
+  height: 55px;
+  text-align: center;
+}
+
+.tdTag {
+  width: 350px;
+  font-size: 15px;
+}
+
+#accountID {
+  margin-left: 10px;
+  width: 400px;
+  display: inline-block;
+}
+
+#tdTag2 {
+  height: 50px;
+}
+
+#submit {
+  margin-left: 5px;
+  width: 90px;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 120px;
+}
+
+p {
+  font-weight: bold;
+  font-family: Dancing Script;
+  font-size: 40px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+
+form {
+  border: 1px solid lightgray;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 90px;
+  width: 800px;
+  height: 400px;
+  background-color: lavender;
+}
+
+#accountPassword {
+  margin-left: 10px;
+  width: 400px;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=index.css.map */
