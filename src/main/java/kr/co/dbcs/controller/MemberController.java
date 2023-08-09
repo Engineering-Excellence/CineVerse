@@ -7,10 +7,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Log4j2
 @Controller
@@ -26,9 +25,8 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
-
-        log.info("회원가입 {}", memberService.create(memberVO) ? "성공" : "실패");
+    public String joinSubmit(@RequestParam Map<String, String> map) {
+        log.info("회원가입 {}", memberService.insertMember(map) ? "성공" : "실패");
         return "redirect:/login";
     }
 
