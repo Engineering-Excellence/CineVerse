@@ -2,7 +2,6 @@ package kr.co.dbcs.service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public interface CRUDService<T, ID> {
     /*
@@ -10,9 +9,6 @@ public interface CRUDService<T, ID> {
         T: 전달할 엔티티 타입
         ID: PK 타입과 동일
      */
-    default boolean insertMember(Map<String, String> map) {
-        return false;
-    }
 
     boolean create(T vo);
 

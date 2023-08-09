@@ -1,7 +1,7 @@
 package kr.co.dbcs.controller;
 
 import kr.co.dbcs.model.MemberVO;
-import kr.co.dbcs.service.CRUDService;
+import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MemberController {
 
-    private final CRUDService<MemberVO, String> memberService;
+    private final MemberService memberService;
 
     @GetMapping("/join")
     public String joinForm() {
@@ -26,6 +26,7 @@ public class MemberController {
 
     @PostMapping("/join")
     public String joinSubmit(@RequestParam Map<String, String> map) {
+
         log.info("회원가입 {}", memberService.insertMember(map) ? "성공" : "실패");
         return "redirect:/login";
     }
