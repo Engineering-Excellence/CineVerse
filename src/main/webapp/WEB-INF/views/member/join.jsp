@@ -25,7 +25,11 @@
 
 <body>
 <fmt:requestEncoding value="UTF-8"/>
-
+<form action="/member/join" method="post">
+    ID <input type="text" name="username">
+    PW <input type="password" name="password">
+    <input type="submit" value="submit">
+</form>
 </body>
 
 </html>

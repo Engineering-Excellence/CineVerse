@@ -2,12 +2,14 @@ package kr.co.dbcs.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -23,15 +25,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         auth
-                .inMemoryAuthentication()
-                .withUser("user").password("{noop}user").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}admin").roles("ADMIN", "USER");
-//                .jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .passwordEncoder(encoder())
-//                .usersByUsernameQuery("SELECT username, password, enabled FROM USERS WHERE username = ?")
-//                .authoritiesByUsernameQuery("SELECT username, authorities FROM USERS WHERE username = ?");
+//                .inMemoryAuthentication()
+//                .withUser("user").password("{noop}user").roles("USER")
+//                .and()
+//                .withUser("admin").password("{noop}admin").roles("ADMIN", "USER");
+                .jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(encoder())
+                .usersByUsernameQuery("SELECT username, password, enabled FROM USERS WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username, authorities FROM USERS WHERE username = ?");
     }
 
     @Override
@@ -55,9 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-    /*@Bean
+    @Bean
     public BCryptPasswordEncoder encoder() {
 
         return new BCryptPasswordEncoder();
-    }*/
+    }
 }
