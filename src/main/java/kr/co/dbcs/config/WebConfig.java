@@ -1,40 +1,50 @@
 package kr.co.dbcs.config;
 
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import javax.servlet.Filter;
 import javax.servlet.ServletRegistration;
 
-public class WebConfig implements WebApplicationInitializer {
+public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
     // web.xml을 대신하는 java class
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
+    protected Class<?>[] getRootConfigClasses() {
 
-        // Root Application Context 설정
-        AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(RootConfig.class);
-        servletContext.addListener(new ContextLoaderListener(rootContext));
+        return new Class<?>[]{RootConfig.class, SecurityConfig.class};
+    }
 
-        // Dispatcher Servlet 설정
-        AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
-        dispatcherContext.register(ServletConfig.class);
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
 
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
-        dispatcher.setInitParameter("throwExceptionIfNoHandlerFound", "true");
+        return new Class<?>[]{ServletConfig.class};
+    }
 
-        // Encoding Filter 설정
-        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
-        encodingFilter.setInitParameter("encoding", "UTF-8");
-        encodingFilter.setInitParameter("forceEncoding", "true");
-        encodingFilter.addMappingForUrlPatterns(null, false, "/*");
+    @Override
+    protected String[] getServletMappings() {
+
+        return new String[]{"/"};
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+
+        // Encoding Filter
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+        encodingFilter.setForceEncoding(true);
+
+        // Spring Security Filter
+        DelegatingFilterProxy securityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
+
+        return new Filter[]{encodingFilter, securityFilterChain};
+    }
+
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+
+        registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
     }
 }

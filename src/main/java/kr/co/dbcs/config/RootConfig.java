@@ -1,6 +1,6 @@
 package kr.co.dbcs.config;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
@@ -19,10 +19,10 @@ import javax.sql.DataSource;
 @Configuration
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
-@AllArgsConstructor(onConstructor_ = @Autowired)
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @PropertySource("classpath:db.properties")
 @MapperScan(basePackages = "kr.co.dbcs.mapper")
-@ComponentScan(basePackages = {"kr.co.dbcs.model", "kr.co.dbcs.service", "kr.co.dbcs.util", "kr.co.dbcs.aop"})
+@ComponentScan(basePackages = {"kr.co.dbcs.model", "kr.co.dbcs.service", "kr.co.dbcs.aop"})
 public class RootConfig {
     // applicationContext.xml을 대신하는 java class
 
@@ -59,9 +59,6 @@ public class RootConfig {
 
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
-
-        // SQL Mapping을 xml 파일로 할 경우 필요
-//        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
 
         return sqlSessionFactoryBean.getObject();
     }
