@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HomeController {
 
-    @GetMapping("/login")
+    @GetMapping(value = "/login")
     public String index() {
         return "index";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/")
     public String home() {
         return "home";
