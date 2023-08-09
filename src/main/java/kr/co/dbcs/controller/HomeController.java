@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Log4j2
 @Controller
-@RequestMapping
+@RequestMapping(value = "")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HomeController {
 
     @GetMapping(value = "/login")
     public String index() {
-        return "index";
+        return "/index";
     }
 
-    @PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/")
+    @PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public String home() {
-        return "home";
+        return "/home";
     }
 }
