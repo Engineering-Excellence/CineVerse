@@ -1,0 +1,329 @@
+body {
+  max-width: 100%;
+  display: grid;
+  grid-template-areas: "header header" "side main" "footer footer";
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 0.25fr 2.5fr 1fr;
+  gap: 1.8vw;
+}
+
+body a {
+  text-underline: none;
+  color: black;
+}
+
+body a:hover {
+  text-underline: none;
+  color: black;
+}
+
+header {
+  grid-area: header;
+  background-color: #015F23;
+  height: 14vh;
+  padding: 1vw;
+}
+
+side {
+  grid-area: side;
+  max-height: 60vh;
+}
+
+side .side-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+side .side-container .side-wrapper {
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+side .side-container .side-wrapper .side-menu {
+  border: 1px solid black;
+  border-bottom: none;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+side .side-container .side-wrapper:nth-child(odd) {
+  flex-basis: 12%;
+}
+
+side .side-container .side-wrapper:nth-child(odd) .side-menu {
+  flex-basis: 100%;
+  background-color: #015F23;
+  font-size: 1.6em;
+}
+
+side .side-container .side-wrapper:nth-last-child(2) .side-menu {
+  border-bottom: 1px solid black;
+}
+
+side .side-container .side-wrapper:nth-child(even) {
+  display: none;
+}
+
+side .side-container .side-wrapper:nth-child(even):has(.side-menu:first-child:nth-last-child(1)) {
+  flex-basis: 12%;
+}
+
+side .side-container .side-wrapper:nth-child(even):has(.side-menu:first-child:nth-last-child(2)) {
+  flex-basis: 24%;
+}
+
+side .side-container .side-wrapper:nth-child(even):has(.side-menu:first-child:nth-last-child(3)) {
+  flex-basis: 36%;
+}
+
+side .side-container .side-wrapper:nth-child(even):has(.side-menu:first-child:nth-last-child(4)) {
+  flex-basis: 48%;
+}
+
+side .side-container .side-wrapper:nth-child(even):has(.side-menu:first-child:nth-last-child(5)) {
+  flex-basis: 60%;
+}
+
+side .side-container .side-wrapper:nth-child(even) .side-menu {
+  background-color: white;
+  color: black;
+  font-size: 1.3em;
+}
+
+side .side-container .side-wrapper:nth-child(even) .side-menu:first-child:nth-last-child(1), side .side-container .side-wrapper:nth-child(even) .side-menu:first-child:nth-last-child(1) ~ .side-menu {
+  flex-basis: 100%;
+}
+
+side .side-container .side-wrapper:nth-child(even) .side-menu:first-child:nth-last-child(2), side .side-container .side-wrapper:nth-child(even) .side-menu:first-child:nth-last-child(2) ~ .side-menu {
+  flex-basis: 50%;
+}
+
+side .side-container .side-wrapper:nth-child(even) .side-menu:first-child:nth-last-child(3), side .side-container .side-wrapper:nth-child(even) .side-menu:first-child:nth-last-child(3) ~ .side-menu {
+  flex-basis: 33.3333333333%;
+}
+
+side .side-container .side-wrapper:nth-child(even) .side-menu:first-child:nth-last-child(4), side .side-container .side-wrapper:nth-child(even) .side-menu:first-child:nth-last-child(4) ~ .side-menu {
+  flex-basis: 25%;
+}
+
+side .side-container .side-wrapper:nth-child(even) .side-menu:hover {
+  background-color: #eee;
+}
+
+side .side-container .side-wrapper:nth-last-child(1) .side-menu:first-child {
+  border-top: none;
+}
+
+side .side-container .side-wrapper:nth-last-child(1) .side-menu:last-child {
+  border-bottom: 1px solid black;
+}
+
+nav {
+  grid-area: nav;
+}
+
+nav #chat {
+  height: 100%;
+  width: 100%;
+  max-height: 980px;
+  grid-area: chat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+nav #chat #chatList {
+  background-color: #ccc;
+  width: 95%;
+  height: 95%;
+  overflow-y: auto;
+}
+
+nav #chat #chatList::-webkit-scrollbar {
+  width: 10px;
+}
+
+nav #chat #chatList::-webkit-scrollbar-thumb {
+  background: white;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 7px;
+  width: 3px;
+}
+
+nav #chat #chatList::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.85);
+  border-radius: 5px;
+  width: 3px;
+}
+
+nav #chat #chatList .chatBox {
+  display: flex;
+}
+
+nav #chat #chatList .chatBox.mine {
+  justify-content: flex-end;
+}
+
+nav #chat #chatList .chatBox.opponent {
+  justify-content: flex-start;
+}
+
+nav #chat #chatList .chatBox .chat {
+  width: fit-content;
+  height: fit-content;
+  padding: 2.5px 10px 2.5px 10px;
+  margin: 10px 10px 10px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+nav #chat #chatList .chatBox .chat.mine {
+  background-color: yellow;
+}
+
+nav #chat #chatList .chatBox .chat.opponent {
+  background-color: white;
+}
+
+nav #chat #chatForm {
+  width: 90%;
+}
+
+main {
+  grid-area: main;
+  border: 1px solid lightgray;
+  padding: 1vw;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.main-container {
+  height: 100%;
+  width: 100%;
+}
+
+.main-box {
+  height: 15%;
+  width: 8%;
+  background-color: white;
+  border: 1px solid black;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+.box-font {
+  text-align: right;
+}
+
+.modal-dialog {
+  max-width: 100%;
+  position: absolute;
+}
+
+.modal-header {
+  height: 100%;
+  width: 100%;
+}
+
+.modal-title {
+  height: 100px;
+  width: 200px;
+  background: white;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.title-font {
+  text-align: center;
+  margin: revert;
+}
+
+.search {
+  position: relative;
+  width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin: 15%;
+}
+
+.search-img {
+  position: absolute;
+  width: 17px;
+  top: 55px;
+  right: -30px;
+}
+
+.modal-body {
+  height: 100%;
+  width: 100%;
+}
+
+.modal-box {
+  height: 330px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid black;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+.modal-img {
+  height: 200px;
+  width: 200px;
+  margin: auto;
+  display: block;
+}
+
+.modal-line {
+  background-color: black;
+}
+
+.modal-text {
+  text-align: center;
+}
+
+footer {
+  grid-area: footer;
+  padding: 1vw;
+}
+
+.annotation {
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 10vh;
+  font-weight: bold;
+}
+
+.logout {
+  width: 4vw;
+  position: absolute;
+  top: 6%;
+  right: 0%;
+}
+
+
+
+/*# sourceMappingURL=main.css.map */

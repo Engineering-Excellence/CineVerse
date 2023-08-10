@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.header.writers.ContentSecurityPolicyHeaderWriter;
 
 import javax.sql.DataSource;
 
@@ -41,21 +42,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
+                .headers()
+                .addHeaderWriter(
+                        new ContentSecurityPolicyHeaderWriter("default-src 'self'; script-src 'self' *; img-src 'self' *"))
+                .and()
+
                 .csrf().disable()       // POST 요청 허용
                 .authorizeRequests()    // 요청에 권한 설정을 적용
-                .antMatchers("/join").permitAll() // 회원가입 페이지에 모든 사용자 접근 허용
+                .antMatchers("/css/**", "/js/**", "/images/**").permitAll() // 정적 리소스에 모든 사용자 접근 허용
+                .antMatchers("/member/join").permitAll() // 회원가입 페이지에 모든 사용자 접근 허용
+                .anyRequest().authenticated()
                 .and()
 
                 // 모든 사용자가 폼 로그인 페이지에 접근할 수 있도록 허용
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .loginPage("/login").permitAll()
                 .and()
 
                 //모든 사용자가 로그아웃 기능을 사용할 수 있도록 허용
                 .logout()
-                .logoutSuccessUrl("/login")
-                .permitAll();
+                .logoutSuccessUrl("/login").permitAll();
     }
 
     @Bean
