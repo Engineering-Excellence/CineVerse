@@ -14,7 +14,7 @@ import java.util.Map;
 @Log4j2
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class MemberServiceImpl implements CRUDService<MemberVO, String> {
+public class MemberServiceImpl implements MemberService {
 
     private final MemberMapper memberMapper;
     private final BCryptPasswordEncoder encoder;
