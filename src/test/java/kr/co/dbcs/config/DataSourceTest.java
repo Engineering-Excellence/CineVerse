@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = RootConfig.class)
+@ContextConfiguration(classes = {RootConfig.class, SecurityConfig.class})
 @RequiredArgsConstructor
 class DataSourceTest {
 

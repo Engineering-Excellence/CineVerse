@@ -5,7 +5,7 @@ import kr.co.dbcs.model.MemberVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.Map;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberMapper memberMapper;
-    private final BCryptPasswordEncoder encoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public boolean insertMember(Map<String, String> map) {
-        map.put("password", encoder.encode(map.get("password")));
+        map.put("password", passwordEncoder.encode(map.get("password")));
         return memberMapper.insertMember(map) >= 1;
     }
 

@@ -60,7 +60,7 @@
                     </div>
                     <div class="mt-3">
                         <p class="mb-0 text-muted">아직 회원이 아니세요?</p>
-                        <div class="btn btn-primary">회원가입<span class="fas fa-chevron-right ms-1"></span></div>
+                        <div class="btn btn-primary" onclick="location.href='/member/join'">회원가입<span class="fas fa-chevron-right ms-1"></span></div>
                     </div>
                 </div>
             </div>
