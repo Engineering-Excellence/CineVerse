@@ -64,7 +64,7 @@ public class RootConfig {
     }
 
     @Bean
-    public SqlSession sqlSession(SqlSessionFactory sqlSessionFactory) {
+    public SqlSession sqlSession(@Autowired SqlSessionFactory sqlSessionFactory) {
 
         return new SqlSessionTemplate(sqlSessionFactory);
     }
