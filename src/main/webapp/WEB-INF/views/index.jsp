@@ -60,12 +60,13 @@
                     </div>
                     <div class="mt-3">
                         <p class="mb-0 text-muted">아직 회원이 아니세요?</p>
-                        <div class="btn btn-primary" onclick="location.href='/member/join'">회원가입<span class="fas fa-chevron-right ms-1"></span></div>
+                        <div class="btn btn-primary" onclick="location.href='/member/join'">회원가입<span
+                                class="fas fa-chevron-right ms-1"></span></div>
                     </div>
                 </div>
             </div>
             <div class="mt-auto">
-                <p class="footer text-muted mb-0 mt-md-0 mt-4">By register you agree with our
+                <p class="footer text-muted mb-0 mt-md-0 mt-4">By register, you agree with our
                     <span class="p-color me-1">terms and conditions</span>and
                     <span class="p-color ms-1">privacy policy</span>
                 </p>
