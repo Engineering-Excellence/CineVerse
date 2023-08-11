@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberVO read(String username) {
-        return null;
+        return memberMapper.selectMemberByUsername(username);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean update(MemberVO memberVO) {
+    public boolean update(MemberVO MemberVO) {
         return false;
     }
 

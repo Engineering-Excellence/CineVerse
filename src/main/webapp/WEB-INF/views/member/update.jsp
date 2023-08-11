@@ -25,7 +25,7 @@
 
 <body>
 <fmt:requestEncoding value="UTF-8"/>
-
+    <p>${data}</p>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 package kr.co.dbcs.controller;
 
+import kr.co.dbcs.model.Member;
 import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -7,8 +8,10 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Map;
 
 @Log4j2
@@ -33,16 +36,16 @@ public class MemberController {
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public String deleteMember(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
+    public String deleteMember(@ModelAttribute(value = "memberVO") Member member) {
 
-        log.info("회원탈퇴 {}", memberService.delete(memberVO.getUsername()) ? "성공" : "실패");
+        log.info("회원탈퇴 {}", memberService.delete(member.getUsername()) ? "성공" : "실패");
         return "redirect:/login";
     }
 
     @GetMapping("/update")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public String updateForm() {
-
+    public String updateForm(Model model, Principal principal) {
+        model.addAttribute("data", memberService.read(principal.getName()));
         return "/member/update";
     }
 
