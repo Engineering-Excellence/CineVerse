@@ -44,7 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .headers()
                 .addHeaderWriter(
-                        new ContentSecurityPolicyHeaderWriter("default-src 'self'; script-src 'self' *; img-src 'self' *"))
+                        // 모든 URL에 대한 접근 허용
+                        new ContentSecurityPolicyHeaderWriter("default-src *; script-src * 'unsafe-inline'; img-src *; style-src *; connect-src *;")
+                )
                 .and()
 
                 .csrf().disable()       // POST 요청 허용

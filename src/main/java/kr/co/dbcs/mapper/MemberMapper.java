@@ -1,6 +1,7 @@
 package kr.co.dbcs.mapper;
 
-import org.apache.ibatis.annotations.Insert;
+import kr.co.dbcs.provider.MemberSqlProvider;
+import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;
@@ -8,6 +9,6 @@ import java.util.Map;
 @Mapper
 public interface MemberMapper {
 
-    @Insert("INSERT INTO MEMBER (username, password) VALUES (#{username}, #{password})")
+    @InsertProvider(type = MemberSqlProvider.class, method = "insertMember")
     int insertMember(Map<String, String> map);
 }
