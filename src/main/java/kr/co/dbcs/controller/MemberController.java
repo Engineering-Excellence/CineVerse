@@ -1,6 +1,5 @@
 package kr.co.dbcs.controller;
 
-import kr.co.dbcs.model.Member;
 import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -9,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
-import java.util.Map;
 
 @Log4j2
 @Controller
@@ -28,17 +29,17 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String joinSubmit(@RequestParam Map<String, String> map) {
+    public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
 
-        log.info("회원가입 {}", memberService.insertMember(map) ? "성공" : "실패");
+        log.info("회원가입 {}", memberService.insertMember(memberVO) ? "성공" : "실패");
         return "redirect:/login";
     }
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public String deleteMember(@ModelAttribute(value = "memberVO") Member member) {
+    public String deleteMember(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
 
-        log.info("회원탈퇴 {}", memberService.delete(member.getUsername()) ? "성공" : "실패");
+        log.info("회원탈퇴 {}", memberService.delete(memberVO.getUsername()) ? "성공" : "실패");
         return "redirect:/login";
     }
 

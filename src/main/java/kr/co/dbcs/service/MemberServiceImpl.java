@@ -7,9 +7,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 @Log4j2
 @Service
@@ -20,9 +20,10 @@ public class MemberServiceImpl implements MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public boolean insertMember(Map<String, String> map) {
-        map.put("password", passwordEncoder.encode(map.get("password")));
-        return memberMapper.insertMember(map) >= 1;
+    @Transactional
+    public boolean insertMember(MemberVO memberVO) {
+        memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
+        return memberMapper.insertMember(memberVO) >= 1 && memberMapper.insertAuth(memberVO.getUsername()) >= 1;
     }
 
     @Override

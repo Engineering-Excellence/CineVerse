@@ -6,12 +6,15 @@ import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 
-import java.util.Map;
-
 @Mapper
 public interface MemberMapper {
+
     @InsertProvider(type = MemberSqlProvider.class, method = "insertMember")
-    int insertMember(Map<String, String> map);
+    int insertMember(MemberVO memberVO);
+
+    @InsertProvider(type = MemberSqlProvider.class, method = "insertAuth")
+    int insertAuth(String username);
+
     @SelectProvider(type = MemberSqlProvider.class, method = "selectMemberByUsername")
     MemberVO selectMemberByUsername(String username);
 }

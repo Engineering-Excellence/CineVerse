@@ -18,6 +18,6 @@ public class CommonExceptionAdvice {
 
         model.addAttribute("NoHandlerFoundException", e);
         log.error(model);
-        return "/404";
+        return "/error";
     }
 }

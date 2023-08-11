@@ -1,15 +1,19 @@
 package kr.co.dbcs.model;
 
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
-@Getter
-@ToString
+@Data
+@NoArgsConstructor
 public class MemberVO {
-    private String username, password, authorities;
-    private boolean enabled;
-    private Date regdate;
 
+    private String username;
+    private String password;
+    private boolean enabled;
+    private Date regDate;
+    private Date updDate;
+    private List<AuthVO> authList;
 }
