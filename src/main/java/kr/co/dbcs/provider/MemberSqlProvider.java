@@ -13,4 +13,11 @@ public class MemberSqlProvider {
             VALUES("username, password", "#{username}, #{password}");
         }}.toString();
     }
+    public String selectMemberByUsername(String username) {
+        return new SQL() {{
+            SELECT("*");
+            FROM("MEMBER");
+            WHERE("username = #{username}");
+        }}.toString();
+    }
 }
