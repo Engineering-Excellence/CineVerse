@@ -34,8 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("SELECT username, password, enabled FROM MEMBER WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, authorities FROM MEMBER WHERE username = ?");
+                .usersByUsernameQuery("SELECT USERNAME, PASSWORD, ENABLED FROM MEMBER WHERE USERNAME = ?")
+                .authoritiesByUsernameQuery("SELECT USERNAME, AUTH FROM AUTH WHERE USERNAME = ?");
     }
 
     @Override
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers()
                 .addHeaderWriter(
                         // 모든 URL에 대한 접근 허용
-                        new ContentSecurityPolicyHeaderWriter("default-src *; script-src * 'unsafe-inline'; img-src *; style-src *; connect-src *;")
+                        new ContentSecurityPolicyHeaderWriter("default-src *; script-src * 'unsafe-inline'; img-src * 'unsafe-inline'; style-src * 'unsafe-inline'; connect-src * 'unsafe-inline';")
                 )
                 .and()
 

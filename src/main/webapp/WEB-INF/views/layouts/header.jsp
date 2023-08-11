@@ -13,9 +13,8 @@
     <meta name="description" content="Spring Legacy Final Project">
     <meta name="author" content="Team Annotation">
     <title>@Annotation</title>
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="#">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css"/>
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap/bootstrap.bundle.js" defer></script>
