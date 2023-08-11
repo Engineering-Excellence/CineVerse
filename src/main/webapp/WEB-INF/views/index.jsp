@@ -8,9 +8,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>index.jsp</title>
+    <meta name="description" content="Spring Legacy Final Project">
+    <meta name="author" content="Team Annotation">
+    <title>@Annotation</title>
     <link rel="icon" href="#">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/index.css">
