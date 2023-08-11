@@ -1,6 +1,6 @@
 package kr.co.dbcs.controller;
 
-import kr.co.dbcs.model.AuthVO;
+import kr.co.dbcs.model.Member;
 import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +36,9 @@ public class MemberController {
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public String deleteMember(@ModelAttribute(value = "memberVO") AuthVO authVO) {
+    public String deleteMember(@ModelAttribute(value = "memberVO") Member member) {
 
-        log.info("회원탈퇴 {}", memberService.delete(authVO.getUsername()) ? "성공" : "실패");
+        log.info("회원탈퇴 {}", memberService.delete(member.getUsername()) ? "성공" : "실패");
         return "redirect:/login";
     }
 
