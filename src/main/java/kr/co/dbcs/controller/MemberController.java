@@ -31,7 +31,7 @@ public class MemberController {
     @PostMapping("/join")
     public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
 
-        log.info("회원가입 {}", memberService.insertMember(memberVO) ? "성공" : "실패");
+        log.info("회원가입 {}", memberService.create(memberVO) ? "성공" : "실패");
         return "redirect:/login";
     }
 

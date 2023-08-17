@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class AuthVO {
 
-    private String memberId;
-    private String auth;
+    private String username;    // FK
+    private String authority;
 }

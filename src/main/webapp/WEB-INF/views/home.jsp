@@ -2,6 +2,6 @@
 <%@ include file="/WEB-INF/views/layouts/header.jsp" %>
 <%@ include file="/WEB-INF/views/layouts/side.jsp" %>
 
-<h1>HOME</h1>
+<h1><a href="/member/update">HOME</a></h1>
 
 <%@ include file="/WEB-INF/views/layouts/footer.jsp" %>

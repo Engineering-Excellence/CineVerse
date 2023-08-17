@@ -1,10 +1,11 @@
 package kr.co.dbcs.mapper;
 
+import kr.co.dbcs.model.AuthVO;
 import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.provider.MemberSqlProvider;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface MemberMapper {
@@ -16,5 +17,19 @@ public interface MemberMapper {
     int insertAuth(String username);
 
     @SelectProvider(type = MemberSqlProvider.class, method = "selectMemberByUsername")
+    @Results(id = "memberResultMap", value = {
+            @Result(property = "username", column = "username", id = true),
+            @Result(property = "password", column = "password"),
+            @Result(property = "enabled", column = "enabled"),
+            @Result(property = "mobile", column = "mobile"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "gender", column = "gender"),
+            @Result(property = "birthDate", column = "birthDate"),
+            @Result(property = "regDate", column = "regdate"),
+            @Result(property = "authList", column = "username", javaType = List.class, many = @Many(select = "getAuthListByUsername"))
+    })
     MemberVO selectMemberByUsername(String username);
+
+    @Select("SELECT AUTHORITY FROM AUTH WHERE USERNAME = #{username}")
+    List<AuthVO> getAuthListByUsername(String username);
 }

@@ -26,9 +26,52 @@
 <body>
 <fmt:requestEncoding value="UTF-8"/>
 <form action="/member/join" method="post">
-    ID <input type="text" name="username">
-    PW <input type="password" name="password">
-    <input type="submit" value="submit">
+    <table>
+        <tr>
+            <th>ID</th>
+            <td colspan="2">
+                <input type="text" name="username" id="username">
+            </td>
+        </tr>
+        <tr>
+            <th>PW</th>
+            <td colspan="2">
+                <input type="password" name="password" id="password">
+            </td>
+        </tr>
+        <tr>
+            <th>전화번호</th>
+            <td colspan="2">
+                <input type="text" name="mobile" id="mobile" placeholder="010-xxxx-xxxx">
+            </td>
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <td colspan="2">
+                <input type="email" name="email" id="email" placeholder="xxxx@example.com">
+            </td>
+        </tr>
+        <tr>
+            <th>성별</th>
+            <td>
+                <input type="radio" name="gender" value="1">남성
+            </td>
+            <td>
+                <input type="radio" name="gender" value="0">여성
+            </td>
+        </tr>
+        <tr>
+            <th>생일</th>
+            <td colspan="2">
+                <input type="date" name="birthDate" id="birthDate" placeholder="0000-00-00">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="submit">
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 
