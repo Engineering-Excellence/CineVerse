@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body class="login">
+    <div class="user-header">
+        <p>LOGO</p>
+        <ul>
+            <li><a href="#">로그인</a></li>
+            <li><a href="#">회원가입</a></li>
+        </ul>
+    </div>
+
+    <div class="user-menu">
+        <ul>
+            <li>
+                <a href="#">영화</a>
+            </li>
+            <li>
+                <a href="#">예매</a>
+            </li>
+            <li>
+                <a href="#">푸드스토어</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="user-login-main">
+        <div class="login-top">
+            <p class="movie-login">LOGIN</p>
+
+        </div>
+        <div class="login-form">
+            <div class="login-id">
+                <input type="text" required class="login login-id-text" name="">
+                <span>ID</span>
+            </div>
+            <div class="login-pwd">
+                <input type="password" required class="login login-pwd-text" id="login-pwd" name="">
+                <span>Password</span>
+                <div id="toggle-pwd" onclick="showHide();"></div>
+            </div>
+            <div class="login-btn-div">
+                <input type="submit" class="login-btn" value="로그인">
+            </div>
+            <ul>
+                <li>
+                    <a href="#">회원가입</a>
+                </li>
+                <li>
+                    <a href="#">비밀번호 재설정</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="user-footer">footer</div>
+    <script src="../js/login.js"></script>
+</body>
+
+</html>

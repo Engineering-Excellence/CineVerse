@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 8% 8% 7% 70% 7%;
+  grid-template-areas: "header" "menu" "movie-main-top" "main" "footer";
+}
+body div {
+  padding: 20px;
+  display: grid;
+}
+body .user-header {
+  padding-bottom: 20px;
+  padding: 0px;
+  grid-area: header;
+  text-align: center;
+}
+body .user-header ul {
+  list-style: none;
+  margin-top: 1%;
+  display: flex;
+  justify-content: flex-end;
+}
+body .user-header ul li {
+  float: left;
+  margin-left: 20px;
+  margin-right: 30px;
+  font-display: none;
+}
+body .user-header ul li a {
+  padding-right: 10px;
+  color: #808080;
+  font-size: 17px;
+  text-decoration-line: none;
+}
+body .user-header p {
+  position: absolute;
+  margin: 0;
+  margin-left: 46%;
+  font-size: 40px;
+  font-weight: bold;
+}
+body .user-menu {
+  grid-area: menu;
+  justify-items: center;
+}
+body .user-menu ul {
+  list-style: none;
+}
+body .user-menu ul li:first-child {
+  border-left-width: 1.5px;
+}
+body .user-menu ul li:last-child {
+  border-right-width: 1.5px;
+}
+body .user-menu ul li {
+  float: left;
+  padding-left: 50px;
+  padding-right: 50px;
+  border: 0px solid black;
+  border-width: 0 1px;
+}
+body .user-menu ul li a {
+  text-decoration-line: none;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+}
+body .movie-main-top {
+  grid-area: movie-main-top;
+}
+body .movie-main-top p {
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+  letter-spacing: 15px;
+}
+body .movie-main-top p a {
+  float: right;
+  text-decoration-line: none;
+  color: black;
+}
+body .user-footer {
+  grid-area: footer;
+}
+
+/*# sourceMappingURL=header.css.map */
