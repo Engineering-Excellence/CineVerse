@@ -30,6 +30,6 @@ public interface MemberMapper {
     })
     MemberVO selectMemberByUsername(String username);
 
-    @Select("SELECT AUTHORITY FROM AUTH WHERE USERNAME = #{username}")
+    @SelectProvider(type = MemberSqlProvider.class, method = "getAuthListByUsername")
     List<AuthVO> getAuthListByUsername(String username);
 }
