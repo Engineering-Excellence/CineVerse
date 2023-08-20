@@ -52,6 +52,10 @@ body{
     .user-menu{
         grid-area: menu;
         justify-items: center;
+        position: sticky; 
+        top:0; 
+        z-index: 9999; 
+        background-color: #f6f5f7;
         ul{
             list-style: none; 
             li:first-child{
@@ -91,8 +95,17 @@ body{
             }
         }
     }
+    
     .user-footer{
         grid-area: footer;
     }
     
+}
+
+.user-list-main{
+    grid-area: main;
+}
+
+.movie-detail-main{
+    grid-area: main;
 }

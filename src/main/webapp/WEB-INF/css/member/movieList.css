@@ -1,0 +1,109 @@
+.movie-list {
+  background: #f6f5f7;
+}
+
+.movie-list-main {
+  padding-top: 0;
+  display: grid;
+  grid-template-areas: "search" "movie";
+  grid-template-rows: 10% 90%;
+}
+.movie-list-main .search {
+  grid-area: search;
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.movie-list-main .search .search-select {
+  width: 150px;
+  height: 40px;
+}
+.movie-list-main .search .search-text {
+  width: 250px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.movie-list-main .search .search-btn {
+  width: 80px;
+  border-radius: 5px;
+  border: 0;
+  background-color: #483D8B;
+  color: white;
+  margin-right: 30px;
+}
+.movie-list-main .search input {
+  height: 40px;
+}
+.movie-list-main .movie {
+  grid-area: movie;
+  display: flex;
+  flex-flow: row wrap;
+}
+.movie-list-main .movie .movie-poster {
+  top: 0;
+  height: 330px;
+  width: 240px;
+  background-color: #ffffff;
+  padding: 0;
+  margin: 25px;
+  text-align: center;
+  position: relative;
+}
+.movie-list-main .movie .movie-poster .poster-img {
+  height: 230px;
+  width: 240px;
+}
+.movie-list-main .movie .movie-poster .movie-name {
+  margin-top: 4px;
+  margin-bottom: 0;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.movie-list-main .movie .movie-poster .release-date {
+  margin-top: 5px;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.movie-list-main .movie .movie-poster .movie-btn {
+  color: #483D8B;
+  font-weight: 700;
+  width: 120px;
+  background-color: #f0eef1;
+  letter-spacing: 3px;
+  border-radius: 5px;
+  border: 0;
+  opacity: 0;
+  position: absolute;
+  padding: 10px;
+  left: 26%;
+}
+.movie-list-main .movie .movie-poster .detail {
+  top: 20%;
+}
+.movie-list-main .movie .movie-poster .ticketing {
+  top: 38%;
+}
+.movie-list-main .movie .movie-poster label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.movie-list-main .movie .movie-poster label .time-img {
+  width: 25px;
+  height: 25px;
+}
+.movie-list-main .movie .movie-poster label p {
+  margin-left: 2px;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+.movie-list-main .movie .movie-poster:hover .movie-btn {
+  opacity: 1;
+}
+
+.movie-poster:hover .poster-img {
+  filter: brightness(0.3);
+}
+
+/*# sourceMappingURL=movieList.css.map */
