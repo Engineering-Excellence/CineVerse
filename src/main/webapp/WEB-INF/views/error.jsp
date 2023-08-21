@@ -12,8 +12,9 @@
     <meta name="author" content="Team Annotation">
     <title>@Annotation</title>
     <link rel="icon" href="#">
-    <link rel="stylesheet" href="css/error.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/error.css">
 </head>
+
 <body>
 <fmt:requestEncoding value="UTF-8"/>
 <div class="wrapper">
@@ -21,7 +22,7 @@
         <h1>404</h1>
         <p>404 Not Found</p>
         <p>&#58;&#40;</p>
-        <p><a href="/">Let me try again!</a></p>
+        <p><a onclick="history.back()">Let me try again!</a></p>
     </div>
 </div>
 </body>

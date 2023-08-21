@@ -8,15 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpRequest;
-import java.security.Principal;
+import java.util.ArrayList;
 
 @Log4j2
 @Controller
@@ -26,38 +20,44 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/join")
-    public String joinForm() {
+    @GetMapping(value = "/{path1}")
+    public String handlePath1(@PathVariable String path1, Model model) {
+        ArrayList<String> paths = new ArrayList<>();
+        paths.add("member");
+        paths.add(path1);
+        model.addAttribute("paths", paths);
+
         return "/home";
     }
 
-    @PostMapping("/join")
-    public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
+    @GetMapping(value = "/{path1}/{path2}")
+    public String handlePath2(@PathVariable String path1, @PathVariable String path2, Model model) {
+        ArrayList<String> paths = new ArrayList<>();
+        paths.add("member");
+        paths.add(path1);
+        paths.add(path2);
+        model.addAttribute("paths", paths);
 
+        return "/home";
+    }
+
+    @PostMapping(value = "/join")
+    public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
         log.info("회원가입 {}", memberService.create(memberVO) ? "성공" : "실패");
         return "redirect:/login";
     }
 
-    @PostMapping("/delete")
+    @PostMapping(value = "/delete")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public String deleteMember(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
-
         log.info("회원탈퇴 {}", memberService.delete(memberVO.getUsername()) ? "성공" : "실패");
         return "redirect:/login";
     }
 
-    @GetMapping("/update")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public String updateForm(Model model, Principal principal) {
-        model.addAttribute("data", memberService.read(principal.getName()));
-        return "/member/update";
-    }
-
-    @PostMapping("/update")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PostMapping(value = "/update")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public String updateSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
-
         log.info("회원수정 {}", memberService.update(memberVO) ? "성공" : "실패");
-        return "redirect:/login";
+        return "redirect:/";
     }
 }
