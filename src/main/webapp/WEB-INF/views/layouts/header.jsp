@@ -1,4 +1,3 @@
-<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -15,14 +14,14 @@
     <meta name="author" content="Team Annotation">
     <title>@Annotation</title>
     <link rel="icon" href="#">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap.css"/>
     <link rel="stylesheet" href="../css/member/header.css"/>
-<%--    <link rel="stylesheet" href="css/main.css">--%>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap/bootstrap.bundle.js" defer></script>
+    <%--<link rel="stylesheet" href="../css/main.css">--%>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap/bootstrap.bundle.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
 </head>
-<body>
+
 <div class="user-header">
     <p>LOGO</p>
     <ul>
