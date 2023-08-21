@@ -1,0 +1,103 @@
+.movie-detail {
+    background: #f6f5f7;
+    
+    .movie-detail-main{
+        margin-top: -20px;
+        display: grid;
+        grid-template-areas: 'movie-img movie-content' ;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        height: 90%;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+        0 10px 10px rgba(0,0,0,0.22);
+        margin-left: 190px;
+        
+        .movie-img{
+            grid-area: movie-img;
+            justify-content: center;
+            align-items: center;
+            img{
+                height: 520px;
+                width: 470px;
+                border-radius: 10px;
+                margin-left: -10px;
+
+            }
+        }
+        
+        .movie-content{
+            grid-area: movie-content;
+
+            h2{
+            	margin-top: 0px;
+                margin-bottom: 20px;
+                font-size: 35px;
+            }
+            .movie-content-ul{
+                margin-left: -65px;
+                
+                ul{
+                    padding: 0;
+                    list-style: none; 
+                    align-items: center;
+        			justify-content: center;
+                    li:first-child{
+                        border-left-width: 0px;
+                    }
+                    li:last-child{
+                        border-right-width: 0px;
+                    }
+                    li{
+                        float: left;
+                        padding-left: 50px;
+                        padding-right: 50px;
+                        border: 1px solid black;
+                        border-width: 0 1px;
+                        height: 25px;
+                        img{
+                            width: 30px;
+                            height: 30px;
+                        }
+                        .rating{
+                            color: rgb(201, 87, 53);
+                        }
+                    }
+                    p{
+                    	margin-top: 2px;
+                    }
+                    .time{
+                        display: flex;
+                    }
+
+                }
+            }
+            table{
+                margin-bottom: 30px;
+                border-collapse: separate;
+                border-spacing: 0 20px;
+                //padding: 50px;
+                tr{
+                    font-size: 18px;
+
+                    th{
+                        width: 100px;
+                        text-align: left;
+                    }
+                }
+            }
+            button{
+                height: 70px;
+                width: 300px;
+                border-radius: 100px;
+                border: 0;
+                background-color: #483D8B;
+                color: white;
+                letter-spacing: 2px;
+                font-size: 18px;
+
+            }
+        }
+    }
+  }

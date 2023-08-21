@@ -1,0 +1,94 @@
+.movie-detail {
+  background: #f6f5f7;
+}
+.movie-detail .movie-detail-main {
+  margin-top: -20px;
+  display: grid;
+  grid-template-areas: "movie-img movie-content";
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  height: 90%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin-left: 190px;
+}
+.movie-detail .movie-detail-main .movie-img {
+  grid-area: movie-img;
+  justify-content: center;
+  align-items: center;
+}
+.movie-detail .movie-detail-main .movie-img img {
+  height: 520px;
+  width: 470px;
+  border-radius: 10px;
+  margin-left: -10px;
+}
+.movie-detail .movie-detail-main .movie-content {
+  grid-area: movie-content;
+}
+.movie-detail .movie-detail-main .movie-content h2 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  font-size: 35px;
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul {
+  margin-left: -65px;
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul ul {
+  padding: 0;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul ul li:first-child {
+  border-left-width: 0px;
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul ul li:last-child {
+  border-right-width: 0px;
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul ul li {
+  float: left;
+  padding-left: 50px;
+  padding-right: 50px;
+  border: 1px solid black;
+  border-width: 0 1px;
+  height: 25px;
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul ul li img {
+  width: 30px;
+  height: 30px;
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul ul li .rating {
+  color: rgb(201, 87, 53);
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul ul p {
+  margin-top: 2px;
+}
+.movie-detail .movie-detail-main .movie-content .movie-content-ul ul .time {
+  display: flex;
+}
+.movie-detail .movie-detail-main .movie-content table {
+  margin-bottom: 30px;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+.movie-detail .movie-detail-main .movie-content table tr {
+  font-size: 18px;
+}
+.movie-detail .movie-detail-main .movie-content table tr th {
+  width: 100px;
+  text-align: left;
+}
+.movie-detail .movie-detail-main .movie-content button {
+  height: 70px;
+  width: 300px;
+  border-radius: 100px;
+  border: 0;
+  background-color: #483D8B;
+  color: white;
+  letter-spacing: 2px;
+  font-size: 18px;
+}
+
+/*# sourceMappingURL=movieDetail.css.map */

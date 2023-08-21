@@ -13,6 +13,7 @@ h1 {
 
 h2 {
   text-align: center;
+  font-size: 40px;
 }
 
 span {
@@ -67,6 +68,7 @@ button.ghost {
   padding: 12px 15px;
   margin: 8px 0;
   width: 245px;
+  height: 40px;
 }
 
 .join-input-btn {
@@ -97,15 +99,16 @@ button.ghost {
 .join-input-p {
   padding: 0;
   margin-left: -165px;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
   text-align: left;
 }
 
 .join-input-gender {
   padding: 0;
   margin-left: -200px;
-  margin-bottom: 5px;
   text-align: left;
+  margin-top: 5px;
 }
 
 .form-container {
@@ -236,15 +239,19 @@ input[type=radio] {
 }
 
 input[type=radio] + span {
-  display: inline-block;
+  display: inline-flex;
   padding: 15px 10px;
   border: 1px solid black;
   background-color: #ffffff;
   text-align: center;
   cursor: pointer;
   width: 119px;
-  height: 50px;
+  height: 40px;
   font-size: 14px;
+  /* text-align: center; */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 input[type=radio]:checked + span {
@@ -263,10 +270,10 @@ input[type=radio]:checked + span {
   padding-bottom: 5px;
 }
 .join-id .join-input-id {
-  width: 160px;
+  width: 170px;
   margin-right: 5px;
   border: 1px solid black;
-  height: 50px;
+  height: 40px;
   padding: 12px 15px;
 }
 
