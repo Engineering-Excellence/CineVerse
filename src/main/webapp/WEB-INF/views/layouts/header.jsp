@@ -20,12 +20,13 @@
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap/bootstrap.bundle.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
+    <script type="text/javascript" src="../js/validation.js"></script>
 </head>
 
 <div class="user-header">
     <p>LOGO</p>
     <ul>
-        <li><a href=/login">로그인</a></li>
+        <li><a href="/login">로그인</a></li>
         <li><a href="/member/join">회원가입</a></li>
     </ul>
 </div>

@@ -24,7 +24,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         MemberVO memberVO = memberMapper.selectMemberByUsername(username);
         return memberVO == null ? null : new CustomUser(memberVO);
     }

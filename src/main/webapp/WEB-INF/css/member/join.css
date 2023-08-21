@@ -76,6 +76,14 @@ button.ghost {
   border: 1px solid #483D8B;
   border-radius: 5px;
 }
+.join-input-btn:hover {
+  color: #fff;
+  background-color: #483D8B;
+}
+.join-input-btn.checked {
+  color: #fff;
+  background-color: #483D8B;
+}
 
 .user-join-main {
   display: flex;
@@ -255,7 +263,7 @@ input[type=radio] + span {
 }
 
 input[type=radio]:checked + span {
-  background-color: rgb(231, 203, 203);
+  background-color: #483D8B;
   border: 1px solid white;
   color: #ffffff;
 }

@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()    // 요청에 권한 설정을 적용
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll() // 정적 리소스에 모든 사용자 접근 허용
                 .antMatchers("/member/join").permitAll() // 회원가입 페이지에 모든 사용자 접근 허용
+                .antMatchers("/member/check").permitAll() // 중복체크 접근 허용
                 .anyRequest().authenticated()
                 .and()
 
