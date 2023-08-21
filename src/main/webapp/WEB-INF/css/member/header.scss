@@ -2,7 +2,6 @@ body{
     margin: 0;
     padding: 0;
     display: grid;
-    //grid-gap: 10px;
     height: 100vh;
     grid-template-rows: 8% 8% 7% 70% 7%;
     grid-template-areas: 'header' 'menu' 'movie-main-top' 'main' 'footer';
@@ -22,10 +21,11 @@ body{
         text-align: center;
 
                 ul{
-                    list-style: none; 
-                    margin-top: 1%;
-                    display: flex;
-                    justify-content: flex-end;
+					list-style: none;
+    				margin-top: 35px;
+    				align-items: center;
+    				display: flex;
+    				justify-content: flex-end;
                     li{
                         float: left;
                         margin-left: 20px;
@@ -46,6 +46,7 @@ body{
                 margin-left: 46%;
                 font-size: 40px;
                 font-weight: bold;
+                margin-top: 20px;
             }
         }
 
@@ -58,6 +59,8 @@ body{
         background-color: #f6f5f7;
         ul{
             list-style: none; 
+            margin-top: 8px;
+            justify-items: center;
             li:first-child{
                 border-left-width: 1.5px;
             }

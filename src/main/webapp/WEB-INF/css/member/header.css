@@ -18,7 +18,8 @@ body .user-header {
 }
 body .user-header ul {
   list-style: none;
-  margin-top: 1%;
+  margin-top: 35px;
+  align-items: center;
   display: flex;
   justify-content: flex-end;
 }
@@ -40,6 +41,7 @@ body .user-header p {
   margin-left: 46%;
   font-size: 40px;
   font-weight: bold;
+  margin-top: 20px;
 }
 body .user-menu {
   grid-area: menu;
@@ -51,6 +53,8 @@ body .user-menu {
 }
 body .user-menu ul {
   list-style: none;
+  margin-top: 8px;
+  justify-items: center;
 }
 body .user-menu ul li:first-child {
   border-left-width: 1.5px;

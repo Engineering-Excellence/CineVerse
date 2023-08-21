@@ -1,5 +1,6 @@
 .movie-list {
   background: #f6f5f7;
+  width: 98%;
 }
 
 .movie-list-main {
@@ -16,20 +17,23 @@
 }
 .movie-list-main .search .search-select {
   width: 150px;
-  height: 40px;
+  height: 47px;
 }
 .movie-list-main .search .search-text {
   width: 250px;
+  height: 40px;
   margin-left: 10px;
   margin-right: 10px;
 }
 .movie-list-main .search .search-btn {
   width: 80px;
+  height: 46px;
   border-radius: 5px;
   border: 0;
   background-color: #483D8B;
   color: white;
-  margin-right: 30px;
+  margin-right: 90px;
+  font-size: 16px;
 }
 .movie-list-main .search input {
   height: 40px;
@@ -38,6 +42,7 @@
   grid-area: movie;
   display: flex;
   flex-flow: row wrap;
+  margin-left: 50px;
 }
 .movie-list-main .movie .movie-poster {
   top: 0;
@@ -45,7 +50,7 @@
   width: 240px;
   background-color: #ffffff;
   padding: 0;
-  margin: 25px;
+  margin: 30px;
   text-align: center;
   position: relative;
 }
@@ -95,7 +100,6 @@
 }
 .movie-list-main .movie .movie-poster label p {
   margin-left: 2px;
-  margin-bottom: 4px;
   font-size: 13px;
 }
 .movie-list-main .movie .movie-poster:hover .movie-btn {
