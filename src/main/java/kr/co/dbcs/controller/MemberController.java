@@ -7,7 +7,10 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Log4j2
 @Controller
@@ -19,13 +22,19 @@ public class MemberController {
 
     @GetMapping(value = "/{path1}")
     public String handlePath1() {
-        return "/home";
+        return "/member/home";
     }
 
     @GetMapping(value = "/{path1}/{path2}")
     public String handlePath2() {
-        return "/home";
+        return "/member/home";
     }
+
+//    @GetMapping(value = "/update")
+//    public String updateForm(Model model, Principal principal) {
+//        model.addAttribute("data", memberService.read(principal.getName()));
+//        return "/member/update";
+//    }
 
     @PostMapping(value = "/join")
     public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
