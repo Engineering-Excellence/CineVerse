@@ -25,11 +25,6 @@ public class MemberController {
         return "/member/home";
     }
 
-    @GetMapping(value = "/{path1}/{path2}")
-    public String handlePath2() {
-        return "/member/home";
-    }
-
 //    @GetMapping(value = "/update")
 //    public String updateForm(Model model, Principal principal) {
 //        model.addAttribute("data", memberService.read(principal.getName()));
