@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,12 +13,12 @@
     <meta name="author" content="Team Annotation">
     <title>@Annotation</title>
     <link rel="icon" href="#">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-<%--    <link rel="stylesheet" href="css/index.css">--%>
-    <link rel="stylesheet" href="../css/member/header.css" />
-    <link rel="stylesheet" href="../css/member/login.css">
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap/bootstrap.bundle.js" defer></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/login.css">
+    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
 </head>
 
@@ -45,11 +46,9 @@
     </ul>
 </div>
 
-
 <div class="user-login-main">
     <div class="login-top">
         <p class="movie-login">LOGIN</p>
-
     </div>
     <form action="/login" method="post">
         <div class="login-form">
@@ -78,6 +77,6 @@
 </div>
 
 <div class="user-footer">footer</div>
-<script src="../js/login.js"></script>
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
 
 </html>

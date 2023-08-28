@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
-<link rel="stylesheet" href="../css/member/movieDetail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/movieDetail.css">
 
 <body class="movie-detail">
 <div class="movie-detail-main">
     <div class="movie-img">
-        <img src="../images/비공식작전.jpg">
+        <img src="${pageContext.request.contextPath}/images/비공식작전.jpg">
     </div>
     <div class="movie-content">
         <h2>
@@ -16,7 +16,7 @@
                 <li>
                     <p>2023.00.00 개봉</p>
                 </li>
-                <li class="time"><img src="../images/clock.png">
+                <li class="time"><img src="${pageContext.request.contextPath}/images/clock.png">
                     <p>180분</p></li>
                 <li>
                     <p class="rating">15세이상 관람가</p>

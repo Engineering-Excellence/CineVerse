@@ -14,13 +14,13 @@
     <meta name="author" content="Team Annotation">
     <title>@Annotation</title>
     <link rel="icon" href="#">
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap.css"/>
-    <link rel="stylesheet" href="../css/member/header.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/header.css"/>
     <%--<link rel="stylesheet" href="../css/main.css">--%>
-    <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap/bootstrap.bundle.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-    <script type="text/javascript" src="../js/validation.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js"></script>
 </head>
 
 <div class="user-header">
