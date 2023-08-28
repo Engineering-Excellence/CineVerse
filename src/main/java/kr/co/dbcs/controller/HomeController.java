@@ -22,6 +22,6 @@ public class HomeController {
     @GetMapping(value = "/")
     @PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public String home() {
-        return "/home";
+        return "/member/home";
     }
 }

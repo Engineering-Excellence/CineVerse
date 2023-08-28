@@ -1,8 +1,8 @@
 var idDupCheck = false;
 
+
 $("#check-dup").click((e) => {
     e.preventDefault();
-
     if ($("#username").val().length == 0) {
         alert("아이디를 입력해주세요");
         return;
