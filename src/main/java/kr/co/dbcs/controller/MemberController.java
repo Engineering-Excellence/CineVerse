@@ -10,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-
 @Log4j2
 @Controller
 @RequestMapping(value = "/member")
@@ -20,16 +18,10 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping(value = "/{path1}")
-    public String handlePath1() {
+    @GetMapping(value = "/{path}")
+    public String handlePath(@PathVariable String path, Model model) {
         return "/member/home";
     }
-
-//    @GetMapping(value = "/update")
-//    public String updateForm(Model model, Principal principal) {
-//        model.addAttribute("data", memberService.read(principal.getName()));
-//        return "/member/update";
-//    }
 
     @PostMapping(value = "/join")
     public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
@@ -37,6 +29,7 @@ public class MemberController {
         log.info("회원가입 {}", memberService.create(memberVO) ? "성공" : "실패");
         return "redirect:/login";
     }
+
     @PostMapping("/check")
     @ResponseBody
     public boolean idCheck(@RequestBody MemberVO memberVO) {
@@ -44,7 +37,7 @@ public class MemberController {
     }
 
     @PostMapping(value = "/delete")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public String deleteMember(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
 
         log.info("회원탈퇴 {}", memberService.delete(memberVO.getUsername()) ? "성공" : "실패");

@@ -1,5 +1,6 @@
-var idDupCheck = false;
+'use strict'
 
+var idDupCheck = false;
 
 $("#check-dup").click((e) => {
     e.preventDefault();
@@ -29,8 +30,7 @@ $("#check-dup").click((e) => {
                 }
             },
         });
-    }
-    else {
+    } else {
         $("#username").removeAttr("readonly");
         $("#check-dup").toggleClass("checked");
         $("#username").focus();
@@ -57,7 +57,6 @@ $("#next").click(() => {
 $("#prev").click(() => {
     $("#join-container").removeClass("right-panel-active");
 });
-
 
 
 $("#join-form").submit(() => {
