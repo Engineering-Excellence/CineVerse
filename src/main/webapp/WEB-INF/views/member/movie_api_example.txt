@@ -1,0 +1,66 @@
+상영중인 영화 리스트
+data 에 받아올 시,
+
+data["results"] 가 해당 페이지의 영화 리스트
+
+data["results"][idx] 로 각 영화 접근
+각 영화에서 필요한 값
+
+제목 ["title"]
+
+포스터 ["poster_path"] 해가지고
+http://image.tmdb.org/t/p/{포스터사이즈}/{post_path} 에 붙이기
+포스터 사이즈는 너비 맞춰서 잘 하기
+
+평점 ["vote_average"]
+
+개봉일 ["release_date"]
+
+=========================================
+
+상세정보
+
+포스터["poster_path"]
+http://image.tmdb.org/t/p/{포스터사이즈}/{post_path} 에 붙이기
+
+제목["title"]
+
+런타임["runtime"]
+
+평점["vote_average"]
+
+장르["genres"][idx][name] 으로 하나씩 가져오기
+
+개봉일 및 등급 정보
+["release_date"]["results"][idx] 에서
+["iso_3166_1"] == "KR" 인 데이터 가져온 후
+등급정보 ["release_dates"]["certification"]
+개봉일 ["release_dates"]["release_date"]
+날짜가 "2023-08-15T00:00:00.000Z" 형식을 가지므로 잘 파싱해서 쓸 것
+
+인물 같은 경우는 같은 movie_id로 인물 api 돌려서
+["cast"] 에서
+배우"known_for_department": "Acting" 인 데이터들 일부 가져와서
+성별 ["gender"]
+이름 ["name"]
+
+사진 ["profile_path"]
+마찬가지로 http://image.tmdb.org/t/p/original/llkbyWKwpfowZ6C8peBjIV9jj99.jpg 처럼 사용
+
+역할 ["character"]
+
+
+감독은 "known_for_department": "Directing" 중 "job" : "Director" 인 사람
+job이 null 일수도 있으니 주의
+성별, 이름, 사진 사용할 것
+
+===================================================
+
+영화 검색
+https://api.themoviedb.org/3/search/movie?query={utf-8로 인코딩한 검색어}&language=ko-KR&page=1&api_key=06b1c66d3baf07cdfabaf28b3876e74a
+
+제목, 평점, 포스터 등 나오기
+
+===================================================
+
+

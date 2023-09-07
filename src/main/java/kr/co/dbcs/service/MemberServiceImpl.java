@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -42,7 +43,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberVO> readAll() {
-        return null;
+        List<MemberVO> ret = memberMapper.selectAllMember();
+        return ret;
     }
 
     @Override

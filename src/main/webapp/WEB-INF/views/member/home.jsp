@@ -17,6 +17,9 @@
             <c:when test="${paths[1] eq 'movieList'}">
                 <%@ include file="/WEB-INF/views/member/movieList.jsp" %>
             </c:when>
+            <c:when test="${paths[1] eq 'chat'}">
+                <%@ include file="/WEB-INF/views/member/chatTest.jsp" %>
+            </c:when>
         </c:choose>
     </c:when>
 
