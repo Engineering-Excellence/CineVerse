@@ -1,5 +1,6 @@
 package kr.co.dbcs.controller;
 
+import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import java.util.Collection;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HomeController {
 
+    private final MemberService memberService;
+
     @GetMapping(value = "/login")
     public String index() {
         return "/index";
@@ -34,6 +37,7 @@ public class HomeController {
         if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
             return "/admin/home";
         } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
+            memberService.crawl();
             return "/member/home";
         } else {
             return "/error";
