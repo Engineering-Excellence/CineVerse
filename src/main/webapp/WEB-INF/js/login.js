@@ -13,7 +13,3 @@ function showHide() {
         togglePassword.classList.remove('hide');
     }
 }
-
-
-
-

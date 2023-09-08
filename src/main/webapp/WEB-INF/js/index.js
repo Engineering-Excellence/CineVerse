@@ -1,28 +1,22 @@
-$(document).ready(function(){
-  
-  $(".fullpage").fullpage({
-     
-    navigation: true,
-    navigationPosition: 'right',
-    navigationTooltips:[
-      "hello",
-      "welcome",
-      "good-day",
-      "nice"
-      
-    ],
-    
-    controlArrows: true, 
-    slidesNavigation: true,
-    slidesNavPosition: 'bottom',
-    keyboardScrolling: true,
-    
-  });
-  
+$(document).ready(function () {
+
+    $(".fullpage").fullpage({
+
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: [
+            "hello",
+            "welcome",
+            "good-day",
+            "nice"
+        ],
+
+        controlArrows: true,
+        slidesNavigation: true,
+        slidesNavPosition: 'bottom',
+        keyboardScrolling: true,
+    });
 });
-
-
-
 
 
 var bg = document.querySelector('.item-bg');
@@ -33,7 +27,7 @@ function cLog(content) {
     console.log(content)
 }
 
-if($(window).width() > 800) {
+if ($(window).width() > 800) {
     $(document).on("mouseover", ".news__item", function (_event, _element) {
 
         var newsItem = document.querySelectorAll('.news__item');
@@ -48,7 +42,6 @@ if($(window).width() > 800) {
                 $('.news__item').removeClass('active');
                 // $('.news__item').removeClass('active');
 
-
                 bg.style.width = width + 'px';
                 bg.style.height = height + 'px';
                 bg.style.transform = 'translateX(' + x + 'px ) translateY(' + y + 'px)';
@@ -58,9 +51,7 @@ if($(window).width() > 800) {
                 $('.item-bg').removeClass('active');
                 $('.news__item').removeClass('active');
             });
-
         });
-
     });
 }
 
@@ -114,7 +105,7 @@ var swiper = new Swiper('.news-slider', {
 
             bg.style.width = width + 'px';
             bg.style.height = height + 'px';
-           bg.style.transform = 'translateX(' + x + 'px ) translateY(' + 113 + 'px)';
+            bg.style.transform = 'translateX(' + x + 'px ) translateY(' + 113 + 'px)';
             //console.log(x + " " + y);
         }
     }

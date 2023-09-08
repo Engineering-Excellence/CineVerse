@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +64,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void crawl() {
-        String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&brchNo=1372&firstAt=N&brchNo1=1372&crtDe=20230908&playDe=20230908";
+
+        String movieNm = "오펜하이머";
+        String brchNo1 = "1372";
+        String playDe = "20230908";
+        String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
 
         try {
             RestTemplate restTemplate = new RestTemplate();
@@ -80,11 +83,18 @@ public class MemberServiceImpl implements MemberService {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ObjectMapper가 알 수 없는 속성을 만났을 때 실패하지 않고 무시
 
             for (Map<String, Object> movieData : movieFormList) {
-                // map을 Movie 객체로 변환
+                // Map을 Movie 객체로 변환
                 MovieVO movie = mapper.convertValue(movieData, MovieVO.class);
 
-                log.info(String.format("%s [%s] (%d/%d)",
-                        StringEscapeUtils.unescapeHtml4(movie.getMovieName()),
+                // 영화 제목 확인 후 원하는 제목이 아니면 건너뜀
+                if (!StringEscapeUtils.unescapeHtml4(movie.getMovieNm()).equals(movieNm)) {
+                    continue;
+                }
+
+                log.info(String.format("%s - %s%s [%s] (%d/%d)",
+                        StringEscapeUtils.unescapeHtml4(movie.getMovieNm()),
+                        movie.getBrchNm(),
+                        movie.getTheabExpoNm(),
                         movie.getPlayStartTime(),
                         movie.getRestSeatCnt(),
                         movie.getTotSeatCnt()));

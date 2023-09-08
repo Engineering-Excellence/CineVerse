@@ -1,6 +1,5 @@
 package kr.co.dbcs.controller;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
