@@ -14,11 +14,11 @@ public interface CRUDService<T, ID> {
 
     T read(ID id);
 
-    default List<T> readAll() {
+    default List<T> readAll(String username) { //조회
         return Collections.emptyList();
     }
 
-    boolean update(T vo);
+    boolean update(T vo);//수정
 
-    boolean delete(ID id);
+    boolean delete(ID id);//삭젠
 }

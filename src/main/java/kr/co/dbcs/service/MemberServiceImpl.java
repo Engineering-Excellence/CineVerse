@@ -48,19 +48,15 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberVO> readAll() {
-        List<MemberVO> ret = memberMapper.selectAllMember();
-        return ret;
+    @Transactional
+    public boolean update(MemberVO memberVO) {//회원 정보 수정
+        return memberMapper.updateMemberInfo(memberVO) >= 1;
     }
-
+    
     @Override
-    public boolean update(MemberVO memberVO) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(String username) {
-        return false;
+    @Transactional
+    public boolean delete(String username) {//회원 탈퇴
+        return memberMapper.deleteMemberInfo(username) >= 1;
     }
 
     @Override
@@ -93,4 +89,5 @@ public class MemberServiceImpl implements MemberService {
             e.printStackTrace();
         }
     }
+    
 }

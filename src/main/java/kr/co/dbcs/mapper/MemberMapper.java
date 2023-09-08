@@ -29,10 +29,32 @@ public interface MemberMapper {
             @Result(property = "authList", column = "username", javaType = List.class, many = @Many(select = "getAuthListByUsername"))
     })
     MemberVO selectMemberByUsername(String username);
-
     @SelectProvider(type = MemberSqlProvider.class, method = "getAuthListByUsername")
     List<AuthVO> getAuthListByUsername(String username);
 
-    @SelectProvider(type = MemberSqlProvider.class, method = "selectAllMember")
-    List<MemberVO> selectAllMember();
+//    @SelectProvider(type = MemberSqlProvider.class, method = "selectMemberInfo")
+//    @Results(id = "memberResultList", value = {
+//    		@Result(property = "username", column = "username", id = true),
+//    		@Result(property = "mobile", column = "mobile"),
+//    		@Result(property = "email", column = "email"),
+//    		@Result(property = "gender", column = "gender"),
+//    		@Result(property = "birthDate", column = "birthDate"),
+//    		@Result(property = "regDate", column = "regDate")
+//    })
+//    MemberVO selectLoginMem(String username);
+    
+    @UpdateProvider(type= MemberSqlProvider.class, method = "updateMemberInfo")
+    @Results(id ="memberInfoUpdate", value= {
+    		@Result(property = "username", column = "username", id = true),
+    		@Result(property = "mobile", column="mobile"),
+    		@Result(property = "email", column="email")
+    })
+    int updateMemberInfo(MemberVO memberVO);
+    
+    @DeleteProvider(type= MemberSqlProvider.class, method = "deleteMemberInfo")
+    @Results(id = "memberInfoDelete", value= {
+    		@Result(property = "username", column = "username", id=true),
+    })
+    int deleteMemberInfo (String username);
+    
 }

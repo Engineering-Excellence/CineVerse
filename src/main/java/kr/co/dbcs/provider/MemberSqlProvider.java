@@ -1,6 +1,10 @@
 package kr.co.dbcs.provider;
 
 import kr.co.dbcs.model.MemberVO;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.jdbc.SQL;
 
 public class MemberSqlProvider {
@@ -41,12 +45,28 @@ public class MemberSqlProvider {
             WHERE("USERNAME = #{username}");
         }}.toString();
     }
-
-    public String selectAllMember() {
-        return new SQL() {{
-            // 멤버의 정보를 pw빼고 가져오게 하기
-            SELECT("*");
-            FROM("MEMBER");
-        }}.toString();
+    
+    public String selectLoginMem(String username) {
+    	return new SQL() {{
+    		SELECT("USERNAME, MOBILE, EMAIL, GENDER, BIRTHDATE, REGDATE");
+    		FROM ("MEMBER");
+    		WHERE("USERNAME = #{username}");
+    	}}.toString();
     }
+    
+    public String updateMemberInfo(MemberVO memberVO) {
+    	return new SQL() {{
+    		UPDATE("MEMBER");
+    		SET("MOBILE = #{mobile} , EMAIL = #{email}");
+    		WHERE("USERNAME = #{username}");
+    	}}.toString();
+    }
+    
+    public String deleteMemberInfo(String username) {
+    	return new SQL() {{
+    		DELETE_FROM("MEMBER");
+    		WHERE("USERNAME = #{username}");
+    	}}.toString();
+    }
+    
 }
