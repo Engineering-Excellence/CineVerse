@@ -19,7 +19,7 @@ import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.server.ServerEndpoint;
 
 @Controller
-@ServerEndpoint(value = "/socket/{roomId}")
+@ServerEndpoint(value = "/chat/{roomId}")
 public class SocketController {
     private static final HashMap<Integer, HashSet<Session>> sessionMapping = new HashMap<>();
 
@@ -34,7 +34,7 @@ public class SocketController {
         System.out.println("room ID : " + roomId);
         try{
             final Basic basic = session.getBasicRemote();
-            basic.sendText("연결 완료");
+//            basic.sendText("연결 완료"); ~~님이 입장하였습니다 메세지로 보내기
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -47,17 +47,16 @@ public class SocketController {
         try {
             //메세지 보낸 사람에게 표시됨
             final Basic basic = session.getBasicRemote();
-            basic.sendText("변경하였습니다.");
+//            basic.sendText("변경하였습니다."); // ~~님이 퇴장하였습니다
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        System.out.println(message);
         // 다른 사람에게 메세지 보내기
         JSONParser parser = new JSONParser();
+
         JSONObject obj = (JSONObject)parser.parse(message);
-        HashMap<String, String> map = new HashMap<>();
-        map.put("nickname", obj.get("nickname").toString());
-        map.put("message", obj.get("message").toString());
-        sendAllSessionToMessage(session, map);
+        sendAllSessionToMessage(session, obj);
     }
 
     @OnError
@@ -73,13 +72,14 @@ public class SocketController {
     }
 
 
-    private void sendAllSessionToMessage(Session self,HashMap<String, String> map){ // 연결된 모든 사용자에게 메세지 전달
+    private void sendAllSessionToMessage(Session self,JSONObject obj){ // 연결된 모든 사용자에게 메세지 전달
         try {
             int roomId = Integer.parseInt(self.getPathParameters().get("roomId"));
+            System.out.println(obj.toString());
             for(Session s : sessionMapping.get(roomId)){
-                if(!self.getId().equals(s.getId())){
-                    s.getBasicRemote().sendText(map.toString());
-                }
+                    s.getBasicRemote().sendText(obj.toString());
+//                if(!self.getId().equals(s.getId())){
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();

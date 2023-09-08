@@ -10,7 +10,7 @@
         $(function(){
             var roomId = 1;
             var ws = new WebSocket("ws://localhost:8080/socket/" + roomId);
-
+            // var ws = new WebSocket("ws://15.165.146.31:8090//socket/" + roomId);
             ws.onopen = function(e){ // 연결 시 실행
                 console.log("info : connection opened.");
                 // 대충 채팅방에 입장하셨습니다 메세지 띄우기 및 다른 사용자들에게 입장했음을 알리는 메세지 보내도록 하기

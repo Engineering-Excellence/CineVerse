@@ -1,0 +1,112 @@
+.chat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .chat-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(61, 64, 115);
+    color: white;
+    height: 10%;
+    font-size: 2rem;
+    .chat-header-wrapper {
+      height: fit-content;
+    }
+  }
+
+  .chat-main {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    background-color: rgb(153, 198, 199);
+
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 15px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #333333;
+
+      background-clip: padding-box;
+      border: 3px solid transparent;
+      width: 3px;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgb(153, 198, 199);
+      width: 3px;
+    }
+
+    .chat {
+      display: flex;
+      flex-direction: column;
+
+      min-height: fit-content;
+      padding: 5px;
+      margin: 5px;
+      margin-bottom: 10px;
+
+      .chat-box-header {
+        display: flex;
+        .chat-nickname {
+          font-size: 0.9rem;
+          padding-bottom: 5px;
+        }
+        &.mine {
+          flex-direction: row-reverse;
+        }
+        &.opponent {
+          flex-direction: row;
+        }
+      }
+      .chat-box-main {
+        display: flex;
+
+
+        .chat-content {
+          max-width: 85%;
+          padding: 5px;
+          border-radius: 5px;
+        }
+        &.mine {
+          flex-direction: row-reverse;
+          .chat-content {
+            background-color: yellow;
+          }
+        }
+        &.opponent {
+          flex-direction: row;
+          .chat-content {
+            background-color: white;
+          }
+        }
+        .chat-time-wrapper {
+          display: flex;
+          flex-direction: column-reverse;
+          color: #2f2f2f;
+          font-size: 0.8rem;
+          margin-left: 5px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .chat-footer {
+    display: flex;
+    height: fit-content;
+    .input-group {
+      textarea {
+        resize: none;
+        height: 1rem;
+      }
+      .input-group-append {
+        #chat-btn {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
