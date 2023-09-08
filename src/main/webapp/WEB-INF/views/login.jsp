@@ -38,3 +38,29 @@
             <a href="/login" class="menu-list-name">로그인</a>
         </div>
     </header>
+    
+<section>
+
+	<form action="/login" method="post">
+		<div class="login-form">
+			<div class="login-id">
+				<input type="text" required class="login login-id-text"
+					name="username"> <span>ID</span>
+			</div>
+			<div class="login-pwd">
+				<input type="password" required class="login login-pwd-text"
+					id="login-pwd" name="password"> <span>Password</span>
+				<div id="toggle-pwd" onclick="showHide();"></div>
+			</div>
+			<div class="login-btn-div">
+				<input type="submit" class="login-btn" value="로그인">
+			</div>
+			<ul>
+				<li><a href="/member/join">회원가입</a></li>
+				<li><a href="#">비밀번호 재설정</a></li>
+			</ul>
+		</div>
+	</form> 
+</section>
+<footer>footer</footer>
+</body>

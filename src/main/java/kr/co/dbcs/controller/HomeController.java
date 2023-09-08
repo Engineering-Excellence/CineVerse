@@ -24,23 +24,24 @@ public class HomeController {
 
     @GetMapping(value = "/login")
     public String index() {
-        return "/index";
+        return "/login";
     }
 
     @GetMapping(value = "/")
-    @PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public String home(Authentication authentication) {
 
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
-        // 권한에 따른 페이지 분기
-        if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-            return "/admin/home";
-        } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
-            memberService.crawl();
-            return "/member/home";
-        } else {
-            return "/error";
-        }
+//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+//
+//        // 권한에 따른 페이지 분기
+//        if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+//            return "/admin/home";
+//        } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
+//            memberService.crawl();
+//            return "/member/home";
+//        } else {
+//            return "/error";
+//        }
+    	return "/index";
+    	
     }
 }

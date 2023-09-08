@@ -57,6 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/join").permitAll() // 회원가입 페이지에 모든 사용자 접근 허용
                 .antMatchers("/member/check").permitAll() // 중복체크 접근 허용
                 .antMatchers("/member/chat").permitAll()
+                .antMatchers("/movie/**").permitAll()
+                .antMatchers("/ticket/**").permitAll()
+                .antMatchers("/board/list").permitAll()
+                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
