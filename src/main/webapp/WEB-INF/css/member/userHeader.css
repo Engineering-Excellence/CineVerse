@@ -1,0 +1,64 @@
+/* Note: This example only works with Windows Insider Preview Builds 16237+ or the Fall Creators Update. */
+body {
+  font-family: segoe-ui_normal, Segoe UI, Segoe, Segoe WP, Helvetica Neue, Helvetica, sans-serif;
+  display: grid;
+  grid-template-areas: "header" "section" "footer";
+  grid-template-rows: 70px 1fr 50px;
+  /* 	grid-gap: 5px; */
+  height: 100vh;
+  /*   margin: 10px;   */
+}
+
+header {
+  background: white;
+  grid-area: header;
+  display: grid;
+  grid-template-areas: "main-logo main-menu main-login";
+  grid-template-columns: 20% 60% 20%;
+  box-shadow: 2px 6px 15px -4px #a1a1a1;
+}
+header .main-logo img {
+  width: 160px;
+  height: 60px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+header .main-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .main-menu .menu-list {
+  list-style: none;
+  display: flex;
+  padding: 0px;
+}
+header .main-menu .menu-list .menu-li {
+  padding: 17px;
+}
+header .main-menu .menu-list .menu-li .menu-list-name {
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+}
+header .main-login {
+  display: flex;
+  justify-content: right;
+  margin: 19px;
+}
+header .main-login .menu-list-name {
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+section {
+  grid-area: section;
+}
+
+footer {
+  background: #707070;
+  grid-area: footer;
+}
+
+/*# sourceMappingURL=userHeader.css.map */
