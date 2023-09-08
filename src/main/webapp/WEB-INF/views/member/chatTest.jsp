@@ -1,128 +1,53 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        *{
-            margin:0;
-            padding:0;
-        }
-        .container{
-            width: 500px;
-            margin: 0 auto;
-            padding: 25px
-        }
-        .container h1{
-            text-align: left;
-            padding: 5px 5px 5px 5px;
-            color: black;
-            margin-bottom: 20px;
-        }
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var roomId = 1;
+            var ws = new WebSocket("ws://localhost:8080/socket/" + roomId);
 
-        .chatting{
-            border : 1px solid gray;
-            width: 700px;
-            height: 700px;
-            overflow: auto;
-        }
-        .chatting p{
-            text-align: left;
-        }
-        input{
-            width: 450px;
-            height: 50px;
-        }
+            ws.onopen = function(e){ // 연결 시 실행
+                console.log("info : connection opened.");
+                // 대충 채팅방에 입장하셨습니다 메세지 띄우기 및 다른 사용자들에게 입장했음을 알리는 메세지 보내도록 하기
+            }
 
-        th{
-            width : 100px;
-        }
-        #yourMsg{
-            width: 700px;
-        }
-        .me{
-            color: blue;
-        }
+            ws.onmessage = function(e){ // 서버로부터 메세지를 받았을 때 실행
+                console.log(e.data); //전달 받은 메세지 띄우기
+            }
 
-        .other{
-            color: red;
-        }
-    </style>
+            ws.onclose = function(e){ // 연결 종료 시 실행
+                console.log("info : connection closed");
+                // 다른 사람들에게 이 사람이 퇴장했음을 알리는 메세지 보내도록 하기
+            };
+
+            ws.onerror = function(e){
+                console.log("error")
+            };
+
+
+            $("#btn").on("click",function(e){
+                e.preventDefault();
+                // ws.send($("#testInput").val());
+
+                ws.send(JSON.stringify({
+                    nickname: $("#nickname").val(),
+                    message: $("#testInput").val()
+                }))
+                // 보낼떄 JSON.stringfy 써서 오브젝트로 보내보기
+            });
+        });
+    </script>
 </head>
 <body>
-<div class="container" id="container">
-    <h1 id="title_room">채팅방제목</h1>
-    <div id="chatting" class="chatting">
-    </div>
-    <div id="yourMsg">
-        <table class="inputTable">
-            <tr>
-                <th>메시지</th>
-                <th><input id="msg" placeholder="보내실 메시지를 입력하세요."></th>
-                <th><button onclick="send()" id="sendBtn">보내기</button></th>
-            </tr>
-        </table>
-    </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script>
+<h1>Socket Test Page</h1>
+<input type="text" id="testInput">
+<input type="text" name="" id="nickname">
+<button type="button" id="btn">전송</button>
 
-    var userId = '${name}';
-    var socket;
-    var stompClient;
-
-    function connect() {
-        //StompConfig.java에 설정된 endpoint로 SockJS 객체, StompClient 객체 생성
-        socket = new SockJS("/stomp/connection");
-        console.log(socket);
-        //do Handshake
-        stompClient = Stomp.over(socket);
-
-        // connect(header,연결 성공시 콜백,에러발생시 콜백)
-        stompClient.connect({}, function () {
-                //subscribe(subscribe url,해당 url로 메시지를 받을때마다 실행할 함수)
-                sub = stompClient.subscribe('/sub/chat/room/1', function (e) {
-                    //e.body에 전송된 data가 들어있다
-                    showMessage(JSON.parse(e .body));
-                });
-                console.log("연결 완료")
-            },
-            function(e){
-                //에러 콜백
-                alert('에러발생!!!!!!');
-            }
-        );
-    }
-
-    connect();
-
-    //엔터 눌렀을때 전송
-    $('#msg').keypress(function(e){
-        if(e.keyCode===13) send();
-    });
-
-    //화면에 메시지를 표시하는 함수
-    function showMessage(data){
-        if(data.sender===userId){
-            $('#chatting').append("<p class='me'>"+data.sender+" : "+data.contents+"</p>");
-        } else {
-            $('#chatting').append("<p class='other'>"+data.sender+" : "+data.contents+"</p>");
-        }
-    }
-
-    //메시지 브로커로 메시지 전송
-    function send(){
-        data = {
-            'sender' :userId,
-            'contents': $("#msg").val()
-        };
-        // send(destination,헤더,페이로드)
-        stompClient.send("/pub/chat/message", {}, JSON.stringify(data));
-        $("#msg").val('');
-    }
-
-</script>
 </body>
 </html>
