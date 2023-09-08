@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,7 +49,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberVO> readAll() {
-        return null;
+        List<MemberVO> ret = memberMapper.selectAllMember();
+        return ret;
     }
 
     @Override

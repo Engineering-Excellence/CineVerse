@@ -41,4 +41,12 @@ public class MemberSqlProvider {
             WHERE("USERNAME = #{username}");
         }}.toString();
     }
+
+    public String selectAllMember() {
+        return new SQL() {{
+            // 멤버의 정보를 pw빼고 가져오게 하기
+            SELECT("*");
+            FROM("MEMBER");
+        }}.toString();
+    }
 }

@@ -32,4 +32,7 @@ public interface MemberMapper {
 
     @SelectProvider(type = MemberSqlProvider.class, method = "getAuthListByUsername")
     List<AuthVO> getAuthListByUsername(String username);
+
+    @SelectProvider(type = MemberSqlProvider.class, method = "selectAllMember")
+    List<MemberVO> selectAllMember();
 }
