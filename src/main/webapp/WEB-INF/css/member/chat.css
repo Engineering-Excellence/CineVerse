@@ -1,0 +1,101 @@
+.chat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.chat-container .chat-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(61, 64, 115);
+  color: white;
+  height: 10%;
+  font-size: 2rem;
+}
+.chat-container .chat-header .chat-header-wrapper {
+  height: fit-content;
+}
+.chat-container .chat-main {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  background-color: rgb(153, 198, 199);
+  overflow-y: auto;
+}
+.chat-container .chat-main::-webkit-scrollbar {
+  width: 15px;
+}
+.chat-container .chat-main::-webkit-scrollbar-thumb {
+  background: #333333;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  width: 3px;
+}
+.chat-container .chat-main::-webkit-scrollbar-track {
+  background: rgb(153, 198, 199);
+  width: 3px;
+}
+.chat-container .chat-main .chat {
+  display: flex;
+  flex-direction: column;
+  min-height: fit-content;
+  padding: 5px;
+  margin: 5px;
+  margin-bottom: 10px;
+}
+.chat-container .chat-main .chat .chat-box-header {
+  display: flex;
+}
+.chat-container .chat-main .chat .chat-box-header .chat-nickname {
+  font-size: 0.9rem;
+  padding-bottom: 5px;
+}
+.chat-container .chat-main .chat .chat-box-header.mine {
+  flex-direction: row-reverse;
+}
+.chat-container .chat-main .chat .chat-box-header.opponent {
+  flex-direction: row;
+}
+.chat-container .chat-main .chat .chat-box-main {
+  display: flex;
+}
+.chat-container .chat-main .chat .chat-box-main .chat-content {
+  max-width: 85%;
+  padding: 5px;
+  border-radius: 5px;
+}
+.chat-container .chat-main .chat .chat-box-main.mine {
+  flex-direction: row-reverse;
+}
+.chat-container .chat-main .chat .chat-box-main.mine .chat-content {
+  background-color: yellow;
+}
+.chat-container .chat-main .chat .chat-box-main.opponent {
+  flex-direction: row;
+}
+.chat-container .chat-main .chat .chat-box-main.opponent .chat-content {
+  background-color: white;
+}
+.chat-container .chat-main .chat .chat-box-main .chat-time-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  color: #2f2f2f;
+  font-size: 0.8rem;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.chat-container .chat-footer {
+  display: flex;
+  height: fit-content;
+}
+.chat-container .chat-footer .input-group textarea {
+  resize: none;
+  height: 1rem;
+}
+.chat-container .chat-footer .input-group .input-group-append #chat-btn {
+  border-radius: 0;
+}
+
+/*# sourceMappingURL=chat.css.map */
