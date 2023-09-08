@@ -42,8 +42,10 @@ $(function () {
     };
 
     $("#chat-input").keypress((e) => {
+        if (e.keyCode != 13) {
+            return;
+        }
         e.preventDefault();
-        if (e.keyCode != 13) return;
         sendMessage(ws);
     })
     $("#chat-btn").click((e) => {
@@ -53,6 +55,7 @@ $(function () {
 });
 
 const sendMessage = (ws) => {
+    if ($("#chat-input").val().length == 0) return;
     ws.send(JSON.stringify({
         nickname: nickName,
         message: $("#chat-input").val()
