@@ -18,7 +18,9 @@
             <c:when test="${paths[1] eq 'list'}">
                 <%@ include file="/WEB-INF/views/member/movieList.jsp" %>
             </c:when>
-           
+            <c:when test="${paths[1] eq 'view'}">
+                <%@ include file="/WEB-INF/views/member/movieView.jsp" %>
+            </c:when>
         </c:choose>
     </c:when>
 	<c:when test="${not empty paths and paths[0] eq 'ticket'}">
