@@ -34,6 +34,7 @@
   .movie-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     .movie-list-item {
       margin-bottom: 110px;
     }
