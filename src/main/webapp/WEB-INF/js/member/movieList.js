@@ -1,11 +1,12 @@
-  $(".love").click(function () {
-      $(this).find('.heart').toggleClass('love');
-
-      $(this).find('.line, .heart').addClass("active").delay(300).queue(function (next) {
-          $(this).removeClass("active");
-          next();
-      });
-  });
+  // $(".love").click(function () {
+  //     console.log("test");
+  //     $(this).find('.heart').toggleClass('love');
+  //
+  //     $(this).find('.line, .heart').addClass("active").delay(300).queue(function (next) {
+  //         $(this).removeClass("active");
+  //         next();
+  //     });
+  // });
   
   
 // var animateButton = function(e) {
@@ -73,7 +74,7 @@ const showListwithPage = (data, page) => {
         html += `<div>`
         html += `<div class="heart-div">`
         html += `<div class="love action">`
-        html += `<div class="heart"></div>`
+        html += `<div class="heart"></div>`// 여기서 만약에 이 영화가 해당 유저의 찜목록에 들어있다면 이미 칠해진 하트로 바꾸기 클래스에 love active 2개 추가
         html += `</div>`
         html += `</div>`
         html += `</div>`
@@ -84,9 +85,9 @@ const showListwithPage = (data, page) => {
         html += `<div class="card__info">`
         html += `<div class="card__name">${list[i]["title"]}</div>`
         html += `<div class="card__about">`
-        html += `<span class="age">${rank.length == 0 ? "All" : rank}</span>`
+        html += `<span class="age">${rank.length == 0 ? "-" : rank}</span>`
         html += `<span class="country">  |  ${list[i]["release_date"]}</span></div>`
-        html += `<div class="card__description">${list[i]["overview"]}</div>`
+        html += `<div class="card__description">${list[i]["overview"].substr(0, 150)}${list[i]["overview"].length >= 150 ? "..." : ""}</div>`
         html += `</div>`
         html += `<div class="card__follow"><a href="/movie/view?id=${list[i]["id"]}"><span>상세보기</span></a></div>`
         html += `</div>`
@@ -95,9 +96,27 @@ const showListwithPage = (data, page) => {
     }
 
     $(".movie-list").append(html);
+    setLoveBtnHandler();
 
-    if ($(".movie-list-item").length == currData["total_results"])
-        $("#more-btn").css("display", "none");
+    if ($(".movie-list-item").length == currData["total_results"]) {
+        $("#more-btn").text("마지막 페이지 입니다")
+        $("#more-btm").off("click");
+    }
+}
+
+const setLoveBtnHandler = () => {
+    $(".heart-div").each((idx, e) => {
+        $(e).off("click").on("click", () => {
+            console.log("clicked")
+            $(e).find('.heart').toggleClass('love');
+            $(e).find('.line, .heart').addClass("active").delay(300).queue((next) => {
+                $(e).removeClass("active");
+                next();
+            });
+            // 이 영화 id를 ajax를 통해 db에 해당 유저의 찜목록에 추가 시키기
+            // 이미 있는 경우는 다시 삭제
+        })
+    })
 }
 
 $("#more-btn").click((e) => {

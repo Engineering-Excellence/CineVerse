@@ -33,6 +33,7 @@
 .master .movie-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .master .movie-list .movie-list-item {
   margin-bottom: 110px;
