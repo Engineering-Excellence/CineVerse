@@ -2,11 +2,11 @@
   box-sizing: border-box;
 }
 
-section {
+.view-main {
   background-color: ghostwhite;
-  z-index: -1;
+  z-index: 0;
 }
-section .moviecard {
+.view-main .moviecard {
   position: relative;
   background: #ffffff;
   color: #555555;
@@ -20,56 +20,56 @@ section .moviecard {
   box-shadow: -5px 5px 15px;
   border-radius: 5px;
 }
-section .moviecard #movie-content {
+.view-main .moviecard #movie-content {
   opacity: 1;
   width: 100%;
   display: table;
   transition: all 500ms ease-out;
   position: relative;
 }
-section .moviecard .movie-title {
+.view-main .moviecard .movie-title {
   font-size: 36px;
   padding-bottom: 6px;
   color: #333333;
 }
-section .moviecard .movie-title .movie-year {
+.view-main .moviecard .movie-title .movie-year {
   margin-left: 12px;
   font-size: 16px;
 }
-section .moviecard .movie-title a {
+.view-main .moviecard .movie-title a {
   color: #333333;
   text-decoration: none;
 }
-section .moviecard .movie-title a:hover {
+.view-main .moviecard .movie-title a:hover {
   color: #858585;
 }
-section .moviecard .movie-details {
+.view-main .moviecard .movie-details {
   font-size: 16px;
   padding-bottom: 24px;
   margin-bottom: 12px;
   border-bottom: 1px solid #dbdbdb;
 }
-section .moviecard .movie-details span {
+.view-main .moviecard .movie-details span {
   padding: 0px 6px;
   border-right: 1px solid #dbdbdb;
 }
-section .moviecard .movie-details span:last-child {
+.view-main .moviecard .movie-details span:last-child {
   border: none;
 }
-section .moviecard .movie-castcrew {
+.view-main .moviecard .movie-castcrew {
   padding-top: 12px;
   width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-section .moviecard .movie-castcrew span.title {
+.view-main .moviecard .movie-castcrew span.title {
   color: #333333;
   display: inline-block;
   width: 80px;
   font-weight: 600;
 }
-section .moviecard .movie-synopsis {
+.view-main .moviecard .movie-synopsis {
   margin: 24px 0px;
   padding-top: 24px;
   border-top: 1px solid #dbdbdb;
@@ -77,22 +77,36 @@ section .moviecard .movie-synopsis {
   height: 130px;
   overflow-y: hidden;
   width: 100%;
+  overflow-y: auto;
 }
-section .moviecard .movie-ratings {
+.view-main .moviecard .movie-synopsis::-webkit-scrollbar {
+  width: 15px;
+}
+.view-main .moviecard .movie-synopsis::-webkit-scrollbar-thumb {
+  background: #333333;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  width: 3px;
+}
+.view-main .moviecard .movie-synopsis::-webkit-scrollbar-track {
+  background: #ffffff;
+  width: 3px;
+}
+.view-main .moviecard .movie-ratings {
   position: absolute;
   right: 0px;
 }
-section .moviecard .movie-ratings span.star {
+.view-main .moviecard .movie-ratings span.star {
   display: inline-block;
   margin-right: 12px;
   color: #f0de00;
   font-size: 36px;
 }
-section .moviecard .movie-ratings span.score {
+.view-main .moviecard .movie-ratings span.score {
   font-size: 30px;
   color: #333333;
 }
-section .moviecard .movie-poster {
+.view-main .moviecard .movie-poster {
   position: absolute;
   background-color: #dbdbdb;
   background-size: 460px 560px;
@@ -107,7 +121,7 @@ section .moviecard .movie-poster {
   box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
-section .moviecard .open-chat {
+.view-main .moviecard .open-chat {
   width: 300px;
   height: 50px;
   border-radius: 5px;
@@ -115,6 +129,7 @@ section .moviecard .open-chat {
   background-color: rgb(61, 64, 115);
   color: white;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .clock {

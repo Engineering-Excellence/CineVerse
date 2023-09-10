@@ -100,7 +100,15 @@ const showListwithPage = (data, page) => {
 
     if ($(".movie-list-item").length == currData["total_results"]) {
         $("#more-btn").text("마지막 페이지 입니다")
-        $("#more-btm").off("click");
+        $("#more-btn").off("click").on("click", (e) => {
+            $("#more-btn").click((e) => {
+                e.target.classList.remove('animate');
+                e.target.classList.add('animate');
+                setTimeout(function(){
+                    e.target.classList.remove('animate');
+                },700);
+            });
+        })
     }
 }
 
@@ -119,7 +127,7 @@ const setLoveBtnHandler = () => {
     })
 }
 
-$("#more-btn").click((e) => {
+$("#more-btn").on("click", (e) => {
     e.target.classList.remove('animate');
     e.target.classList.add('animate');
     setTimeout(function(){

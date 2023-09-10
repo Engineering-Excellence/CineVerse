@@ -1,21 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/movieView.css">
+<script src="${pageContext.request.contextPath}/js/member/movieView.js" defer></script>
 
-   <section>
+   <div class="view-main">
       <!-- 검색 -->
       <div class="moviecard">
-        <div class="movie-poster play-trailer"><img class="poster-img" src="${pageContext.request.contextPath}/images/밀수.jpg"></div>
-        <div id="movie-content">
-          <div class="movie-ratings"><span class="star">★</span><span class="score">7.7</span><span class="score-out-of">/ 10 (IMDB)</span></div>
-          <div class="movie-title"><a href="http://www.imdb.com/title/tt3397884" target="_blank">Sicario</a><span class="movie-year">2015</span></div>
-          <div class="movie-details"><span class="movie-rating">R</span><span class="movie-duration"><img src="${pageContext.request.contextPath}/images/clock.png" class="clock">2h 1min</span><span class="movie-genre">Action, Crime, Drama</span></div>
-          <div class="movie-castcrew"><span class="title">Director</span><span class="name">Denis Villeneuve</span></div>
-          <div class="movie-castcrew"><span class="title">Writer</span><span class="name">Taylor Sheridan</span></div>
-          <div class="movie-castcrew"><span class="title">Cast</span><span class="name">Emily Blunt, Josh Brolin, Benicio Del Toro</span></div>
-          <div class="movie-synopsis">An idealistic FBI agent is enlisted by a government task force to aid in the escalating war against drugs at the border area between the U.S. and Mexico.</div>
-          <button class="open-chat" type="button">오픈톡 바로가기</button>
-        </div>
+<%--        <div class="movie-poster play-trailer"><img class="poster-img" src="${pageContext.request.contextPath}/images/밀수.jpg"></div>--%>
+<%--        <div id="movie-content">--%>
+<%--          <div class="movie-ratings"><span class="star">★</span><span class="score">7.7</span><span class="score-out-of">/ 10 (IMDB)</span></div>--%>
+<%--          <div class="movie-title"><a href="http://www.imdb.com/title/tt3397884" target="_blank">Sicario</a><span class="movie-year">2015</span></div>--%>
+<%--          <div class="movie-details"><span class="movie-rating">R</span><span class="movie-duration"><img src="${pageContext.request.contextPath}/images/clock.png" class="clock">2h 1min</span><span class="movie-genre">Action, Crime, Drama</span></div>--%>
+<%--          <div class="movie-castcrew"><span class="title">Director</span><span class="name">Denis Villeneuve</span></div>--%>
+<%--          <div class="movie-castcrew"><span class="title">Writer</span><span class="name">Taylor Sheridan</span></div>--%>
+<%--          <div class="movie-castcrew"><span class="title">Cast</span><span class="name">Emily Blunt, Josh Brolin, Benicio Del Toro</span></div>--%>
+<%--          <div class="movie-synopsis">An idealistic FBI agent is enlisted by a government task force to aid in the escalating war against drugs at the border area between the U.S. and Mexico.</div>--%>
+<%--          <button class="open-chat" type="button">오픈톡 바로가기</button>--%>
+<%--        </div>--%>
       </div>
       
          <div style="padding-left: 180px;">
@@ -73,10 +74,5 @@
                   </div>
                 </div>
               </div>
-          
-   
-    
           </div>
-
-
-    </section>
+    </div>

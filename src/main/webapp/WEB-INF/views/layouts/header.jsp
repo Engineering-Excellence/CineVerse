@@ -35,6 +35,6 @@
             </ul>
         </div>
         <div class="main-login">
-            <a href="/login" class="menu-list-name">로그인</a>
+                <a href="/login" class="menu-list-name">로그인</a>
         </div>
     </header>
