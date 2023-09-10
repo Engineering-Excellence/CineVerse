@@ -181,6 +181,13 @@
 .card__follow a {
   text-decoration: none;
   color: white;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.card__follow a span {
+  position: relative;
+  top: 30%;
 }
 
 .card__follow:hover {
