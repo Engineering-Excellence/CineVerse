@@ -26,7 +26,6 @@ public class MemberController {
                              @RequestParam(required = false, defaultValue = "") String keyword) {
         switch (path) {
             case "chat":
-                model.addAttribute("name", principal.getName());
                 return "/member/chat";
         }
         return "/member/home";
