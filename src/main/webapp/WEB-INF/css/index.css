@@ -108,7 +108,7 @@
 }
 
 # sourceMappingURL=index.css.map */
-/* ¼½¼Ç ³ª´©±â */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 *{
     padding:0;
     margin:0;
@@ -136,8 +136,9 @@
     list-style:none;
   }
   .main-logo{
-    margin-right: 1020px;
-    margin-top: -30px;
+    position: absolute;
+    left: 1%;
+    top: 5%;
     height: 50px;
   }
   .menu-a{
@@ -156,7 +157,7 @@
   }
   
   
-  /* ½ºÅ¸ÀÏ */
+  /* ï¿½ï¿½Å¸ï¿½ï¿½ */
   .section{
     text-align:center;
     font-weight:bold;

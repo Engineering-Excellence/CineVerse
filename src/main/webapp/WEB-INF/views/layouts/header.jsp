@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,6 +22,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js"></script>
+    <sec:authentication var="user" property="principal" />
 </head>
 <body>
     <header>
@@ -35,6 +37,14 @@
             </ul>
         </div>
         <div class="main-login">
+<%--                <sec:authentication property="principal.username"/>--%>
+
+            <sec:authorize access="isAuthenticated()">
+                <a href="#" class="menu-list-name">마이페이지</a>
+                <a href="/logout" class="menu-list-name">로그아웃</a>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
                 <a href="/login" class="menu-list-name">로그인</a>
+            </sec:authorize>
         </div>
     </header>

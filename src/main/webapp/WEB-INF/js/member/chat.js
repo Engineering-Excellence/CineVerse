@@ -1,9 +1,19 @@
 'use strict'
+var apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
+var movieId = new URLSearchParams(window.location.search).get("id");
 
 $(function () {
-    var roomId = 1;
-    // var ws = new WebSocket("ws://localhost:8080/chat/" + roomId);
-    var ws = new WebSocket("ws://15.165.146.31:8090/chat/" + roomId);
+    $.ajax({
+        url: `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko-KR&region=KR&append_to_response=release_dates`,
+        type: "get",
+        async: true,
+        success: (detail) => {
+            $(".chat-header-wrapper").text(detail["title"]);
+        },
+    });
+
+    var ws = new WebSocket("ws://localhost:8080/chat/" + movieId);
+    // var ws= new WebSocket("ws://15.165.146.31:8090/chat/" + movieId);
     ws.onopen = function (e) { // 연결 시 실행
         console.log("info : connection opened.");
         // 대충 채팅방에 입장하셨습니다 메세지 띄우기 및 다른 사용자들에게 입장했음을 알리는 메세지 보내도록 하기
