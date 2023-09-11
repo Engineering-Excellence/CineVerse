@@ -36,7 +36,6 @@
             <c:when test="${paths[1] eq 'list'}">
                 <%@ include file="/WEB-INF/views/member/boardList.jsp" %>
             </c:when>
-           
         </c:choose>
     </c:when>
     <c:otherwise>

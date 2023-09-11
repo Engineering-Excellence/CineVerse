@@ -18,7 +18,6 @@
 <div class="chat-container">
     <div class="chat-header">
         <div class="chat-header-wrapper">
-            ${movieName}
         </div>
     </div>
     <div class="chat-main">

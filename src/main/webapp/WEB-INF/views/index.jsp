@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,8 +18,6 @@
 
 <!-- 풀페이지 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js" integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.css" integrity="sha512-TD/aL30dNLN0VaHVoh9voFlNi7ZuWQYtV4bkIJv2ulZ8mEEkZJ7IyGvDthMKvIUwzLmPONnjQlAi55HTERVXpw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -87,7 +86,13 @@
       <li class="main-cell"><a href="/movie/list" class="menu-a">전체영화</a></li>
       <li class="main-cell"><a href="/ticket/list" class="menu-a">예매현황</a></li>
       <li class="main-cell"><a href="/board/list" class="menu-a">게시판</a></li>
-      <li class="main-cell"><a href="/login" class="menu-a">로그인</a></li>
+        <sec:authorize access="isAuthenticated()">
+            <li class="main-cell"><a href="#" class="menu-a">마이페이지</a></li>
+            <li class="main-cell"><a href="/logout" class="menu-a">로그아웃</a></li>
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
+            <li class="main-cell"><a href="/login" class="menu-a">로그인</a></li>
+        </sec:authorize>
     </ul>
   </div>
 

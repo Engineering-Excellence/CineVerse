@@ -166,6 +166,13 @@
   a{
   	text-decoration: none;
   	color: white;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    span {
+      position: relative;
+      top: 30%;
+    }
   }
 }
 .card__follow:hover {
