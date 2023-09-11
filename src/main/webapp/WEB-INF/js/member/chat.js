@@ -40,6 +40,9 @@ $(function () {
         html += '</div>';
         html += '</div>';
         $(".chat-main-wrapper").append(html);
+        $(".chat-main").animate({
+            scrollTop: $(".chat-main-wrapper").height()
+        }, 350);
     }
 
     ws.onclose = function (e) { // 연결 종료 시 실행
