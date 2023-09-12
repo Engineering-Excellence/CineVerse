@@ -31,27 +31,27 @@
     <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js' defer></script>
     <sec:authentication var="user" property="principal"/>
 </head>
-
 <body>
-<header id="header">
-    <div class="main-logo">
-        <a href="/"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
-    </div>
-    <div class="main-menu">
-        <ul class="menu-list">
-            <li class="menu-li"><a href="/movie/list" class="menu-list-name">전체영화</a></li>
-            <li class="menu-li"><a href="/ticket/list" class="menu-list-name">예매현황</a></li>
-            <li class="menu-li"><a href="/board/list" class="menu-list-name">게시판</a></li>
-        </ul>
-    </div>
-    <div class="main-login">
-        <%--                <sec:authentication property="principal.username"/>--%>
-        <sec:authorize access="isAuthenticated()">
-            <a href="#" class="menu-list-name">마이페이지</a>
-            <a href="/logout" class="menu-list-name">로그아웃</a>
-        </sec:authorize>
-        <sec:authorize access="!isAuthenticated()">
-            <a href="/login" class="menu-list-name">로그인</a>
-        </sec:authorize>
-    </div>
-</header>
+    <header>
+        <div class="main-logo">
+            <a href="/"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
+        </div>
+        <div class="main-menu"> 
+            <ul class="menu-list">
+                <li class="menu-li"><a href="/movie/list" class="menu-list-name">전체영화</a></li>
+                <li class="menu-li"><a href="/ticket/list" class="menu-list-name">예매현황</a></li>
+                <li class="menu-li"><a href="/board/list" class="menu-list-name">게시판</a></li>
+            </ul>
+        </div>
+        <div class="main-login">
+<%--                <sec:authentication property="principal.username"/>--%>
+
+            <sec:authorize access="isAuthenticated()">
+                <a href="#" class="menu-list-name">마이페이지</a>
+                <a href="/logout" class="menu-list-name">로그아웃</a>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
+                <a href="/login" class="menu-list-name">로그인</a>
+            </sec:authorize>
+        </div>
+    </header>

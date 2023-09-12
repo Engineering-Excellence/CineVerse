@@ -66,20 +66,29 @@
 
 
         .chat-content {
-          max-width: 85%;
           padding: 5px;
           border-radius: 5px;
         }
         &.mine {
           flex-direction: row-reverse;
           .chat-content {
+            max-width: 85%;
             background-color: yellow;
           }
         }
         &.opponent {
           flex-direction: row;
           .chat-content {
+            max-width: 85%;
             background-color: white;
+          }
+        }
+        &.notice {
+          .chat-content {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.45);
+            color: white;
+            text-align: center;
           }
         }
         .chat-time-wrapper {

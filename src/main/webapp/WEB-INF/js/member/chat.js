@@ -12,8 +12,8 @@ $(function () {
         },
     });
 
-    // var ws = new WebSocket("ws://localhost:8080/chat/" + movieId);
-    var ws= new WebSocket("ws://15.165.146.31:8090/chat/" + movieId);
+    var ws = new WebSocket("ws://localhost:8080/chat/" + movieId + "/" + nickName);
+    // var ws= new WebSocket("ws://15.165.146.31:8090/chat/" + movieId + "/" + nickName);
     ws.onopen = function (e) { // 연결 시 실행
         console.log("info : connection opened.");
         // 대충 채팅방에 입장하셨습니다 메세지 띄우기 및 다른 사용자들에게 입장했음을 알리는 메세지 보내도록 하기
@@ -24,21 +24,38 @@ $(function () {
         let data = JSON.parse(e.data);
         console.log(data);
         let html = "";
-        html += '<div class="chat">';
-        html += '<div class="chat-box-header ';
-        if (nickName == data["nickname"]) html += 'mine">';
-        else html += 'opponent">';
-        html += `<div class="chat-nickname">${data["nickname"]}</div>`;
-        html += '</div>';
-        html += '<div class="chat-box-main ';
-        if (nickName == data["nickname"]) html += 'mine">';
-        else html += 'opponent">';
-        html += `<div class="chat-content">${data["message"]}</div>`;
-        html += '<div class="chat-time-wrapper">';
-        html += '<div class="chat-time">' + new Date().toTimeString().split(' ')[0] + '</div>';
-        html += '</div>';
-        html += '</div>';
-        html += '</div>';
+
+        if (data.type == 0) {
+            html += `<div class="chat">`
+            html += `<div class="chat-box-main notice">`
+            html += `<div class="chat-content">${data.nickname} 님이 입장하셨습니다.</div>`
+            html += `</div>`
+            html += `</div>`
+        }
+        else if (data.type == 2) {
+            html += `<div class="chat">`
+            html += `<div class="chat-box-main notice">`
+            html += `<div class="chat-content">${data.nickname} 님이 퇴장하셨습니다.</div>`
+            html += `</div>`
+            html += `</div>`
+        }
+        else {
+            html += '<div class="chat">';
+            html += '<div class="chat-box-header ';
+            if (nickName == data["nickname"]) html += 'mine">';
+            else html += 'opponent">';
+            html += `<div class="chat-nickname">${data["nickname"]}</div>`;
+            html += '</div>';
+            html += '<div class="chat-box-main ';
+            if (nickName == data["nickname"]) html += 'mine">';
+            else html += 'opponent">';
+            html += `<div class="chat-content">${data["message"]}</div>`;
+            html += '<div class="chat-time-wrapper">';
+            html += '<div class="chat-time">' + new Date().toTimeString().split(' ')[0] + '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+        }
         $(".chat-main-wrapper").append(html);
         $(".chat-main").animate({
             scrollTop: $(".chat-main-wrapper").height()
@@ -47,7 +64,6 @@ $(function () {
 
     ws.onclose = function (e) { // 연결 종료 시 실행
         console.log("info : connection closed");
-        // 다른 사람들에게 이 사람이 퇴장했음을 알리는 메세지 보내도록 하기
     };
 
     ws.onerror = function (e) {
@@ -70,6 +86,7 @@ $(function () {
 const sendMessage = (ws) => {
     if ($("#chat-input").val().length == 0) return;
     ws.send(JSON.stringify({
+        type: "1",
         nickname: nickName,
         message: $("#chat-input").val()
     }));

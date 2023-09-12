@@ -139,6 +139,10 @@ $("#more-btn").on("click", (e) => {
 });
 
 getMovieData(1);
-  $(".search-btn").click((e) => {
-      window.location.href = "/movie/search?query=" + $("#input").val();
-  });
+$(".search-btn").click((e) => {
+  window.location.href = "/movie/search?query=" + $("#input").val();
+});
+
+$("#input").keypress((e) => {
+    if (e.keyCode == 13) window.location.href = "/movie/search?query=" + $("#input").val();
+})

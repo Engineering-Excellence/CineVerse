@@ -62,7 +62,6 @@
   display: flex;
 }
 .chat-container .chat-main .chat .chat-box-main .chat-content {
-  max-width: 85%;
   padding: 5px;
   border-radius: 5px;
 }
@@ -70,13 +69,21 @@
   flex-direction: row-reverse;
 }
 .chat-container .chat-main .chat .chat-box-main.mine .chat-content {
+  max-width: 85%;
   background-color: yellow;
 }
 .chat-container .chat-main .chat .chat-box-main.opponent {
   flex-direction: row;
 }
 .chat-container .chat-main .chat .chat-box-main.opponent .chat-content {
+  max-width: 85%;
   background-color: white;
+}
+.chat-container .chat-main .chat .chat-box-main.notice .chat-content {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: white;
+  text-align: center;
 }
 .chat-container .chat-main .chat .chat-box-main .chat-time-wrapper {
   display: flex;
