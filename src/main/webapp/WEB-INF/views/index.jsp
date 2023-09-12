@@ -86,6 +86,7 @@
       <li class="main-cell"><a href="/movie/list" class="menu-a">전체영화</a></li>
       <li class="main-cell"><a href="/ticket/list" class="menu-a">예매현황</a></li>
       <li class="main-cell"><a href="/board/list" class="menu-a">게시판</a></li>
+        <li class="main-cell"><a href="/stat/list" class="menu-a">통계</a></li>
         <sec:authorize access="isAuthenticated()">
             <li class="main-cell"><a href="#" class="menu-a">마이페이지</a></li>
             <li class="main-cell"><a href="/logout" class="menu-a">로그아웃</a></li>
@@ -106,103 +107,101 @@
 
     <div class='wrapper'>
         <div><h2  class="boxoffice-title">일일박스오피스</h2></div>
-        <div class='carousel'>
-           
-          <div class='carousel__item'>
-            <div class='carousel__item-head'>
-              1
-            </div>
-            <div class='carousel__item-body'>
-              <p class='title'>spouting whale</p>
-              <p>Unicode: U+1F433</p>
-            </div>
-          </div>
-          <div class='carousel__item'>
-            <div class='carousel__item-head'>
-              2
-            </div>
-            <div class='carousel__item-body'>
-              <p class='title'>whale</p>
-              <p>Unicode: U+1F40B</p>
-            </div>
-          </div>
-          <div class='carousel__item'>
-            <div class='carousel__item-head'>
-              3
-            </div>
-            <div class='carousel__item-body'>
-              <p class='title'>dolphin</p>
-              <p>Unicode: U+1F42C</p>
-            </div>
-          </div>
-          <div class='carousel__item'>
-            <div class='carousel__item-head'>
-              4
-            </div>
-            <div class='carousel__item-body'>
-              <p class='title'>fish</p>
-              <p>Unicode: U+1F41F</p>
-            </div>
-          </div>
-         <div class='carousel__item'>
-            <div class='carousel__item-head'>
-              5
-            </div>
-            <div class='carousel__item-body'>
-              <p class='title'>tropical fish</p>
-              <p>Unicode: U+1F420</p>
-            </div>
-          </div>
+        <div class='carousel' id="daily-boxoffice">
+<%--          <div class='carousel__item'>--%>
+<%--            <div class='carousel__item-head'>--%>
+<%--              1--%>
+<%--            </div>--%>
+<%--            <div class='carousel__item-body'>--%>
+<%--              <p class='title'>spouting whale</p>--%>
+<%--              <p>Unicode: U+1F433</p>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class='carousel__item'>--%>
+<%--            <div class='carousel__item-head'>--%>
+<%--              2--%>
+<%--            </div>--%>
+<%--            <div class='carousel__item-body'>--%>
+<%--              <p class='title'>whale</p>--%>
+<%--              <p>Unicode: U+1F40B</p>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class='carousel__item'>--%>
+<%--            <div class='carousel__item-head'>--%>
+<%--              3--%>
+<%--            </div>--%>
+<%--            <div class='carousel__item-body'>--%>
+<%--              <p class='title'>dolphin</p>--%>
+<%--              <p>Unicode: U+1F42C</p>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class='carousel__item'>--%>
+<%--            <div class='carousel__item-head'>--%>
+<%--              4--%>
+<%--            </div>--%>
+<%--            <div class='carousel__item-body'>--%>
+<%--              <p class='title'>fish</p>--%>
+<%--              <p>Unicode: U+1F41F</p>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--         <div class='carousel__item'>--%>
+<%--            <div class='carousel__item-head'>--%>
+<%--              5--%>
+<%--            </div>--%>
+<%--            <div class='carousel__item-body'>--%>
+<%--              <p class='title'>tropical fish</p>--%>
+<%--              <p>Unicode: U+1F420</p>--%>
+<%--            </div>--%>
+<%--          </div>--%>
 
         </div>
         <div><h2  class="boxoffice-title">주간박스오피스</h2></div>
-        <div class='carousel'>
-           
-            <div class='carousel__item'>
-                <div class='carousel__item-head'>
-                  1
-                </div>
-                <div class='carousel__item-body'>
-                  <p class='title'>spouting whale</p>
-                  <p>Unicode: U+1F433</p>
-                </div>
-              </div>
-              <div class='carousel__item'>
-                <div class='carousel__item-head'>
-                  2
-                </div>
-                <div class='carousel__item-body'>
-                  <p class='title'>whale</p>
-                  <p>Unicode: U+1F40B</p>
-                </div>
-              </div>
-              <div class='carousel__item'>
-                <div class='carousel__item-head'>
-                  3
-                </div>
-                <div class='carousel__item-body'>
-                  <p class='title'>dolphin</p>
-                  <p>Unicode: U+1F42C</p>
-                </div>
-              </div>
-              <div class='carousel__item'>
-                <div class='carousel__item-head'>
-                  4
-                </div>
-                <div class='carousel__item-body'>
-                  <p class='title'>fish</p>
-                  <p>Unicode: U+1F41F</p>
-                </div>
-              </div>
-             <div class='carousel__item'>
-                <div class='carousel__item-head'>
-                  5
-                </div>
-                <div class='carousel__item-body'>
-                  <p class='title'>tropical fish</p>
-                  <p>Unicode: U+1F420</p>
-                </div>
-              </div>
+        <div class='carousel' id="weekly-boxoffice">
+<%--            <div class='carousel__item'>--%>
+<%--                <div class='carousel__item-head'>--%>
+<%--                  1--%>
+<%--                </div>--%>
+<%--                <div class='carousel__item-body'>--%>
+<%--                  <p class='title'>spouting whale</p>--%>
+<%--                  <p>Unicode: U+1F433</p>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--              <div class='carousel__item'>--%>
+<%--                <div class='carousel__item-head'>--%>
+<%--                  2--%>
+<%--                </div>--%>
+<%--                <div class='carousel__item-body'>--%>
+<%--                  <p class='title'>whale</p>--%>
+<%--                  <p>Unicode: U+1F40B</p>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--              <div class='carousel__item'>--%>
+<%--                <div class='carousel__item-head'>--%>
+<%--                  3--%>
+<%--                </div>--%>
+<%--                <div class='carousel__item-body'>--%>
+<%--                  <p class='title'>dolphin</p>--%>
+<%--                  <p>Unicode: U+1F42C</p>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--              <div class='carousel__item'>--%>
+<%--                <div class='carousel__item-head'>--%>
+<%--                  4--%>
+<%--                </div>--%>
+<%--                <div class='carousel__item-body'>--%>
+<%--                  <p class='title'>fish</p>--%>
+<%--                  <p>Unicode: U+1F41F</p>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--             <div class='carousel__item'>--%>
+<%--                <div class='carousel__item-head'>--%>
+<%--                  5--%>
+<%--                </div>--%>
+<%--                <div class='carousel__item-body'>--%>
+<%--                  <p class='title'>tropical fish</p>--%>
+<%--                  <p>Unicode: U+1F420</p>--%>
+<%--                </div>--%>
+<%--              </div>--%>
         </div>
       </div>
     

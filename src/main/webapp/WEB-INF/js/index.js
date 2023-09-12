@@ -1,3 +1,4 @@
+var boxOfficeApiKey = "65ae15380317da54a96c6c7306a46bf4";
 $(document).ready(function () {
 
     $(".fullpage").fullpage({
@@ -16,7 +17,70 @@ $(document).ready(function () {
         slidesNavPosition: 'bottom',
         keyboardScrolling: true,
     });
+
+    let today = new Date();
+    today.setDate(today.getDate() - 1);
+    $.ajax({
+        url: `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${boxOfficeApiKey}&targetDt=${getDateFormatString(today)}&itemPerPage=5`,
+        type: "get",
+        async: true,
+        success: (data) => {
+            data = data["boxOfficeResult"]["dailyBoxOfficeList"];
+            let html = "";
+            data.forEach((i) => {
+                html += `<div class='carousel__item'>`
+                html += `<div class='carousel__item-head'>`
+                html += `${i["rank"]}`
+                html += `</div>`
+                html += `<div class='carousel__item-body'>`
+                html += `<p class='title'>${i["audiCnt"]}명 (${i["audiChange"][0] == '-' ? i["audiChange"] : "+" + i["audiChange"]}%)</p>`
+                html += `<p>${i["movieNm"]}</p>`
+                html += `</div>`
+                html += `</div>`
+            })
+            $("#daily-boxoffice").append(html);
+        },
+    });
+
+    today.setDate(today.getDate() - 6);
+    $.ajax({
+        url: `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=${boxOfficeApiKey}&targetDt=${getDateFormatString(today)}&weekGb=0&itemPerPage=5`,
+        type: "get",
+        async: true,
+        success: (data) => {
+            data = data["boxOfficeResult"]["weeklyBoxOfficeList"];
+            let html = "";
+            data.forEach((i) => {
+                html += `<div class='carousel__item'>`
+                html += `<div class='carousel__item-head'>`
+                html += `${i["rank"]}`
+                html += `</div>`
+                html += `<div class='carousel__item-body'>`
+                html += `<p class='title'>${i["audiCnt"]}명 (${i["audiChange"][0] == '-' ? i["audiChange"] : "+" + i["audiChange"]}%)</p>`
+                html += `<p>${i["movieNm"]}</p>`
+                html += `</div>`
+                html += `</div>`
+            })
+            $("#weekly-boxoffice").append(html);
+        },
+    });
 });
+
+const getDateFormatString = (date) => {
+    let ret = "";
+    ret += date.getFullYear();
+    ret += pad(date.getMonth() + 1,2);
+    ret += pad(date.getDate(), 2);
+    return ret;
+}
+
+const pad = (number, length) => {
+    var str = '' + number;
+    while (str.length < length) {
+        str = '0' + str;
+    }
+    return str;
+}
 
 
 var bg = document.querySelector('.item-bg');
