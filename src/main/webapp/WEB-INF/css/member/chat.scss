@@ -82,6 +82,12 @@
             background-color: white;
           }
         }
+        &.notice {
+          .chat-content {
+            background-color: rgba(0, 0, 0, 0.45);
+            color: white;
+          }
+        }
         .chat-time-wrapper {
           display: flex;
           flex-direction: column-reverse;
