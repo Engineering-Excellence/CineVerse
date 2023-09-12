@@ -40,6 +40,7 @@ public class SocketController {
         JSONObject obj = new JSONObject();
         obj.put("type", "0");
         obj.put("nickname", nickName);
+        obj.put("people", sessionMapping.get(roomId).size());
         sendAllSessionToMessage(session, obj);
     }
 
@@ -71,13 +72,14 @@ public class SocketController {
         int roomId = Integer.parseInt(session.getPathParameters().get("roomId"));
 
         String nickName = sessionMapping.get(roomId).get(session);
+        sessionMapping.get(roomId).remove(session);
 
         JSONObject obj = new JSONObject();
         obj.put("type", "2");
         obj.put("nickname", nickName);
+        obj.put("people", sessionMapping.get(roomId).size());
         sendAllSessionToMessage(session, obj);
 
-        sessionMapping.get(roomId).remove(session);
         if (sessionMapping.get(roomId).isEmpty()) sessionMapping.remove(roomId);
     }
 

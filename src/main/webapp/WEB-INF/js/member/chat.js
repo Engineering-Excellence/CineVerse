@@ -12,8 +12,8 @@ $(function () {
         },
     });
 
-    var ws = new WebSocket("ws://localhost:8080/chat/" + movieId + "/" + nickName);
-    // var ws= new WebSocket("ws://15.165.146.31:8090/chat/" + movieId + "/" + nickName);
+    // var ws = new WebSocket("ws://localhost:8080/chat/" + movieId + "/" + nickName);
+    var ws= new WebSocket("ws://15.165.146.31:8090/chat/" + movieId + "/" + nickName);
     ws.onopen = function (e) { // 연결 시 실행
         console.log("info : connection opened.");
         // 대충 채팅방에 입장하셨습니다 메세지 띄우기 및 다른 사용자들에게 입장했음을 알리는 메세지 보내도록 하기
@@ -25,19 +25,21 @@ $(function () {
         console.log(data);
         let html = "";
 
-        if (data.type == 0) {
+        if (data["type"] == 0) {
             html += `<div class="chat">`
             html += `<div class="chat-box-main notice">`
             html += `<div class="chat-content">${data.nickname} 님이 입장하셨습니다.</div>`
             html += `</div>`
             html += `</div>`
+            $(".chat-people-count").text(data["people"]);
         }
-        else if (data.type == 2) {
+        else if (data["type"] == 2) {
             html += `<div class="chat">`
             html += `<div class="chat-box-main notice">`
             html += `<div class="chat-content">${data.nickname} 님이 퇴장하셨습니다.</div>`
             html += `</div>`
             html += `</div>`
+            $(".chat-people-count").text(data["people"]);
         }
         else {
             html += '<div class="chat">';

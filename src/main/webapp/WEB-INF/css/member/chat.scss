@@ -14,6 +14,17 @@
     .chat-header-wrapper {
       height: fit-content;
     }
+    .chat-people-count-wrapper {
+      position: absolute;
+      right: 45px;
+      display: flex;
+      flex-direction: row;
+      img {
+        filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(33deg) brightness(98%) contrast(107%);
+        width: 18px;
+        margin-right: 15px;
+      }
+    }
   }
 
   .chat-main {

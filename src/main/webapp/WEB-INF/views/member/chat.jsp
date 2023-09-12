@@ -28,6 +28,11 @@
     <div class="chat-header">
         <div class="chat-header-wrapper">
         </div>
+        <div class="chat-people-count-wrapper">
+            <img src="${pageContext.request.contextPath}/images/person-solid.svg"/>
+            <div class="chat-people-count">
+            </div>
+        </div>
     </div>
     <div class="chat-main">
         <div class="chat-main-wrapper">
