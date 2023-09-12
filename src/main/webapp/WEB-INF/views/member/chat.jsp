@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,16 +10,23 @@
 <%--    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>--%>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/chat.css">
-    <script>
-        var nickName = '${name}'
-    </script>
+    <sec:authorize access="!isAuthenticated()">
+        <script>
+            alert("로그인 후 이용 가능합니다");
+            window.close();
+        </script>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+        <script>
+            var nickName = '<sec:authentication property="principal.username"/>'
+        </script>
+    </sec:authorize>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/member/chat.js"></script>
 </head>
 <body>
 <div class="chat-container">
     <div class="chat-header">
         <div class="chat-header-wrapper">
-            ${movieName}
         </div>
     </div>
     <div class="chat-main">

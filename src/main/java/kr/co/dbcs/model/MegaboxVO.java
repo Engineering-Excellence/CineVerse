@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Component
-public class MovieVO {
+public class MegaboxVO {
 
     @JsonProperty("movieNm")
     private String movieNm; // 영화제목
