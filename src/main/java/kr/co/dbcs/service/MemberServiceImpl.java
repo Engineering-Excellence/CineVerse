@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.dbcs.mapper.MemberMapper;
 import kr.co.dbcs.model.CustomUser;
 import kr.co.dbcs.model.MemberVO;
-import kr.co.dbcs.model.MovieVO;
+import kr.co.dbcs.model.MegaboxVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.text.StringEscapeUtils;
@@ -65,7 +65,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void crawl() {
 
-        String movieNm = "오펜하이머";
+//        String movieNm = "오펜하이머";
         String brchNo1 = "1372";
         String playDe = "20230908";
         String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
@@ -84,12 +84,12 @@ public class MemberServiceImpl implements MemberService {
 
             for (Map<String, Object> movieData : movieFormList) {
                 // Map을 Movie 객체로 변환
-                MovieVO movie = mapper.convertValue(movieData, MovieVO.class);
+                MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
 
                 // 영화 제목 확인 후 원하는 제목이 아니면 건너뜀
-                if (!StringEscapeUtils.unescapeHtml4(movie.getMovieNm()).equals(movieNm)) {
+                /*if (!StringEscapeUtils.unescapeHtml4(movie.getMovieNm()).equals(movieNm)) {
                     continue;
-                }
+                }*/
 
                 log.info(String.format("%s - %s%s [%s] (%d/%d)",
                         StringEscapeUtils.unescapeHtml4(movie.getMovieNm()),
