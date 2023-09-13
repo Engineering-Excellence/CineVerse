@@ -66,4 +66,8 @@ $(document).ready(() => {
       html += `사용중인 비밀번호를 입력하시면 회원 탈퇴가 진행됩니다. <br/>탈퇴시 복구가 불가능합니다.`
       $(".contact-info").append(html);
   });
+  $("noteBox").click(()=>{
+    $(".contact-info").html("");
+    let html ="";
+  })
 });
