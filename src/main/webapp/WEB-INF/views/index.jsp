@@ -88,7 +88,7 @@
       <li class="main-cell"><a href="/board/list" class="menu-a">게시판</a></li>
         <li class="main-cell"><a href="/stat/list" class="menu-a">통계</a></li>
         <sec:authorize access="isAuthenticated()">
-            <li class="main-cell"><a href="#" class="menu-a">마이페이지</a></li>
+            <li class="main-cell"><a href="/member/update" class="menu-a">마이페이지</a></li>
             <li class="main-cell"><a href="/logout" class="menu-a">로그아웃</a></li>
         </sec:authorize>
         <sec:authorize access="!isAuthenticated()">

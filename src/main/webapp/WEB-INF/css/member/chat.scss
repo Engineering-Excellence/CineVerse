@@ -1,8 +1,11 @@
+@charset "UTF-8";
+
 .chat-container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+
   .chat-header {
     display: flex;
     justify-content: center;
@@ -11,14 +14,17 @@
     color: white;
     height: 10%;
     font-size: 2rem;
+
     .chat-header-wrapper {
       height: fit-content;
     }
+
     .chat-people-count-wrapper {
       position: absolute;
       right: 45px;
       display: flex;
       flex-direction: row;
+
       img {
         filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(33deg) brightness(98%) contrast(107%);
         width: 18px;
@@ -35,9 +41,11 @@
     background-color: rgb(153, 198, 199);
 
     overflow-y: auto;
+
     &::-webkit-scrollbar {
       width: 15px;
     }
+
     &::-webkit-scrollbar-thumb {
       background: #333333;
 
@@ -45,6 +53,7 @@
       border: 3px solid transparent;
       width: 3px;
     }
+
     &::-webkit-scrollbar-track {
       background: rgb(153, 198, 199);
       width: 3px;
@@ -61,17 +70,21 @@
 
       .chat-box-header {
         display: flex;
+
         .chat-nickname {
           font-size: 0.9rem;
           padding-bottom: 5px;
         }
+
         &.mine {
           flex-direction: row-reverse;
         }
+
         &.opponent {
           flex-direction: row;
         }
       }
+
       .chat-box-main {
         display: flex;
 
@@ -80,20 +93,25 @@
           padding: 5px;
           border-radius: 5px;
         }
+
         &.mine {
           flex-direction: row-reverse;
+
           .chat-content {
             max-width: 85%;
             background-color: yellow;
           }
         }
+
         &.opponent {
           flex-direction: row;
+
           .chat-content {
             max-width: 85%;
             background-color: white;
           }
         }
+
         &.notice {
           .chat-content {
             width: 100%;
@@ -102,6 +120,7 @@
             text-align: center;
           }
         }
+
         .chat-time-wrapper {
           display: flex;
           flex-direction: column-reverse;
@@ -117,11 +136,13 @@
   .chat-footer {
     display: flex;
     height: fit-content;
+
     .input-group {
       textarea {
         resize: none;
         height: 1rem;
       }
+
       .input-group-append {
         #chat-btn {
           border-radius: 0;

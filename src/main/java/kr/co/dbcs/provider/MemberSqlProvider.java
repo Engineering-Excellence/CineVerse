@@ -49,4 +49,27 @@ public class MemberSqlProvider {
             FROM("MEMBER");
         }}.toString();
     }
+    
+    public String updateMemberInfo(MemberVO memberVO) {
+    	return new SQL() {{
+    		UPDATE("MEMBER");
+    		SET("MOBILE = #{mobile} , EMAIL = #{email}");
+    		WHERE("USERNAME = #{username}");
+    	}}.toString();
+    }
+    
+    public String deleteMember(String username) {
+    	return new SQL() {{
+    		DELETE_FROM("MEMBER");
+    		WHERE("USERNAME = #{username}");
+    	}}.toString();
+    }
+    
+    public String updatePassword(MemberVO memberVO) {
+    	return new SQL() {{
+    		UPDATE(" MEMBER");
+    		SET ("PASSWORD = #{password} ");
+    		WHERE ("USERNAME = #{username}");
+    	}}.toString();
+    }
 }

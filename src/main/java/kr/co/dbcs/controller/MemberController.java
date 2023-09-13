@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
 
 @Log4j2
 @Controller
@@ -27,6 +28,19 @@ public class MemberController {
         switch (path) {
             case "chat":
                 return "/member/chat";
+
+            case "update":
+                model.addAttribute("data", memberService.read(principal.getName()));
+                break;
+
+            case "updatePassword":
+//    			model.addAttribute("data", memberService.read(principal.getName()));
+                return "/member/updatePassword";
+//    			break;
+
+            case "deleteForm":
+                return "/member/deleteForm";
+
         }
         return "/member/home";
     }
@@ -46,10 +60,14 @@ public class MemberController {
 
     @PostMapping(value = "/delete")
     @PreAuthorize("hasAnyRole('ROLE_USER')")
-    public String deleteMember(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
-
-        log.info("회원탈퇴 {}", memberService.delete(memberVO.getUsername()) ? "성공" : "실패");
-        return "redirect:/login";
+    public String deleteMember(@ModelAttribute(value = "memberVO") MemberVO memberVO, Principal principal) {
+        MemberVO vo = memberService.read(principal.getName());
+        memberVO.setUsername(principal.getName());
+        if (memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo)) {
+            return "redirect:/login";
+        } else {
+            return "/member/deleteForm";
+        }
     }
 
     @PostMapping(value = "/update")
@@ -57,6 +75,14 @@ public class MemberController {
     public String updateSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
 
         log.info("회원수정 {}", memberService.update(memberVO) ? "성공" : "실패");
+        return "redirect:/";
+    }
+
+    @PostMapping(value = "/updatePassword")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    public String updatePassword(@RequestParam HashMap<String, Object> map, Principal principal) {
+        MemberVO vo = memberService.read(principal.getName());
+        log.info("회원수정 {}", memberService.updatePassword(map, vo) ? "성공" : "실패");
         return "redirect:/";
     }
 }
