@@ -1,15 +1,10 @@
 package kr.co.dbcs.controller;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import kr.co.dbcs.model.LovedVO;
-import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.service.LovedService;
-import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +34,7 @@ public class MovieController {
 
     @PostMapping("/loved/{username}/{movieId}")
     @ResponseBody
+
     public boolean addLoved(@PathVariable String username,
                             @PathVariable String movieId) {
         return lovedService.create(new LovedVO(username, movieId));

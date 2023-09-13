@@ -1,5 +1,10 @@
 'use strict'
 
+$(() => {
+    const $body = $("body")
+    $body.addClass("login")
+})
+
 let password = document.getElementById('login-pwd');
 let togglePassword = document.getElementById('toggle-pwd');
 ('toggle');
