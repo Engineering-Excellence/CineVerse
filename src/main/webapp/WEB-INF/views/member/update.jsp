@@ -13,7 +13,8 @@
 </style>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/member/myPage.css" />
-<script src="${pageContext.request.contextPath}/js/member/memberMypage.js"></script>
+<script
+	src="${pageContext.request.contextPath}/js/member/memberMypage.js"></script>
 </head>
 <body style="margin: 0px;">
 	<script>
@@ -56,17 +57,28 @@
   
   <circle id="main_circle" class="st0" cx="171.5" cy="175.6" r="130" />
   
-  <circle id="circle" class="bubble0 st1" cx="171.5" cy="175.6" r="122.7" />
-  <circle id="circle" class="bubble1 st1" cx="171.5" cy="175.6" r="122.7" />
-  <circle id="circle" class="bubble2 st1" cx="171.5" cy="175.6" r="122.7" />
-  <circle id="circle" class="bubble3 st1" cx="171.5" cy="175.6" r="122.7" />
-  <circle id="circle" class="bubble4 st1" cx="171.5" cy="175.6" r="122.7" />
-  <circle id="circle" class="bubble5 st1" cx="171.5" cy="175.6" r="122.7" />
-  <circle id="circle" class="bubble6 st1" cx="171.5" cy="175.6"	r="122.7" />
-  <circle id="circle" class="bubble7 st1" cx="171.5" cy="175.6"	r="122.7" />
-  <circle id="circle" class="bubble8 st1" cx="171.5" cy="175.6"	r="122.7" />
-  <circle id="circle" class="bubble9 st1" cx="171.5" cy="175.6" r="122.7" />
-  <circle id="circle" class="bubble10 st1" cx="171.5" cy="175.6" r="122.7" />
+  <circle id="circle" class="bubble0 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble1 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble2 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble3 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble4 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble5 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble6 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble7 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble8 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble9 st1" cx="171.5" cy="175.6"
+								r="122.7" />
+  <circle id="circle" class="bubble10 st1" cx="171.5" cy="175.6"
+								r="122.7" />
 
 </g>  
 </svg>
@@ -79,44 +91,90 @@
 					<!-- YOUR NAME AND LAST NAME  -->
 				</div>
 				<div class="clearfix"></div>
-				<br/>
-				<button href="/member/update" class="user-a" id="updateMemberInfo">정보수정</button>
-				<button href="/member/updatePassword" class="user-a" id="updatePassword">비밀번호 변경</button>
-				<button href="/member/deleteForm" class="user-a" id="deleteMember">회원탈퇴</button>
-				<form action="" method="post">
-				<div class="contact-info clearfix">
-					<!-- 개인정보 내용 -->
-					<ul class="list-titles">
-						<li>Email</li>
-						<li>Mobile</li>
-						<li>Gender</li>
-						<li>Birth</li>
-						<li>Join-date</li>
-					</ul>
-					<ul class="list-content ">
-						<li><input type="text" value="${data.email}" id="email"
-							name="email" /></li>
-						<!-- YOUR PHONE NUMBER  -->
-						<li><input type="text" value="${data.mobile}" id="mobile"
-							name="mobile"></li>
-						<!-- YOUR EMAIL -->
-						<li><c:choose>
-								<c:when test="${data.gender eq 'true' }">
-						MALE
-					</c:when>
-								<c:when test="${data.gender eq 'false' }">
-						FEMALE
-					</c:when>
-							</c:choose></li>
-						<!-- YOUR WEBSITE  -->
-						<li>${data.birthDate}</li>
-						<!-- 생일 -->
-						<li>${data.regDate}</li>
-						<!-- YOUR STATE AND COUNTRY  -->
-					</ul>
+				<br />
+				<nav>
+
+					<div class="nav nav-tabs" id="nav-tab" role="tablist">
+						<button class="nav-link active"
+							data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+							role="tab" aria-controls="nav-home" aria-selected="true">정보수정</button>
+						<button class="nav-link" data-bs-toggle="tab"
+							data-bs-target="#nav-profile" type="button" role="tab"
+							aria-controls="nav-profile" aria-selected="false">비밀번호 변경</button>
+						<button class="nav-link" data-bs-toggle="tab"
+							data-bs-target="#nav-contact" type="button" role="tab"
+							aria-controls="nav-contact" aria-selected="false">회원탈퇴</button>
+						<button class="nav-link" id="nav-disabled-tab"
+							data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button"
+							role="tab" aria-controls="nav-disabled" aria-selected="false" disabled>쪽지함</button>
+					</div>
+				</nav>
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-home"
+						role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+						<form action="/member/update" method="post">
+							<div>
+								<input type="hidden" value="${data.username}" id="username"
+									name="username" />
+								<div class="input-group mb-3">
+								  <span class="input-group-text" id="basic-addon1">Email</span>
+								  <input type="text" class="form-control" value="${data.email }">
+								</div>
+								<div class="input-group mb-3">
+								  <span class="input-group-text" id="basic-addon1">Mobile</span>
+								  <input type="text" class="form-control" value="${data.mobile }">
+								</div>
+								<div class="input-group mb-3">
+								  <span class="input-group-text" id="basic-addon1">Gender</span>
+								  <input type="text" class="form-control" value="${data.gender }" disabled="disabled">
+								</div>
+								<div class="input-group mb-3">
+								  <span class="input-group-text" id="basic-addon1">Birth</span>
+								  <input type="text" class="form-control" readonly="readonly" value="${data.birthDate }" disabled="disabled">
+								</div>
+								<div class="input-group mb-3">
+								  <span class="input-group-text" id="basic-addon1">Join-date</span>
+								  <input type="text" class="form-control" readonly="readonly" value="${data.regDate }" disabled="disabled">
+								</div>
+									<input type="submit" class="btn" value="개인정보 변경">
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+						aria-labelledby="nav-profile-tab" tabindex="0">
+						<form action="/member/updatePassword" method="post">
+					<div>
+					<div class="input-group mb-3">
+					  <span class="input-group-text" id="basic-addon1">현재 비밀번호</span>
+					  <input type="password" name="oldPassword" id="oldPassword" class="form-control"  placeholder="사용중인 비밀번호를 입력해주세요.">
+					</div>
+					<div class="input-group mb-3">
+					  <span class="input-group-text" id="basic-addon1">사용할 비밀번호</span>
+					  <input type="password" name="newPassword" id="oldPassword" class="form-control"  placeholder="사용할 비밀번호를 입력해주세요.">
+					</div>
+					<div class="input-group mb-3">
+					  <span class="input-group-text" id="basic-addon1">비밀번호 확인</span>
+					  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"  placeholder="사용할 비밀번호를 한번 더 입력해주세요.">
+					</div>
+					<input type="submit" class="btn" value="비밀번호 변경">
+					</div>
+					</form>
+						</div>
+					<div class="tab-pane fade" id="nav-contact" role="tabpanel"
+						aria-labelledby="nav-contact-tab" tabindex="0">
+						<form action="/member/delete" method="post">
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">사용중인 비밀번호</span>
+  <input type="password" name="password" id="deleteInfoMember" class="form-control"  placeholder="비밀번호를 입력하시면 탈퇴가 진행됩니다.">
+</div>
+<input type="submit" class="btn" value="회원 탈퇴">
+</form>
+사용중인 비밀번호를 입력하시면 회원 탈퇴가 진행됩니다. <br/>탈퇴시 복구가 불가능합니다.
+						</div>
+					<div class="tab-pane fade" id="nav-disabled" role="tabpanel"
+						aria-labelledby="nav-disabled-tab" tabindex="0"></div>
 				</div>
-				</form>
-			</div>
 		</section>
 
 		<section class="experience section-padding">

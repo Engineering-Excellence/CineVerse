@@ -28,19 +28,10 @@ public class MemberController {
         switch (path) {
             case "chat":
                 return "/member/chat";
-
+                
             case "update":
-                model.addAttribute("data", memberService.read(principal.getName()));
-                break;
-
-            case "updatePassword":
-//    			model.addAttribute("data", memberService.read(principal.getName()));
-                return "/member/updatePassword";
-//    			break;
-
-            case "deleteForm":
-                return "/member/deleteForm";
-
+            	model.addAttribute("data", memberService.read(principal.getName()));
+    			break;
         }
         return "/member/home";
     }
@@ -59,16 +50,17 @@ public class MemberController {
     }
 
     @PostMapping(value = "/delete")
-    @PreAuthorize("hasAnyRole('ROLE_USER')")
-    public String deleteMember(@ModelAttribute(value = "memberVO") MemberVO memberVO, Principal principal) {
-        MemberVO vo = memberService.read(principal.getName());
-        memberVO.setUsername(principal.getName());
-        if (memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo)) {
-            return "redirect:/login";
-        } else {
-            return "/member/deleteForm";
-        }
-    }
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	public String deleteMember(@ModelAttribute(value = "memberVO") MemberVO memberVO, Principal principal) {
+		MemberVO vo = memberService.read(principal.getName()); //암호화된 비밀번호를 담기 위한 VO 선언
+		memberVO.setUsername(principal.getName()); //그냥 정보를 가져오기위해 사용한 VO에서 setusername을 가져온다.
+		if (memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo)) {
+			return "redirect:/login";
+		}
+		else {
+			return "/member/deleteForm";
+		}
+	}
 
     @PostMapping(value = "/update")
     @PreAuthorize("hasAnyRole('ROLE_USER')")
