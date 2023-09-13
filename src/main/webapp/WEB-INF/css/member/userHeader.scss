@@ -1,4 +1,4 @@
-/* Note: This example only works with Windows Insider Preview Builds 16237+ or the Fall Creators Update. */
+@charset "UTF-8";
 
 body {
   font-family: segoe-ui_normal, Segoe UI, Segoe, Segoe WP, Helvetica Neue, Helvetica, sans-serif;
@@ -19,25 +19,31 @@ header {
   display: grid;
   grid-template-areas: "main-logo main-menu main-login";
   grid-template-columns: 20% 60% 20%;
-  .main-logo{
-    img{
+
+  .main-logo {
+    img {
       position: absolute;
       left: 1%;
       top: 10px;
       height: 50px;
     }
   }
+
   box-shadow: 2px 6px 15px -4px #a1a1a1;
+
   .main-menu {
     display: flex;
     align-items: center;
     justify-content: center;
+
     .menu-list {
       list-style: none;
       display: flex;
       padding: 0px;
+
       .menu-li {
         padding: 17px;
+
         .menu-list-name {
           color: black;
           text-decoration: none;
@@ -46,10 +52,12 @@ header {
       }
     }
   }
+
   .main-login {
     display: flex;
     justify-content: right;
     margin: 19px;
+
     .menu-list-name {
       color: black;
       text-decoration: none;

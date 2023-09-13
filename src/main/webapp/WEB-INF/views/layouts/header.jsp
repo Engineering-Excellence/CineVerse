@@ -22,12 +22,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/boxicons.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/userHeader.css"/>
-    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
+    <%--<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>--%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-    <script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js' defer></script>
+    <%--<script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js' defer></script>--%>
     <sec:authentication var="user" property="principal"/>
 </head>
 

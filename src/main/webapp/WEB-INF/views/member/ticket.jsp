@@ -13,16 +13,27 @@
     <div class="reserve-container">
         <div class="movie-part">
             <div class="reserve-title">영화</div>
-            <div class="sort-wrapper">
-                <div class="sort-rate sort-selected">예매율순</div>
-            </div>
             <div class="movie-list">
-                <select id="movie-select" name="selectName">
+                <select id="movie-select" name="selectMovie">
                     <option value="">영화를 선택하세요.</option>
-                    <!-- 			이 밑으로는 디비에서 불러온 값을 넣습니다. 반복문을 사용하여 작업해주시면 됩니다. -->
-                    <c:forEach var="movie" items="${movieList }">
-                        <option value="${movie.movie_title }">    ${movie.movie_grade }
-                            <a href="MovieDetail.mv?movie_idx=${movie.movie_idx }">${movie.movie_title }</a>
+                    <c:forEach var="movie" items="${movieList}">
+                        <option value="${movie.title}">    <%--${movie.movie_grade}--%>
+                            <%--<a href="MovieDetail.mv?movie_idx=${movie.movie_idx}">--%>${movie.title}</a>
+                        </option>
+                    </c:forEach>
+                </select>
+                <div class="movie_picture">
+                </div>
+            </div>
+        </div>
+        <div class="movie-part">
+            <div class="reserve-title">극장</div>
+            <div class="movie-list">
+                <select id="theater-select" name="selectTheater">
+                    <option value="">극장을 선택하세요.</option>
+                    <c:forEach var="movie" items="${movieList}">
+                        <option value="${movie.branch}">    <%--${movie.movie_grade}--%>
+                            <%--<a href="MovieDetail.mv?movie_idx=${movie.movie_idx}">--%>${movie.branch}</a>
                         </option>
                     </c:forEach>
                 </select>
@@ -39,8 +50,8 @@
                 <div class="reserve-title">시간</div>
                 <div class="theater-list">
                 </div>
-                <input type="hidden" name="session_id" value="${sessionScope.sId }">
-                <input type="submit" value="좌석 선택하기" class="submit_btn">
+                <%--<input type="hidden" name="session_id" value="${sessionScope.sId}">--%>
+                <input type="submit" value="상영시간" class="submit_btn">
             </form>
         </div>
     </div>

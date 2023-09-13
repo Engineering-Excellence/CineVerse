@@ -2,6 +2,7 @@ package kr.co.dbcs.controller;
 
 import kr.co.dbcs.model.LovedVO;
 import kr.co.dbcs.service.LovedService;
+import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Log4j2
 @Controller
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class MovieController {
 
     private final LovedService lovedService;
+    private final MemberService memberService;
 
     @GetMapping(value = "/{path}")
     public String handlePath(@PathVariable String path, Model model, Principal principal,
@@ -30,6 +33,12 @@ public class MovieController {
 //                return "/member/chatTest";
         }
         return "/member/home";
+    }
+
+    @GetMapping(value = "/crawl")
+    @ResponseBody
+    public List crawl() {
+        return memberService.crawl();
     }
 
     @PostMapping("/loved/{username}/{movieId}")

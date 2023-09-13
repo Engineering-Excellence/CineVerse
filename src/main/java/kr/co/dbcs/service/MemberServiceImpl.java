@@ -1,9 +1,14 @@
 package kr.co.dbcs.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import kr.co.dbcs.mapper.MemberMapper;
+import kr.co.dbcs.model.CustomUser;
+import kr.co.dbcs.model.MegaboxVO;
+import kr.co.dbcs.model.MemberVO;
+import kr.co.dbcs.model.MovieVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,15 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import kr.co.dbcs.mapper.MemberMapper;
-import kr.co.dbcs.model.CustomUser;
-import kr.co.dbcs.model.MegaboxVO;
-import kr.co.dbcs.model.MemberVO;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Log4j2
 @Service
@@ -62,33 +60,33 @@ public class MemberServiceImpl implements MemberService {
     }
 
     public boolean updatePassword(HashMap<String, Object> map, MemberVO vo) {
-    	if (!passwordEncoder.matches(map.get("oldPassword").toString(), vo.getPassword())) {
-    		return false;
-    	}
-    	
-    	MemberVO memberVO = new MemberVO();
-    	memberVO.setUsername(vo.getUsername());
-    	memberVO.setPassword(passwordEncoder.encode(map.get("newPassword").toString()));
-    	return memberMapper.updatePassword(memberVO) > 0;
+        if (!passwordEncoder.matches(map.get("oldPassword").toString(), vo.getPassword())) {
+            return false;
+        }
+
+        MemberVO memberVO = new MemberVO();
+        memberVO.setUsername(vo.getUsername());
+        memberVO.setPassword(passwordEncoder.encode(map.get("newPassword").toString()));
+        return memberMapper.updatePassword(memberVO) > 0;
     }
-    
+
     @Override
-	public boolean delete(String id) {
-		return memberMapper.deleteMember(id) > 0;
-	}
+    public boolean delete(String id) {
+        return memberMapper.deleteMember(id) > 0;
+    }
 
     @Override
     public boolean deleteUserByPasswordChk(String username, String password, MemberVO vo) {
-    	if (!passwordEncoder.matches(password, vo.getPassword())) return false;
-    	return delete(username);
+        if (!passwordEncoder.matches(password, vo.getPassword())) return false;
+        return delete(username);
     }
-    
+
     @Override
-    public void crawl() {
+    public List<MovieVO> crawl() {
 
 //        String movieNm = "오펜하이머";
-        String brchNo1 = "1372";
-        String playDe = "20230908";
+        String brchNo1 = "1372";    // 강남
+        String playDe = new SimpleDateFormat("yyyyMMdd").format(new Date());
         String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
 
         try {
@@ -103,6 +101,7 @@ public class MemberServiceImpl implements MemberService {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ObjectMapper가 알 수 없는 속성을 만났을 때 실패하지 않고 무시
 
+            List<MovieVO> movieList = new Vector<>();
             for (Map<String, Object> movieData : movieFormList) {
                 // Map을 Movie 객체로 변환
                 MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
@@ -119,9 +118,12 @@ public class MemberServiceImpl implements MemberService {
                         movie.getPlayStartTime(),
                         movie.getRestSeatCnt(),
                         movie.getTotSeatCnt()));
+                movieList.add(new MovieVO(movie));
             }
+            return movieList;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
+        return Collections.emptyList();
     }
 }
