@@ -2,7 +2,15 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/movieList.css">
 <script src="${pageContext.request.contextPath}/js/member/movieSearch.js" defer></script>
-
+<script>
+    <sec:authorize access="isAuthenticated()">
+    var isLogin = true;
+    var username = "<sec:authentication property="principal.username"/>"
+    </sec:authorize>
+    <sec:authorize access="!isAuthenticated()">
+    var isLogin = false;
+    </sec:authorize>
+</script>
 <div>
     <div class="search-div">
         <div id="search">
