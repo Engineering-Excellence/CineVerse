@@ -1,13 +1,9 @@
 package kr.co.dbcs.service;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import kr.co.dbcs.mapper.MemberMapper;
-import kr.co.dbcs.model.CustomUser;
-import kr.co.dbcs.model.MemberVO;
-import kr.co.dbcs.model.MegaboxVO;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,8 +13,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kr.co.dbcs.mapper.MemberMapper;
+import kr.co.dbcs.model.CustomUser;
+import kr.co.dbcs.model.MegaboxVO;
+import kr.co.dbcs.model.MemberVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Service
@@ -53,15 +56,33 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean update(MemberVO memberVO) {
-        return false;
+    @Transactional
+    public boolean update(MemberVO memberVO) {//회원 정보 수정
+        return memberMapper.updateMemberInfo(memberVO) >= 1;
     }
+
+    public boolean updatePassword(HashMap<String, Object> map, MemberVO vo) {
+    	if (!passwordEncoder.matches(map.get("oldPassword").toString(), vo.getPassword())) {
+    		return false;
+    	}
+    	
+    	MemberVO memberVO = new MemberVO();
+    	memberVO.setUsername(vo.getUsername());
+    	memberVO.setPassword(passwordEncoder.encode(map.get("newPassword").toString()));
+    	return memberMapper.updatePassword(memberVO) > 0;
+    }
+    
+    @Override
+	public boolean delete(String id) {
+		return memberMapper.deleteMember(id) > 0;
+	}
 
     @Override
-    public boolean delete(String username) {
-        return false;
+    public boolean deleteUserByPasswordChk(String username, String password, MemberVO vo) {
+    	if (!passwordEncoder.matches(password, vo.getPassword())) return false;
+    	return delete(username);
     }
-
+    
     @Override
     public void crawl() {
 
