@@ -16,7 +16,7 @@
 			</c:when>
         </c:choose>
     </c:when>
-    <c:when test="${not empty paths and paths[0] eq 'movie'}">
+	<c:when test="${not empty paths and paths[0] eq 'movie'}">
         <c:choose>
             <c:when test="${paths[1] eq 'list'}">
                 <%@ include file="/WEB-INF/views/member/movieList.jsp" %>
@@ -27,15 +27,29 @@
             <c:when test="${paths[1] eq 'search'}">
                 <%@ include file="/WEB-INF/views/member/movieSearch.jsp" %>
             </c:when>
-            <c:when test="${paths[1] eq 'ticket'}">
+        </c:choose>
+    </c:when>
+	<c:when test="${not empty paths and paths[0] eq 'ticket'}">
+        <c:choose>
+            <c:when test="${paths[1] eq 'list'}">
                 <%@ include file="/WEB-INF/views/member/ticket.jsp" %>
             </c:when>
+           
         </c:choose>
     </c:when>
     <c:when test="${not empty paths and paths[0] eq 'board'}">
         <c:choose>
             <c:when test="${paths[1] eq 'list'}">
-                <%@ include file="/WEB-INF/views/member/boardList.jsp" %>
+                <%@ include file="/WEB-INF/views/board/list.jsp" %>
+            </c:when>
+            <c:when test="${paths[1] eq 'write'}">
+                <%@ include file="/WEB-INF/views/board/write.jsp" %>
+            </c:when>
+            <c:when test="${paths[1] eq 'view'}">
+                <%@ include file="/WEB-INF/views/board/view.jsp" %>
+            </c:when>
+            <c:when test="${paths[1] eq 'update'}">
+                <%@ include file="/WEB-INF/views/board/update.jsp" %>
             </c:when>
         </c:choose>
     </c:when>
