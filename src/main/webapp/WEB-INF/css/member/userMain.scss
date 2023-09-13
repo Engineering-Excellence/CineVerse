@@ -1,113 +1,123 @@
-// usermain
-.user-main-body{
-    background: #f6f5f7;
-    width: 100%;
-    
-}
-.movie-main-top{
-	width: 82%;
-	p{
-		margin-left:27px;
-	}
-	a{
-		margin-right: 20px;
-	}
-}
-    .user-main{
-        grid-area: main;
-        //justify-items: center;
-        display: grid;
-        grid-template-areas: 'movie-one movie-two movie-three movie-four';
-        grid-template-columns: 25% 25% 25% 25%;
-        margin-top: 30px;
-        margin-left:10px;
-        //div:hover{
-           // cursor: pointer;
-        //}
-        .poster{
-            padding: 0;
-            margin-top: 30px;
-            width: 360px;
-            height: 550px;
-            border: 1px solid black;
-            overflow:hidden;
-            margin:0 auto;
-            position: relative;
-            display:grid;
-            
+@charset "UTF-8";
 
-           .movie-link{
-            position: absolute;
-            padding: 0;
-            width: 360px;
-            height: 550px;
-            left: 0px;
-            top: 100%;
-            background-color: rgba(24, 23, 23, 0.6);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;        
-           }
-
-           button{
-                padding: 10px;
-                margin-bottom: 15px;
-             
-                width: 200px;
-                height: 50px;
-                font-size: 18px;
-                border: 0;
-                border-radius: 5px;
-                color: #483D8B;
-                background-color: #dfdce2;
-                letter-spacing: 3px;
-                font-weight: 700;
-                cursor: pointer;
-           }
-            img{  
-                width: 100%;
-                height: 100%;
-                object-fit:cover;
-            }
-
-              }
-              
-            .ticketing{
-                position: absolute;
-                top: 10px;
-            }
-            .detail{
-                position: absolute;
-            }
-        }
-
-
-        .movie-one{
-            grid-area: movie-one;
-        }
-        .movie-two{
-            grid-area: movie-two;
-        }
-        .movie-three{
-            grid-area: movie-three;
-        }
-        .movie-four{
-            grid-area: movie-four;
-        }
-    
-
-.movie-list{
-    padding-left: 250px;
-}
-
-.poster:hover .movie-link{
-    top: 0px;
+.user-main-body {
+  background: #f6f5f7;
+  width: 100%;
 
 }
 
-.poster:hover img{
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
+.movie-main-top {
+  width: 82%;
+
+  p {
+    margin-left: 27px;
+  }
+
+  a {
+    margin-right: 20px;
+  }
+}
+
+.user-main {
+  grid-area: main;
+  //justify-items: center;
+  display: grid;
+  grid-template-areas: 'movie-one movie-two movie-three movie-four';
+  grid-template-columns: 25% 25% 25% 25%;
+  margin-top: 30px;
+  margin-left: 10px;
+  //div:hover{
+  // cursor: pointer;
+  //}
+  .poster {
+    padding: 0;
+    margin-top: 30px;
+    width: 360px;
+    height: 550px;
+    border: 1px solid black;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+
+
+    .movie-link {
+      position: absolute;
+      padding: 0;
+      width: 360px;
+      height: 550px;
+      left: 0px;
+      top: 100%;
+      background-color: rgba(24, 23, 23, 0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    button {
+      padding: 10px;
+      margin-bottom: 15px;
+
+      width: 200px;
+      height: 50px;
+      font-size: 18px;
+      border: 0;
+      border-radius: 5px;
+      color: #483D8B;
+      background-color: #dfdce2;
+      letter-spacing: 3px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  }
+
+  .ticketing {
+    position: absolute;
+    top: 10px;
+  }
+
+  .detail {
+    position: absolute;
+  }
+}
+
+
+.movie-one {
+  grid-area: movie-one;
+}
+
+.movie-two {
+  grid-area: movie-two;
+}
+
+.movie-three {
+  grid-area: movie-three;
+}
+
+.movie-four {
+  grid-area: movie-four;
+}
+
+
+.movie-list {
+  padding-left: 250px;
+}
+
+.poster:hover .movie-link {
+  top: 0px;
+
+}
+
+.poster:hover img {
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
 }

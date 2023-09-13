@@ -5,6 +5,13 @@
   appearance: none;
 }
 
+#theater-select {
+  width: 200px;
+  padding: 0.8em 0.5em;
+  font-size: 15px;
+  appearance: none;
+}
+
 .reserve-container {
   margin-top: 20px;
   display: flex;

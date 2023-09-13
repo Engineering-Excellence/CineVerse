@@ -47,6 +47,7 @@ a {
   float: left;
   color: #9099a0;
 }
+
 @media (max-width: 850px) {
   .profile {
     width: 100%;
@@ -56,6 +57,7 @@ a {
   float: left;
   width: 60%;
 }
+
 .profile h1 {
   font-size: 2.5em;
   text-align: left;
@@ -65,6 +67,7 @@ a {
   line-height: 1em;
   padding-top: 40px;
 }
+
 @media (max-width: 1200px) {
   .profile h1 {
     padding-top: 20px;
@@ -79,11 +82,13 @@ a {
 .profile li {
   margin-bottom: 10px;
 }
+
 .profile .picture-resume-wrapper {
   width: 40%;
   display: block;
   float: left;
 }
+
 @media (max-width: 1200px) {
   .profile .picture-resume-wrapper {
     width: 100%;
@@ -99,6 +104,7 @@ a {
   position: relative;
   vertical-align: middle;
 }
+
 .profile .picture-resume span {
   display: table-cell;
   vertical-align: middle;
@@ -107,10 +113,12 @@ a {
   z-index: 10;
   text-align: center;
 }
+
 .profile .picture-resume img {
   border-radius: 50%;
   width: 130px;
 }
+
 @media (max-width: 1500px) {
   .profile .picture-resume img {
     width: 80px;
@@ -144,6 +152,7 @@ a {
   margin-top: 100px;
   font-weight: 300;
 }
+
 @media (max-width: 1200px) {
   .profile .contact-info {
     margin-top: 70px;
@@ -161,18 +170,21 @@ a {
   width: 40%;
   color: #4a4e51;
 }
+
 .profile .list-content {
   float: left;
   width: 60%;
   text-align: left;
   font-weight: 300;
 }
+
 .profile .contact-presentation {
   text-align: left;
   font-weight: 300;
   margin-top: 100px;
   margin-bottom: 100px;
 }
+
 @media (max-width: 1200px) {
   .profile .contact-presentation {
     margin-top: 70px;
@@ -191,6 +203,7 @@ a {
   top: 0;
   left: 0;
 }
+
 .profile .st0, .profile .st1 {
   fill: #66cc99;
 }
@@ -205,9 +218,11 @@ a {
   min-height: 100%;
   min-height: 100vh;
 }
-.experience-wrapper{
-    margin-bottom: 30px;
+
+.experience-wrapper {
+  margin-bottom: 30px;
 }
+
 @media (max-width: 850px) {
   .experience {
     width: 100%;
@@ -221,12 +236,13 @@ a {
   margin-bottom: 20px;
   font-weight: 400;
 }
+
 .experience .company-wrapper {
-    width: 100%;
-    float: left;
-    text-align: left;
-    /* padding-right: 5%; */
-    margin-bottom: 30px;
+  width: 100%;
+  float: left;
+  text-align: left;
+  /* padding-right: 5%; */
+  margin-bottom: 30px;
 }
 
 @media (max-width: 450px) {
@@ -242,6 +258,7 @@ a {
   padding-right: 5%;
   margin-bottom: 60px;
 }
+
 @media (max-width: 450px) {
   .experience .job-wrapper {
     width: 100%;
@@ -254,11 +271,12 @@ a {
 }
 
 .section-padding {
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
+
 @media (max-width: 850px) {
   .section-padding {
     padding: 80px 15% 40px 10%;
@@ -269,7 +287,6 @@ a {
     padding: 40px 10% 20px 5%;
   }
 }
-
 .section-wrapper {
   width: 100%;
   float: left;
@@ -278,6 +295,7 @@ a {
   font-weight: 300;
   margin-bottom: 20px;
 }
+
 @media (max-width: 450px) {
   .section-wrapper {
     width: 100%;
@@ -286,6 +304,7 @@ a {
 .section-wrapper:nth-child(3) {
   padding-right: 8%;
 }
+
 .section-wrapper h3.section-title {
   color: #66cc99;
   text-align: left;
@@ -295,14 +314,18 @@ a {
   font-weight: 400;
 }
 
-.loved-img{
-    width: 300px;
-    height: 350px;
-    padding: 30px;
+.loved-img {
+  width: 300px;
+  height: 350px;
+  padding: 30px;
 }
-.img-div{
-    display: flex;
+
+.img-div {
+  display: flex;
 }
-.user-a{
-    padding: 20px;
+
+.user-a {
+  padding: 20px;
 }
+
+/*# sourceMappingURL=myPage.css.map */
