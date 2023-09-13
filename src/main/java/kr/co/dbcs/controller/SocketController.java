@@ -14,9 +14,9 @@ import java.util.HashSet;
 
 @Log4j2
 @Controller
-@ServerEndpoint(value = "/chat/{roomId}")
+@ServerEndpoint(value = "/chat/{roomId}/{nickname}")
 public class SocketController {
-    private static final HashMap<Integer, HashSet<Session>> sessionMapping = new HashMap<>();
+    private static final HashMap<Integer, HashMap<Session, String>> sessionMapping = new HashMap<>();
 
     public SocketController() {
         log.info("create socket");
@@ -33,8 +33,15 @@ public class SocketController {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        if (!sessionMapping.containsKey(roomId)) sessionMapping.put(roomId, new HashSet<>());
-        sessionMapping.get(roomId).add(session);
+        if (!sessionMapping.containsKey(roomId)) sessionMapping.put(roomId, new HashMap<>());
+
+        String nickName = session.getPathParameters().get("nickname");
+        sessionMapping.get(roomId).put(session, nickName);
+        JSONObject obj = new JSONObject();
+        obj.put("type", "0");
+        obj.put("nickname", nickName);
+        obj.put("people", sessionMapping.get(roomId).size());
+        sendAllSessionToMessage(session, obj);
     }
 
     @OnMessage
@@ -63,7 +70,16 @@ public class SocketController {
     public void onClose(Session session) {
         log.info("Session: {} {} closed", session.getPathParameters(), session.getId());
         int roomId = Integer.parseInt(session.getPathParameters().get("roomId"));
+
+        String nickName = sessionMapping.get(roomId).get(session);
         sessionMapping.get(roomId).remove(session);
+
+        JSONObject obj = new JSONObject();
+        obj.put("type", "2");
+        obj.put("nickname", nickName);
+        obj.put("people", sessionMapping.get(roomId).size());
+        sendAllSessionToMessage(session, obj);
+
         if (sessionMapping.get(roomId).isEmpty()) sessionMapping.remove(roomId);
     }
 
@@ -72,7 +88,7 @@ public class SocketController {
         try {
             int roomId = Integer.parseInt(self.getPathParameters().get("roomId"));
             log.info(obj.toString());
-            for (Session s : sessionMapping.get(roomId)) {
+            for (Session s : sessionMapping.get(roomId).keySet()) {
                 s.getBasicRemote().sendText(obj.toString());
 //                if(!self.getId().equals(s.getId())){
 //                }

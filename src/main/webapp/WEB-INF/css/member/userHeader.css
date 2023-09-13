@@ -18,10 +18,10 @@ header {
   box-shadow: 2px 6px 15px -4px #a1a1a1;
 }
 header .main-logo img {
-  width: 160px;
-  height: 60px;
-  margin-left: 20px;
-  margin-top: 5px;
+  position: absolute;
+  left: 1%;
+  top: 10px;
+  height: 50px;
 }
 header .main-menu {
   display: flex;
