@@ -36,6 +36,19 @@ var currPage = 0; // 현재 페이지
 var apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
 var currData;
 var query = encodeURIComponent(new URLSearchParams(window.location.search).get("query"));
+var userLoved;
+
+if (isLogin) {
+    $.ajax({
+        url: "/movie/loved/" + username,
+        type: "get",
+        async: false,
+        success: (res) => {
+            console.log(res);
+            userLoved = res;
+        },
+    });
+}
 
 const getMovieData = (apiPage) => {
     let listUrl = `https://api.themoviedb.org/3/search/movie?query=${query}&language=ko-KR&page=1&api_key=${apiKey}`;
@@ -72,13 +85,18 @@ const showListwithPage = (data, page) => {
             },
         });
         html += `<div class="movie-list-item">`
-        html += `<div>`
-        html += `<div class="heart-div">`
-        html += `<div class="love action">`
-        html += `<div class="heart"></div>`// 여기서 만약에 이 영화가 해당 유저의 찜목록에 들어있다면 이미 칠해진 하트로 바꾸기 클래스에 love active 2개 추가
-        html += `</div>`
-        html += `</div>`
-        html += `</div>`
+
+        if (isLogin) {
+            html += `<div>`
+            html += `<div class="heart-div" id="${list[i]["id"]}">`
+            html += `<div class="love action">`
+            if (userLoved.includes(String(list[i]["id"]))) html += `<div class="heart love active"></div>`
+            else html += `<div class="heart"></div>`// 여기서 만약에 이 영화가 해당 유저의 찜목록에 들어있다면 이미 칠해진 하트로 바꾸기 클래스에 love active 2개 추가
+            html += `</div>`
+            html += `</div>`
+            html += `</div>`
+        }
+
         html += `<div class="container-movie">`
         html += `<div class="card">`
         html += `<div class="card__background"><img src="http://image.tmdb.org/t/p/w342${list[i]["poster_path"]}"></div>`
@@ -97,7 +115,7 @@ const showListwithPage = (data, page) => {
     }
 
     $(".movie-list").append(html);
-    setLoveBtnHandler();
+    if (isLogin) setLoveBtnHandler();
 
     if ($(".movie-list-item").length == currData["total_results"]) {
         $("#more-btn").text("마지막 페이지 입니다")
@@ -116,12 +134,40 @@ const showListwithPage = (data, page) => {
 const setLoveBtnHandler = () => {
     $(".heart-div").each((idx, e) => {
         $(e).off("click").on("click", () => {
-            console.log("clicked")
-            $(e).find('.heart').toggleClass('love');
-            $(e).find('.line, .heart').addClass("active").delay(300).queue((next) => {
-                $(e).removeClass("active");
-                next();
-            });
+            if (userLoved.includes($(e).attr("id"))) {
+                $.ajax({
+                    url: "/movie/loved/" + username + "/" + $(e).attr("id"),
+                    type: "delete",
+                    async: false,
+                    success: (ret) => {
+                        if (ret) {
+                            $(e).find('.heart').toggleClass('love');
+                            $(e).find('.line, .heart').addClass("active").delay(300).queue((next) => {
+                                $(e).removeClass("active");
+                                next();
+                            });
+                            userLoved = userLoved.filter(v => v != $(e).attr("id"));
+                        }
+                    },
+                });
+            }
+            else {
+                $.ajax({
+                    url: "/movie/loved/" + username + "/" + $(e).attr("id"),
+                    type: "post",
+                    async: false,
+                    success: (ret) => {
+                        if (ret) {
+                            $(e).find('.heart').toggleClass('love');
+                            $(e).find('.line, .heart').addClass("active").delay(300).queue((next) => {
+                                $(e).removeClass("active");
+                                next();
+                            });
+                            userLoved.push($(e).attr("id"));
+                        }
+                    },
+                });
+            }
             // 이 영화 id를 ajax를 통해 db에 해당 유저의 찜목록에 추가 시키기
             // 이미 있는 경우는 다시 삭제
         })
