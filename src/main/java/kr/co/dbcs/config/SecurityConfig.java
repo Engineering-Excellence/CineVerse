@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/chat").permitAll()
                 .antMatchers("/movie/**").permitAll()
                 .antMatchers("/ticket/**").permitAll()
-                .antMatchers("/board/list").permitAll()
+                .antMatchers("/board/**").permitAll()
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
