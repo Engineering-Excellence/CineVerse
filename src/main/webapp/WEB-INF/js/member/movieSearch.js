@@ -1,3 +1,5 @@
+'use strict'
+
 // $(".love").click(function () {
 //     console.log("test");
 //     $(this).find('.heart').toggleClass('love');
@@ -123,9 +125,9 @@ const showListwithPage = (data, page) => {
             $("#more-btn").click((e) => {
                 e.target.classList.remove('animate');
                 e.target.classList.add('animate');
-                setTimeout(function(){
+                setTimeout(function () {
                     e.target.classList.remove('animate');
-                },700);
+                }, 700);
             });
         })
     }
@@ -177,9 +179,9 @@ const setLoveBtnHandler = () => {
 $("#more-btn").on("click", (e) => {
     e.target.classList.remove('animate');
     e.target.classList.add('animate');
-    setTimeout(function(){
+    setTimeout(function () {
         e.target.classList.remove('animate');
-    },700);
+    }, 700);
 
     if (++currPage % 2 == 0) getMovieData(currPage / 2 + 1);
     else showListwithPage(currData, currPage);
