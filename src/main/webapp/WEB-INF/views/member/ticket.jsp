@@ -2,8 +2,6 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/ticket.css">
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/member/ticket.js" defer></script>
-
 <section class="breadcrumbs">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
@@ -22,12 +20,10 @@
                     <option value="">영화를 선택하세요.</option>
                     <!-- 			이 밑으로는 디비에서 불러온 값을 넣습니다. 반복문을 사용하여 작업해주시면 됩니다. -->
                     <c:forEach var="movie" items="${movieList }">
-
                         <option value="${movie.movie_title }">    ${movie.movie_grade }
                             <a href="MovieDetail.mv?movie_idx=${movie.movie_idx }">${movie.movie_title }</a>
                         </option>
                     </c:forEach>
-
                 </select>
                 <div class="movie_picture">
                 </div>
@@ -43,16 +39,9 @@
                 <div class="theater-list">
                 </div>
                 <input type="hidden" name="session_id" value="${sessionScope.sId }">
-                <c:choose>
-                    <c:when test="${empty sessionScope.sId }">
-                        로그인해주세요.
-                    </c:when>
-                    <c:otherwise>
-                        <input type="submit" value="좌석 선택하기" class="submit_btn">
-                    </c:otherwise>
-                </c:choose>
+                <input type="submit" value="좌석 선택하기" class="submit_btn">
             </form>
         </div>
-        <!--         </form> -->
     </div>
 </section>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/member/ticket.js"></script>

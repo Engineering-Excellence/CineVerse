@@ -1,14 +1,16 @@
-  // $(".love").click(function () {
-  //     console.log("test");
-  //     $(this).find('.heart').toggleClass('love');
-  //
-  //     $(this).find('.line, .heart').addClass("active").delay(300).queue(function (next) {
-  //         $(this).removeClass("active");
-  //         next();
-  //     });
-  // });
-  
-  
+'use strict'
+
+// $(".love").click(function () {
+//     console.log("test");
+//     $(this).find('.heart').toggleClass('love');
+//
+//     $(this).find('.line, .heart').addClass("active").delay(300).queue(function (next) {
+//         $(this).removeClass("active");
+//         next();
+//     });
+// });
+
+
 // var animateButton = function(e) {
 //
 //   e.preventDefault;
@@ -28,11 +30,11 @@
 // }
 
 var currPage = 0; // 현재 페이지
-  // (api 호출 페이지는 currPage/2 + 1 해서 20개씩 받고
-  // 데이터는 20개씩 받은 것을 10개, 10개씩 나눠서 보여줘야 한다
-  // 첫 호출 20개 중 10개는 바로 보여주고, 다음 10개는 더보기 버튼을 누르면 보여주며
-  // 이후 다시 더보기 버튼을 누르면 api 호출을 하는 방식
-  // 0부터 시작하므로 page가 짝수면 새로 호출하여 10개를, 홀수면 이미 있던 데이터에서 나머지를 보여주는 상황
+// (api 호출 페이지는 currPage/2 + 1 해서 20개씩 받고
+// 데이터는 20개씩 받은 것을 10개, 10개씩 나눠서 보여줘야 한다
+// 첫 호출 20개 중 10개는 바로 보여주고, 다음 10개는 더보기 버튼을 누르면 보여주며
+// 이후 다시 더보기 버튼을 누르면 api 호출을 하는 방식
+// 0부터 시작하므로 page가 짝수면 새로 호출하여 10개를, 홀수면 이미 있던 데이터에서 나머지를 보여주는 상황
 var apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
 var currData;
 var userLoved;
@@ -122,9 +124,9 @@ const showListwithPage = (data, page) => {
             $("#more-btn").click((e) => {
                 e.target.classList.remove('animate');
                 e.target.classList.add('animate');
-                setTimeout(function(){
+                setTimeout(function () {
                     e.target.classList.remove('animate');
-                },700);
+                }, 700);
             });
         })
     }
@@ -176,9 +178,9 @@ const setLoveBtnHandler = () => {
 $("#more-btn").on("click", (e) => {
     e.target.classList.remove('animate');
     e.target.classList.add('animate');
-    setTimeout(function(){
+    setTimeout(function () {
         e.target.classList.remove('animate');
-    },700);
+    }, 700);
 
     if (++currPage % 2 == 0) getMovieData(currPage / 2 + 1);
     else showListwithPage(currData, currPage);
@@ -186,7 +188,7 @@ $("#more-btn").on("click", (e) => {
 
 getMovieData(1);
 $(".search-btn").click((e) => {
-  window.location.href = "/movie/search?query=" + $("#input").val();
+    window.location.href = "/movie/search?query=" + $("#input").val();
 });
 
 $("#input").keypress((e) => {
