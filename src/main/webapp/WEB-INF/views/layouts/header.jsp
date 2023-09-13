@@ -47,7 +47,7 @@
     </div>
     <div class="main-login">
         <sec:authorize access="isAuthenticated()">
-            <a href="#" class="menu-list-name">마이페이지</a>
+            <a href="/member/update" class="menu-list-name">마이페이지</a>
             <a href="/logout" class="menu-list-name">로그아웃</a>
         </sec:authorize>
         <sec:authorize access="!isAuthenticated()">
