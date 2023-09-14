@@ -13,6 +13,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.sql.DataSource;
 
@@ -73,5 +74,13 @@ public class RootConfig {
     public PlatformTransactionManager transactionManager(@Autowired DataSource dataSource) {
 
         return new DataSourceTransactionManager(dataSource);
+    }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("UTF-8");
+        resolver.setMaxUploadSize(1024 * 1024 * 10); // 10MB
+        return resolver;
     }
 }
