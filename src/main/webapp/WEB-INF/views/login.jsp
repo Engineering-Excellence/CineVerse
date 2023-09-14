@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/login.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/header.css"/>
-
+<script src="${pageContext.request.contextPath}/js/login.js" defer></script>
 <%@ include file="/WEB-INF/views/layouts/header.jsp" %>
 
 <!-- 이미 로그인된 상태에서는 로그인 페이지 진입시 홈 화면으로 이동 -->

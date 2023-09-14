@@ -67,8 +67,8 @@
     //margin-left: 300px;
     span {
       position: absolute;
-      left: 142px;
-      padding: 37px 20px;
+      left: 115px;
+      top: 15px;
       pointer-events: none;
       transition: 0.5s;
       text-transform: uppercase;
@@ -92,8 +92,8 @@
 
     span {
       position: absolute;
-      //left: 15px;
-      padding: 37px 40px;
+      left: 115px;
+      top: 130px;
       pointer-events: none;
       transition: 0.5s;
       text-transform: uppercase;
@@ -103,10 +103,12 @@
 
     #toggle-pwd {
       position: absolute;
-      top: 64%;
+      top: 180px;
+      right: 150px;
       transform: translateY(-50%);
       margin-left: 370px;
       //right: 20px;
+      background: url("/images/eye.png");
       width: 30px;
       height: 30px;
       background-size: cover;
@@ -114,6 +116,7 @@
     }
 
     #toggle-pwd.hide {
+      background: url("/images/closeeye.png");
       background-size: cover;
     }
   }
