@@ -6,7 +6,7 @@
    <div class="view-main">
       <!-- 검색 -->
       <div class="moviecard">
-<%--        <div class="movie-poster play-trailer"><img class="poster-img" src="${pageContext.request.contextPath}/images/밀수.jpg"></div>--%>
+<%--        <div class="movie-poster play-trailer"><img class="poster-img" src="${pageContext.request.contextPath}/images/test.jpg"></div>--%>
 <%--        <div id="movie-content">--%>
 <%--          <div class="movie-ratings"><span class="star">★</span><span class="score">7.7</span><span class="score-out-of">/ 10 (IMDB)</span></div>--%>
 <%--          <div class="movie-title"><a href="http://www.imdb.com/title/tt3397884" target="_blank">Sicario</a><span class="movie-year">2015</span></div>--%>

@@ -1,3 +1,4 @@
+var apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
 var boxOfficeApiKey = "65ae15380317da54a96c6c7306a46bf4";
 $(document).ready(function () {
 
@@ -64,6 +65,59 @@ $(document).ready(function () {
             $("#weekly-boxoffice").append(html);
         },
     });
+
+    if (isLogin) {
+        $.ajax({
+            url: "/movie/loved/" + username,
+            type: "get",
+            async: true,
+            success: (res) => {
+                let loved = res[Math.floor(Math.random()*res.length)];
+                let html = "";
+                $.ajax({
+                    url: `https://api.themoviedb.org/3/movie/${loved}/recommendations?api_key=${apiKey}&language=ko-KR`,
+                    type: "get",
+                    async: false,
+                    success: (data) => {
+                        let list = data["results"].filter((d) => d["adult"] == false);
+                        for (let i = 0; i < Math.min(3, list.length); i++) {
+                            html += `<div class="Movie">`;
+                            html += `<img src = "http://image.tmdb.org/t/p/w342${list[i]["poster_path"]}" class="movie-img">`;
+                            html += `<div class="Summary">`;
+                            html += `<h2>${list[i]["title"]}</h2>`;
+                            html += `<p>${list[i]["overview"].substr(0, 150)}${list[i]["overview"].length >= 150 ? "..." : ""}</p>`;
+                            html += `<a href="/movie/view?id=${list[i]["id"]}}" class="moivie-sum">상세보기</a>`;
+                            html += `</div>`;
+                            html += `</div>`;
+                        }
+                    },
+                });
+                $(".Background").append(html);
+            },
+        });
+    }
+    else {
+        $.ajax({
+            url: `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&region=KR&page=1&language=ko-KR`,
+            type: "get",
+            async: true,
+            success: (res) => {
+                let html = "";
+                let list = res["results"];
+                for (let i = 0; i < Math.min(3, list.length); i++) {
+                    html += `<div class="Movie">`;
+                    html += `<img src = "http://image.tmdb.org/t/p/w342${list[i]["poster_path"]}" class="movie-img">`;
+                    html += `<div class="Summary">`;
+                    html += `<h2>${list[i]["title"]}</h2>`;
+                    html += `<p>${list[i]["overview"].substr(0, 150)}${list[i]["overview"].length >= 150 ? "..." : ""}</p>`;
+                    html += `<a href="/movie/view?id=${list[i]["id"]}}" class="moivie-sum">상세보기</a>`;
+                    html += `</div>`;
+                    html += `</div>`;
+                }
+                $(".Background").append(html);
+            },
+        });
+    }
 });
 
 const getDateFormatString = (date) => {

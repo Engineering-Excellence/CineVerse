@@ -234,8 +234,15 @@
 				<div class="section-wrapper clearfix">
 					<h3 class="section-title">내가 찜한 영화</h3>
 					<div class="img-div">
-						<img class="loved-img" src="밀수.jpg"> <img class="loved-img"
-							src="밀수.jpg"> <img class="loved-img" src="밀수.jpg">
+<%--						<a href="/movie/view/{}">--%>
+<%--							<img class="loved-img" src="${pageContext.request.contextPath}/images/test.jpg">--%>
+<%--						</a>--%>
+<%--						<a href="/movie/view/{}">--%>
+<%--							<img class="loved-img" src="${pageContext.request.contextPath}/images/test.jpg">--%>
+<%--						</a>--%>
+<%--						<a href="/movie/view/{}">--%>
+<%--							<img class="loved-img" src="${pageContext.request.contextPath}/images/test.jpg">--%>
+<%--						</a>--%>
 					</div>
 				</div>
 				<a href="#">더보기 +</a>
