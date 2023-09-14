@@ -286,7 +286,7 @@
                     <%--						</a>--%>
                 </div>
             </div>
-            <a href="#">더보기 +</a>
+            <a href="/movie/myLoved">더보기 +</a>
         </div>
 
     </section>

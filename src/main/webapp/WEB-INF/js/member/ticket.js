@@ -72,6 +72,7 @@ const addMovieHandler = () => {
         $(e).click(() => {
             if ($(e).hasClass("selected")) {
                 $(e).removeClass("selected");
+                $(".ticket-list").html("");
             }
             else {
                 $(".movie-item").each((i, e_) => {
