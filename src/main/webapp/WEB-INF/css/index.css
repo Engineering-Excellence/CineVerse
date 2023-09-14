@@ -240,7 +240,7 @@ h2 {
 .Movie {
   float: right;
   width: 350px;
-  height: 580px;
+  height: 880px;
   box-shadow: 2px 10px 20px gray;
   border-radius: 10px;
   overflow: hidden;
@@ -269,11 +269,13 @@ h2 {
   font-size: 14px;
   line-height: 26px;
   text-align: justify;
+  overflow-y: auto;
+  height: 195px;
 }
 
 .movie-img {
   width: 350px;
-  height: 210px;
+  height: auto;
   opacity: 90%;
 }
 
@@ -296,7 +298,6 @@ h2 {
   background-color: black;
   /* //width: 1510px; */
   height: 730px;
-  margin-top: 90px;
 }
 
 /* 2page */

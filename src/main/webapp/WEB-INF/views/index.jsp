@@ -76,6 +76,15 @@
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
 	defer></script> --%>
+    <script>
+        <sec:authorize access="isAuthenticated()">
+        var isLogin = true;
+        var username = "<sec:authentication property="principal.username"/>"
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
+        var isLogin = false;
+        </sec:authorize>
+    </script>
 </head>
 
 <body>
@@ -381,49 +390,46 @@
             <br>
             <br>
             <br>이런 영화는 <Br>어떠세요?
-            </h1>
+        </h1>
     
         
         
-        <!--첫번째 영화-->
-       <div class="Movie">
-    
-         <img src = "https://i.ytimg.com/vi/kCTisFDa9oo/maxresdefault.jpg" class="movie-img">
-    
-         <div class="Summary">
-          <h2>Spider-Man
-              <br>스파이더맨</h2>
-          
-          <p>마블 스튜디오 스파이더맨 시리즈의 첫 번째 작품이자 마블 시네마틱 유니버스 페이즈 3의 네 번째 작품이다. 새로운 스파이더맨 역에는 《더 임파서블》에서 좋은 연기를 보여 준 톰 홀랜드가 캐스팅되어 《캡틴 아메리카: 시빌 워》에서 첫 모습을 보였다.</p>
-          <a href="#" class="moivie-sum">상세보기</a>
-         </div>
-       </div>
-        
-        <!-- 두번째 영화 --> 
-       <div class="Movie">
-         
-         <img src = "https://allears.net/wp-content/uploads/2020/10/scale.jpeg" class="movie-img">
-    
-         <div class="Summary">
-          <h2>Black Panther
-            <br>블랙팬서</h2>
-          <p>블랙 팬서 실사영화 시리즈의 첫 번째 영화이자, 마블 시네마틱 유니버스 페이즈 《3의 6번째 작품》에 해당한다. 마블 시네마틱 유니버스, 더 나아가 슈퍼히어로 영화 최초의 아카데미 작품상 후보작이며 마블 시네마틱 유니버스 최초의 아카데미 수상 작품이다.</p>
-          <a href="#" class="moivie-sum">상세보기</a>
-         </div>
-       </div>
-    
-       <!-- 세번째 영화  -->
-       <div class="Movie">
-         
-         <img src = "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https:%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2412713F5815F6550A" width=50% class="movie-img">
-    
-         <div class="Summary">
-          <h2>Doctor Strange
-            <br>닥터 스트레인지</h2>
-          <p>이 작품은 마블 시네마틱 유니버스의 《14번째 작품》에 해당한다. 영화 닥터 스트레인지는 불의의 사고로 절망에 빠진 신경외과 의사 스티븐 스트레인지가 에인션트 원을 만나, 세상을 구원할 강력한 능력을 얻게 되면서 히어로로 거듭나게 되는 이야기를 그리고 있다.</p>
-          <a href="#" class="moivie-sum">상세보기</a>
-          </div>
-       </div>
+<%--        <!--첫번째 영화-->--%>
+<%--       <div class="Movie">--%>
+<%--         <img src = "https://i.ytimg.com/vi/kCTisFDa9oo/maxresdefault.jpg" class="movie-img">--%>
+<%--         <div class="Summary">--%>
+<%--          <h2>Spider-Man--%>
+<%--              <br>스파이더맨</h2>--%>
+<%--          <p>마블 스튜디오 스파이더맨 시리즈의 첫 번째 작품이자 마블 시네마틱 유니버스 페이즈 3의 네 번째 작품이다. 새로운 스파이더맨 역에는 《더 임파서블》에서 좋은 연기를 보여 준 톰 홀랜드가 캐스팅되어 《캡틴 아메리카: 시빌 워》에서 첫 모습을 보였다.</p>--%>
+<%--          <a href="#" class="moivie-sum">상세보기</a>--%>
+<%--         </div>--%>
+<%--       </div>--%>
+<%--        --%>
+<%--        <!-- 두번째 영화 --> --%>
+<%--       <div class="Movie">--%>
+<%--         --%>
+<%--         <img src = "https://allears.net/wp-content/uploads/2020/10/scale.jpeg" class="movie-img">--%>
+<%--    --%>
+<%--         <div class="Summary">--%>
+<%--          <h2>Black Panther--%>
+<%--            <br>블랙팬서</h2>--%>
+<%--          <p>블랙 팬서 실사영화 시리즈의 첫 번째 영화이자, 마블 시네마틱 유니버스 페이즈 《3의 6번째 작품》에 해당한다. 마블 시네마틱 유니버스, 더 나아가 슈퍼히어로 영화 최초의 아카데미 작품상 후보작이며 마블 시네마틱 유니버스 최초의 아카데미 수상 작품이다.</p>--%>
+<%--          <a href="#" class="moivie-sum">상세보기</a>--%>
+<%--         </div>--%>
+<%--       </div>--%>
+<%--    --%>
+<%--       <!-- 세번째 영화  -->--%>
+<%--       <div class="Movie">--%>
+<%--         --%>
+<%--         <img src = "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https:%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2412713F5815F6550A" width=50% class="movie-img">--%>
+<%--    --%>
+<%--         <div class="Summary">--%>
+<%--          <h2>Doctor Strange--%>
+<%--            <br>닥터 스트레인지</h2>--%>
+<%--          <p>이 작품은 마블 시네마틱 유니버스의 《14번째 작품》에 해당한다. 영화 닥터 스트레인지는 불의의 사고로 절망에 빠진 신경외과 의사 스티븐 스트레인지가 에인션트 원을 만나, 세상을 구원할 강력한 능력을 얻게 되면서 히어로로 거듭나게 되는 이야기를 그리고 있다.</p>--%>
+<%--          <a href="#" class="moivie-sum">상세보기</a>--%>
+<%--          </div>--%>
+<%--       </div>--%>
       </div>
     
   </div>
