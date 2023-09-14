@@ -1,6 +1,7 @@
 package kr.co.dbcs.mapper;
 
 import kr.co.dbcs.model.AuthVO;
+import kr.co.dbcs.model.MemberImgVO;
 import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.provider.MemberSqlProvider;
 import org.apache.ibatis.annotations.*;
@@ -45,4 +46,6 @@ public interface MemberMapper {
     @UpdateProvider(type= MemberSqlProvider.class, method = "updatePassword")
     int updatePassword(MemberVO memberVO);
 
+    @InsertProvider(type = MemberSqlProvider.class, method = "saveImg")
+    int saveImg(MemberImgVO memberImgVO);
 }

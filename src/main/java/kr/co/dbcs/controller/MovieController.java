@@ -1,6 +1,7 @@
 package kr.co.dbcs.controller;
 
 import kr.co.dbcs.model.LovedVO;
+import kr.co.dbcs.model.MovieVO;
 import kr.co.dbcs.service.LovedService;
 import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -30,31 +30,30 @@ public class MovieController {
         return "/member/home";
     }
 
-    @GetMapping(value = "/crawl")
     @ResponseBody
-    public List crawl() {
+    @GetMapping(value = "/crawl")
+    public List<MovieVO> crawl() {
         return memberService.crawl();
     }
 
-    @PostMapping("/loved/{username}/{movieId}")
     @ResponseBody
-
+    @PostMapping("/loved/{username}/{movieId}")
     public boolean addLoved(@PathVariable String username,
                             @PathVariable String movieId) {
         return lovedService.create(new LovedVO(username, movieId));
     }
 
-    @DeleteMapping("/loved/{username}/{movieId}")
     @ResponseBody
+    @DeleteMapping("/loved/{username}/{movieId}")
     public boolean deleteLoved(@PathVariable String username,
                                @PathVariable String movieId) {
         return lovedService.deleteByUsernameWithId(new LovedVO(username, movieId));
     }
 
-    @GetMapping("/loved/{username}")
     @ResponseBody
-    public ArrayList<String> getLovedByUsername(@PathVariable String username) {
-        ArrayList<String> ret = lovedService.getLovedByUsername(username);
+    @GetMapping("/loved/{username}")
+    public List<String> getLovedByUsername(@PathVariable String username) {
+        List<String> ret = lovedService.getLovedByUsername(username);
         log.info("TEST : {}", ret);
         return ret;
     }

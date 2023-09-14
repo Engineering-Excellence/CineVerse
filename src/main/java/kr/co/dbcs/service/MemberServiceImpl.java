@@ -3,21 +3,26 @@ package kr.co.dbcs.service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.dbcs.mapper.MemberMapper;
-import kr.co.dbcs.model.CustomUser;
-import kr.co.dbcs.model.MegaboxVO;
-import kr.co.dbcs.model.MemberVO;
-import kr.co.dbcs.model.MovieVO;
+import kr.co.dbcs.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -28,6 +33,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
+    private final ResourceLoader resourceLoader;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -49,8 +55,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberVO> readAll() {
-        List<MemberVO> ret = memberMapper.selectAllMember();
-        return ret;
+        return memberMapper.selectAllMember();
     }
 
     @Override
@@ -59,7 +64,7 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.updateMemberInfo(memberVO) >= 1;
     }
 
-    public boolean updatePassword(HashMap<String, Object> map, MemberVO vo) {
+    public boolean updatePassword(Map<String, Object> map, MemberVO vo) {
         if (!passwordEncoder.matches(map.get("oldPassword").toString(), vo.getPassword())) {
             return false;
         }
@@ -82,6 +87,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public List<MovieVO> crawl() {
 
 //        String movieNm = "오펜하이머";
@@ -96,6 +102,7 @@ public class MemberServiceImpl implements MemberService {
             Map<String, Object> response = restTemplate.postForObject(url, null, Map.class);
 
             // 응답으로부터 movieFormList 얻기
+            assert response != null;
             List<Map<String, Object>> movieFormList = (List<Map<String, Object>>) ((Map<String, Object>) response.get("megaMap")).get("movieFormList");
 
             ObjectMapper mapper = new ObjectMapper();
@@ -105,11 +112,6 @@ public class MemberServiceImpl implements MemberService {
             for (Map<String, Object> movieData : movieFormList) {
                 // Map을 Movie 객체로 변환
                 MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
-
-                // 영화 제목 확인 후 원하는 제목이 아니면 건너뜀
-                /*if (!StringEscapeUtils.unescapeHtml4(movie.getMovieNm()).equals(movieNm)) {
-                    continue;
-                }*/
 
                 log.info(String.format("%s - %s%s [%s] (%d/%d)",
                         StringEscapeUtils.unescapeHtml4(movie.getMovieNm()),
@@ -125,5 +127,47 @@ public class MemberServiceImpl implements MemberService {
             log.error(e);
         }
         return Collections.emptyList();
+    }
+
+    public String getUploadDirectory() throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:/");
+        Path path = Paths.get(resource.getURI());
+        Path parentPath = path.getParent();
+        return parentPath.toString() + File.separator + "member";
+    }
+
+    @Override
+//    @Transactional
+    public boolean uploadFile(MultipartFile file, Principal principal) {
+
+        File uploadDirectory;
+        boolean result = false;
+        try {
+            uploadDirectory = new File(getUploadDirectory());
+            log.info("uploadDirectory: {}", getUploadDirectory());
+            if (!uploadDirectory.exists()) {    // 업로드 디렉토리가 존재하지 않을 경우 생성
+                log.info("mkdir: {}", uploadDirectory.mkdir());
+            }
+
+            String username = principal.getName();
+            String originalFilename = file.getOriginalFilename();
+            String realFilename = username + "_" + originalFilename;
+            String absPath = getUploadDirectory() + File.separator + realFilename; // username을 파일명 앞에 추가
+            String relPath = File.separator + "member" + File.separator + realFilename; // 상대경로
+
+            // DB에 파일정보 저장
+            MemberImgVO memberImgVO = new MemberImgVO(username, absPath, relPath, originalFilename);
+//            result = memberMapper.saveImg(memberImgVO) > 0;
+//            log.info("result: {}", result);
+
+            // 서버에 파일 저장
+//            if (result) {
+                Path path = Paths.get(absPath);
+                file.transferTo(path);
+//            }
+        } catch (IOException e) {
+            log.error(e);
+        }
+        return result;
     }
 }
