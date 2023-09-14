@@ -38,6 +38,33 @@
 
 .movie-part {
   width: 284px;
+  .movie-list {
+    .movie-item {
+      list-style: none;
+      background-color: rgba(0, 0, 0, 0.05);
+      //background-image:
+      //        linear-gradient(
+      //                        90deg,
+      //                        #3B0B5F 10px,
+      //                        #EEE 10px,
+      //                        #EEE 11px,
+      //                        transparent 11px);
+      padding: 10px 15px 10px 25px;
+      border: 1px solid #CCC;
+      box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+      margin-bottom: 5px;
+      width: 100%;
+      box-sizing: border-box;
+      cursor: pointer;
+      border-radius: 3px;
+
+      &:hover {
+        background-color: #3B0B5F;
+        opacity: 0.5;
+        color: white;
+      }
+    }
+  }
 }
 
 .theater-part {
@@ -79,32 +106,50 @@
   flex-direction: column;
   align-items: center;
   height: 770px;
-  overflow: scroll;
-  overflow-x: hidden;
 }
 
 .movie-date-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 2px;
-}
-
-.movie-week-of-day {
-  margin-left: 5px;
-  font-size: 10px;
-  width: 12px;
-  height: 22px;
-  line-height: 22px;
-}
-
-.movie-day {
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  //background-image:
+  //        linear-gradient(
+  //                        90deg,
+  //                        #3B0B5F 10px,
+  //                        #EEE 10px,
+  //                        #EEE 11px,
+  //                        transparent 11px);
+  padding: 10px 15px 10px 25px;
+  border: 1px solid #CCC;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+  margin-bottom: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 3px;
   text-align: center;
-  width: 34px;
-  height: 22px;
-  font-size: 17px;
-  font-weight: bold;
+
+  &:hover {
+    background-color: #3B0B5F;
+    opacity: 0.5;
+    color: white;
+  }
 }
+
+//.movie-week-of-day {
+//  margin-left: 5px;
+//  font-size: 10px;
+//  width: 12px;
+//  height: 22px;
+//  line-height: 22px;
+//}
+//
+//.movie-day {
+//  text-align: center;
+//  width: 34px;
+//  height: 22px;
+//  font-size: 17px;
+//  font-weight: bold;
+//}
 
 .saturday {
   color: #31597E;

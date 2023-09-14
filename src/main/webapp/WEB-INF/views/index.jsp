@@ -93,7 +93,7 @@
     <a href="/"><img src="${pageContext.request.contextPath}/images/logo.png" class="main-logo"></a>
     <ul class="main-row">
       <li class="main-cell"><a href="/movie/list" class="menu-a">전체영화</a></li>
-      <li class="main-cell"><a href="/ticket/list" class="menu-a">예매현황</a></li>
+      <li class="main-cell"><a href="/movie/ticket" class="menu-a">예매현황</a></li>
       <li class="main-cell"><a href="/board/list" class="menu-a">게시판</a></li>
         <li class="main-cell"><a href="/stat/list" class="menu-a">통계</a></li>
         <sec:authorize access="isAuthenticated()">

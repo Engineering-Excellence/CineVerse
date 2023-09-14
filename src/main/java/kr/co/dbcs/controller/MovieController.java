@@ -27,11 +27,6 @@ public class MovieController {
     public String handlePath(@PathVariable String path, Model model, Principal principal,
                              @RequestParam(required = false, defaultValue = "1") int page,
                              @RequestParam(required = false, defaultValue = "") String keyword) {
-        switch (path) {
-//            case "chat":
-//                // model.addAttribute("name", principal.getName());
-//                return "/member/chatTest";
-        }
         return "/member/home";
     }
 

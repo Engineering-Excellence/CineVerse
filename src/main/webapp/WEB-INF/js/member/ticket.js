@@ -1,5 +1,7 @@
 'use strict'
 
+var titleSet = new Set();
+
 $(() => {
     // for문을 사용하여 현재부터 마지막날까지의 시간 값을 구함
     for (let i = 0; i <= $(".movie-date-wrapper").length; i++) {
@@ -50,6 +52,24 @@ $(() => {
     if (urlParams.has('movie_title')) {
         $("#movie-select").val(url.searchParams.get("movie_title"))
     }
+
+    $.ajax({
+        type: "get",
+        url: "/movie/crawl",
+        // data: {
+        //     movie_title: $("#movie-select").val(),
+        //     reserve_date: clickDate
+        // },
+        success: response => {
+            console.log(response)
+            response.forEach((r) => {
+                titleSet.add(r["title"]);
+            })
+            console.log(titleSet);
+
+
+        },
+    })
 })
 
 // 현재 날짜를 불러올 Date 객체 생성
@@ -96,7 +116,7 @@ const change_btn = e => {
 
 //  현재 날짜의 일부터 lastDay()까지 +시켜가며 반복
 //  그만큼 버튼과 span영역을 만들기
-for (var i = date.getDate(); i <= lastDay.getDate(); i++) {
+for (var i = date.getDate(); i <= date.getDate() + 7; i++) {
 
     const button = document.createElement("button")
     const spanWeekOfDay = document.createElement("span")
