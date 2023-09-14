@@ -349,3 +349,7 @@ a {
 	background-color: #7202ae; 
 	color: white;
 }
+
+.input-group-text{
+	width:120px;
+}

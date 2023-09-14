@@ -58,7 +58,7 @@ public class MemberController {
 			return "redirect:/login";
 		}
 		else {
-			return "/member/deleteForm";
+			return "/member/update";
 		}
 	}
 

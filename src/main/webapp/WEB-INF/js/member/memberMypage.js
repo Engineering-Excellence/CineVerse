@@ -70,4 +70,6 @@ $(document).ready(() => {
     $(".contact-info").html("");
     let html ="";
   })
+  
+  
 });

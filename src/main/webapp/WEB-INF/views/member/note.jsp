@@ -39,8 +39,7 @@
                     <li class="person" data-chat="person5">
                         <span class="name">Michael Jordan</span>
                         <span class="time">2:09 PM</span>
-                        <span class="preview">Wasup for the third time like is 
-    you blind bitch</span>
+                        <span class="preview">Wasup for the third time like is you blind bitch</span>
                     </li>
                     <li class="person" data-chat="person6">
                         <span class="name">Drake</span>
