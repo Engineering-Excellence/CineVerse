@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(61, 64, 115);
+    background-color: #7202ae;
     color: white;
     height: 10%;
     font-size: 2rem;
@@ -38,7 +38,7 @@
     height: 100%;
     width: 100%;
     flex-direction: column;
-    background-color: rgb(153, 198, 199);
+    background-color: #ffffff;
 
     overflow-y: auto;
 
@@ -99,16 +99,20 @@
 
           .chat-content {
             max-width: 85%;
-            background-color: yellow;
+            background-color: white;
+            color: black;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.45);
           }
         }
 
         &.opponent {
-          flex-direction: row;
+          flex-direction:  row;
 
           .chat-content {
             max-width: 85%;
             background-color: white;
+            color: black;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.45);
           }
         }
 
@@ -146,6 +150,8 @@
       .input-group-append {
         #chat-btn {
           border-radius: 0;
+          background-color: #7202ae;
+          color: white;
         }
       }
     }
