@@ -6,12 +6,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public interface MemberService extends UserDetailsService, CRUDService<MemberVO, String> {
 
-    List<MovieVO> crawl();
+    List<MovieVO> crawl(HashMap<String, String> map);
 
     boolean uploadFile(MultipartFile file, Principal principal);
 

@@ -12,62 +12,68 @@
 
     <div class="reserve-container">
         <div class="movie-part">
-            <div class="reserve-title">영화</div>
-            <div class="movie-list">
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
+            <div class="reserve-title">극장</div>
+            <div class="theater-list" id="theater-list">
+<%--                <div class="item">--%>
+<%--                    <div class="right top">영화 이름</div>--%>
+<%--                </div>--%>
+<%--                <div class="item">--%>
+<%--                    <div class="right top">영화 이름</div>--%>
+<%--                </div>--%>
+<%--                <div class="item">--%>
+<%--                    <div class="right top">영화 이름</div>--%>
+<%--                </div>--%>
+<%--                <div class="item">--%>
+<%--                    <div class="right top">영화 이름</div>--%>
+<%--                </div>--%>
+<%--                <div class="item">--%>
+<%--                    <div class="right top">영화 이름</div>--%>
+<%--                </div>--%>
+<%--                <div class="item">--%>
+<%--                    <div class="right top">영화 이름</div>--%>
+<%--                </div>--%>
+<%--                <div class="item">--%>
+<%--                    <div class="right top">영화 이름</div>--%>
+<%--                </div>--%>
             </div>
         </div>
+
         <div class="day-part">
             <div class="reserve-title">날짜</div>
             <div class="reserve-date"></div>
         </div>
+
         <div class="movie-part">
-            <div class="reserve-title">극장</div>
-            <div class="movie-list">
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
-                <div class="movie-item">
-                    <div class="right top">영화 이름</div>
-                </div>
+            <div class="reserve-title">영화</div>
+            <div class="movie-list" id="movie-title-list">
+                <%--                <div class="item">--%>
+                <%--                    <div class="right top">영화 이름</div>--%>
+                <%--                </div>--%>
+                <%--                <div class="item">--%>
+                <%--                    <div class="right top">영화 이름</div>--%>
+                <%--                </div>--%>
+                <%--                <div class="item">--%>
+                <%--                    <div class="right top">영화 이름</div>--%>
+                <%--                </div>--%>
+                <%--                <div class="item">--%>
+                <%--                    <div class="right top">영화 이름</div>--%>
+                <%--                </div>--%>
+                <%--                <div class="item">--%>
+                <%--                    <div class="right top">영화 이름</div>--%>
+                <%--                </div>--%>
             </div>
         </div>
+
         <div class="time-part">
             <form action="ReserveSeat.mv" method="post" id="reserveForm">
-                <div class="reserve-title">시간</div>
-                <div class="theater-list">
+                <div class="reserve-title">정보</div>
+                <div class="ticket-list">
+<%--                    <div class="ticket-item">--%>
+<%--                        <div class="ticket-item-info">1관</div>--%>
+<%--                        <div class="ticket-item-info">17:10</div>--%>
+<%--                        <div class="ticket-item-info">13/130</div>--%>
+<%--                    </div>--%>
                 </div>
-                <%--<input type="hidden" name="session_id" value="${sessionScope.sId}">--%>
-                <input type="submit" value="상영시간" class="submit_btn">
             </form>
         </div>
     </div>
