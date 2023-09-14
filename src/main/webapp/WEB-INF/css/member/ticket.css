@@ -33,6 +33,44 @@
   font-weight: bold;
 }
 
+.item {
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #CCC;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.item:hover {
+  background-color: #3B0B5F;
+  opacity: 0.5;
+  color: white;
+}
+.item.selected {
+  background-color: #2f074c;
+  opacity: 0.5;
+  color: white;
+}
+
+.ticket-item {
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #CCC;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.ticket-item .ticket-item-info {
+  text-align: center;
+}
+
 .movie-part {
   width: 284px;
 }
@@ -69,36 +107,10 @@
 }
 
 .reserve-date {
-  padding-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 770px;
-  overflow: scroll;
-  overflow-x: hidden;
-}
-
-.movie-date-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 2px;
-}
-
-.movie-week-of-day {
-  margin-left: 5px;
-  font-size: 10px;
-  width: 12px;
-  height: 22px;
-  line-height: 22px;
-}
-
-.movie-day {
-  text-align: center;
-  width: 34px;
-  height: 22px;
-  font-size: 17px;
-  font-weight: bold;
 }
 
 .saturday {
@@ -111,10 +123,10 @@
   font-weight: bold;
 }
 
-.movie-date-wrapper-active {
-  background-color: #333333;
+.active {
+  background-color: #3B0B5F;
 }
-.movie-date-wrapper-active > * {
+.active > * {
   color: white;
 }
 

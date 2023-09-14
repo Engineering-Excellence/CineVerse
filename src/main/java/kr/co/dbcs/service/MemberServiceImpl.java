@@ -88,11 +88,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public List<MovieVO> crawl() {
-
+    public List<MovieVO> crawl(HashMap<String, String> map) {
 //        String movieNm = "오펜하이머";
-        String brchNo1 = "1372";    // 강남
-        String playDe = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        String brchNo1 = map.get("theaterNo");    // 강남
+        String playDe = map.get("date");
+//        String playDe = new SimpleDateFormat("yyyyMMdd").format(new Date());
         String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
 
         try {
