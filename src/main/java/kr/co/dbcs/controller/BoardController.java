@@ -45,7 +45,7 @@ public class BoardController {
     public String insertBoard(@ModelAttribute(value = "boardVO") BoardVO boardVO, Principal principal) {
     	boardVO.setUsername(principal.getName());
         log.info("글쓰기 {}", boardService.create(boardVO) ? "성공" : "실패");
-        return "redirect:/";
+        return "redirect:/board/list";
     }
     
     @PostMapping(value = "/update")

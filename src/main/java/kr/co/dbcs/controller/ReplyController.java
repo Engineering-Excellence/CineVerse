@@ -26,11 +26,11 @@ public class ReplyController {
 	private final ReplyService replyService;
 	
 	@PostMapping(value="/insert")
-	public String insertReply(@ModelAttribute(value="replyVO" ) ReplyVO replyVO, Principal principal) {
+	public String insertReply(@ModelAttribute(value="replyVO" ) ReplyVO replyVO, Principal principal, @ModelAttribute BoardVO boardVO) {
 		replyVO.setUsername(principal.getName());
 		
 		log.info("댓글쓰기{}", replyService.create(replyVO) ? "성공" : "실패");
-		return "redirect:/";
+		return "redirect:/board/view/" + boardVO.getBoardNo();
 	}
 	
 	@GetMapping(value="/selectAll")
