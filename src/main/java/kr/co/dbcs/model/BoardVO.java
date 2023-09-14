@@ -1,16 +1,15 @@
 package kr.co.dbcs.model;
 
-import java.sql.Date;
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.sql.Date;
 
 @Data
 @Component
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class BoardVO {
 	
 	private int boardNo; // PK
