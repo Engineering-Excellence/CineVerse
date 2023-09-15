@@ -45,4 +45,12 @@ public class BoardSqlProvider {
             WHERE("BOARDNO = #{boardNo}");
         }}.toString();
     }
+
+    public String selectBoardByUsername(String username) {
+        return new SQL() {{
+            SELECT("*");
+            FROM("BOARD");
+            WHERE("USERNAME = #{username}");
+        }}.toString();
+    }
 }	

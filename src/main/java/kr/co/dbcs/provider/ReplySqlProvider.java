@@ -28,4 +28,11 @@ public class ReplySqlProvider {
         }}.toString();
     }
 
+    public String selectReplyByUsername(String username) {
+        return new SQL() {{
+            SELECT("*");
+            FROM("REPLY");
+            WHERE("USERNAME = #{username}");
+        }}.toString();
+    }
 }

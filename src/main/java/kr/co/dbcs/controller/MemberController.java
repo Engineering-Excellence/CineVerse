@@ -1,7 +1,9 @@
 package kr.co.dbcs.controller;
 
 import kr.co.dbcs.model.MemberVO;
+import kr.co.dbcs.service.BoardService;
 import kr.co.dbcs.service.MemberService;
+import kr.co.dbcs.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ import java.util.Map;
 public class MemberController {
 
     private final MemberService memberService;
+    private final BoardService boardService;
+    private final ReplyService replyService;
 
     @GetMapping(value = "/{path}")
     public String handlePath(@PathVariable String path, Model model, Principal principal,
@@ -32,6 +36,8 @@ public class MemberController {
 
             case "update":
                 model.addAttribute("data", memberService.read(principal.getName()));
+                model.addAttribute("board", boardService.readByUsername(principal.getName()));
+                model.addAttribute("reply", replyService.readByUsername(principal.getName()));
                 break;
             default:
                 break;

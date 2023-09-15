@@ -187,25 +187,38 @@
                     <div class="experience-title">내가 쓴 글</div>
                     <div>
                         <table>
-                            <tr>
-                                <td>글1</td>
-                            </tr>
-                            <tr>
-                                <td>글2</td>
-                            </tr>
-                            <tr>
-                                <td>글3</td>
-                            </tr>
+                            <c:forEach var="i" begin="0" end="${Math.min(2, board.size() - 1)}">
+                                <tr>
+                                    <td>
+                                        <div class="board-preview">
+                                            <div class="board-preview-boardNo">${board[i].boardNo}</div>
+                                            <div class="board-preview-boardTitle"><a href="/board/view/${board[i].boardNo}">${board[i].boardTitle}</a></div>
+                                            <div class="board-preview-boardView">${board[i].boardView}</div>
+                                            <div class="board-preview-boardDate">${board[i].boardDate}</div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </c:forEach>
+<%--                            <tr>--%>
+<%--                                <td>글1</td>--%>
+<%--                            </tr>--%>
+<%--                            <tr>--%>
+<%--                                <td>글2</td>--%>
+<%--                            </tr>--%>
+<%--                            <tr>--%>
+<%--                                <td>글3</td>--%>
+<%--                            </tr>--%>
                         </table>
                     </div>
                     <!-- NAME OF THE COMPANY YOUWORK WITH  -->
                     <!-- THE TIME YOU WORK WITH THE COMPANY  -->
                 </div>
-                <a href="#">더보기 +</a>
+                <a href="#">전체보기</a>
             </div>
             <!-- <div class="job-wrapper clearfix">
       <div class="company-description">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>  <!-- JOB DESCRIPTION
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>
       </div>
     </div> -->
             <div class="experience-wrapper">
@@ -213,21 +226,36 @@
                     <div class="experience-title">내가 쓴 댓글</div>
                     <div>
                         <table>
-                            <tr>
-                                <td>글1</td>
-                            </tr>
-                            <tr>
-                                <td>글2</td>
-                            </tr>
-                            <tr>
-                                <td>글3</td>
-                            </tr>
+
+                            <c:forEach var="i" begin="0" end="${Math.min(2, reply.size() - 1)}">
+                                <tr>
+                                    <td>
+                                        <div class="reply-preview">
+                                            <div class="reply-preview-boardNo">${reply[i].boardNo}</div>
+                                            <div class="reply-preview-replyContent"><a href="/board/view/${board[i].boardNo}">${reply[i].replyContent}</a></div>
+                                            <div class="reply-preview-replyDate">
+                                                <fmt:formatDate value="${reply[i].replyDate}" pattern="yyyy-MM-dd HH:mm:ss" type="date"/>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </c:forEach>
+<%--                            <tr>--%>
+<%--                                <td>글1</td>--%>
+<%--                            </tr>--%>
+<%--                            <tr>--%>
+<%--                                <td>글2</td>--%>
+<%--                            </tr>--%>
+<%--                            <tr>--%>
+<%--                                <td>글3</td>--%>
+<%--                            </tr>--%>
                         </table>
                     </div>
                     <!-- NAME OF THE COMPANY YOUWORK WITH  -->
                     <!-- THE TIME YOU WORK WITH THE COMPANY  -->
                 </div>
-                <a href="#">더보기 +</a>
+                <a href="#">전체보기</a>
             </div>
             <!--Skill experience-->
             <div class="section-wrapper clearfix">
@@ -244,7 +272,7 @@
                     <%--						</a>--%>
                 </div>
             </div>
-            <a href="/movie/myLoved">더보기 +</a>
+            <a href="/movie/myLoved">전체보기</a>
         </div>
     </div>
 </section>

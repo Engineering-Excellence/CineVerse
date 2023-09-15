@@ -240,6 +240,9 @@ a {
   /* padding-right: 5%; */
   margin-bottom: 30px;
 }
+.experience .company-wrapper table {
+  width: 100%;
+}
 
 @media (max-width: 450px) {
   .experience .company-wrapper {
@@ -322,6 +325,16 @@ a {
 
 .user-a {
   padding: 20px;
+}
+
+.board-preview {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr;
+}
+
+.reply-preview {
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
 }
 
 /*# sourceMappingURL=myPage.css.map */

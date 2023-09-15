@@ -23,4 +23,7 @@ public interface BoardMapper {
 
     @DeleteProvider(type = BoardSqlProvider.class, method = "deleteBoard")
     int deleteBoard(int boardNo);
+
+    @SelectProvider(type = BoardSqlProvider.class, method = "selectBoardByUsername")
+    List<BoardVO> readByUsername(String username);
 }
