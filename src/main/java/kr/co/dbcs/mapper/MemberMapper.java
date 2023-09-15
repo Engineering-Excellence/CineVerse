@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+
 @Mapper
 public interface MemberMapper {
 
@@ -37,11 +38,8 @@ public interface MemberMapper {
     @SelectProvider(type = MemberSqlProvider.class, method = "selectAllMember")
     List<MemberVO> selectAllMember();
 
-<<<<<<< HEAD
-    @UpdateProvider(type= MemberSqlProvider.class, method = "updateMemberInfo")
-=======
     @UpdateProvider(type = MemberSqlProvider.class, method = "updateMemberInfo")
->>>>>>> 1f7f3c19be7603f11cfe6da417079786b40b133d
+
     int updateMemberInfo(MemberVO memberVO);
 
     @DeleteProvider(type = MemberSqlProvider.class, method = "deleteMember")
