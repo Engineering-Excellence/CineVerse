@@ -77,23 +77,29 @@ footer {
   background: #707070;
   grid-area: footer;
   height: fit-content;
+
   ul {
     padding: 0 !important;
   }
+
   a {
     color: white !important;
+
     &:visited {
       color: white !important;
     }
+
     &:hover {
       color: white !important;
     }
   }
+
   .copyright-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
+
   .msg {
     display: flex;
     flex-direction: column;

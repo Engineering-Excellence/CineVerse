@@ -40,8 +40,8 @@ public class RootConfig {
         dataSource.setPassword(env.getProperty("oracle.jdbc.password"));
 
         // DBCP 상세 속성 설정
-        dataSource.setMinIdle(10); // 최소 유휴 연결 수
-        dataSource.setMaxTotal(20); // 최대 풀 크기
+        dataSource.setMinIdle(3); // 최소 유휴 연결 수
+        dataSource.setMaxTotal(5); // 최대 풀 크기
         dataSource.setMaxIdle(30); // 유휴 연결 유지 시간(밀리 초); 30000 밀리 초 (=30초)
         dataSource.setValidationQuery("SELECT 1 FROM DUAL");
         dataSource.setValidationQueryTimeout(10); // 검증 쿼리 타임아웃 (초)
