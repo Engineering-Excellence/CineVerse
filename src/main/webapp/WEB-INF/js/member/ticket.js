@@ -84,16 +84,22 @@ const addMovieHandler = () => {
                 console.log(filteredList);
                 let html = "";
 
-                filteredList.forEach((item) => {
-                    html += `<div class="ticket-list">`
-                    html += `<div class="ticket-item">`
-                    html += `<div class="ticket-item-info">${item["company"]}</div>`
-                    html += `<div class="ticket-item-info">${item["theater"]}</div>`
-                    html += `<div class="ticket-item-info">${item["startTime"]}</div>`
-                    html += `<div class="ticket-item-info">${item["restSeat"]}/${item["totSeat"]}</div>`
+                if (filteredList.length == 0) {
+                    html += `<div class="item">`
+                    html += `<div class="ticket-item-info">상영 정보가 없습니다.</div>`
                     html += `</div>`
-                    html += `</div>`
-                });
+                }
+                else {
+                    filteredList.forEach((item) => {
+                        html += `<div class="ticket-item">`
+                        html += `<div class="ticket-item-info">${item["company"]}</div>`
+                        html += `<div class="ticket-item-info">${item["theater"]}</div>`
+                        html += `<div class="ticket-item-info">${item["startTime"]}</div>`
+                        html += `<div class="ticket-item-info">${item["restSeat"]}/${item["totSeat"]}</div>`
+                        html += `</div>`
+                    });
+                }
+
                 $(".ticket-list").html("");
                 $(".ticket-list").append(html);
             }
