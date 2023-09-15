@@ -33,19 +33,20 @@ public class MemberController {
             case "update":
                 model.addAttribute("data", memberService.read(principal.getName()));
                 break;
+            default:
+                break;
         }
         return "/member/home";
     }
 
     @PostMapping(value = "/join")
     public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
-
         log.info("회원가입 {}", memberService.create(memberVO) ? "성공" : "실패");
         return "redirect:/login";
     }
 
-    @PostMapping("/check")
     @ResponseBody
+    @PostMapping("/check")
     public boolean idCheck(@RequestBody MemberVO memberVO) {
         return memberService.loadUserByUsername(memberVO.getUsername()) != null;
     }
@@ -81,9 +82,6 @@ public class MemberController {
     @PostMapping("/upload")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
     public boolean handleFileUpload(@RequestParam("file") MultipartFile file, Principal principal) {
-        if (!file.isEmpty()) {
-            return memberService.uploadFile(file, principal);
-        }
-        return false;
+        return !file.isEmpty() && memberService.uploadFile(file, principal);
     }
 }

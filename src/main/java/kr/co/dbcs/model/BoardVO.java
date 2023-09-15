@@ -12,14 +12,14 @@ import java.sql.Date;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 
 public class BoardVO {
-	
-	private int boardNo; // PK
-	private String username;
-	private Date boardDate;
-	private String boardContent;
-	private String boardTitle;
-	private int boardView;
-	private int boardLike;
-	private int boardDislike;
-	
+
+    private int boardNo; // PK
+    private String username;
+    private Date boardDate;
+    private String boardContent;
+    private String boardTitle;
+    private int boardView;
+    private int boardLike;
+    private int boardDislike;
+
 }
