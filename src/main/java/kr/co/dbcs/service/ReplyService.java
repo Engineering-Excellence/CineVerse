@@ -7,4 +7,6 @@ import java.util.List;
 public interface ReplyService extends CRUDService<ReplyVO, Integer> {
 
     List<ReplyVO> readAllByBoardNo(int boardNo);
+
+    List<ReplyVO> readByUsername(String username);
 }

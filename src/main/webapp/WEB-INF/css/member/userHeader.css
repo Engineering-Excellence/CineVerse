@@ -1,9 +1,5 @@
-*{
-	font-family: 'Gowun Dodum', sans-serif !important;
-}
-
 body {
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: segoe-ui_normal, Segoe UI, Segoe, Segoe WP, Helvetica Neue, Helvetica, sans-serif;
   display: grid;
   grid-template-areas: "header" "section" "footer";
   grid-template-rows: 70px 1fr 50px;
@@ -58,6 +54,7 @@ header .main-login .menu-list-name {
 
 section {
   grid-area: section;
+  padding: 0 !important;
 }
 
 footer {

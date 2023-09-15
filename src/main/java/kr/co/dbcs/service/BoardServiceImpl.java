@@ -41,4 +41,9 @@ public class BoardServiceImpl implements BoardService {
     public boolean delete(Integer boardNo) {
         return boardMapper.deleteBoard(boardNo) >= 1;
     }
+
+    @Override
+    public List<BoardVO> readByUsername(String username) {
+        return boardMapper.readByUsername(username);
+    }
 }

@@ -49,4 +49,9 @@ public class ReplyServiceImpl implements ReplyService {
         List<ReplyVO> ret = replyMapper.selectAllReply(boardNo);
         return ret;
     }
+
+    @Override
+    public List<ReplyVO> readByUsername(String username) {
+        return replyMapper.readByUsername(username);
+    }
 }

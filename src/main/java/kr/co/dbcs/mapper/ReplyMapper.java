@@ -18,4 +18,7 @@ public interface ReplyMapper {
 
     @DeleteProvider(type = ReplySqlProvider.class, method = "deleteReply")
     int deleteReply(int replyNo);
+
+    @SelectProvider(type = ReplySqlProvider.class, method = "selectReplyByUsername")
+    List<ReplyVO> readByUsername(String username);
 }
