@@ -11,10 +11,10 @@ import java.util.Date;
 @Component
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class ReplyVO {
-	
-	private int replyNo;
-	private String username;
-	private int boardNo;
-	private Date replyDate;
-	private String replyContent;
+
+    private int replyNo;
+    private String username;
+    private int boardNo;
+    private Date replyDate;
+    private String replyContent;
 }
