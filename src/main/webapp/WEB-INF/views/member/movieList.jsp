@@ -11,7 +11,7 @@
     var isLogin = false;
     </sec:authorize>
 </script>
-<div>
+<section>
 <div class="search-div">
 <div id="search">
   <input id="input" placeholder="영화 제목을 입력하세요"/>
@@ -47,4 +47,4 @@
         <button class="bubbly-button" id="more-btn">See More</button>
     </div>
 </div>
-</div>
+</section>

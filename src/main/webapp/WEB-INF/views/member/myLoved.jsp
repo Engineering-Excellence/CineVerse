@@ -11,7 +11,7 @@
     var isLogin = false;
     </sec:authorize>
 </script>
-<div>
+<section>
 <div class="search-div">
 </div>
 <div class="master">
@@ -39,4 +39,4 @@
 <%--    </div>--%>
     </div>
 </div>
-</div>
+</section>

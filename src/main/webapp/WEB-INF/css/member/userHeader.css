@@ -59,6 +59,29 @@ section {
 footer {
   background: #707070;
   grid-area: footer;
+  height: fit-content;
+}
+footer ul {
+  padding: 0 !important;
+}
+footer a {
+  color: white !important;
+}
+footer a:visited {
+  color: white !important;
+}
+footer a:hover {
+  color: white !important;
+}
+footer .copyright-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+footer .msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=userHeader.css.map */

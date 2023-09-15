@@ -71,6 +71,14 @@
   text-align: center;
 }
 
+.part {
+  display: flex;
+  flex-direction: column;
+}
+.part .reserve-title {
+  flex-basis: 1%;
+}
+
 .movie-part {
   width: 284px;
 }
@@ -85,6 +93,24 @@
 
 .time-part {
   width: 384px;
+}
+
+.list-wrapper {
+  flex-basis: auto;
+  overflow-y: auto;
+}
+.list-wrapper::-webkit-scrollbar {
+  width: 15px;
+}
+.list-wrapper::-webkit-scrollbar-thumb {
+  background: #333333;
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  width: 3px;
+}
+.list-wrapper::-webkit-scrollbar-track {
+  background: #ffffff;
+  width: 3px;
 }
 
 .sort-wrapper {
@@ -110,7 +136,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 770px;
+  height: fit-content;
 }
 
 .saturday {

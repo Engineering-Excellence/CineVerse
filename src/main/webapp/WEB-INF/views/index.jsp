@@ -23,7 +23,7 @@
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/userHeader.css">
 
 
         <link src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
@@ -95,7 +95,6 @@
       <li class="main-cell"><a href="/movie/list" class="menu-a">전체영화</a></li>
       <li class="main-cell"><a href="/movie/ticket" class="menu-a">예매현황</a></li>
       <li class="main-cell"><a href="/board/list" class="menu-a">게시판</a></li>
-        <li class="main-cell"><a href="/stat/list" class="menu-a">통계</a></li>
         <sec:authorize access="isAuthenticated()">
             <li class="main-cell"><a href="/member/update" class="menu-a">마이페이지</a></li>
             <li class="main-cell"><a href="/logout" class="menu-a">로그아웃</a></li>
@@ -431,15 +430,7 @@
 <%--          </div>--%>
 <%--       </div>--%>
       </div>
-    
-  </div>
-  <div class=" section footer-wrap fp-auto-height">
-    <div class="footer">
-       <p> Footer's</p>
-    </div>
-   
-  </div>
-  
+     </div>
 </div>
 
 </body>
