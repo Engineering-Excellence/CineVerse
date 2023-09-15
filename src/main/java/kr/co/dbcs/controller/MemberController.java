@@ -33,6 +33,8 @@ public class MemberController {
             case "update":
                 model.addAttribute("data", memberService.read(principal.getName()));
                 break;
+            default:
+                break;
         }
         return "/member/home";
     }

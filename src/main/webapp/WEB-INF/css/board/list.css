@@ -1,6 +1,217 @@
+body {
+  height: 98.9vh;
+}
+
+.write-section {
+  padding: 40px 30px;
+}
+
+section {
+  padding: 60px 30px;
+}
+section .center {
+  text-align: center;
+}
+section .content-no {
+  width: 150px;
+}
+section .write-btn {
+  display: flex;
+  justify-content: end;
+}
+section .board-search {
+  padding-right: 0px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+section .board-search #search input {
+  width: 300px;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+
+.write-btn-margin {
+  margin-top: 30px;
+}
+
+.board-title {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.write-p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .ck.ck-editor {
   width: 200px;
   height: 200px;
+}
+
+.btn-list {
+  display: flex;
+  justify-content: center;
+}
+.btn-list .write-btn {
+  margin: 20px;
+}
+
+.board-content {
+  width: 100%;
+  height: 400px;
+  border: 1px solid black;
+}
+
+.reply-div {
+  display: flex;
+  width: 100%;
+}
+
+.content-no {
+  width: 200px;
+}
+
+.content-title {
+  width: 800px;
+}
+
+.board-title {
+  font-weight: 800;
+  font-size: 26px;
+}
+
+.board-view-div {
+  border: 1px solid black;
+  height: 500px;
+}
+
+.reply-content-input {
+  width: 1540px;
+}
+
+.reply-form {
+  display: flex;
+  width: 100%;
+}
+
+.board-view-table {
+  width: 100%;
+}
+
+.board-title-th {
+  width: 1610px;
+  height: 50px;
+  font-weight: 800;
+  font-size: 25px;
+  padding: 10px;
+}
+
+.board-view-table tr {
+  border-bottom: 1px solid black;
+}
+.board-view-table .board-th {
+  width: 200px;
+  padding: 10px;
+  border-right: 1px solid black;
+}
+.board-view-table .board-td {
+  padding: 10px;
+}
+
+.board-view-submit {
+  margin-left: 20px;
+  width: 80px;
+  background-color: #7202ae;
+  color: white;
+  border-radius: 5px;
+  border: 0px;
 }
 
 /*# sourceMappingURL=list.css.map */

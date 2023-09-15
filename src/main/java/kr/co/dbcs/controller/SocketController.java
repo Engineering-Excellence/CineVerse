@@ -10,7 +10,6 @@ import javax.websocket.*;
 import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.server.ServerEndpoint;
 import java.util.HashMap;
-import java.util.HashSet;
 
 @Log4j2
 @Controller

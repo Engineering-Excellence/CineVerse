@@ -137,7 +137,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-//    @Transactional
+    @Transactional
     public boolean uploadFile(MultipartFile file, Principal principal) {
 
         File uploadDirectory;
