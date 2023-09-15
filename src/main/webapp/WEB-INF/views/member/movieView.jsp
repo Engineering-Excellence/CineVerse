@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/movieView.css">
 <script src="${pageContext.request.contextPath}/js/member/movieView.js" defer></script>
 
-   <div class="view-main">
+   <section class="view-main">
       <!-- 검색 -->
       <div class="moviecard">
 <%--        <div class="movie-poster play-trailer"><img class="poster-img" src="${pageContext.request.contextPath}/images/test.jpg"></div>--%>
@@ -36,4 +36,4 @@
 <%--                </div>--%>
 <%--              </div>--%>
           </div>
-    </div>
+    </section>

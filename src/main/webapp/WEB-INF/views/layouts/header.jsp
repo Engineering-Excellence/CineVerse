@@ -42,7 +42,6 @@
             <li class="menu-li"><a href="/movie/list" class="menu-list-name">전체영화</a></li>
             <li class="menu-li"><a href="/movie/ticket" class="menu-list-name">예매현황</a></li>
             <li class="menu-li"><a href="/board/list" class="menu-list-name">게시판</a></li>
-            <li class="menu-li"><a href="/stat/list" class="menu-list-name">통계</a></li>
         </ul>
     </div>
     <div class="main-login">

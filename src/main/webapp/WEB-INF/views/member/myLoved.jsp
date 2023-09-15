@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/movieList.css">
-<script src="${pageContext.request.contextPath}/js/member/movieList.js" defer></script>
+<script src="${pageContext.request.contextPath}/js/member/myLoved.js" defer></script>
 <script>
     <sec:authorize access="isAuthenticated()">
     var isLogin = true;
@@ -13,11 +13,6 @@
 </script>
 <section>
 <div class="search-div">
-<div id="search">
-  <input id="input" placeholder="영화 제목을 입력하세요"/>
-	<button class="search-btn">Search</button>
-</div>
-
 </div>
 <div class="master">
     <div class="movie-list">
@@ -42,9 +37,6 @@
 <%--        </div>--%>
 <%--    </div>--%>
 <%--    </div>--%>
-    </div>
-    <div class="see-more">
-        <button class="bubbly-button" id="more-btn">See More</button>
     </div>
 </div>
 </section>

@@ -84,6 +84,14 @@
   }
 }
 
+.part {
+  display: flex;
+  flex-direction: column;
+  .reserve-title {
+    flex-basis: 1%;
+  }
+}
+
 .movie-part {
   width: 284px;
 }
@@ -98,6 +106,28 @@
 
 .time-part {
   width: 384px;
+}
+
+.list-wrapper {
+  flex-basis: auto;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #333333;
+
+    background-clip: padding-box;
+    border: 3px solid transparent;
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+    width: 3px;
+  }
 }
 
 .sort-wrapper {
@@ -128,7 +158,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 770px;
+  height: fit-content;
 }
 
 //.movie-week-of-day {

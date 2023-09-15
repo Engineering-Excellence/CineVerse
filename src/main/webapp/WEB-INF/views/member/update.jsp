@@ -164,7 +164,7 @@
                                 <input type="text" class="form-control" value="${data.gender }" disabled="disabled">
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Birth</span>
+                                    <span class="input-group-text" id="basic-addon1">Birth</span>
                                 <input type="text" class="form-control" readonly="readonly" value="${data.birthDate }"
                                        disabled="disabled">
                             </div>
@@ -286,7 +286,7 @@
                     <%--						</a>--%>
                 </div>
             </div>
-            <a href="#">더보기 +</a>
+            <a href="/movie/myLoved">더보기 +</a>
         </div>
 
     </section>
