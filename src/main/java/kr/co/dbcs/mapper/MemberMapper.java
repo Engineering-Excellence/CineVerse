@@ -42,7 +42,6 @@ public interface MemberMapper {
     List<MemberVO> selectAllMember();
 
     @UpdateProvider(type = MemberSqlProvider.class, method = "updateMemberInfo")
-
     int updateMemberInfo(MemberVO memberVO);
 
     @DeleteProvider(type = MemberSqlProvider.class, method = "deleteMember")
@@ -53,4 +52,7 @@ public interface MemberMapper {
 
     @UpdateProvider(type = MemberSqlProvider.class, method = "saveImg")
     int saveImg(MemberImgVO memberImgVO);
+
+    @SelectProvider(type = MemberSqlProvider.class, method = "getRelPath")
+    String getRelPath(String username);
 }

@@ -38,6 +38,7 @@ public class MemberController {
                 model.addAttribute("data", memberService.read(principal.getName()));
                 model.addAttribute("board", boardService.readByUsername(principal.getName()));
                 model.addAttribute("reply", replyService.readByUsername(principal.getName()));
+                model.addAttribute("relPath", memberService.getRelPath(principal.getName()));
                 break;
             default:
                 break;
@@ -85,6 +86,7 @@ public class MemberController {
         return "redirect:/";
     }
 
+    @ResponseBody   // Ajax
     @PostMapping("/upload")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
     public boolean handleFileUpload(@RequestParam("file") MultipartFile file, Principal principal) {

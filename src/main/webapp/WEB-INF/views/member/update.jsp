@@ -30,7 +30,7 @@
             <div class="picture-resume-wrapper">
                 <div class="picture-resume">
                     <span>
-                        <img id="profileImg" src="/profile/admin_anonymous.jpeg"
+                        <img id="profileImg" src="${relPath}"
                              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg';"/>
                     </span>
                     <input type="file" class="form-control" id="uploadProfile"
@@ -191,7 +191,9 @@
                                     <td>
                                         <div class="board-preview">
                                             <div class="board-preview-boardNo">${board[i].boardNo}</div>
-                                            <div class="board-preview-boardTitle"><a href="/board/view/${board[i].boardNo}">${board[i].boardTitle}</a></div>
+                                            <div class="board-preview-boardTitle"><a
+                                                    href="/board/view/${board[i].boardNo}">${board[i].boardTitle}</a>
+                                            </div>
                                             <div class="board-preview-boardView">${board[i].boardView}</div>
                                             <div class="board-preview-boardDate">${board[i].boardDate}</div>
                                         </div>
@@ -199,15 +201,15 @@
                                     </td>
                                 </tr>
                             </c:forEach>
-<%--                            <tr>--%>
-<%--                                <td>글1</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr>--%>
-<%--                                <td>글2</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr>--%>
-<%--                                <td>글3</td>--%>
-<%--                            </tr>--%>
+                            <%--                            <tr>--%>
+                            <%--                                <td>글1</td>--%>
+                            <%--                            </tr>--%>
+                            <%--                            <tr>--%>
+                            <%--                                <td>글2</td>--%>
+                            <%--                            </tr>--%>
+                            <%--                            <tr>--%>
+                            <%--                                <td>글3</td>--%>
+                            <%--                            </tr>--%>
                         </table>
                     </div>
                     <!-- NAME OF THE COMPANY YOUWORK WITH  -->
@@ -231,24 +233,27 @@
                                     <td>
                                         <div class="reply-preview">
                                             <div class="reply-preview-boardNo">${reply[i].boardNo}</div>
-                                            <div class="reply-preview-replyContent"><a href="/board/view/${board[i].boardNo}">${reply[i].replyContent}</a></div>
+                                            <div class="reply-preview-replyContent"><a
+                                                    href="/board/view/${board[i].boardNo}">${reply[i].replyContent}</a>
+                                            </div>
                                             <div class="reply-preview-replyDate">
-                                                <fmt:formatDate value="${reply[i].replyDate}" pattern="yyyy-MM-dd HH:mm:ss" type="date"/>
+                                                <fmt:formatDate value="${reply[i].replyDate}"
+                                                                pattern="yyyy-MM-dd HH:mm:ss" type="date"/>
                                             </div>
                                         </div>
 
                                     </td>
                                 </tr>
                             </c:forEach>
-<%--                            <tr>--%>
-<%--                                <td>글1</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr>--%>
-<%--                                <td>글2</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr>--%>
-<%--                                <td>글3</td>--%>
-<%--                            </tr>--%>
+                            <%--                            <tr>--%>
+                            <%--                                <td>글1</td>--%>
+                            <%--                            </tr>--%>
+                            <%--                            <tr>--%>
+                            <%--                                <td>글2</td>--%>
+                            <%--                            </tr>--%>
+                            <%--                            <tr>--%>
+                            <%--                                <td>글3</td>--%>
+                            <%--                            </tr>--%>
                         </table>
                     </div>
                     <!-- NAME OF THE COMPANY YOUWORK WITH  -->

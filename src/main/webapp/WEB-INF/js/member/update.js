@@ -21,7 +21,7 @@ $(() => {
             data: formData,
             processData: false,
             contentType: false,
-            success: data => console.log(data),
+            success: () => location.reload(),
             error: error => console.error(error)
         })
     })
