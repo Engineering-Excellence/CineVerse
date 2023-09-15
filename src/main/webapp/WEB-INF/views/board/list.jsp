@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<<<<<<< Updated upstream
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/list.css"> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/movieList.css">
