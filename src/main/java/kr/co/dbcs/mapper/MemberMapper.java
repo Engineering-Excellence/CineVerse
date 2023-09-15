@@ -18,6 +18,9 @@ public interface MemberMapper {
     @InsertProvider(type = MemberSqlProvider.class, method = "insertAuth")
     int insertAuth(String username);
 
+    @InsertProvider(type = MemberSqlProvider.class, method = "insertMemberImg")
+    int insertMemberImg(String username);
+
     @SelectProvider(type = MemberSqlProvider.class, method = "selectMemberByUsername")
     @Results(id = "memberResultMap", value = {
             @Result(property = "username", column = "username", id = true),
@@ -48,7 +51,6 @@ public interface MemberMapper {
     @UpdateProvider(type = MemberSqlProvider.class, method = "updatePassword")
     int updatePassword(MemberVO memberVO);
 
-    @InsertProvider(type = MemberSqlProvider.class, method = "saveImg")
+    @UpdateProvider(type = MemberSqlProvider.class, method = "saveImg")
     int saveImg(MemberImgVO memberImgVO);
-
 }

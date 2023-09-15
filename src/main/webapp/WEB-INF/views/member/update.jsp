@@ -13,7 +13,8 @@
     var password = '${data.password}'
     var email = '${data.email}'
     var mobile = '${data.mobile}'
-    var gender = ${data.gender}
+    var gender =
+    ${data.gender}
     var birthDate = '${data.birthDate}'
     var regDate = '${data.regDate}'
     </sec:authorize>
@@ -28,9 +29,13 @@
         <div class="container">
             <div class="picture-resume-wrapper">
                 <div class="picture-resume">
-						<span><img
-                                src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg"
-                                alt=""/></span>
+                    <span>
+                        <img id="profileImg" src="/profile/admin_anonymous.jpeg"
+                             onerror="this.onerror=null; this.src='https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg';"/>
+                    </span>
+                    <input type="file" class="form-control" id="uploadProfile"
+                           aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                           accept="image/*" hidden="hidden"/>
                     <svg version="1.1" viewBox="0 0 350 350">
                         <defs>
                             <filter id="goo">
@@ -67,116 +72,110 @@
                         </g>
                     </svg>
                 </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="name-wrapper">
-                <h1>
-                    계정 <br/>${data.username}</h1>
-                <!-- YOUR NAME AND LAST NAME  -->
             </div>
             <div class="clearfix"></div>
-            <br/>
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active"
-                            data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-                            role="tab" aria-controls="nav-home" aria-selected="true">정보수정
-                    </button>
-                    <button class="nav-link" data-bs-toggle="tab"
-                            data-bs-target="#nav-profile" type="button" role="tab"
-                            aria-controls="nav-profile" aria-selected="false">비밀번호 변경
-                    </button>
-                    <button class="nav-link" data-bs-toggle="tab"
-                            data-bs-target="#nav-contact" type="button" role="tab"
-                            aria-controls="nav-contact" aria-selected="false">회원탈퇴
-                    </button>
-                    <button class="nav-link" id="nav-disabled-tab"
-                            data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button"
-                            role="tab" aria-controls="nav-disabled" aria-selected="false" disabled>쪽지함
-                    </button>
-                </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home"
-                     role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                    <form action="/member/update" method="post">
-                        <div>
-                            <input type="hidden" value="${data.username}" id="username"
-                                   name="username"/>
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="uploadProfile"
-                                       aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*">
-                                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">
-                                    Button
-                                </button>
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Email</span>
-                                <input type="text" class="form-control" value="${data.email }">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Mobile</span>
-                                <input type="text" class="form-control" value="${data.mobile }">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Gender</span>
-                                <input type="text" class="form-control" value="${data.gender }" disabled="disabled">
-                            </div>
-                            <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">Birth</span>
-                                <input type="text" class="form-control" readonly="readonly" value="${data.birthDate }"
-                                       disabled="disabled">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Join-date</span>
-                                <input type="text" class="form-control" readonly="readonly" value="${data.regDate }"
-                                       disabled="disabled">
-                            </div>
-                            <input type="submit" class="btn" value="개인정보 변경">
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                     aria-labelledby="nav-profile-tab" tabindex="0">
-                    <form action="/member/updatePassword" method="post">
-                        <div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">현재 비밀번호</span>
-                                <input type="password" name="oldPassword" id="oldPassword" class="form-control"
-                                       placeholder="사용중인 비밀번호를 입력해주세요.">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">사용할 비밀번호</span>
-                                <input type="password" name="newPassword" id="oldPassword" class="form-control"
-                                       placeholder="사용할 비밀번호를 입력해주세요.">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">비밀번호 확인</span>
-                                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
-                                       placeholder="사용할 비밀번호를 한번 더 입력해주세요.">
-                            </div>
-                            <input type="submit" class="btn" value="비밀번호 변경">
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                     aria-labelledby="nav-contact-tab" tabindex="0">
-                    <form action="/member/delete" method="post">
+        </div>
+        <div class="name-wrapper">
+            <h1>
+                계정 <br/>${data.username}</h1>
+            <!-- YOUR NAME AND LAST NAME  -->
+        </div>
+        <div class="clearfix"></div>
+        <br/>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active"
+                        data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+                        role="tab" aria-controls="nav-home" aria-selected="true">정보수정
+                </button>
+                <button class="nav-link" data-bs-toggle="tab"
+                        data-bs-target="#nav-profile" type="button" role="tab"
+                        aria-controls="nav-profile" aria-selected="false">비밀번호 변경
+                </button>
+                <button class="nav-link" data-bs-toggle="tab"
+                        data-bs-target="#nav-contact" type="button" role="tab"
+                        aria-controls="nav-contact" aria-selected="false">회원탈퇴
+                </button>
+                <button class="nav-link" id="nav-disabled-tab"
+                        data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button"
+                        role="tab" aria-controls="nav-disabled" aria-selected="false" disabled>쪽지함
+                </button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home"
+                 role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                <form action="/member/update" method="post">
+                    <div>
+                        <input type="hidden" value="${data.username}" id="username"
+                               name="username"/>
 
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">사용중인 비밀번호</span>
-                            <input type="password" name="password" id="deleteInfoMember" class="form-control"
-                                   placeholder="비밀번호를 입력하시면 탈퇴가 진행됩니다.">
+                            <span class="input-group-text" id="basic-addon1">Email</span>
+                            <input type="text" class="form-control" value="${data.email }">
                         </div>
-                        <input type="submit" class="btn" value="회원 탈퇴">
-                    </form>
-                    사용중인 비밀번호를 입력하시면 회원 탈퇴가 진행됩니다. <br/>탈퇴시 복구가 불가능합니다.
-                </div>
-                <div class="tab-pane fade" id="nav-disabled" role="tabpanel"
-                     aria-labelledby="nav-disabled-tab" tabindex="0"></div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Mobile</span>
+                            <input type="text" class="form-control" value="${data.mobile }">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Gender</span>
+                            <input type="text" class="form-control" value="${data.gender }" disabled="disabled">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Birth</span>
+                            <input type="text" class="form-control" readonly="readonly" value="${data.birthDate }"
+                                   disabled="disabled">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Join-date</span>
+                            <input type="text" class="form-control" readonly="readonly" value="${data.regDate }"
+                                   disabled="disabled">
+                        </div>
+                        <input type="submit" class="btn" value="개인정보 변경">
+                    </div>
+                </form>
             </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                 aria-labelledby="nav-profile-tab" tabindex="0">
+                <form action="/member/updatePassword" method="post">
+                    <div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">현재 비밀번호</span>
+                            <input type="password" name="oldPassword" id="oldPassword" class="form-control"
+                                   placeholder="사용중인 비밀번호를 입력해주세요.">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">사용할 비밀번호</span>
+                            <input type="password" name="newPassword" id="oldPassword" class="form-control"
+                                   placeholder="사용할 비밀번호를 입력해주세요.">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">비밀번호 확인</span>
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
+                                   placeholder="사용할 비밀번호를 한번 더 입력해주세요.">
+                        </div>
+                        <input type="submit" class="btn" value="비밀번호 변경">
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                 aria-labelledby="nav-contact-tab" tabindex="0">
+                <form action="/member/delete" method="post">
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">사용중인 비밀번호</span>
+                        <input type="password" name="password" id="deleteInfoMember" class="form-control"
+                               placeholder="비밀번호를 입력하시면 탈퇴가 진행됩니다.">
+                    </div>
+                    <input type="submit" class="btn" value="회원 탈퇴">
+                </form>
+                사용중인 비밀번호를 입력하시면 회원 탈퇴가 진행됩니다. <br/>탈퇴시 복구가 불가능합니다.
+            </div>
+            <div class="tab-pane fade" id="nav-disabled" role="tabpanel"
+                 aria-labelledby="nav-disabled-tab" tabindex="0"></div>
         </div>
+    </div>
     </div>
 
     <div class="experience section-padding">

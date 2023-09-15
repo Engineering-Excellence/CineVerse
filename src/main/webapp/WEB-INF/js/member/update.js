@@ -1,11 +1,18 @@
 'use strict'
 
 $(() => {
+    // 프로필 이미지 파일 업로드
 
-    $("#inputGroupFileAddon04").click(() => {
-        const fileInput = $('#uploadProfile')[0];
-        const file = fileInput.files[0]
-        const formData = new FormData()
+    $("#profileImg").click(() => {
+        console.log('clicked')
+        let fileInput = $('#uploadProfile')[0];
+        fileInput.click()
+    })
+
+    $("#uploadProfile").on('change', function () {
+        let fileInput = $(this)[0];
+        let file = fileInput.files[0];
+        let formData = new FormData()
         formData.append('file', file)
 
         $.ajax({
@@ -15,7 +22,7 @@ $(() => {
             processData: false,
             contentType: false,
             success: data => console.log(data),
-            error: error => console.log(error)
+            error: error => console.error(error)
         })
     })
 })

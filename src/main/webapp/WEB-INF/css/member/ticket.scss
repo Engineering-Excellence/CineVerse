@@ -79,6 +79,7 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+
   .ticket-item-info {
     text-align: center;
   }
@@ -87,6 +88,7 @@
 .part {
   display: flex;
   flex-direction: column;
+
   .reserve-title {
     flex-basis: 1%;
   }
@@ -145,7 +147,6 @@
 /* .sort-wrapper>div:hover { */
 /*     border-bottom: 1px solid #111111; */
 /* } */
-
 
 
 .sort-selected {

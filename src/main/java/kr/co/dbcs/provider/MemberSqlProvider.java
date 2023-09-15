@@ -22,6 +22,14 @@ public class MemberSqlProvider {
         }}.toString();
     }
 
+    public String insertMemberImg(String username) {
+        return new SQL() {{
+            INSERT_INTO("MEMBERIMG");
+            VALUES("USERNAME,",
+                    "#{username}");
+        }}.toString();
+    }
+
     public String selectMemberByUsername(String username) {
         return new SQL() {{
             SELECT("*");
@@ -77,7 +85,7 @@ public class MemberSqlProvider {
     public String saveImg(MemberImgVO memberImgVO) {
         return new SQL() {{
             UPDATE("MEMBERIMG");
-            SET("ABSPATH = #{absPath}, RELPATH = #{relpath}, FILENAME = #{filename}");
+            SET("ABSPATH = #{absPath}, RELPATH = #{relPath}, FILENAME = #{fileName}");
             WHERE("USERNAME = #{username}");
         }}.toString();
     }

@@ -89,14 +89,12 @@
   right: 150px;
   transform: translateY(-50%);
   margin-left: 370px;
-  background: url("/images/eye.png");
   width: 30px;
   height: 30px;
   background-size: cover;
   cursor: pointer;
 }
 .user-login-main .login-pwd #toggle-pwd.hide {
-  background: url("/images/closeeye.png");
   background-size: cover;
 }
 .user-login-main .login-btn-div {

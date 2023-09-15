@@ -3,13 +3,10 @@ package kr.co.dbcs.service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.dbcs.mapper.MemberMapper;
-import kr.co.dbcs.model.CustomUser;
-import kr.co.dbcs.model.MegaboxVO;
-import kr.co.dbcs.model.MemberVO;
-import kr.co.dbcs.model.MovieVO;
+import kr.co.dbcs.model.*;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -26,10 +23,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 @Log4j2
 @Service
@@ -50,7 +47,9 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public boolean create(MemberVO memberVO) {
         memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
-        return memberMapper.insertMember(memberVO) >= 1 && memberMapper.insertAuth(memberVO.getUsername()) >= 1;
+        return memberMapper.insertMember(memberVO) >= 1
+                && memberMapper.insertAuth(memberVO.getUsername()) >= 1
+                && memberMapper.insertMemberImg(memberVO.getUsername()) >= 1;
     }
 
     @Override
@@ -70,10 +69,10 @@ public class MemberServiceImpl implements MemberService {
     }
 
     public boolean updatePassword(Map<String, Object> map, MemberVO vo) {
+
         if (!passwordEncoder.matches(map.get("oldPassword").toString(), vo.getPassword())) {
             return false;
         }
-
         MemberVO memberVO = new MemberVO();
         memberVO.setUsername(vo.getUsername());
         memberVO.setPassword(passwordEncoder.encode(map.get("newPassword").toString()));
@@ -111,18 +110,9 @@ public class MemberServiceImpl implements MemberService {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ObjectMapper가 알 수 없는 속성을 만났을 때 실패하지 않고 무시
 
-        List<MovieVO> movieList = new Vector<>();
+        List<MovieVO> movieList = new ArrayList<>();
         for (Map<String, Object> movieData : movieFormList) {
-            // Map을 Movie 객체로 변환
             MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
-
-            log.info(String.format("%s - %s%s [%s] (%d/%d)",
-                    StringEscapeUtils.unescapeHtml4(movie.getMovieNm()),
-                    movie.getBrchNm(),
-                    movie.getTheabExpoNm(),
-                    movie.getPlayStartTime(),
-                    movie.getRestSeatCnt(),
-                    movie.getTotSeatCnt()));
             movieList.add(new MovieVO(movie));
         }
         return movieList;
@@ -132,40 +122,36 @@ public class MemberServiceImpl implements MemberService {
         Resource resource = resourceLoader.getResource("classpath:/");
         Path path = Paths.get(resource.getURI());
         Path parentPath = path.getParent();
-        return parentPath.toString() + File.separator + "member";
+        return parentPath.toString() + File.separator + "profile";
     }
 
     @Override
     @Transactional
+    @SneakyThrows(IOException.class)
     public boolean uploadFile(MultipartFile file, Principal principal) {
 
         File uploadDirectory;
-        boolean result = false;
-        try {
-            uploadDirectory = new File(getUploadDirectory());
-            log.info("uploadDirectory: {}", getUploadDirectory());
-            if (!uploadDirectory.exists()) {    // 업로드 디렉토리가 존재하지 않을 경우 생성
-                log.info("mkdir: {}", uploadDirectory.mkdir());
-            }
+        uploadDirectory = new File(getUploadDirectory());
+        log.info("uploadDirectory: {}", getUploadDirectory());
+        if (!uploadDirectory.exists()) {    // 업로드 디렉토리가 존재하지 않을 경우 생성
+            log.info("mkdir: {}", uploadDirectory.mkdir());
+        }
 
-            String username = principal.getName();
-            String originalFilename = file.getOriginalFilename();
-            String realFilename = username + "_" + originalFilename;
-            String absPath = getUploadDirectory() + File.separator + realFilename; // username을 파일명 앞에 추가
-            String relPath = File.separator + "member" + File.separator + realFilename; // 상대경로
+        String username = principal.getName();
+        String originalFilename = file.getOriginalFilename();
+        String realFilename = username + "_" + originalFilename;
+        String absPath = getUploadDirectory() + File.separator + realFilename;
+        String relPath = File.separator + "profile" + File.separator + realFilename;
 
-            // DB에 파일정보 저장
-//            MemberImgVO memberImgVO = new MemberImgVO(username, absPath, relPath, originalFilename);
-//            result = memberMapper.saveImg(memberImgVO) > 0;
-//            log.info("result: {}", result);
+        // DB에 파일정보 저장
+        MemberImgVO memberImgVO = new MemberImgVO(username, absPath, relPath, originalFilename);
+        boolean result = memberMapper.saveImg(memberImgVO) > 0;
+        log.info("result: {}", result);
 
-            // 서버에 파일 저장
-//            if (result) {
+        // 서버에 파일 저장
+        if (result) {
             Path path = Paths.get(absPath);
             file.transferTo(path);
-//            }
-        } catch (IOException e) {
-            log.error(e);
         }
         return result;
     }

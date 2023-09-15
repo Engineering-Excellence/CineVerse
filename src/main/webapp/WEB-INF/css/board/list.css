@@ -205,6 +205,18 @@ button:hover .button-text {
   padding: 10px;
 }
 
+.board-view-table tr {
+  border-bottom: 1px solid black;
+}
+.board-view-table .board-th {
+  width: 200px;
+  padding: 10px;
+  border-right: 1px solid black;
+}
+.board-view-table .board-td {
+  padding: 10px;
+}
+
 .board-view-submit {
   margin-left: 20px;
   width: 80px;
