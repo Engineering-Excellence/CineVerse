@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/boxicons.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/userHeader.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <%--<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>--%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>
