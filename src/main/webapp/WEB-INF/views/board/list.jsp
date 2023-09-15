@@ -45,4 +45,5 @@
     <span class="button-text">글 작성</span>
   </button>
   </div>
+
 </section>

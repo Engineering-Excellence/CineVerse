@@ -10,6 +10,7 @@ import java.sql.Date;
 @Data
 @Component
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
+
 public class BoardVO {
 
     private int boardNo; // PK

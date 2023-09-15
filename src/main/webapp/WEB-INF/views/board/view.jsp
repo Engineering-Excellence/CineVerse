@@ -2,15 +2,7 @@
 
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/movieList.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/list.css"> 
-<section>
-<div class="board-view-div">
-	<table class="board-view-table">
-		<tr>
-			<th colspan="2" class="board-title-th">${data.boardTitle}</th>
-			
-		</tr>
-	
-		<tr>
+<section>                             
 			<th class="board-th">작성자</th>
 			<td class="board-td">${data.username }</td>
 		</tr>
