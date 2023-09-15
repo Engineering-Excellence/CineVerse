@@ -26,10 +26,10 @@ public class AdminController {
                              @RequestParam(required = false, defaultValue = "1") int page,
                              @RequestParam(required = false, defaultValue = "") String keyword) {
         switch (path) {
-            case "member" :
+            case "member":
                 model.addAttribute("data", memberService.readAll());
                 break;
-            default :
+            default:
                 break;
         }
         return "/admin/home";

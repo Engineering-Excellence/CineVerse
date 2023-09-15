@@ -1,21 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        @import url(https://fonts.googleapis.com/css?family=Varela+Round);
 
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
-    </style>
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/member/myPage.css"/>
-    <script
-            src="${pageContext.request.contextPath}/js/member/memberMypage.js"></script>
-</head>
-<body style="margin: 0px;">
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Varela+Round);
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/myPage.css"/>
+<script src="${pageContext.request.contextPath}/js/member/memberMypage.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/member/update.js" defer></script>
 <script>
     <sec:authorize access="isAuthenticated()">
     var username = '${data.username}'
@@ -25,30 +16,6 @@
     var gender = ${data.gender}
     var birthDate = '${data.birthDate}'
     var regDate = '${data.regDate}'
-
-    $(() => {
-        $("#inputGroupFileAddon04").click(() => {
-            const fileInput = $('#uploadProfile')[0];
-            const file = fileInput.files[0]
-            const formData = new FormData()
-            formData.append('file', file)
-
-            $.ajax({
-                url: '/member/upload',
-                type: 'POST',
-                data: formData,
-                processData: false,  // 중요
-                contentType: false,  // 중요
-                success: function (data) {
-                    console.log(data)
-                },
-                error: function (error) {
-                    console.log(error)
-                }
-            })
-        })
-    })
-
     </sec:authorize>
     <sec:authorize access="!isAuthenticated()">
     alert("로그인해주세요");
@@ -56,8 +23,8 @@
     </sec:authorize>
 </script>
 
-<div class="resume-wrapper">
-    <section class="profile section-padding">
+<section class="resume-wrapper">
+    <div class="profile section-padding">
         <div class="container">
             <div class="picture-resume-wrapper">
                 <div class="picture-resume">
@@ -65,7 +32,6 @@
                                 src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg"
                                 alt=""/></span>
                     <svg version="1.1" viewBox="0 0 350 350">
-
                         <defs>
                             <filter id="goo">
                                 <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
@@ -74,12 +40,8 @@
                                                result="cm"/>
                             </filter>
                         </defs>
-
-
                         <g filter="url(#goo)">
-
                             <circle id="main_circle" class="st0" cx="171.5" cy="175.6" r="130"/>
-
                             <circle id="circle" class="bubble0 st1" cx="171.5" cy="175.6"
                                     r="122.7"/>
                             <circle id="circle" class="bubble1 st1" cx="171.5" cy="175.6"
@@ -102,7 +64,6 @@
                                     r="122.7"/>
                             <circle id="circle" class="bubble10 st1" cx="171.5" cy="175.6"
                                     r="122.7"/>
-
                         </g>
                     </svg>
                 </div>
@@ -116,7 +77,6 @@
             <div class="clearfix"></div>
             <br/>
             <nav>
-
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active"
                             data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
@@ -216,12 +176,12 @@
                 <div class="tab-pane fade" id="nav-disabled" role="tabpanel"
                      aria-labelledby="nav-disabled-tab" tabindex="0"></div>
             </div>
-    </section>
+        </div>
+    </div>
 
-    <section class="experience section-padding">
+    <div class="experience section-padding">
         <div class="container">
             <!-- <h3 class="experience-title">Experience</h3> -->
-
             <div class="experience-wrapper">
                 <div class="company-wrapper clearfix">
                     <div class="experience-title">내가 쓴 글</div>
@@ -248,7 +208,6 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>  <!-- JOB DESCRIPTION
       </div>
     </div> -->
-
             <div class="experience-wrapper">
                 <div class="company-wrapper clearfix">
                     <div class="experience-title">내가 쓴 댓글</div>
@@ -271,7 +230,6 @@
                 <a href="#">더보기 +</a>
             </div>
             <!--Skill experience-->
-
             <div class="section-wrapper clearfix">
                 <h3 class="section-title">내가 찜한 영화</h3>
                 <div class="img-div">
@@ -288,7 +246,5 @@
             </div>
             <a href="/movie/myLoved">더보기 +</a>
         </div>
-
-    </section>
-</div>
-</body>
+    </div>
+</section>

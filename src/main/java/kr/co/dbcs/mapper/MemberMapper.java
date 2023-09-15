@@ -36,14 +36,14 @@ public interface MemberMapper {
 
     @SelectProvider(type = MemberSqlProvider.class, method = "selectAllMember")
     List<MemberVO> selectAllMember();
-    
-    @UpdateProvider(type= MemberSqlProvider.class, method = "updateMemberInfo")
+
+    @UpdateProvider(type = MemberSqlProvider.class, method = "updateMemberInfo")
     int updateMemberInfo(MemberVO memberVO);
-    
-    @DeleteProvider(type= MemberSqlProvider.class, method = "deleteMember")
-    int deleteMember (String username);
-    
-    @UpdateProvider(type= MemberSqlProvider.class, method = "updatePassword")
+
+    @DeleteProvider(type = MemberSqlProvider.class, method = "deleteMember")
+    int deleteMember(String username);
+
+    @UpdateProvider(type = MemberSqlProvider.class, method = "updatePassword")
     int updatePassword(MemberVO memberVO);
 
     @InsertProvider(type = MemberSqlProvider.class, method = "saveImg")
