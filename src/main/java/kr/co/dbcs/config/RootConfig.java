@@ -80,7 +80,7 @@ public class RootConfig {
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");
-        resolver.setMaxUploadSize(1024 * 1024 * 10); // 10MB
+        resolver.setMaxUploadSize(1024 * 1024 * 5); // 업로드 용량제한: 5MiB
         return resolver;
     }
 }

@@ -20,11 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -92,7 +93,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public List<MovieVO> crawl(HashMap<String, String> map) {
+    public List<MovieVO> crawl(Map<String, String> map) {
 
         String brchNo1 = map.get("theaterNo");    // 지점
         String playDe = map.get("date");    // 상영일
@@ -118,11 +119,18 @@ public class MemberServiceImpl implements MemberService {
         return movieList;
     }
 
-    public String getUploadDirectory() throws IOException {
+    @Override
+    @SneakyThrows(IOException.class)
+    public String getUploadDirectory() {
         Resource resource = resourceLoader.getResource("classpath:/");
         Path path = Paths.get(resource.getURI());
         Path parentPath = path.getParent();
-        return parentPath.toString() + File.separator + "profile";
+        return parentPath.toString() + File.separator + "images" + File.separator + "profile";
+    }
+
+    @Override
+    public String getRelPath(String username) {
+        return memberMapper.getRelPath(username);
     }
 
     @Override
@@ -141,7 +149,14 @@ public class MemberServiceImpl implements MemberService {
         String originalFilename = file.getOriginalFilename();
         String realFilename = username + "_" + originalFilename;
         String absPath = getUploadDirectory() + File.separator + realFilename;
-        String relPath = File.separator + "profile" + File.separator + realFilename;
+        String relPath = File.separator + "images" + File.separator + "profile" + File.separator + realFilename;
+
+        // 기존에 존재하는 파일 삭제
+        DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(getUploadDirectory()), username + "_*.*");
+        for (Path entry : stream) {
+            Files.delete(entry);
+        }
+        stream.close();
 
         // DB에 파일정보 저장
         MemberImgVO memberImgVO = new MemberImgVO(username, absPath, relPath, originalFilename);
@@ -153,6 +168,7 @@ public class MemberServiceImpl implements MemberService {
             Path path = Paths.get(absPath);
             file.transferTo(path);
         }
+
         return result;
     }
 }

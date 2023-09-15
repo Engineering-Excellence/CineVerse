@@ -89,4 +89,13 @@ public class MemberSqlProvider {
             WHERE("USERNAME = #{username}");
         }}.toString();
     }
+    public String getRelPath(String username) {
+        return new SQL() {
+            {
+                SELECT("RELPATH");
+                FROM("MEMBERIMG");
+                WHERE("USERNAME = #{username}");
+            }
+        }.toString();
+    }
 }

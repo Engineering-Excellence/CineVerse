@@ -12,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @Controller
@@ -33,7 +33,7 @@ public class MovieController {
 
     @ResponseBody
     @PostMapping(value = "/crawl")
-    public List<MovieVO> crawl(@RequestBody HashMap<String, String> map) {
+    public List<MovieVO> crawl(@RequestBody Map<String, String> map) {
         return memberService.crawl(map);
     }
 
