@@ -4,8 +4,4 @@ import kr.co.dbcs.model.BoardVO;
 
 public interface BoardService extends CRUDService<BoardVO, Integer> {
 
-
-
-
-
 }

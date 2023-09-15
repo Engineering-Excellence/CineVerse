@@ -10,7 +10,6 @@ import javax.websocket.*;
 import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.server.ServerEndpoint;
 import java.util.HashMap;
-import java.util.HashSet;
 
 @Log4j2
 @Controller
@@ -82,7 +81,6 @@ public class SocketController {
 
         if (sessionMapping.get(roomId).isEmpty()) sessionMapping.remove(roomId);
     }
-
 
     private void sendAllSessionToMessage(Session self, JSONObject obj) { // 연결된 모든 사용자에게 메세지 전달
         try {

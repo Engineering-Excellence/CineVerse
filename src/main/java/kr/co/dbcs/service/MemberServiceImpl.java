@@ -3,7 +3,10 @@ package kr.co.dbcs.service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.dbcs.mapper.MemberMapper;
-import kr.co.dbcs.model.*;
+import kr.co.dbcs.model.CustomUser;
+import kr.co.dbcs.model.MegaboxVO;
+import kr.co.dbcs.model.MemberVO;
+import kr.co.dbcs.model.MovieVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.text.StringEscapeUtils;
@@ -23,8 +26,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 @Log4j2
 @Service
@@ -89,44 +94,38 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional
     public List<MovieVO> crawl(HashMap<String, String> map) {
-//        String movieNm = "오펜하이머";
-        String brchNo1 = map.get("theaterNo");    // 강남
-        String playDe = map.get("date");
-//        String playDe = new SimpleDateFormat("yyyyMMdd").format(new Date());
+
+        String brchNo1 = map.get("theaterNo");    // 지점
+        String playDe = map.get("date");    // 상영일
         String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
 
-        try {
-            RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
 
-            // POST 요청 전송 및 응답을 Map으로 Parse
-            Map<String, Object> response = restTemplate.postForObject(url, null, Map.class);
+        // POST 요청 전송 및 응답을 Map으로 Parse
+        Map<String, Object> response = restTemplate.postForObject(url, null, Map.class);
 
-            // 응답으로부터 movieFormList 얻기
-            assert response != null;
-            List<Map<String, Object>> movieFormList = (List<Map<String, Object>>) ((Map<String, Object>) response.get("megaMap")).get("movieFormList");
+        // 응답으로부터 movieFormList 얻기
+        assert response != null;
+        List<Map<String, Object>> movieFormList = (List<Map<String, Object>>) ((Map<String, Object>) response.get("megaMap")).get("movieFormList");
 
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ObjectMapper가 알 수 없는 속성을 만났을 때 실패하지 않고 무시
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ObjectMapper가 알 수 없는 속성을 만났을 때 실패하지 않고 무시
 
-            List<MovieVO> movieList = new Vector<>();
-            for (Map<String, Object> movieData : movieFormList) {
-                // Map을 Movie 객체로 변환
-                MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
+        List<MovieVO> movieList = new Vector<>();
+        for (Map<String, Object> movieData : movieFormList) {
+            // Map을 Movie 객체로 변환
+            MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
 
-                log.info(String.format("%s - %s%s [%s] (%d/%d)",
-                        StringEscapeUtils.unescapeHtml4(movie.getMovieNm()),
-                        movie.getBrchNm(),
-                        movie.getTheabExpoNm(),
-                        movie.getPlayStartTime(),
-                        movie.getRestSeatCnt(),
-                        movie.getTotSeatCnt()));
-                movieList.add(new MovieVO(movie));
-            }
-            return movieList;
-        } catch (Exception e) {
-            log.error(e);
+            log.info(String.format("%s - %s%s [%s] (%d/%d)",
+                    StringEscapeUtils.unescapeHtml4(movie.getMovieNm()),
+                    movie.getBrchNm(),
+                    movie.getTheabExpoNm(),
+                    movie.getPlayStartTime(),
+                    movie.getRestSeatCnt(),
+                    movie.getTotSeatCnt()));
+            movieList.add(new MovieVO(movie));
         }
-        return Collections.emptyList();
+        return movieList;
     }
 
     public String getUploadDirectory() throws IOException {
@@ -137,7 +136,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-//    @Transactional
+    @Transactional
     public boolean uploadFile(MultipartFile file, Principal principal) {
 
         File uploadDirectory;
@@ -156,14 +155,14 @@ public class MemberServiceImpl implements MemberService {
             String relPath = File.separator + "member" + File.separator + realFilename; // 상대경로
 
             // DB에 파일정보 저장
-            MemberImgVO memberImgVO = new MemberImgVO(username, absPath, relPath, originalFilename);
+//            MemberImgVO memberImgVO = new MemberImgVO(username, absPath, relPath, originalFilename);
 //            result = memberMapper.saveImg(memberImgVO) > 0;
 //            log.info("result: {}", result);
 
             // 서버에 파일 저장
 //            if (result) {
-                Path path = Paths.get(absPath);
-                file.transferTo(path);
+            Path path = Paths.get(absPath);
+            file.transferTo(path);
 //            }
         } catch (IOException e) {
             log.error(e);

@@ -31,6 +31,8 @@ public class BoardController {
             case "list":
                 model.addAttribute("data", boardService.readAll());
                 break;
+            default:
+                break;
         }
         return "/member/home";
     }

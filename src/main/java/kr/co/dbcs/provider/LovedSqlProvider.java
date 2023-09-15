@@ -1,10 +1,10 @@
 package kr.co.dbcs.provider;
 
 import kr.co.dbcs.model.LovedVO;
-import kr.co.dbcs.model.MemberVO;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LovedSqlProvider {
+
     public String insertLoved(LovedVO lovedVO) {
         return new SQL() {{
             INSERT_INTO("LOVED");
