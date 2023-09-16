@@ -3,14 +3,11 @@ package kr.co.dbcs.model;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 
 @Data
-@Component
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-
 public class BoardVO {
 
     private int boardNo; // PK
@@ -21,5 +18,4 @@ public class BoardVO {
     private int boardView;
     private int boardLike;
     private int boardDislike;
-
 }
