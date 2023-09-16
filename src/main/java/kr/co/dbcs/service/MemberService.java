@@ -16,8 +16,6 @@ public interface MemberService extends UserDetailsService, CRUDService<MemberVO,
 
     boolean deleteProfile(String username);
 
-    Map<String, Object> lotteTest();
-
     String getUploadDirectory();
 
     String getRelPath(String username);

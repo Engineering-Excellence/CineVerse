@@ -41,12 +41,6 @@ public class MovieController {
     }
 
     @ResponseBody
-    @GetMapping("/lotteTest")
-    public Map<String, Object> lotteTest() {
-        return memberService.lotteTest();
-    }
-
-    @ResponseBody
     @PostMapping("/loved/{username}/{movieId}")
     public boolean addLoved(@PathVariable String username,
                             @PathVariable String movieId) {

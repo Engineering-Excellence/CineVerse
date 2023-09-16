@@ -114,13 +114,11 @@ public class MemberSqlProvider {
             FROM("note");
             WHERE("notewriter = #{username}");
         }}
-                .toString()
                 + " UNION "
                 + new SQL() {{
             SELECT("notewriter AS person");
             FROM("note");
             WHERE("notelistener = #{username}");
-        }}
-                .toString();
+        }};
     }
 }
