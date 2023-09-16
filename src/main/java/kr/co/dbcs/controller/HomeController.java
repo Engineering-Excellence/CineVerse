@@ -1,6 +1,5 @@
 package kr.co.dbcs.controller;
 
-import kr.co.dbcs.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HomeController {
-
-    private final MemberService memberService;
 
     @GetMapping(value = "/login")
     public String index() {
@@ -36,6 +33,7 @@ public class HomeController {
 //        } else {
 //            return "/error";
 //        }
+
         return "/index";
     }
 }

@@ -6,6 +6,7 @@ import kr.co.dbcs.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,10 @@ public class BoardController {
     private final ReplyService replyService;
 
     @GetMapping(value = "/{path}")
-    public String handlePath(@PathVariable String path, Model model, Principal principal,
+    public String handlePath(@PathVariable @NonNull String path, Model model, Principal principal,
                              @RequestParam(required = false, defaultValue = "1") int page,
                              @RequestParam(required = false, defaultValue = "") String keyword) {
+
         switch (path) {
             case "write":
                 break;
@@ -34,11 +36,15 @@ public class BoardController {
             default:
                 break;
         }
+
+        model.addAttribute("page", page);
+        model.addAttribute("keyword", keyword);
+
         return "/member/home";
     }
 
     @PostMapping(value = "/write")
-    public String insertBoard(@ModelAttribute(value = "boardVO") BoardVO boardVO, Principal principal) {
+    public String insertBoard(@ModelAttribute(value = "boardVO") @NonNull BoardVO boardVO, @NonNull Principal principal) {
         boardVO.setUsername(principal.getName());
         log.info("글쓰기 {}", boardService.create(boardVO) ? "성공" : "실패");
         return "redirect:/board/list";
@@ -51,14 +57,14 @@ public class BoardController {
     }
 
     @GetMapping(value = "/view/{boardNo}")
-    public String selectBoard(@PathVariable int boardNo, Model model) {
+    public String selectBoard(@PathVariable int boardNo, @NonNull Model model) {
         model.addAttribute("data", boardService.read(boardNo));
         model.addAttribute("reply", replyService.readAllByBoardNo(boardNo));
         return "/member/home";
     }
 
     @GetMapping(value = "/update/{boardNo}")
-    public String updateBoardForm(@PathVariable int boardNo, Model model) {
+    public String updateBoardForm(@PathVariable int boardNo, @NonNull Model model) {
         model.addAttribute("data", boardService.read(boardNo));
         return "/member/home";
     }

@@ -50,9 +50,12 @@ public interface MemberMapper {
     @UpdateProvider(type = MemberSqlProvider.class, method = "updatePassword")
     int updatePassword(MemberVO memberVO);
 
+    @SelectProvider(type = MemberSqlProvider.class, method = "getRelPath")
+    String getRelPath(String username);
+
     @UpdateProvider(type = MemberSqlProvider.class, method = "saveImg")
     int saveImg(MemberImgVO memberImgVO);
 
-    @SelectProvider(type = MemberSqlProvider.class, method = "getRelPath")
-    String getRelPath(String username);
+    @UpdateProvider(type = MemberSqlProvider.class, method = "deleteImg")
+    int deleteImg(String username);
 }

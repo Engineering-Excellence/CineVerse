@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,7 +25,6 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public boolean create(MemberVO memberVO) {
+    public boolean create(@NonNull MemberVO memberVO) {
         memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
         return memberMapper.insertMember(memberVO) >= 1
                 && memberMapper.insertAuth(memberVO.getUsername()) >= 1
@@ -65,11 +65,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public boolean update(MemberVO memberVO) {//회원 정보 수정
+    public boolean update(@NonNull MemberVO memberVO) {//회원 정보 수정
         return memberMapper.updateMemberInfo(memberVO) >= 1;
     }
 
-    public boolean updatePassword(Map<String, Object> map, MemberVO vo) {
+    public boolean updatePassword(@NonNull Map<String, Object> map, @NonNull MemberVO vo) {
 
         if (!passwordEncoder.matches(map.get("oldPassword").toString(), vo.getPassword())) {
             return false;
@@ -86,14 +86,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean deleteUserByPasswordChk(String username, String password, MemberVO vo) {
+    public boolean deleteUserByPasswordChk(String username, String password, @NonNull MemberVO vo) {
         if (!passwordEncoder.matches(password, vo.getPassword())) return false;
         return delete(username);
     }
 
     @Override
     @Transactional
-    public List<MovieVO> crawl(Map<String, String> map) {
+    public List<MovieVO> crawl(@NonNull Map<String, String> map) {
 
         String brchNo1 = map.get("theaterNo");    // 지점
         String playDe = map.get("date");    // 상영일
@@ -136,7 +136,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional
     @SneakyThrows(IOException.class)
-    public boolean uploadFile(MultipartFile file, Principal principal) {
+    public boolean uploadProfile(MultipartFile file, String username) {
 
         File uploadDirectory;
         uploadDirectory = new File(getUploadDirectory());
@@ -145,7 +145,6 @@ public class MemberServiceImpl implements MemberService {
             log.info("mkdir: {}", uploadDirectory.mkdir());
         }
 
-        String username = principal.getName();
         String originalFilename = file.getOriginalFilename();
         String realFilename = username + "_" + originalFilename;
         String absPath = getUploadDirectory() + File.separator + realFilename;
@@ -170,5 +169,21 @@ public class MemberServiceImpl implements MemberService {
         }
 
         return result;
+    }
+
+    @Override
+    @Transactional
+    @SneakyThrows(IOException.class)
+    public boolean deleteProfile(String username) {
+
+        // 기존에 존재하는 파일 삭제
+        DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(getUploadDirectory()), username + "_*.*");
+        for (Path entry : stream) {
+            Files.delete(entry);
+        }
+        stream.close();
+
+        // DB 파일정보 삭제
+        return memberMapper.deleteImg(username) > 0;
     }
 }

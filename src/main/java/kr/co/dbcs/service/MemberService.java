@@ -5,7 +5,6 @@ import kr.co.dbcs.model.MovieVO;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,9 @@ public interface MemberService extends UserDetailsService, CRUDService<MemberVO,
 
     List<MovieVO> crawl(Map<String, String> map);
 
-    boolean uploadFile(MultipartFile file, Principal principal);
+    boolean uploadProfile(MultipartFile file, String username);
+
+    boolean deleteProfile(String username);
 
     String getUploadDirectory();
 

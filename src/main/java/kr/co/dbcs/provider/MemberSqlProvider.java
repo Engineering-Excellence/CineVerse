@@ -82,13 +82,6 @@ public class MemberSqlProvider {
         }}.toString();
     }
 
-    public String saveImg(MemberImgVO memberImgVO) {
-        return new SQL() {{
-            UPDATE("MEMBERIMG");
-            SET("ABSPATH = #{absPath}, RELPATH = #{relPath}, FILENAME = #{fileName}");
-            WHERE("USERNAME = #{username}");
-        }}.toString();
-    }
     public String getRelPath(String username) {
         return new SQL() {
             {
@@ -97,5 +90,21 @@ public class MemberSqlProvider {
                 WHERE("USERNAME = #{username}");
             }
         }.toString();
+    }
+
+    public String saveImg(MemberImgVO memberImgVO) {
+        return new SQL() {{
+            UPDATE("MEMBERIMG");
+            SET("ABSPATH = #{absPath}, RELPATH = #{relPath}, FILENAME = #{fileName}");
+            WHERE("USERNAME = #{username}");
+        }}.toString();
+    }
+
+    public String deleteImg(String username) {
+        return new SQL() {{
+            UPDATE("MEMBERIMG");
+            SET("ABSPATH = NULL, RELPATH = NULL, FILENAME = NULL");
+            WHERE("USERNAME = #{username}");
+        }}.toString();
     }
 }

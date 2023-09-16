@@ -33,6 +33,9 @@
                         <img id="profileImg" src="${relPath}"
                              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg';"/>
                     </span>
+                    <!-- Font Awesome link -->
+                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+                    <!-- 프로필 이미지 초기화 버튼-->
                     <input type="file" class="form-control" id="uploadProfile"
                            aria-describedby="inputGroupFileAddon04" aria-label="Upload"
                            accept="image/*" hidden="hidden"/>
@@ -72,6 +75,11 @@
                         </g>
                     </svg>
                 </div>
+                    <div>
+                        <button class="btn btn-danger" id="deleteProfile">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
             </div>
             <div class="clearfix"></div>
         </div>
