@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Log4j2
 @Controller
@@ -22,9 +21,8 @@ public class AdminController {
     private final MemberService memberService;
 
     @GetMapping(value = "/{path}")
-    public String handlePath(@PathVariable String path, Model model,
-                             @RequestParam(required = false, defaultValue = "1") int page,
-                             @RequestParam(required = false, defaultValue = "") String keyword) {
+    public String handlePath(@PathVariable String path, Model model) {
+
         switch (path) {
             case "member":
                 model.addAttribute("data", memberService.readAll());
@@ -32,6 +30,7 @@ public class AdminController {
             default:
                 break;
         }
+
         return "/admin/home";
     }
 }

@@ -4,25 +4,27 @@ import lombok.extern.log4j.Log4j2;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 
 import javax.websocket.*;
 import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.server.ServerEndpoint;
 import java.util.HashMap;
+import java.util.Map;
 
 @Log4j2
 @Controller
 @ServerEndpoint(value = "/chat/{roomId}/{nickname}")
 public class SocketController {
-    private static final HashMap<Integer, HashMap<Session, String>> sessionMapping = new HashMap<>();
+    private static final Map<Integer, Map<Session, String>> sessionMapping = new HashMap<>();
 
     public SocketController() {
         log.info("create socket");
     }
 
     @OnOpen  // socket 연결 시
-    public void onOpen(Session session) {
+    public void onOpen(@NonNull Session session) {
         log.info("open session: {}", session.getId());
         int roomId = Integer.parseInt(session.getPathParameters().get("roomId"));
         log.info("room ID: {}", roomId);
@@ -61,12 +63,13 @@ public class SocketController {
     }
 
     @OnError
-    public void onError(Throwable e, Session session) {
+    public void onError(@NonNull Throwable e, @NonNull Session session) {
         log.error(e.getMessage() + "by session : " + session.getId());
     }
 
     @OnClose
-    public void onClose(Session session) {
+    public void onClose(@NonNull Session session) {
+
         log.info("Session: {} {} closed", session.getPathParameters(), session.getId());
         int roomId = Integer.parseInt(session.getPathParameters().get("roomId"));
 

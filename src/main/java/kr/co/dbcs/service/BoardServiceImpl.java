@@ -23,8 +23,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<BoardVO> readAll() {
-        List<BoardVO> ret = boardMapper.selectAllBoard();
-        return ret;
+        return boardMapper.selectAllBoard();
     }
 
     @Override

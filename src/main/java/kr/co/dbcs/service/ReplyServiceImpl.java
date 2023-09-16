@@ -22,12 +22,6 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<ReplyVO> readAll() {
-
-        return null;
-    }
-
-    @Override
     public boolean delete(Integer replyNo) {
 
         return replyMapper.deleteReply(replyNo) >= 1;
@@ -46,8 +40,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public List<ReplyVO> readAllByBoardNo(int boardNo) {
-        List<ReplyVO> ret = replyMapper.selectAllReply(boardNo);
-        return ret;
+        return replyMapper.selectAllReply(boardNo);
     }
 
     @Override
