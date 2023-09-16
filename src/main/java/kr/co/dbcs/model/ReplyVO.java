@@ -3,12 +3,10 @@ package kr.co.dbcs.model;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Data
-@Component
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class ReplyVO {
 
