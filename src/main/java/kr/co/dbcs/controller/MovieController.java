@@ -41,6 +41,12 @@ public class MovieController {
     }
 
     @ResponseBody
+    @GetMapping("/lotteTest")
+    public Map<String, Object> lotteTest() {
+        return memberService.lotteTest();
+    }
+
+    @ResponseBody
     @PostMapping("/loved/{username}/{movieId}")
     public boolean addLoved(@PathVariable String username,
                             @PathVariable String movieId) {
@@ -60,5 +66,11 @@ public class MovieController {
         List<String> ret = lovedService.getLovedByUsername(username);
         log.info("TEST : {}", ret);
         return ret;
+    }
+
+    @ResponseBody
+    @GetMapping("/test")
+    public List<String> test() {
+        return memberService.test("testtest");
     }
 }

@@ -107,4 +107,20 @@ public class MemberSqlProvider {
             WHERE("USERNAME = #{username}");
         }}.toString();
     }
+
+    public String test(String username) {
+        return new SQL() {{
+            SELECT("notelistener AS person");
+            FROM("note");
+            WHERE("notewriter = #{username}");
+        }}
+                .toString()
+                + " UNION "
+                + new SQL() {{
+            SELECT("notewriter AS person");
+            FROM("note");
+            WHERE("notelistener = #{username}");
+        }}
+                .toString();
+    }
 }

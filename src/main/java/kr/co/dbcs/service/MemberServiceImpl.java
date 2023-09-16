@@ -7,15 +7,25 @@ import kr.co.dbcs.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +36,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -119,6 +130,37 @@ public class MemberServiceImpl implements MemberService {
         return movieList;
     }
 
+    @SneakyThrows
+    @Override
+    public Map<String, Object> lotteTest() {
+        JSONObject obj = new JSONObject();
+        obj.put("MethodName", "GetPlaySequence");
+        obj.put("channelType", "MA");
+        obj.put("osVersion", "");
+        obj.put("osType", "");
+        obj.put("cinemaID", "1|1|9010");
+        obj.put("representationMovieCode", "");
+        obj.put("playDate", "2023-09-17");
+
+        String url = "https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.add("paramList", obj.toJSONString());
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
+
+        JSONParser parser = new JSONParser();
+        JSONObject res = (JSONObject)parser.parse(response.getBody());
+        Map<String, Object> ret = new ObjectMapper().readValue(res.get("PlaySeqsHeader").toString(), Map.class);
+
+        return ret;
+    }
+
     @Override
     @SneakyThrows(IOException.class)
     public String getUploadDirectory() {
@@ -185,5 +227,10 @@ public class MemberServiceImpl implements MemberService {
 
         // DB 파일정보 삭제
         return memberMapper.deleteImg(username) > 0;
+    }
+
+    @Override
+    public List<String> test(String username) {
+        return memberMapper.test(username);
     }
 }
