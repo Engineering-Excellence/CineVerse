@@ -7,8 +7,8 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 @Log4j2
-@Component
 @Aspect
+@Component
 public class LogAdvice {
 
     @Before("execution(* kr.co.dbcs..*(..))")

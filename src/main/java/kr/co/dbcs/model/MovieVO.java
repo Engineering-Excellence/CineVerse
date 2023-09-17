@@ -3,10 +3,9 @@ package kr.co.dbcs.model;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.lang.NonNull;
 
 @Getter
-@Component
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class MovieVO {
 
@@ -18,7 +17,7 @@ public class MovieVO {
     private int restSeat;   // 잔여좌석
     private int totSeat;    // 전체좌석
 
-    public MovieVO(MegaboxVO megaboxVO) {
+    public MovieVO(@NonNull MegaboxVO megaboxVO) {
         this.company = "메가박스";
         this.title = megaboxVO.getMovieNm();
         this.branch = megaboxVO.getBrchNm();
@@ -26,5 +25,15 @@ public class MovieVO {
         this.startTime = megaboxVO.getPlayStartTime();
         this.restSeat = megaboxVO.getRestSeatCnt();
         this.totSeat = megaboxVO.getTotSeatCnt();
+    }
+
+    public MovieVO(@NonNull LotteCinemaVO lotteCinemaVO) {
+        this.company = "롯데시네마";
+        this.title = lotteCinemaVO.getMovieNameKR();
+        this.branch = lotteCinemaVO.getCinemaNameKR();
+        this.theater = lotteCinemaVO.getScreenNameKR();
+        this.startTime = lotteCinemaVO.getStartTime();
+        this.restSeat = lotteCinemaVO.getBookingSeatCount();
+        this.totSeat = lotteCinemaVO.getTotalSeatCount();
     }
 }
