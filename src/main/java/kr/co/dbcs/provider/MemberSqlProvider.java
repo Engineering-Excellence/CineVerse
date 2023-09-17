@@ -25,7 +25,7 @@ public class MemberSqlProvider {
     public String insertMemberImg(String username) {
         return new SQL() {{
             INSERT_INTO("MEMBERIMG");
-            VALUES("USERNAME,",
+            VALUES("USERNAME",
                     "#{username}");
         }}.toString();
     }
