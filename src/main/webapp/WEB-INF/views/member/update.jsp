@@ -23,7 +23,6 @@
     window.location.href = "/login";
     </sec:authorize>
 </script>
-
 <section class="resume-wrapper">
     <div class="profile section-padding">
         <div class="container">
@@ -119,24 +118,24 @@
                                name="username"/>
 
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Email</span>
+                            <span class="input-group-text">Email</span>
                             <input type="text" class="form-control" value="${data.email }">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Mobile</span>
+                            <span class="input-group-text">Mobile</span>
                             <input type="text" class="form-control" value="${data.mobile }">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Gender</span>
+                            <span class="input-group-text">Gender</span>
                             <input type="text" class="form-control" value="${data.gender }" disabled="disabled">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Birth</span>
+                            <span class="input-group-text">Birth</span>
                             <input type="text" class="form-control" readonly="readonly" value="${data.birthDate }"
                                    disabled="disabled">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Join-date</span>
+                            <span class="input-group-text">Join-date</span>
                             <input type="text" class="form-control" readonly="readonly" value="${data.regDate }"
                                    disabled="disabled">
                         </div>
@@ -149,17 +148,17 @@
                 <form action="/member/updatePassword" method="post">
                     <div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">현재 비밀번호</span>
-                            <input type="password" name="oldPassword" id="oldPassword" class="form-control"
+                            <span class="input-group-text" >현재 비밀번호</span>
+                            <input type="password" name="oldPassword" class="form-control"
                                    placeholder="사용중인 비밀번호를 입력해주세요.">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">사용할 비밀번호</span>
-                            <input type="password" name="newPassword" id="oldPassword" class="form-control"
+                            <span class="input-group-text" >사용할 비밀번호</span>
+                            <input type="password" name="newPassword" class="form-control"
                                    placeholder="사용할 비밀번호를 입력해주세요.">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">비밀번호 확인</span>
+                            <span class="input-group-text" >비밀번호 확인</span>
                             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
                                    placeholder="사용할 비밀번호를 한번 더 입력해주세요.">
                         </div>
@@ -172,7 +171,7 @@
                 <form action="/member/delete" method="post">
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">사용중인 비밀번호</span>
+                        <span class="input-group-text" >사용중인 비밀번호</span>
                         <input type="password" name="password" id="deleteInfoMember" class="form-control"
                                placeholder="비밀번호를 입력하시면 탈퇴가 진행됩니다.">
                     </div>
@@ -194,21 +193,23 @@
                     <div class="experience-title">내가 쓴 글</div>
                     <div>
                         <table>
-                            <c:forEach var="i" begin="0" end="${Math.min(2, board.size() - 1)}">
-                                <tr>
-                                    <td>
-                                        <div class="board-preview">
-                                            <div class="board-preview-boardNo">${board[i].boardNo}</div>
-                                            <div class="board-preview-boardTitle"><a
-                                                    href="/board/view/${board[i].boardNo}">${board[i].boardTitle}</a>
+                            <c:if test="${board.size() > 0}">
+                                <c:forEach var="i" begin="0" end="${Math.min(2, board.size() - 1)}">
+                                    <tr>
+                                        <td>
+                                            <div class="board-preview">
+                                                <div class="board-preview-boardNo">${board[i].boardNo}</div>
+                                                <div class="board-preview-boardTitle"><a
+                                                        href="/board/view/${board[i].boardNo}">${board[i].boardTitle}</a>
+                                                </div>
+                                                <div class="board-preview-boardView">${board[i].boardView}</div>
+                                                <div class="board-preview-boardDate">${board[i].boardDate}</div>
                                             </div>
-                                            <div class="board-preview-boardView">${board[i].boardView}</div>
-                                            <div class="board-preview-boardDate">${board[i].boardDate}</div>
-                                        </div>
 
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
                             <%--                            <tr>--%>
                             <%--                                <td>글1</td>--%>
                             <%--                            </tr>--%>
@@ -235,24 +236,25 @@
                     <div class="experience-title">내가 쓴 댓글</div>
                     <div>
                         <table>
-
-                            <c:forEach var="i" begin="0" end="${Math.min(2, reply.size() - 1)}">
-                                <tr>
-                                    <td>
-                                        <div class="reply-preview">
-                                            <div class="reply-preview-boardNo">${reply[i].boardNo}</div>
-                                            <div class="reply-preview-replyContent"><a
-                                                    href="/board/view/${board[i].boardNo}">${reply[i].replyContent}</a>
+                            <c:if test="${reply.size() > 0}">
+                                <c:forEach var="i" begin="0" end="${Math.min(2, reply.size() - 1)}">
+                                    <tr>
+                                        <td>
+                                            <div class="reply-preview">
+                                                <div class="reply-preview-boardNo">${reply[i].boardNo}</div>
+                                                <div class="reply-preview-replyContent"><a
+                                                        href="/board/view/${board[i].boardNo}">${reply[i].replyContent}</a>
+                                                </div>
+                                                <div class="reply-preview-replyDate">
+                                                    <fmt:formatDate value="${reply[i].replyDate}"
+                                                                    pattern="yyyy-MM-dd HH:mm:ss" type="date"/>
+                                                </div>
                                             </div>
-                                            <div class="reply-preview-replyDate">
-                                                <fmt:formatDate value="${reply[i].replyDate}"
-                                                                pattern="yyyy-MM-dd HH:mm:ss" type="date"/>
-                                            </div>
-                                        </div>
 
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
                             <%--                            <tr>--%>
                             <%--                                <td>글1</td>--%>
                             <%--                            </tr>--%>
