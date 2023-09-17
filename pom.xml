@@ -240,9 +240,19 @@
 
         <!-- Servlet -->
         <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        <dependency>
             <groupId>javax.mvc</groupId>
             <artifactId>javax.mvc-api</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.1-b04</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -255,11 +265,6 @@
             <artifactId>jsp-api</artifactId>
             <version>2.2</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <version>3.0.1-b04</version>
         </dependency>
 
         <!-- JSTL -->
@@ -342,7 +347,6 @@
             <version>1.9.13</version>
         </dependency>
 
-
         <!-- unescapeHtml4 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -356,12 +360,6 @@
             <artifactId>surefire</artifactId>
             <version>3.1.0</version>
             <type>pom</type>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.7</version>
         </dependency>
     </dependencies>
 

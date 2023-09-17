@@ -15,11 +15,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {RootConfig.class, SecurityConfig.class})
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-class JythonCrawlTest {
+class JythonCrawlerTest {
 
     @Test
-    void testJythonCrawl() {
-        log.info("testJythonCrawl()");
+    void testJythonCrawler() {
+        log.info("testJythonCrawler()");
 
         try (PythonInterpreter py = new PythonInterpreter()) {
             String pythonCode =
@@ -29,7 +29,7 @@ class JythonCrawlTest {
                             "from urllib import urlencode\n" +
                             "from urllib2 import Request, urlopen\n" +
                             "\n" +
-                            "url = \"http://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx?\"\n" +
+                            "url = \"https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx?\"\n" +
                             "now = datetime.now()\n" +
                             "today = str('%s-%s-%s' % (now.year, now.month, now.day))\n" +
                             "movie_list = []\n" +
@@ -60,9 +60,7 @@ class JythonCrawlTest {
                             "    result=json.loads(result_string)\n" +
                             "\n" +
                             "    for i in result['PlaySeqs']['Items']:\n" +
-                            "        if i.get('IsBookingYN') == 'N':\n" +
-                            "            i['BookingSeatCount'] ='마감'\n" +
-                            "        movie_dic={\n" +
+                            "        movie_dic = {\n" +
                             "            \"name\":i.get('MovieNameKR'),\"dt_area\":i.get('ScreenNameKR'),\n" +
                             "                                                 \"start_time\":i.get('StartTime'),\"seat\":i.get('BookingSeatCount'),\n" +
                             "                                                                                       \"area\":i.get('CinemaNameKR'),\"date\":today\n" +

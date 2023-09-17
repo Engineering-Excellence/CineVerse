@@ -36,8 +36,8 @@ public class MovieController {
 
     @ResponseBody
     @PostMapping(value = "/crawl")
-    public List<MovieVO> crawl(@RequestBody Map<String, String> map) {
-        return memberService.crawl(map);
+    public List<MovieVO> crawl(@RequestBody Map<String, String> paramsMap) {
+        return memberService.crawl(paramsMap);
     }
 
     @ResponseBody

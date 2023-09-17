@@ -7,15 +7,23 @@ import kr.co.dbcs.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -92,30 +100,67 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @SneakyThrows
     @Transactional
-    public List<MovieVO> crawl(@NonNull Map<String, String> map) {
-
-        String brchNo1 = map.get("theaterNo");    // 지점
-        String playDe = map.get("date");    // 상영일
-        String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        // POST 요청 전송 및 응답을 Map으로 Parse
-        Map<String, Object> response = restTemplate.postForObject(url, null, Map.class);
-
-        // 응답으로부터 movieFormList 얻기
-        assert response != null;
-        List<Map<String, Object>> movieFormList = (List<Map<String, Object>>) ((Map<String, Object>) response.get("megaMap")).get("movieFormList");
+    public List<MovieVO> crawl(@NonNull Map<String, String> paramsMap) {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ObjectMapper가 알 수 없는 속성을 만났을 때 실패하지 않고 무시
 
+        RestTemplate restTemplate = new RestTemplate();
+
         List<MovieVO> movieList = new ArrayList<>();
-        for (Map<String, Object> movieData : movieFormList) {
+
+        // 메가박스 크롤링
+        String brchNo1 = paramsMap.get("theaterNo");    // 지점
+        String playDe = paramsMap.get("date");    // 상영일
+        String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
+
+        // POST 요청 전송 및 응답을 Map으로 Parse
+        Map<String, Object> response_megabox = restTemplate.postForObject(url, null, Map.class);
+
+        // 응답으로부터 movieFormList 얻기
+        assert response_megabox != null;
+        List<Map<String, Object>> movieFormList_megabox = (List<Map<String, Object>>) ((Map<String, Object>) response_megabox.get("megaMap")).get("movieFormList");
+
+        for (Map<String, Object> movieData : movieFormList_megabox) {
             MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
             movieList.add(new MovieVO(movie));
         }
+
+        // 롯데시네마 크롤링
+        JSONObject obj = new JSONObject();
+        obj.put("MethodName", "GetPlaySequence");
+        obj.put("channelType", "MA");
+        obj.put("osVersion", "");
+        obj.put("osType", "");
+        obj.put("cinemaID", "1|1|9010");    // paramsMap에 롯데시네마 지점 코드 추가 필요
+        obj.put("representationMovieCode", "");
+        obj.put("playDate", paramsMap.get("date").replaceAll("(\\d{4})(\\d{2})(\\d{2})", "$1-$2-$3"));
+
+        url = "https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("paramList", obj.toJSONString());
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+
+        ResponseEntity<String> response_lotte = restTemplate.postForEntity(url, request, String.class);
+
+        JSONParser parser = new JSONParser();
+        JSONObject res = (JSONObject) parser.parse(response_lotte.getBody());
+        Map<String, Object> ret = new ObjectMapper().readValue(res.get("PlaySeqs").toString(), Map.class);
+
+        List<Map<String, Object>> movieFormList_lotte = (List<Map<String, Object>>) ret.get("Items");
+
+        for (Map<String, Object> movieData : movieFormList_lotte) {
+            LotteCinemaVO movie = mapper.convertValue(movieData, LotteCinemaVO.class);
+            movieList.add(new MovieVO(movie));
+        }
+
         return movieList;
     }
 
