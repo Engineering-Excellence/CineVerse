@@ -23,4 +23,6 @@ public interface MemberService extends UserDetailsService, CRUDService<MemberVO,
     boolean updatePassword(Map<String, Object> map, MemberVO vo);
 
     boolean deleteUserByPasswordChk(String username, String password, MemberVO vo);
+
+    List<String> test(String username);
 }

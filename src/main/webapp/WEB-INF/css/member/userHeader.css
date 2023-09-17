@@ -1,5 +1,5 @@
 body {
-  font-family: segoe-ui_normal, Segoe UI, Segoe, Segoe WP, Helvetica Neue, Helvetica, sans-serif;
+  font-family: "Gowun Dodum", sans-serif !important;
   display: grid;
   grid-template-areas: "header" "section" "footer";
   grid-template-rows: 70px 1fr 50px;

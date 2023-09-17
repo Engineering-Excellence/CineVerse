@@ -186,4 +186,9 @@ public class MemberServiceImpl implements MemberService {
         // DB 파일정보 삭제
         return memberMapper.deleteImg(username) > 0;
     }
+
+    @Override
+    public List<String> test(String username) {
+        return memberMapper.test(username);
+    }
 }
