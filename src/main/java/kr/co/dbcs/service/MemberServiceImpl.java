@@ -12,10 +12,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -104,10 +101,12 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public List<MovieVO> crawl(@NonNull Map<String, String> paramsMap) {
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ObjectMapper가 알 수 없는 속성을 만났을 때 실패하지 않고 무시
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("User-Agent", "크롤링 연습중입니다(Crawling Practice)");
 
         RestTemplate restTemplate = new RestTemplate();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // ObjectMapper가 알 수 없는 속성을 만났을 때 실패하지 않고 무시
 
         List<MovieVO> movieList = new ArrayList<>();
 
@@ -116,12 +115,14 @@ public class MemberServiceImpl implements MemberService {
         String playDe = paramsMap.get("date");    // 상영일
         String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
 
-        // POST 요청 전송 및 응답을 Map으로 Parse
-        Map<String, Object> response_megabox = restTemplate.postForObject(url, null, Map.class);
+        // GET 요청 전송 및 응답을 Map으로 Parse
+        HttpEntity<String> request_megabox = new HttpEntity<>("parameters", headers);
+        ResponseEntity<Map> response_megabox = restTemplate.exchange(url, HttpMethod.GET, request_megabox, Map.class);
 
         // 응답으로부터 movieFormList 얻기
         assert response_megabox != null;
-        List<Map<String, Object>> movieFormList_megabox = (List<Map<String, Object>>) ((Map<String, Object>) response_megabox.get("megaMap")).get("movieFormList");
+        Map<String, Object> response_megabox_map = response_megabox.getBody();
+        List<Map<String, Object>> movieFormList_megabox = (List<Map<String, Object>>) ((Map<String, Object>) response_megabox_map.get("megaMap")).get("movieFormList");
 
         for (Map<String, Object> movieData : movieFormList_megabox) {
             MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
@@ -140,15 +141,14 @@ public class MemberServiceImpl implements MemberService {
 
         url = "https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx";
 
-        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("paramList", obj.toJSONString());
 
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+        HttpEntity<MultiValueMap<String, String>> request_lotte = new HttpEntity<>(map, headers);
 
-        ResponseEntity<String> response_lotte = restTemplate.postForEntity(url, request, String.class);
+        ResponseEntity<String> response_lotte = restTemplate.postForEntity(url, request_lotte, String.class);
 
         JSONParser parser = new JSONParser();
         JSONObject res = (JSONObject) parser.parse(response_lotte.getBody());
