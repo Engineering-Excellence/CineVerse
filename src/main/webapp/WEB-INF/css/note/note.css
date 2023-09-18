@@ -21,7 +21,8 @@ body {
   text-rendering: optimizeLegibility;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 400;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/image.jpg");
+/*   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/image.jpg"); */
+  background-color : #FFF;
   background-size: cover;
   background-repeat: none;
 }
@@ -34,7 +35,7 @@ body {
   transform: translate(-50%, 0);
 }
 
-.container {
+.note-container {
   position: relative;
   top: 50%;
   left: 50%;
@@ -43,20 +44,20 @@ body {
   background-color: var(--white);
   transform: translate(-50%, -50%);
 }
-.container .left {
+.note-container .left {
   float: left;
   width: 37.6%;
   height: 100%;
   border: 1px solid var(--light);
   background-color: var(--white);
 }
-.container .left .top {
+.note-container .left .top {
   position: relative;
   width: 100%;
   height: 96px;
   padding: 29px;
 }
-.container .left .top:after {
+.note-container .left .top:after {
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -67,7 +68,7 @@ body {
   background-color: var(--light);
   transform: translate(-50%, 0);
 }
-.container .left input {
+.note-container .left input {
   float: left;
   width: 188px;
   height: 42px;
@@ -78,10 +79,10 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 400;
 }
-.container .left input:focus {
+.note-container .left input:focus {
   outline: none;
 }
-.container .left a.search {
+.note-container .left a.search {
   display: block;
   float: left;
   width: 42px;
@@ -94,20 +95,20 @@ body {
   background-position: top 12px left 14px;
   border-radius: 50%;
 }
-.container .left .people {
+.note-container .left .people {
   margin-left: -1px;
   border-right: 1px solid var(--light);
   border-left: 1px solid var(--light);
   width: calc(100% + 2px);
 }
-.container .left .people .person {
+.note-container .left .people .person {
   position: relative;
   width: 100%;
   padding: 12px 10% 16px;
   cursor: pointer;
   background-color: var(--white);
 }
-.container .left .people .person:after {
+.note-container .left .people .person:after {
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -118,7 +119,7 @@ body {
   background-color: var(--light);
   transform: translate(-50%, 0);
 }
-.container .left .people .person img {
+.note-container .left .people .person img {
   float: left;
   width: 40px;
   height: 40px;
@@ -127,14 +128,14 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.container .left .people .person .name {
+.note-container .left .people .person .name {
   font-size: 14px;
   line-height: 22px;
   color: var(--dark);
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
 }
-.container .left .people .person .time {
+.note-container .left .people .person .time {
   font-size: 14px;
   position: absolute;
   top: 16px;
@@ -143,7 +144,7 @@ body {
   color: var(--grey);
   background-color: var(--white);
 }
-.container .left .people .person .preview {
+.note-container .left .people .person .preview {
   font-size: 14px;
   display: inline-block;
   overflow: hidden !important;
@@ -152,7 +153,7 @@ body {
   text-overflow: ellipsis;
   color: var(--grey);
 }
-.container .left .people .person.active, .container .left .people .person:hover {
+.note-container .left .people .person.active, .note-container .left .people .person:hover {
   margin-top: -1px;
   margin-left: -1px;
   padding-top: 13px;
@@ -161,39 +162,39 @@ body {
   width: calc(100% + 2px);
   padding-left: calc(10% + 1px);
 }
-.container .left .people .person.active span, .container .left .people .person:hover span {
+.note-container .left .people .person.active span, .note-container .left .people .person:hover span {
   color: var(--white);
   background: transparent;
 }
-.container .left .people .person.active:after, .container .left .people .person:hover:after {
+.note-container .left .people .person.active:after, .note-container .left .people .person:hover:after {
   display: none;
 }
-.container .right {
+.note-container .right {
   position: relative;
   float: left;
   width: 62.4%;
   height: 100%;
 }
-.container .right .top {
+.note-container .right .top {
   width: 100%;
   height: 47px;
   padding: 15px 29px;
   background-color: #eceff1;
 }
-.container .right .top span {
+.note-container .right .top span {
   font-size: 15px;
   color: var(--grey);
 }
-.container .right .top span .name {
+.note-container .right .top span .name {
   color: var(--dark);
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
 }
-.container .right .chat {
+.note-container .right .chat {
   position: relative;
   display: none;
-  overflow: hidden;
-  padding: 0 35px 92px;
+  overflow: auto;
+  padding: 0 10px 92px;
   border-width: 1px 1px 1px 0;
   border-style: solid;
   border-color: var(--light);
@@ -201,54 +202,110 @@ body {
   justify-content: flex-end;
   flex-direction: column;
 }
-.container .right .chat.active-chat {
-  display: block;
+.note-container .right .chat.active-chat {
   display: flex;
 }
-.container .right .chat.active-chat .bubble {
-  transition-timing-function: cubic-bezier(0.4, -0.04, 1, 1);
+
+.note-container .right .chat.active-chat .chat-list {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
-.container .right .chat.active-chat .bubble:nth-of-type(1) {
-  -webkit-animation-duration: 0.15s;
+
+.note-container .left .partner-list{
+	height: calc(100% - 100px);
+	
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.note-container .left .partner-list::-webkit-scrollbar {
+  width: 15px;
+}
+
+.note-container .left .partner-list::-webkit-scrollbar-thumb {
+  background: #e6e6e6;
+
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  width: 3px;
+}
+
+.note-container .left .partner-list::-webkit-scrollbar-track {
+  background: #ffffff;
+  width: 3px;
+}
+
+/* saf dfhfdhdfsh ghjhkjhk hjk hjkh kj hkj hkj hkj h kh kh khkhk */
+.note-container .right .chat.active-chat .chat-list::-webkit-scrollbar {
+  width: 15px;
+}
+
+.note-container .right .chat.active-chat .chat-list::-webkit-scrollbar-thumb {
+  background: #e6e6e6;
+
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  width: 3px;
+}
+
+.note-container .right .chat.active-chat .chat-list::-webkit-scrollbar-track {
+  background: #ffffff;
+  width: 3px;
+}
+
+.note-container .right .chat.active-chat .chat-list .bubble {
+  transition-timing-function: cubic-bezier(0.4, -0.04, 1, 1);
+    -webkit-animation-duration: 0.15s;
           animation-duration: 0.15s;
 }
-.container .right .chat.active-chat .bubble:nth-of-type(2) {
-  -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
-}
-.container .right .chat.active-chat .bubble:nth-of-type(3) {
-  -webkit-animation-duration: 0.45s;
-          animation-duration: 0.45s;
-}
-.container .right .chat.active-chat .bubble:nth-of-type(4) {
-  -webkit-animation-duration: 0.6s;
-          animation-duration: 0.6s;
-}
-.container .right .chat.active-chat .bubble:nth-of-type(5) {
-  -webkit-animation-duration: 0.75s;
-          animation-duration: 0.75s;
-}
-.container .right .chat.active-chat .bubble:nth-of-type(6) {
-  -webkit-animation-duration: 0.9s;
-          animation-duration: 0.9s;
-}
-.container .right .chat.active-chat .bubble:nth-of-type(7) {
-  -webkit-animation-duration: 1.05s;
-          animation-duration: 1.05s;
-}
-.container .right .chat.active-chat .bubble:nth-of-type(8) {
-  -webkit-animation-duration: 1.2s;
-          animation-duration: 1.2s;
-}
-.container .right .chat.active-chat .bubble:nth-of-type(9) {
-  -webkit-animation-duration: 1.35s;
-          animation-duration: 1.35s;
-}
-.container .right .chat.active-chat .bubble:nth-of-type(10) {
-  -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
-}
-.container .right .write {
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(1) { */
+/*   -webkit-animation-duration: 0.15s; */
+/*           animation-duration: 0.15s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(1) { */
+/*   -webkit-animation-duration: 0.15s; */
+/*           animation-duration: 0.15s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(2) { */
+/*   -webkit-animation-duration: 0.3s; */
+/*           animation-duration: 0.3s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(3) { */
+/*   -webkit-animation-duration: 0.45s; */
+/*           animation-duration: 0.45s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(4) { */
+/*   -webkit-animation-duration: 0.6s; */
+/*           animation-duration: 0.6s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(5) { */
+/*   -webkit-animation-duration: 0.75s; */
+/*           animation-duration: 0.75s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(6) { */
+/*   -webkit-animation-duration: 0.9s; */
+/*           animation-duration: 0.9s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(7) { */
+/*   -webkit-animation-duration: 1.05s; */
+/*           animation-duration: 1.05s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(8) { */
+/*   -webkit-animation-duration: 1.2s; */
+/*           animation-duration: 1.2s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(9) { */
+/*   -webkit-animation-duration: 1.35s; */
+/*           animation-duration: 1.35s; */
+/* } */
+/* .note-container .right .chat.active-chat .bubble:nth-of-type(10) { */
+/*   -webkit-animation-duration: 1.5s; */
+/*           animation-duration: 1.5s; */
+/* } */
+.note-container .right .write {
   position: absolute;
   bottom: 29px;
   left: 30px;
@@ -259,7 +316,7 @@ body {
   width: calc(100% - 58px);
   border-radius: 5px;
 }
-.container .right .write input {
+.note-container .right .write input {
   font-size: 16px;
   float: left;
   width: 347px;
@@ -272,7 +329,7 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 400;
 }
-.container .right .write .write-link.attach:before {
+.note-container .right .write .write-link.attach:before {
   display: inline-block;
   float: left;
   width: 20px;
@@ -282,7 +339,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
-.container .right .write .write-link.smiley:before {
+.note-container .right .write .write-link.smiley:before {
   display: inline-block;
   float: left;
   width: 20px;
@@ -292,18 +349,19 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
-.container .right .write .write-link.send:before {
+.note-container .right .write .write-link.send {
+  border: none;
   display: inline-block;
   float: left;
   width: 20px;
   height: 42px;
-  margin-left: 11px;
+  margin-left: 45px;
   content: "";
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/send.png");
   background-repeat: no-repeat;
   background-position: center;
 }
-.container .right .bubble {
+.note-container .right .bubble {
   font-size: 16px;
   position: relative;
   display: inline-block;
@@ -313,7 +371,7 @@ body {
   vertical-align: top;
   border-radius: 5px;
 }
-.container .right .bubble:before {
+.note-container .right .bubble:before {
   position: absolute;
   top: 19px;
   display: block;
@@ -322,19 +380,21 @@ body {
   content: " ";
   transform: rotate(29deg) skew(-35deg);
 }
-.container .right .bubble.you {
+.note-container .right .bubble.you {
   float: left;
   color: var(--white);
   background-color: var(--blue);
   align-self: flex-start;
+  position: relative;
+  left: 20px;
   -webkit-animation-name: slideFromLeft;
           animation-name: slideFromLeft;
 }
-.container .right .bubble.you:before {
+.note-container .right .bubble.you:before {
   left: -3px;
   background-color: var(--blue);
 }
-.container .right .bubble.me {
+.note-container .right .bubble.me {
   float: right;
   color: var(--dark);
   background-color: #eceff1;
@@ -342,22 +402,22 @@ body {
   -webkit-animation-name: slideFromRight;
           animation-name: slideFromRight;
 }
-.container .right .bubble.me:before {
+.note-container .right .bubble.me:before {
   right: -3px;
   background-color: #eceff1;
 }
-.container .right .conversation-start {
+.note-container .right .conversation-start {
   position: relative;
   width: 100%;
   margin-bottom: 27px;
   text-align: center;
 }
-.container .right .conversation-start span {
+.note-container .right .conversation-start span {
   font-size: 14px;
   display: inline-block;
   color: var(--grey);
 }
-.container .right .conversation-start span:before, .container .right .conversation-start span:after {
+.note-container .right .conversation-start span:before, .note-container .right .conversation-start span:after {
   position: absolute;
   top: 10px;
   display: inline-block;
@@ -366,10 +426,10 @@ body {
   content: "";
   background-color: var(--light);
 }
-.container .right .conversation-start span:before {
+.note-container .right .conversation-start span:before {
   left: 0;
 }
-.container .right .conversation-start span:after {
+.note-container .right .conversation-start span:after {
   right: 0;
 }
 

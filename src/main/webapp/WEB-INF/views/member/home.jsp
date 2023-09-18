@@ -14,6 +14,16 @@
             <c:when test="${paths[1] eq 'update'}">
 				<%@ include file="/WEB-INF/views/member/update.jsp"%>
 			</c:when>
+			 <c:when test="${paths[1] eq 'note'}">
+				<%@ include file="/WEB-INF/views/note/note.jsp"%>
+			</c:when>
+        </c:choose>
+    </c:when>
+    <c:when test="${not empty paths and paths[0] eq 'note'}">
+        <c:choose>
+			 <c:when test="${paths[1] eq 'note'}">
+				<%@ include file="/WEB-INF/views/note/note.jsp"%>
+			</c:when>
         </c:choose>
     </c:when>
 	<c:when test="${not empty paths and paths[0] eq 'movie'}">
