@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Spring Legacy Final Project">
 <meta name="author" content="Team Annotation">
-<title>@Annotation</title>
+<title>CineVerse</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
@@ -95,6 +95,7 @@
       <li class="main-cell"><a href="/movie/list" class="menu-a">전체영화</a></li>
       <li class="main-cell"><a href="/movie/ticket" class="menu-a">예매현황</a></li>
       <li class="main-cell"><a href="/board/list" class="menu-a">게시판</a></li>
+      <li class="main-cell"><a href="/note/note" class="menu-a">쪽지</a></li>
         <sec:authorize access="isAuthenticated()">
             <li class="main-cell"><a href="/member/update" class="menu-a">마이페이지</a></li>
             <li class="main-cell"><a href="/logout" class="menu-a">로그아웃</a></li>

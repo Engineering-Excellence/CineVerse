@@ -338,3 +338,27 @@ a {
 }
 
 /*# sourceMappingURL=myPage.css.map */
+
+.nav-link {
+	color: black;
+}
+.nav-link.active {
+	color: #7202ae!important;
+}
+
+.tab-content{
+	padding-top: 15px;
+}
+
+.btn {
+	background-color: #7202ae; 	
+	color: white;
+}
+.btn:hover {
+	background-color: #7202ae; 
+	color: white;
+}
+
+.input-group-text{
+	width:120px;
+}
