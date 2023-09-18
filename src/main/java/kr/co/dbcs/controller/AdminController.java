@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @Controller
@@ -24,8 +26,27 @@ public class AdminController {
     public String handlePath(@PathVariable String path, Model model) {
         switch (path) {
             case "stat":
+                model.addAttribute("memberCount", statService.getMemberCount());
+                model.addAttribute("boardCount", statService.getBoardCount());
+                model.addAttribute("replyCount", statService.getReplyCount());
+                model.addAttribute("genderData", statService.getGenderData());
+                model.addAttribute("ageData", statService.getAgeData());
                 break;
         }
         return "/home";
+    }
+
+    @PostMapping("/gender")
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public List<Map<String, BigDecimal>> getGenderData() {
+        return statService.getGenderData();
+    }
+
+    @PostMapping("/age")
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public List<Map<String, Object>> getAgeData() {
+        return statService.getAgeData();
     }
 }

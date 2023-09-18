@@ -4,10 +4,12 @@ import kr.co.dbcs.model.ReplyVO;
 import kr.co.dbcs.provider.ReplySqlProvider;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
 
+@Mapper
 public interface ReplyMapper {
 
     @InsertProvider(type = ReplySqlProvider.class, method = "insertReply")
