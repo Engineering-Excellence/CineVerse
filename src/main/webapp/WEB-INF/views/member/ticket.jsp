@@ -4,11 +4,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/member/ticket.js" defer></script>
 
 <section>
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>좌석정보</h2>
-        </div>
-    </div>
 
     <div class="reserve-container">
         <div class="movie-part part">

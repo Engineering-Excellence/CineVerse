@@ -47,6 +47,25 @@ $.ajax({
             },
         });
 
+        let userLoved;
+        if (isLogin) {
+            $.ajax({
+                url: "/movie/loved/" + username,
+                type: "get",
+                async: false,
+                success: (res) => {
+                    userLoved = res;
+                },
+            });
+            html += `<div>`
+            html += `<div class="heart-div">`
+            if (userLoved.includes(movieId)) html += `<div class="heart love active"></div>`
+            else html += `<div class="heart"></div>`
+            html += `</div>`
+            html += `</div>`
+            html += `</div>`
+        }
+
         html += `<div class="movie-poster play-trailer"><img class="poster-img" src="http://image.tmdb.org/t/p/w500/${detail["poster_path"]}"></div>`
         html += `<div id="movie-content">`
         html += `<div class="movie-ratings"><span class="star">★</span><span class="score">${detail["vote_average"]}</span><span class="score-out-of">/ 10 (TMDB)</span></div>`
@@ -67,6 +86,45 @@ $.ajax({
             let newWindow = window.open(`/member/chat?id=${movieId}`, name, specs);
             newWindow.focus();
         });
+
+        if (isLogin) {
+            $(".heart-div").click(() => {
+                    if (userLoved.includes(movieId)) {
+                        $.ajax({
+                            url: "/movie/loved/" + username + "/" + movieId,
+                            type: "delete",
+                            async: false,
+                            success: (ret) => {
+                                if (ret) {
+                                    $(".heart-div").find('.heart').toggleClass('love');
+                                    $(".heart-div").find('.line, .heart').addClass("active").delay(300).queue((next) => {
+                                        $(".heart-div").removeClass("active");
+                                        next();
+                                    });
+                                    userLoved = userLoved.filter(v => v != movieId);
+                                }
+                            },
+                        });
+                    }
+                    else {
+                        $.ajax({
+                            url: "/movie/loved/" + username + "/" + movieId,
+                            type: "post",
+                            async: false,
+                            success: (ret) => {
+                                if (ret) {
+                                    $(".heart-div").find('.heart').toggleClass('love');
+                                    $(".heart-div").find('.line, .heart').addClass("active").delay(300).queue((next) => {
+                                        $(".heart-div").removeClass("active");
+                                        next();
+                                    });
+                                    userLoved.push(movieId);
+                                }
+                            },
+                        });
+                    }
+            });
+        }
     },
 });
 

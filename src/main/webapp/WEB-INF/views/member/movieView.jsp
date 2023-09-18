@@ -2,10 +2,26 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/movieView.css">
 <script src="${pageContext.request.contextPath}/js/member/movieView.js" defer></script>
+<script>
+    <sec:authorize access="isAuthenticated()">
+    var isLogin = true;
+    var username = "<sec:authentication property="principal.username"/>"
+    </sec:authorize>
+    <sec:authorize access="!isAuthenticated()">
+    var isLogin = false;
+    </sec:authorize>
+</script>
 
    <section class="view-main">
       <!-- 검색 -->
       <div class="moviecard">
+<%--                <div>--%>
+<%--                  <div class="heart-div">--%>
+<%--                    <div class="love action">--%>
+<%--                      <div class="heart"></div>--%>
+<%--                    </div>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
 <%--        <div class="movie-poster play-trailer"><img class="poster-img" src="${pageContext.request.contextPath}/images/test.jpg"></div>--%>
 <%--        <div id="movie-content">--%>
 <%--          <div class="movie-ratings"><span class="star">★</span><span class="score">7.7</span><span class="score-out-of">/ 10 (IMDB)</span></div>--%>
