@@ -12,4 +12,8 @@ public interface BoardService extends CRUDService<BoardVO, Integer> {
 	boolean updateView(Integer boardNo);
 
 	List<BoardVO> search(Map<String, Object> map);
+
+	List<BoardVO> readAll(Map<String, Integer> map);
+
+	int count();
 }

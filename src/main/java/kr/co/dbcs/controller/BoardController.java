@@ -1,5 +1,6 @@
 package kr.co.dbcs.controller;
 
+import kr.co.dbcs.model.BoardList;
 import kr.co.dbcs.model.BoardVO;
 import kr.co.dbcs.service.BoardService;
 import kr.co.dbcs.service.ReplyService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.Map;
 
 @Log4j2
 @Controller
@@ -20,28 +22,41 @@ import java.util.HashMap;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class BoardController {
 
-    private final BoardService boardService;
     private final ReplyService replyService;
-    
+    private final BoardService boardService;
+    private final BoardList boardList;
+
     @GetMapping(value = "/{path}")
     public String handlePath(@PathVariable @NonNull String path, Model model, Principal principal,
-    		@RequestParam(required = false, defaultValue = "1") int page,
-    		@RequestParam(required = false, defaultValue = "") String keyword) {
-    	
-    	switch (path) {
-    	case "write":
-    		break;
-    	case "list":
-    		model.addAttribute("data", boardService.readAll());
-    		break;
-    	default:
-    		return "/";
-    	}
-    	
-    	model.addAttribute("page", page);
-    	model.addAttribute("keyword", keyword);
-    	
-    	return "/member/home";
+                             @RequestParam(required = false, defaultValue = "1") int page,
+                             @RequestParam(required = false, defaultValue = "") String keyword) {
+
+        switch (path) {
+            case "write":
+                break;
+            case "list":
+                boardList.initBoardList(boardList.getPageSize(), boardService.count(), page);
+
+                Map<String, Integer> map = new HashMap<>();
+                map.put("start", boardList.getStartNo());
+                map.put("end", boardList.getEndNo());
+
+                model.addAttribute("boardList", boardService.readAll(map));
+                model.addAttribute("page", page);
+                model.addAttribute("allPage", boardList.getTotalPage());
+                model.addAttribute("block", boardList.getBLOCK());  // 한 페이지에 보여줄 범위
+                model.addAttribute("fromPage", boardList.getStartPage());
+                model.addAttribute("toPage", boardList.getEndPage());
+                log.info("boardList: {}", boardList);
+                break;
+            default:
+                return "/";
+        }
+
+        model.addAttribute("page", page);
+        model.addAttribute("keyword", keyword);
+
+        return "/member/home";
     }
 
     @PostMapping(value = "/write")
@@ -59,7 +74,7 @@ public class BoardController {
 
     @GetMapping(value = "/view/{boardNo}")
     public String selectBoard(@PathVariable int boardNo, @NonNull Model model) {
-		model.addAttribute(boardService.updateView(boardNo)); 
+        model.addAttribute(boardService.updateView(boardNo));
         model.addAttribute("data", boardService.read(boardNo));
         model.addAttribute("reply", replyService.readAllByBoardNo(boardNo));
         return "/member/home";
@@ -71,26 +86,20 @@ public class BoardController {
         return "/member/home";
     }
 
-    @GetMapping(value = "/selectAll")
-    public String selectAllBoard(@ModelAttribute(value = "boardVO") BoardVO boardVO) {
-
-        return "redirect:/";
-    }
-
     @PostMapping(value = "/delete/{boardNo}")
     public String deleteBoard(@PathVariable int boardNo) {
         boardService.delete(boardNo);
         return "redirect:/board/list";
     }
-    
+
     @GetMapping(value = "/search")
     public String searchBoard(@RequestParam String keyword,
-    						  @RequestParam Integer searchType, Model model) {
-    	HashMap<String, Object> map = new HashMap<>();
-    	map.put("keyword", keyword);
-    	map.put("searchType", searchType);
+                              @RequestParam Integer searchType, Model model) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("keyword", keyword);
+        map.put("searchType", searchType);
         model.addAttribute("data", boardService.search(map));
         return "/member/home";
     }
-    
 }
