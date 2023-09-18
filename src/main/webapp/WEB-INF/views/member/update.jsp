@@ -112,7 +112,6 @@
                     <div>
                         <input type="hidden" value="${data.username}" id="username"
                                name="username"/>
-
                         <div class="input-group mb-3">
                             <span class="input-group-text">Email</span>
                             <input type="text" class="form-control" value="${data.email }" name="email" id="email">
@@ -141,6 +140,7 @@
                     </div>
                 </form>
             </div>
+            
             <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                  aria-labelledby="nav-profile-tab" tabindex="0">
                 <form action="/member/updatePassword" method="post">
@@ -164,6 +164,7 @@
                     </div>
                 </form>
             </div>
+            
             <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                  aria-labelledby="nav-contact-tab" tabindex="0">
                 <form action="/member/delete" method="post">
@@ -182,8 +183,6 @@
                  aria-labelledby="nav-disabled-tab" tabindex="0"></div>
         </div>
     </div>
-    </div>
-
     <div class="experience section-padding">
         <div class="container">
             <!-- <h3 class="experience-title">Experience</h3> -->
@@ -247,7 +246,7 @@
                                                 <div class="reply-preview-replyDate">
                                                     <fmt:formatDate value="${reply[i].replyDate}"
                                                                     pattern="yyyy-MM-dd HH:mm:ss" type="date"/>
-                                                </div>
+                                                 </div>
                                             </div>
 
                                         </td>
