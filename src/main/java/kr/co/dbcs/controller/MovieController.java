@@ -31,7 +31,7 @@ public class MovieController {
 
         model.addAttribute("keyword", keyword);
 
-        return "/member/home";
+        return "/home";
     }
 
     @ResponseBody
