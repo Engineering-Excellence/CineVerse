@@ -22,6 +22,27 @@ public class BoardController {
 
     private final BoardService boardService;
     private final ReplyService replyService;
+    
+    @GetMapping(value = "/{path}")
+    public String handlePath(@PathVariable @NonNull String path, Model model, Principal principal,
+    		@RequestParam(required = false, defaultValue = "1") int page,
+    		@RequestParam(required = false, defaultValue = "") String keyword) {
+    	
+    	switch (path) {
+    	case "write":
+    		break;
+    	case "list":
+    		model.addAttribute("data", boardService.readAll());
+    		break;
+    	default:
+    		return "/";
+    	}
+    	
+    	model.addAttribute("page", page);
+    	model.addAttribute("keyword", keyword);
+    	
+    	return "/member/home";
+    }
 
     @PostMapping(value = "/write")
     public String insertBoard(@ModelAttribute(value = "boardVO") @NonNull BoardVO boardVO, @NonNull Principal principal) {
@@ -36,8 +57,8 @@ public class BoardController {
         return "redirect:/board/view/" + boardVO.getBoardNo();
     }
 
-    @GetMapping(value = "/view")
-    public String selectBoard(@RequestParam int boardNo, @NonNull Model model) {
+    @GetMapping(value = "/view/{boardNo}")
+    public String selectBoard(@PathVariable int boardNo, @NonNull Model model) {
 		model.addAttribute(boardService.updateView(boardNo)); 
         model.addAttribute("data", boardService.read(boardNo));
         model.addAttribute("reply", replyService.readAllByBoardNo(boardNo));
@@ -72,24 +93,4 @@ public class BoardController {
         return "/member/home";
     }
     
-    @GetMapping(value = "/{path}")
-    public String handlePath(@PathVariable @NonNull String path, Model model, Principal principal,
-                             @RequestParam(required = false, defaultValue = "1") int page,
-                             @RequestParam(required = false, defaultValue = "") String keyword) {
-
-        switch (path) {
-            case "write":
-                break;
-            case "list":
-                model.addAttribute("data", boardService.readAll());
-                break;
-            default:
-                return "/";
-        }
-
-        model.addAttribute("page", page);
-        model.addAttribute("keyword", keyword);
-
-        return "/member/home";
-    }
 }
