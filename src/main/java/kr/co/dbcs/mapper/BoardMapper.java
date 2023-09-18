@@ -14,7 +14,10 @@ public interface BoardMapper {
     int insertBoard(BoardVO boardVO);
 
     @SelectProvider(type = BoardSqlProvider.class, method = "selectAllBoard")
-    List<BoardVO> selectAllBoard();
+    List<BoardVO> selectAllBoard(Map<String, Integer> map);
+
+    @SelectProvider(type = BoardSqlProvider.class, method = "selectAllBoardCount")
+    int selectAllBoardCount();
 
     @SelectProvider(type = BoardSqlProvider.class, method = "selectBoard")
     BoardVO selectBoard(int boardno);

@@ -1,11 +1,9 @@
 package kr.co.dbcs.provider;
 
 import kr.co.dbcs.model.BoardVO;
+import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
-
-import org.apache.ibatis.jdbc.SQL;
-import org.apache.logging.log4j.util.TriConsumer;
 
 public class BoardSqlProvider {
 
@@ -20,9 +18,15 @@ public class BoardSqlProvider {
     public String selectAllBoard() {
         return new SQL() {{
             SELECT("*");
-            FROM("BOARD");
-            ORDER_BY("BOARDDATE DESC");
+            FROM("(SELECT A.*, ROWNUM AS RNUM FROM (SELECT * FROM BOARD ORDER BY BOARDNO DESC) A)");
+            WHERE("RNUM BETWEEN #{start} AND #{end}");
+        }}.toString();
+    }
 
+    public String selectAllBoardCount() {
+        return new SQL() {{
+            SELECT("COUNT(*)");
+            FROM("BOARD");
         }}.toString();
     }
 
@@ -57,23 +61,24 @@ public class BoardSqlProvider {
             WHERE("USERNAME = #{username}");
         }}.toString();
     }
-    
+
     public String searchBoard(Map<String, Object> map) {
         return new SQL() {{
             SELECT("*");
             FROM("BOARD");
-            if (((Integer)map.get("searchType")) == 1)
-            	WHERE("BOARDTITLE LIKE '%' || #{keyword} || '%'");
-            else 
-            	WHERE("USERNAME LIKE '%' || #{keyword} || '%'");
+            if (((Integer) map.get("searchType")) == 1)
+                WHERE("BOARDTITLE LIKE '%' || #{keyword} || '%'");
+            else
+                WHERE("USERNAME LIKE '%' || #{keyword} || '%'");
             ORDER_BY("BOARDDATE DESC");
         }}.toString();
     }
+
     public String updateView(int boardNo) {
-    	return new SQL() {{
-    		UPDATE("BOARD");
-    		SET("BOARDVIEW = BOARDVIEW + 1");
-    		WHERE("BOARDNO = #{boardNo}");
-    	}}.toString();
+        return new SQL() {{
+            UPDATE("BOARD");
+            SET("BOARDVIEW = BOARDVIEW + 1");
+            WHERE("BOARDNO = #{boardNo}");
+        }}.toString();
     }
 }	

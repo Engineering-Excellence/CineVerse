@@ -1,15 +1,14 @@
 package kr.co.dbcs.service;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import kr.co.dbcs.mapper.BoardMapper;
 import kr.co.dbcs.model.BoardVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @Service
@@ -24,8 +23,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardVO> readAll() {
-        return boardMapper.selectAllBoard();
+    public List<BoardVO> readAll(Map<String, Integer> map) {
+        return boardMapper.selectAllBoard(map);
+    }
+
+    @Override
+    public int count() {
+        return boardMapper.selectAllBoardCount();
     }
 
     @Override
