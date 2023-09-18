@@ -34,7 +34,7 @@
 			<tbody>
 
 				<tr onClick="location.href='/board/view?boardNo=${data.boardNo}'">
-					<th scope="row" class="center content-no">${data.boardNo }</th>
+					<th scope="row" class="center content-no">${data.boardNo}</th>
 					<td class="content-title">${data.boardTitle}</td>
 					<td>${data.username }</td>
 					<td class="center">${data.boardDate }</td>
@@ -51,6 +51,4 @@
 			</span> <span class="button-text">글 작성</span>
 		</button>
 	</div>
-</section> 
-
-
+</section>

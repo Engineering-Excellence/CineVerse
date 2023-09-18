@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
 
 @Log4j2
 @Controller
@@ -21,27 +22,6 @@ public class BoardController {
 
     private final BoardService boardService;
     private final ReplyService replyService;
-
-    @GetMapping(value = "/{path}")
-    public String handlePath(@PathVariable @NonNull String path, Model model, Principal principal,
-                             @RequestParam(required = false, defaultValue = "1") int page,
-                             @RequestParam(required = false, defaultValue = "") String keyword) {
-
-        switch (path) {
-            case "write":
-                break;
-            case "list":
-                model.addAttribute("data", boardService.readAll());
-                break;
-            default:
-                break;
-        }
-
-        model.addAttribute("page", page);
-        model.addAttribute("keyword", keyword);
-
-        return "/member/home";
-    }
 
     @PostMapping(value = "/write")
     public String insertBoard(@ModelAttribute(value = "boardVO") @NonNull BoardVO boardVO, @NonNull Principal principal) {
@@ -56,8 +36,9 @@ public class BoardController {
         return "redirect:/board/view/" + boardVO.getBoardNo();
     }
 
-    @GetMapping(value = "/view/{boardNo}")
-    public String selectBoard(@PathVariable int boardNo, @NonNull Model model) {
+    @GetMapping(value = "/view")
+    public String selectBoard(@RequestParam int boardNo, @NonNull Model model) {
+		model.addAttribute(boardService.updateView(boardNo)); 
         model.addAttribute("data", boardService.read(boardNo));
         model.addAttribute("reply", replyService.readAllByBoardNo(boardNo));
         return "/member/home";
@@ -79,5 +60,36 @@ public class BoardController {
     public String deleteBoard(@PathVariable int boardNo) {
         boardService.delete(boardNo);
         return "redirect:/board/list";
+    }
+    
+    @GetMapping(value = "/search")
+    public String searchBoard(@RequestParam String keyword,
+    						  @RequestParam Integer searchType, Model model) {
+    	HashMap<String, Object> map = new HashMap<>();
+    	map.put("keyword", keyword);
+    	map.put("searchType", searchType);
+        model.addAttribute("data", boardService.search(map));
+        return "/member/home";
+    }
+    
+    @GetMapping(value = "/{path}")
+    public String handlePath(@PathVariable @NonNull String path, Model model, Principal principal,
+                             @RequestParam(required = false, defaultValue = "1") int page,
+                             @RequestParam(required = false, defaultValue = "") String keyword) {
+
+        switch (path) {
+            case "write":
+                break;
+            case "list":
+                model.addAttribute("data", boardService.readAll());
+                break;
+            default:
+                return "/";
+        }
+
+        model.addAttribute("page", page);
+        model.addAttribute("keyword", keyword);
+
+        return "/member/home";
     }
 }

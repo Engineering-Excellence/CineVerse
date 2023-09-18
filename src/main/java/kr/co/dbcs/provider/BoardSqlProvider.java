@@ -1,7 +1,11 @@
 package kr.co.dbcs.provider;
 
 import kr.co.dbcs.model.BoardVO;
+
+import java.util.Map;
+
 import org.apache.ibatis.jdbc.SQL;
+import org.apache.logging.log4j.util.TriConsumer;
 
 public class BoardSqlProvider {
 
@@ -52,5 +56,24 @@ public class BoardSqlProvider {
             FROM("BOARD");
             WHERE("USERNAME = #{username}");
         }}.toString();
+    }
+    
+    public String searchBoard(Map<String, Object> map) {
+        return new SQL() {{
+            SELECT("*");
+            FROM("BOARD");
+            if (((Integer)map.get("searchType")) == 1)
+            	WHERE("BOARDTITLE LIKE '%' || #{keyword} || '%'");
+            else 
+            	WHERE("USERNAME LIKE '%' || #{keyword} || '%'");
+            ORDER_BY("BOARDDATE DESC");
+        }}.toString();
+    }
+    public String updateView(int boardNo) {
+    	return new SQL() {{
+    		UPDATE("BOARD");
+    		SET("BOARDVIEW = BOARDVIEW + 1");
+    		WHERE("BOARDNO = #{boardNo}");
+    	}}.toString();
     }
 }	
