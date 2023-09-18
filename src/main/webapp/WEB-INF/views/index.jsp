@@ -15,7 +15,7 @@
 <title>@Annotation</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
 <!-- 풀페이지 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js" integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -108,7 +108,46 @@
 <div class="fullpage">
     
  <div class="section main-section1">
-    <p> No.1</p>
+        <main class="flex__col">
+        <nav class="menu flex">
+          <a href="#" class="menu__left">
+            Lorem ipsum
+          </a>
+          <div class="menu__right flex__col">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </nav>
+        <section class="intro flex">
+          Loading
+          <div class="intro__red flex"><div>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</div></div>
+        </section>
+        <section class="clip flex">
+          <div class="clip__inner flex__col">
+            <h1 class="flex">CINEVERSE</h1>
+            <div class="h1__stroke flex">CINEVERSE</div>
+            <p>SOTD Challenge : Insprired by <a href="https://aanstekelijk.nl/">aanstekelijk.nl</a> website animation (SOTD, Apr 13, 2023)</p>
+            <figure>
+              <video loop autoplay muted poster="https://images.unsplash.com/photo-1494253188410-ff0cdea5499e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80">
+                <source src="https://www.paulrogerdev.fr/codepen/pexels-artem-podrez-4832087-1280x720-30fps.mp4" type="video/mp4">
+              </video>
+            </figure>
+            <video class="clip__bg" loop autoplay muted poster="https://images.unsplash.com/photo-1494253188410-ff0cdea5499e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80">
+              <source src="https://www.paulrogerdev.fr/codepen/pexels-artem-podrez-4832087-1280x720-30fps.mp4" type="video/mp4">
+            </video>
+            <svg width="0" height="0">
+              <defs>
+                <clipPath id="svgClipPath" clipPathUnits="objectBoundingBox">
+                  <path d="M0.648438 0.00390625 L0.296875 0.00390625 L0.0976562 0.15625 L-0.00390625 1.003906 L0.644531 1.003906 L0.820312 0.882812 ZM0.648438 0.00390625"/>
+                <clipPath>
+              </defs>
+            </svg>
+          </div>
+        </section>
+      </main>
+      <div class="cursor flex">Hello</div>
+      <div class="noise"></div>
   </div>
   
   <div class="section main-section2">

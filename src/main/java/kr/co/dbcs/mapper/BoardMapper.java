@@ -5,6 +5,7 @@ import kr.co.dbcs.provider.BoardSqlProvider;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface BoardMapper {
@@ -26,4 +27,11 @@ public interface BoardMapper {
 
     @SelectProvider(type = BoardSqlProvider.class, method = "selectBoardByUsername")
     List<BoardVO> readByUsername(String username);
+    
+    @SelectProvider(type = BoardSqlProvider.class, method = "searchBoard")
+    List<BoardVO> searchBoard(Map<String, Object> map);
+    
+    @UpdateProvider(type = BoardSqlProvider.class, method = "updateView")
+    int updateView(int boardNo);
 }
+

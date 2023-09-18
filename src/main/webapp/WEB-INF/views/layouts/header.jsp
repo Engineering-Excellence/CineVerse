@@ -14,7 +14,7 @@
     <meta name="description" content="Spring Legacy Final Project">
     <meta name="author" content="Team Annotation">
     <title>CineVerse</title>
-    <link rel="icon" href="#">
+    <!-- <link rel="icon" href="#"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
