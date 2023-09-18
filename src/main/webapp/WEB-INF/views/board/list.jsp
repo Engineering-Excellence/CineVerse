@@ -33,7 +33,7 @@
 		<c:forEach var="data" items="${data}">
 			<tbody>
 
-				<tr onClick="location.href='/board/view?boardNo=${data.boardNo}'">
+				<tr onClick="location.href='/board/view/${data.boardNo}'">
 					<th scope="row" class="center content-no">${data.boardNo }</th>
 					<td class="content-title">${data.boardTitle}</td>
 					<td>${data.username }</td>
