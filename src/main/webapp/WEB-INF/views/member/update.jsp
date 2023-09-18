@@ -224,7 +224,7 @@
                     <!-- NAME OF THE COMPANY YOUWORK WITH  -->
                     <!-- THE TIME YOU WORK WITH THE COMPANY  -->
                 </div>
-                <a href="#">전체보기</a>
+                <a href="/board/search?keyword=${data.username}&searchType=2">전체보기</a>
             </div>
             <!-- <div class="job-wrapper clearfix">
       <div class="company-description">

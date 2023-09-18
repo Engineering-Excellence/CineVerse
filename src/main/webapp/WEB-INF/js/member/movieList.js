@@ -41,13 +41,13 @@ var userLoved;
 
 if (isLogin) {
     $.ajax({
-      url: "/movie/loved/" + username,
-      type: "get",
-      async: false,
-      success: (res) => {
-          console.log(res);
-          userLoved = res;
-      },
+        url: "/movie/loved/" + username,
+        type: "get",
+        async: false,
+        success: (res) => {
+            console.log(res);
+            userLoved = res;
+        },
     });
 }
 

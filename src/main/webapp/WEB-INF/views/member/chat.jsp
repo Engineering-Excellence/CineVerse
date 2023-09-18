@@ -8,7 +8,7 @@
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css">
 <%--    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>--%>
-
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/chat.css">
     <sec:authorize access="!isAuthenticated()">
         <script>
