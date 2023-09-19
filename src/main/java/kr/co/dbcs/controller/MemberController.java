@@ -1,30 +1,22 @@
 package kr.co.dbcs.controller;
 
-import java.security.Principal;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
 import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.service.BoardService;
 import kr.co.dbcs.service.MemberService;
 import kr.co.dbcs.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @Controller
@@ -68,13 +60,13 @@ public class MemberController {
     }
 
     @PostMapping(value = "/delete")
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @ResponseBody
-	public boolean deleteMember(@RequestBody /* (value = "memberVO") */MemberVO memberVO, Principal principal) {
-		MemberVO vo = memberService.read(principal.getName()); //암호화된 비밀번호를 담기 위한 VO 선언
-		memberVO.setUsername(principal.getName()); //그냥 정보를 가져오기위해 사용한 VO에서 setusername을 가져온다.
-			return memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo);
-	}
+    public boolean deleteMember(@RequestBody @NonNull MemberVO memberVO, @NonNull Principal principal) {
+        MemberVO vo = memberService.read(principal.getName()); //암호화된 비밀번호를 담기 위한 VO 선언
+        memberVO.setUsername(principal.getName()); //그냥 정보를 가져오기위해 사용한 VO에서 setusername을 가져온다.
+        return memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo);
+    }
 
     @PostMapping(value = "/update")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")

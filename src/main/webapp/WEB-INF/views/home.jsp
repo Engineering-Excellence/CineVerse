@@ -12,21 +12,21 @@
                 <%@ include file="/WEB-INF/views/member/join.jsp" %>
             </c:when>
             <c:when test="${paths[1] eq 'update'}">
-				<%@ include file="/WEB-INF/views/member/update.jsp"%>
-			</c:when>
-			 <c:when test="${paths[1] eq 'note'}">
-				<%@ include file="/WEB-INF/views/note/note.jsp"%>
-			</c:when>
+                <%@ include file="/WEB-INF/views/member/update.jsp" %>
+            </c:when>
+            <c:when test="${paths[1] eq 'note'}">
+                <%@ include file="/WEB-INF/views/note/note.jsp" %>
+            </c:when>
         </c:choose>
     </c:when>
     <c:when test="${not empty paths and paths[0] eq 'note'}">
         <c:choose>
-			 <c:when test="${paths[1] eq 'note'}">
-				<%@ include file="/WEB-INF/views/note/note.jsp"%>
-			</c:when>
+            <c:when test="${paths[1] eq 'note'}">
+                <%@ include file="/WEB-INF/views/note/note.jsp" %>
+            </c:when>
         </c:choose>
     </c:when>
-	<c:when test="${not empty paths and paths[0] eq 'movie'}">
+    <c:when test="${not empty paths and paths[0] eq 'movie'}">
         <c:choose>
             <c:when test="${paths[1] eq 'list'}">
                 <%@ include file="/WEB-INF/views/member/movieList.jsp" %>
@@ -45,12 +45,12 @@
             </c:when>
         </c:choose>
     </c:when>
-	<c:when test="${not empty paths and paths[0] eq 'ticket'}">
+    <c:when test="${not empty paths and paths[0] eq 'ticket'}">
         <c:choose>
             <c:when test="${paths[1] eq 'list'}">
                 <%@ include file="/WEB-INF/views/member/ticket.jsp" %>
             </c:when>
-           
+
         </c:choose>
     </c:when>
     <c:when test="${not empty paths and paths[0] eq 'board'}">

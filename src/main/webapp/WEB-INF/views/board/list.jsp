@@ -51,38 +51,38 @@
         </tbody>
     </table>
     <table>
-    <tr>
-        <td>
-            <!-- <!— 처음 이전 링크 —> -->
-            <c:if test="${page > 1}">
-                [<a href="list?page=1">◀︎◀︎</a>]
-                [<a href="list?page=${page - 1}">◀︎</a>]
-            </c:if>
-            <c:if test="${page <= 1}">
-                [<span style="color: gray">◀︎◀︎</span>]
-                [<span style="color: gray">◀︎</span>]
-            </c:if>
-
-            <!-- <!— 블록 범위 출력 —> -->
-            <c:forEach begin="${fromPage}" end="${toPage}" var="i">
-                <c:if test="${i == page}">[${i}]</c:if>
-                <c:if test="${i != page}">
-                    [<a href="list?page=${i}">${i}</a>]
+        <tr>
+            <td>
+                <!-- <!— 처음 이전 링크 —> -->
+                <c:if test="${page > 1}">
+                    [<a href="list?page=1">◀︎◀︎</a>]
+                    [<a href="list?page=${page - 1}">◀︎</a>]
                 </c:if>
-            </c:forEach>
+                <c:if test="${page <= 1}">
+                    [<span style="color: gray">◀︎◀︎</span>]
+                    [<span style="color: gray">◀︎</span>]
+                </c:if>
 
-            <!-- <!— 다음, 이후 링크 —> -->
-            <c:if test="${page < allPage}">
-                [<a href="list?page=${page + 1}">▶︎</a>]
-                [<a href="list?page=${allPage}">▶︎▶︎</a>]
-            </c:if>
-            <c:if test="${page >= allPage}">
-                [<span style="color: gray">▶︎</span>]
-                [<span style="color: gray">▶︎▶︎</span>]
-            </c:if>
-        </td>
-    </tr>
-</table>
+                <!-- <!— 블록 범위 출력 —> -->
+                <c:forEach begin="${fromPage}" end="${toPage}" var="i">
+                    <c:if test="${i == page}">[${i}]</c:if>
+                    <c:if test="${i != page}">
+                        [<a href="list?page=${i}">${i}</a>]
+                    </c:if>
+                </c:forEach>
+
+                <!-- <!— 다음, 이후 링크 —> -->
+                <c:if test="${page < allPage}">
+                    [<a href="list?page=${page + 1}">▶︎</a>]
+                    [<a href="list?page=${allPage}">▶︎▶︎</a>]
+                </c:if>
+                <c:if test="${page >= allPage}">
+                    [<span style="color: gray">▶︎</span>]
+                    [<span style="color: gray">▶︎▶︎</span>]
+                </c:if>
+            </td>
+        </tr>
+    </table>
     <div class="write-btn">
         <button class="learn-more" onClick="location.href='/board/write'">
             <!-- 로그인한 사용자에게만 글 작성 버튼 노출 -->
