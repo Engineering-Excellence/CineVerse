@@ -43,8 +43,8 @@
             // 제거 하고싶은 플러그인 (배열)
             removePlugins: ['ImageUpload']
         })
-
         .catch(error => {
             console.error(error);
         });
+
 </script>

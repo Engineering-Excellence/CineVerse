@@ -36,7 +36,7 @@ public class MailServiceImpl implements MailService {
         msgg += "<h1>안녕하세요</h1>";
         msgg += "<h1>CineVerse 입니다</h1>";
         msgg += "<br>";
-        msgg += "<p>아래 인증코드를 암호변경 페이지에 입력해주세요</p>";
+        msgg += "<p>아래 인증코드를 회원가입 페이지에 입력해주세요</p>";
         msgg += "<br>";
         msgg += "<br>";
         msgg += "<div align='center' style='border:1px solid black'>";
