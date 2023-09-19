@@ -30,22 +30,35 @@
         </tr>
         </thead>
         <tbody>
+        <c:forEach var="notice" items="${notice}">
+            <tr onClick="location.href='/board/view/${notice.boardNo}'">
+                <th scope="row" class="center content-no">${notice.boardNo}</th>
+                <td class="content-title">${notice.boardTitle}</td>
+                <td>${notice.username}</td>
+                <td class="center">${notice.boardDate}</td>
+                <td class="center">${notice.boardView}</td>
+            </tr>
+        </c:forEach>
         <c:forEach var="boardList" items="${boardList}">
             <tr onClick="location.href='/board/view/${boardList.boardNo}'">
-                <th scope="row" class="center content-no">${boardList.boardNo }</th>
+                <th scope="row" class="center content-no">${boardList.boardNo}</th>
                 <td class="content-title">${boardList.boardTitle}</td>
-                <td>${boardList.username }</td>
-                <td class="center">${boardList.boardDate }</td>
-                <td class="center">${boardList.boardView }</td>
+                <td>${boardList.username}</td>
+                <td class="center">${boardList.boardDate}</td>
+                <td class="center">${boardList.boardView}</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <div class="write-btn">
         <button class="learn-more" onClick="location.href='/board/write'">
-			<span class="circle" aria-hidden="true"> <span
-                    class="icon arrow"></span>
-			</span> <span class="button-text">글 작성</span>
+            <!-- 로그인한 사용자에게만 글 작성 버튼 노출 -->
+            <sec:authorize access="isAuthenticated()">
+			<span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+			</span>
+                <span class="button-text">글 작성</span>
+            </sec:authorize>
         </button>
     </div>
 </section> 

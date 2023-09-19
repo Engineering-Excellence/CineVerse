@@ -16,6 +16,5 @@ public class BoardVO {
     private String boardContent;
     private String boardTitle;
     private int boardView;
-    private int boardLike;
-    private int boardDislike;
+    private boolean notice;
 }

@@ -36,5 +36,8 @@ public interface BoardMapper {
     
     @UpdateProvider(type = BoardSqlProvider.class, method = "updateView")
     int updateView(int boardNo);
+
+    @SelectProvider(type = BoardSqlProvider.class, method = "selectAllNotice")
+    List<BoardVO> selectAllNotice();
 }
 

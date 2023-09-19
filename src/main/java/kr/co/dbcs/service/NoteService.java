@@ -1,9 +1,9 @@
 package kr.co.dbcs.service;
 
-import java.util.HashMap;
-import java.util.List;
-
 import kr.co.dbcs.model.NoteVO;
+
+import java.util.List;
+import java.util.Map;
 
 public interface NoteService extends CRUDService<NoteVO, Integer>{
 
@@ -11,6 +11,6 @@ public interface NoteService extends CRUDService<NoteVO, Integer>{
 
 	List<String> readDialog(String username);
 
-	List<NoteVO> detailDialog(HashMap<String, String> map);
+	List<NoteVO> detailDialog(Map<String, String> map);
 
 }

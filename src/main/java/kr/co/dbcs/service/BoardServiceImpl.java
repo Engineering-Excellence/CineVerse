@@ -28,6 +28,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<BoardVO> readAllNotice() {
+        return boardMapper.selectAllNotice();
+    }
+
+    @Override
     public int count() {
         return boardMapper.selectAllBoardCount();
     }

@@ -1,7 +1,6 @@
 package kr.co.dbcs.model;
 
 import lombok.Getter;
-import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,18 +8,17 @@ import java.util.List;
 
 @Getter
 @Component
-@ToString
 public class BoardList {
 
     private final List<BoardVO> list = new ArrayList<>();
-    private int pageSize = 7;   // 한 페이지 당 보여줄 일반글 개수
-    private int totalCount = 0;
+    private int pageSize;   // 한 페이지 당 보여줄 일반글 개수
+    private int totalCount;
     private int currentPage = 1;
-    private int totalPage = 0;
-    private int startNo = 0;
-    private int endNo = 0;
-    private int startPage = 0;
-    private int endPage = 0;
+    private int totalPage;
+    private int startNo;
+    private int endNo;
+    private int startPage;
+    private int endPage;
     private final int BLOCK = 10;   // 페이지 네비게이션에서 한 번에 표시되는 페이지 수
 
     public void initBoardList(int pageSize, int totalCount, int currentPage) {

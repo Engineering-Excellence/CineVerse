@@ -35,13 +35,12 @@ public class BoardController {
             case "write":
                 break;
             case "list":
-                boardList.initBoardList(boardList.getPageSize(), boardService.count(), page);
-
+                boardList.initBoardList(7, boardService.count(), page);
                 Map<String, Integer> map = new HashMap<>();
                 map.put("start", boardList.getStartNo());
                 map.put("end", boardList.getEndNo());
-
                 model.addAttribute("boardList", boardService.readAll(map));
+                model.addAttribute("notice", boardService.readAllNotice());
                 model.addAttribute("page", page);
                 model.addAttribute("allPage", boardList.getTotalPage());
                 model.addAttribute("block", boardList.getBLOCK());  // 한 페이지에 보여줄 범위
@@ -52,7 +51,6 @@ public class BoardController {
             default:
                 return "/";
         }
-
         model.addAttribute("page", page);
         model.addAttribute("keyword", keyword);
 
@@ -94,7 +92,7 @@ public class BoardController {
 
     @GetMapping(value = "/search")
     public String searchBoard(@RequestParam String keyword,
-                              @RequestParam Integer searchType, Model model) {
+                              @RequestParam Integer searchType, @NonNull Model model) {
 
         Map<String, Object> map = new HashMap<>();
         map.put("keyword", keyword);

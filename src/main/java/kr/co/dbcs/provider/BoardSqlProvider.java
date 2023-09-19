@@ -2,6 +2,7 @@ package kr.co.dbcs.provider;
 
 import kr.co.dbcs.model.BoardVO;
 import org.apache.ibatis.jdbc.SQL;
+import org.springframework.lang.NonNull;
 
 import java.util.Map;
 
@@ -10,15 +11,32 @@ public class BoardSqlProvider {
     public String insertBoard(BoardVO boardVO) {
         return new SQL() {{
             INSERT_INTO("BOARD");
-            VALUES("BOARDNO, USERNAME, BOARDDATE, BOARDCONTENT, BOARDTITLE, BOARDVIEW, BOARDLIKE, BOARDDISLIKE",
-                    "boardNo_seq.NEXTVAL, #{username}, sysdate, #{boardContent}, #{boardTitle}, 0, 0, 0");
+            VALUES("BOARDNO, USERNAME, BOARDDATE, BOARDCONTENT, BOARDTITLE, BOARDVIEW, NOTICE",
+                    "boardNo_seq.NEXTVAL, #{username}, sysdate, #{boardContent}, #{boardTitle}, 0, #{notice}");
         }}.toString();
     }
 
-    public String selectAllBoard() {
+    public String selectAllNotice() {
         return new SQL() {{
             SELECT("*");
-            FROM("(SELECT A.*, ROWNUM AS RNUM FROM (SELECT * FROM BOARD ORDER BY BOARDNO DESC) A)");
+            FROM("BOARD");
+            WHERE("NOTICE = 1");
+            ORDER_BY("BOARDDATE DESC");
+        }}.toString();
+    }
+
+    public String selectAllBoard(Map<String, Integer> map) {
+        return new SQL() {{
+            SELECT("*");
+            FROM("(" + new SQL() {{
+                SELECT("A.*, ROWNUM AS RNUM");
+                FROM("(" + new SQL() {{
+                    SELECT("*");
+                    FROM("BOARD");
+                    WHERE("NOTICE = 0");
+                    ORDER_BY("BOARDDATE DESC");
+                }} + ")");
+            }} + " A)");
             WHERE("RNUM BETWEEN #{start} AND #{end}");
         }}.toString();
     }
@@ -41,10 +59,9 @@ public class BoardSqlProvider {
     public String updateBoard(BoardVO boardVO) {
         return new SQL() {{
             UPDATE("BOARD");
-            SET("BOARDCONTENT=#{boardContent}, BOARDTITLE=#{boardTitle}");
+            SET("BOARDCONTENT = #{boardContent}, BOARDTITLE = #{boardTitle}");
             WHERE("BOARDNO = #{boardNo}");
         }}.toString();
-
     }
 
     public String deleteBoard(int boardNo) {
@@ -62,7 +79,7 @@ public class BoardSqlProvider {
         }}.toString();
     }
 
-    public String searchBoard(Map<String, Object> map) {
+    public String searchBoard(@NonNull Map<String, Object> map) {
         return new SQL() {{
             SELECT("*");
             FROM("BOARD");
