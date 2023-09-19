@@ -12,4 +12,12 @@ public interface StatService {
     List<Map<String, BigDecimal>> getGenderData();
 
     List<Map<String, Object>> getAgeData();
+
+    List<Map<String, Object>> getBoardViewData();
+
+    List<Map<String, Object>> getBoardReplyData();
+
+    List<Map<String, Object>> getBoardLastWeekData();
+
+    List<Map<String, Object>> getReplyLastWeekData();
 }

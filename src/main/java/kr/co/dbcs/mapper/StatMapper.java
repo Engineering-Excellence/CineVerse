@@ -25,4 +25,12 @@ public interface StatMapper {
     @SelectProvider(type = StatSqlProvider.class, method = "getAgeData")
     List<Map<String, BigDecimal>> getAgeData();
 
+    @SelectProvider(type = StatSqlProvider.class, method = "getBoardViewData")
+    List<Map<String, Object>> getBoardViewData();
+    @SelectProvider(type = StatSqlProvider.class, method = "getBoardReplyData")
+    List<Map<String, Object>> getBoardReplyData();
+    @SelectProvider(type = StatSqlProvider.class, method = "getBoardLastWeekData")
+    List<Map<String, Object>> getBoardLastWeekData();
+    @SelectProvider(type = StatSqlProvider.class, method = "getReplyLastWeekData")
+    List<Map<String, Object>> getReplyLastWeekData();
 }

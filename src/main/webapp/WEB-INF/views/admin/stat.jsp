@@ -52,7 +52,7 @@
     </div>
 </section>
 <script>
-    google.charts.load("current", {packages:["corechart"]});
+    google.charts.load("current", {packages:["corechart", "bar"]});
 
     google.charts.setOnLoadCallback(drawGenderChart);
     google.charts.setOnLoadCallback(drawAgeChart);
@@ -93,6 +93,84 @@
 
         chart.draw(data, options);
     }
+    function drawBestBoardView() {
+        var data = google.visualization.arrayToDataTable([
+            ['번호(제목)', '조회수'],
+            <c:forEach var="b" items="${boardViewData}">
+                ['${b.get("TITLE")}', ${b.get("BOARDVIEW")}],
+            </c:forEach>
+        ]);
+
+        var options = {
+            chart: {
+                title: '조회수가 가장 높은 게시글',
+            },
+            width: 700, // 넓이 옵션
+            height: 500,
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart1'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+    function drawBestBoardReply() {
+        var data = google.visualization.arrayToDataTable([
+            ['번호(제목)', '댓글'],
+            <c:forEach var="b" items="${boardReplyData}">
+                ['${b.get("TITLE")}', ${b.get("REPLYCOUNT")}],
+            </c:forEach>
+        ]);
+
+        var options = {
+            chart: {
+                title: '댓글이 가장 많은 게시글',
+            },
+            width: 700, // 넓이 옵션
+            height: 500,
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart2'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+    function drawBoardLastWeek() {
+        var data = google.visualization.arrayToDataTable([
+            ['일자', '개수'],
+            <c:forEach var="b" items="${boardLastWeekData}">
+                ['${b.get("WRITEDATE")}'.substring(5), ${b.get("BOARDCOUNT")}],
+            </c:forEach>
+        ]);
+
+        var options = {
+            title: '지난 1주간 작성된 게시글',
+            legend: { position: 'bottom' },
+            width: 700,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart1'));
+
+        chart.draw(data, options);
+    }
+    function drawReplyLastWeek() {
+        var data = google.visualization.arrayToDataTable([
+            ['일자', '개수'],
+            <c:forEach var="b" items="${replyLastWeekData}">
+                ['${b.get("WRITEDATE")}'.substring(5), ${b.get("REPLYCOUNT")}],
+            </c:forEach>
+        ]);
+
+        var options = {
+            title: '지난 1주간 작성된 댓글',
+            legend: { position: 'bottom' },
+            width: 700,
+            height: 500
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart2'));
+
+        chart.draw(data, options);
+    }
 
     $("#member-tab").click((e) => {
         $("button").each((i, element) => {
@@ -102,21 +180,23 @@
         google.charts.setOnLoadCallback(drawGenderChart);
         google.charts.setOnLoadCallback(drawAgeChart);
     });
-    $("#weekly-tab").click((e) => {
-        $("button").each((i, element) => {
-            $(element).removeClass("active");
-        })
-        $(e.target).addClass("active");
-        // google.charts.setOnLoadCallback(drawGenderChart);
-        // google.charts.setOnLoadCallback(drawAgeChart);
-    });
     $("#board-tab").click((e) => {
         $("button").each((i, element) => {
             $(element).removeClass("active");
         })
         $(e.target).addClass("active");
-        // google.charts.setOnLoadCallback(drawGenderChart);
-        // google.charts.setOnLoadCallback(drawAgeChart);
+        google.charts.setOnLoadCallback(drawBestBoardView);
+        google.charts.setOnLoadCallback(drawBestBoardReply);
+
         // 각각 통계 쿼리 짠다음 데이터 넘겨서 차트 api로 만드는 함수 만들어서 연결
+    });
+    $("#weekly-tab").click((e) => {
+        $("button").each((i, element) => {
+            $(element).removeClass("active");
+        })
+        $(e.target).addClass("active");
+        google.charts.setOnLoadCallback(drawBoardLastWeek);
+        google.charts.setOnLoadCallback(drawReplyLastWeek);
+
     });
 </script>

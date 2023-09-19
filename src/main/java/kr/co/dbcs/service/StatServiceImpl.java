@@ -74,4 +74,21 @@ public class StatServiceImpl implements StatService {
         log.info("{}", ret);
         return ret;
     }
+
+    @Override
+    public List<Map<String, Object>> getBoardViewData() {
+        return statMapper.getBoardViewData();
+    }
+    @Override
+    public List<Map<String, Object>> getBoardReplyData() {
+        return statMapper.getBoardReplyData();
+    }
+    @Override
+    public List<Map<String, Object>> getBoardLastWeekData() {
+        return statMapper.getBoardLastWeekData();
+    }
+    @Override
+    public List<Map<String, Object>> getReplyLastWeekData() {
+        return statMapper.getReplyLastWeekData();
+    }
 }

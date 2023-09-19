@@ -31,22 +31,12 @@ public class AdminController {
                 model.addAttribute("replyCount", statService.getReplyCount());
                 model.addAttribute("genderData", statService.getGenderData());
                 model.addAttribute("ageData", statService.getAgeData());
+                model.addAttribute("boardViewData", statService.getBoardViewData());
+                model.addAttribute("boardReplyData", statService.getBoardReplyData());
+                model.addAttribute("boardLastWeekData", statService.getBoardLastWeekData());
+                model.addAttribute("replyLastWeekData", statService.getReplyLastWeekData());
                 break;
         }
         return "/home";
-    }
-
-    @PostMapping("/gender")
-    @ResponseBody
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    public List<Map<String, BigDecimal>> getGenderData() {
-        return statService.getGenderData();
-    }
-
-    @PostMapping("/age")
-    @ResponseBody
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    public List<Map<String, Object>> getAgeData() {
-        return statService.getAgeData();
     }
 }
