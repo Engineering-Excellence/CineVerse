@@ -45,6 +45,7 @@ public class BoardSqlProvider {
         return new SQL() {{
             SELECT("COUNT(*)");
             FROM("BOARD");
+            WHERE("NOTICE = 0");
         }}.toString();
     }
 
