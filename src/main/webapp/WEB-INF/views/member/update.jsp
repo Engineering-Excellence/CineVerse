@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/myPage.css"/>
 <script src="${pageContext.request.contextPath}/js/member/memberMypage.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/member/update.js" defer></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js" defer></script> --%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     <sec:authorize access="isAuthenticated()">
     var username = '${data.username}'
@@ -108,7 +111,7 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home"
                  role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                <form action="/member/update" method="post">
+<!--                 <form action="/member/update" method="post" id="memberAllInfo"> -->
                     <div>
                         <input type="hidden" value="${data.username}" id="username"
                                name="username"/>
@@ -136,23 +139,24 @@
                             <input type="text" class="form-control" readonly="readonly" value="${data.regDate }"
                                    disabled="disabled">
                         </div>
-                        <input type="submit" class="btn" value="개인정보 변경">
+<!--                         <input type="submit" id="changeInfo" class="btn" value="개인정보 변경" onclick="updateMemberInfo"> -->
+                        <button id="changeInfo" class="btn">변경</button>
                     </div>
-                </form>
+<!--                 </form> -->
             </div>
             
             <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                  aria-labelledby="nav-profile-tab" tabindex="0">
-                <form action="/member/updatePassword" method="post">
+<!--                 <form action="/member/updatePassword" method="post"> -->
                     <div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" >현재 비밀번호</span>
-                            <input type="password" name="oldPassword" class="form-control"
+                            <input type="password" id="oldPassword" name="oldPassword" class="form-control"
                                    placeholder="사용중인 비밀번호를 입력해주세요.">
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" >새 비밀번호</span>
-                            <input type="password" name="newPassword" class="form-control"
+                            <input type="password" id="newPassword" name="newPassword" class="form-control"
                                    placeholder="사용할 비밀번호를 입력해주세요.">
                         </div>
                         <div class="input-group mb-3">
@@ -160,22 +164,22 @@
                             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
                                    placeholder="사용할 비밀번호를 한번 더 입력해주세요.">
                         </div>
-                        <input type="submit" class="btn" value="비밀번호 변경">
+                        <input type="submit" class="btn" id="changePW" value="비밀번호 변경">
                     </div>
-                </form>
+<!--                 </form> -->
             </div>
             
             <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                  aria-labelledby="nav-contact-tab" tabindex="0">
-                <form action="/member/delete" method="post">
+<!--                 <form action="/member/delete" method="post"> -->
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" >비밀번호 입력</span>
                         <input type="password" name="password" id="deleteInfoMember" class="form-control"
                                placeholder="사용중인 비밀번호를 입력하세요.">
                     </div>
-                    <input type="submit" class="btn" value="회원 탈퇴">
-                </form>
+                    <input type="submit" class="btn" id="deleteMember" value="회원 탈퇴">
+<!--                 </form> -->
                 <br/>
                 사용중인 비밀번호를 입력하시면 회원 탈퇴가 진행됩니다. <br/>탈퇴시 복구가 불가능합니다.
             </div>
