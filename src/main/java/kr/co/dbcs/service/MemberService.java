@@ -24,5 +24,5 @@ public interface MemberService extends UserDetailsService, CRUDService<MemberVO,
 
     boolean deleteUserByPasswordChk(String username, String password, MemberVO vo);
 
-    List<String> test(String username);
+    List<String> getUsernameList();
 }

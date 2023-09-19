@@ -1,6 +1,7 @@
 package kr.co.dbcs.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,5 +105,11 @@ public class MemberController {
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
     public boolean deleteProfile(@NonNull Principal principal) {
         return memberService.deleteProfile(principal.getName());
+    }
+
+    @ResponseBody
+    @PostMapping("/lists")
+    public List<String> getUsernameList() {
+        return memberService.getUsernameList();
     }
 }

@@ -31,10 +31,9 @@ public class NoteController {
         switch (path) {
             case "note":
                 model.addAttribute("data", memberService.read(principal.getName()));
-                model.addAttribute("notePartner", noteService.readDialog(principal.getName()));
                 break;
         }
-        return "/member/home";
+        return "/home";
     }
 
     @PostMapping(value = "/insertNote")
@@ -48,5 +47,11 @@ public class NoteController {
     public List<NoteVO> select(@RequestBody @NonNull Map<String, String> map, @NonNull Principal principal) {
         map.put("username", principal.getName());
         return noteService.detailDialog(map);
+    }
+
+    @PostMapping("/partnerList")
+    @ResponseBody
+    public List<String> getPartnerList(Principal principal) {
+        return noteService.readDialog(principal.getName());
     }
 }
