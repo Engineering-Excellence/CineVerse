@@ -17,6 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.security.Principal;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Log4j2
 @Controller
 @RequestMapping(value = "/member")
@@ -60,31 +63,28 @@ public class MemberController {
 
     @PostMapping(value = "/delete")
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
-	public String deleteMember(@ModelAttribute(value = "memberVO") @NonNull MemberVO memberVO, @NonNull Principal principal) {
+    @ResponseBody
+	public boolean deleteMember(@RequestBody /* (value = "memberVO") */MemberVO memberVO, Principal principal) {
 		MemberVO vo = memberService.read(principal.getName()); //암호화된 비밀번호를 담기 위한 VO 선언
 		memberVO.setUsername(principal.getName()); //그냥 정보를 가져오기위해 사용한 VO에서 setusername을 가져온다.
-		if (memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo)) {
-			return "redirect:/login";
-		}
-		else {
-			return "/member/update";
-		}
+			return memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo);
 	}
 
-    @PostMapping(value = "/update")
+    @PostMapping(value = "/update") // 개인정보 변경
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
-    public String updateSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
+    @ResponseBody
+    public String updateSubmit(@RequestBody MemberVO memberVO) {
 
         log.info("회원수정 {}", memberService.update(memberVO) ? "성공" : "실패");
         return "redirect:/";
     }
 
-    @PostMapping(value = "/updatePassword")
+    @PostMapping(value = "/updatePassword") //비밀번호 변경
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
-    public String updatePassword(@RequestParam Map<String, Object> map, @NonNull Principal principal) {
+    @ResponseBody
+    public boolean updatePassword(@RequestBody Map<String, Object> map, @NonNull Principal principal) {
         MemberVO vo = memberService.read(principal.getName());
-        log.info("회원수정 {}", memberService.updatePassword(map, vo) ? "성공" : "실패");
-        return "redirect:/";
+        return memberService.updatePassword(map, vo);
     }
 
     @ResponseBody   // Ajax

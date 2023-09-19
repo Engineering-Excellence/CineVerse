@@ -77,7 +77,7 @@ public class MemberServiceImpl implements MemberService {
     public boolean updatePassword(@NonNull Map<String, Object> map, @NonNull MemberVO vo) {
 
         if (!passwordEncoder.matches(map.get("oldPassword").toString(), vo.getPassword())) {
-            return false;
+            return false; // 잘못된 결과임을 전달한다.
         }
         MemberVO memberVO = new MemberVO();
         memberVO.setUsername(vo.getUsername());
