@@ -56,7 +56,7 @@ public class BoardController {
         model.addAttribute("page", page);
         model.addAttribute("keyword", keyword);
 
-        return "/member/home";
+        return "/home";
     }
 
     @PostMapping(value = "/write")
@@ -77,13 +77,13 @@ public class BoardController {
         model.addAttribute(boardService.updateView(boardNo));
         model.addAttribute("data", boardService.read(boardNo));
         model.addAttribute("reply", replyService.readAllByBoardNo(boardNo));
-        return "/member/home";
+        return "/home";
     }
 
     @GetMapping(value = "/update/{boardNo}")
     public String updateBoardForm(@PathVariable int boardNo, @NonNull Model model) {
         model.addAttribute("data", boardService.read(boardNo));
-        return "/member/home";
+        return "/home";
     }
 
     @PostMapping(value = "/delete/{boardNo}")
@@ -100,6 +100,6 @@ public class BoardController {
         map.put("keyword", keyword);
         map.put("searchType", searchType);
         model.addAttribute("data", boardService.search(map));
-        return "/member/home";
+        return "/home";
     }
 }

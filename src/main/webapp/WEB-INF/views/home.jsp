@@ -72,6 +72,13 @@
             </c:when>
         </c:choose>
     </c:when>
+    <c:when test="${not empty paths and paths[0] eq 'admin'}">
+        <c:choose>
+            <c:when test="${paths[1] eq 'stat'}">
+                <%@ include file="/WEB-INF/views/admin/stat.jsp" %>
+            </c:when>
+        </c:choose>
+    </c:when>
     <c:otherwise>
         <%@ include file="/WEB-INF/views/member/userMain.jsp" %>
     </c:otherwise>

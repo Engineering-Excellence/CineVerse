@@ -43,7 +43,7 @@ public class MemberController {
                 break;
         }
 
-        return "/member/home";
+        return "/home";
     }
 
     @PostMapping(value = "/join")

@@ -46,6 +46,12 @@
             <li class="menu-li"><a href="/movie/ticket" class="menu-list-name">예매현황</a></li>
             <li class="menu-li"><a href="/board/list" class="menu-list-name">게시판</a></li>
             <li class="menu-li"><a href="/note/note" class="menu-list-name">쪽지</a></li>
+
+            <sec:authorize access="isAuthenticated()">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+                    <li class="menu-li"><a href="/admin/stat" class="menu-list-name">통계</a></li>
+                </sec:authorize>
+            </sec:authorize>
         </ul>
     </div>
     <div class="main-login">
