@@ -43,6 +43,7 @@ public class MailConfig {
         properties.setProperty("mail.debug", env.getProperty("mail.debug"));
         properties.setProperty("mail.smtp.ssl.trust", env.getProperty("mail.smtp.ssl.trust"));
         properties.setProperty("mail.smtp.ssl.enable", env.getProperty("mail.smtp.ssl.enable"));
+        properties.setProperty("mail.smtp.ssl.protocols", env.getProperty("mail.smtp.ssl.protocols"));
 
         return properties;
     }
