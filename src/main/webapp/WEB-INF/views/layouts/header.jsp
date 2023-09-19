@@ -16,7 +16,7 @@
     <title>CineVerse</title>
     <!-- <link rel="icon" href="#"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/glightbox.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css"/>
@@ -25,12 +25,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <%--<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>--%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-    <%--<script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js' defer></script>--%>
     <sec:authentication var="user" property="principal"/>
 </head>
 

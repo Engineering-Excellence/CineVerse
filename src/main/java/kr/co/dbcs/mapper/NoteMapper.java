@@ -1,14 +1,13 @@
 package kr.co.dbcs.mapper;
 
-import java.util.HashMap;
-import java.util.List;
-
+import kr.co.dbcs.model.NoteVO;
+import kr.co.dbcs.provider.NoteSqlProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 
-import kr.co.dbcs.model.NoteVO;
-import kr.co.dbcs.provider.NoteSqlProvider;
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface NoteMapper {
@@ -20,7 +19,7 @@ public interface NoteMapper {
  	List<NoteVO> selectALL();//메모 인덱스 순으로 출력
 	
 	@SelectProvider(type= NoteSqlProvider.class, method = "selectDialog")
-	List<NoteVO> selectDialog(HashMap<String, String> map);
+	List<NoteVO> selectDialog(Map<String, String> map);
 	
 	@SelectProvider(type= NoteSqlProvider.class, method = "selectDialogParter")
 	List<String> selectDialogParter(String username);

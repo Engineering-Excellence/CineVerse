@@ -9,11 +9,13 @@ public interface BoardService extends CRUDService<BoardVO, Integer> {
 
     List<BoardVO> readByUsername(String username);
 
-	boolean updateView(Integer boardNo);
+    boolean updateView(Integer boardNo);
 
-	List<BoardVO> search(Map<String, Object> map);
+    List<BoardVO> search(Map<String, Object> map);
 
-	List<BoardVO> readAll(Map<String, Integer> map);
+    List<BoardVO> readAll(Map<String, Integer> map);
 
-	int count();
+    int count();
+
+    List<BoardVO> readAllNotice();
 }
