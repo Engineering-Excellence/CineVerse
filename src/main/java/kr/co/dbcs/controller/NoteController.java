@@ -51,7 +51,7 @@ public class NoteController {
 
     @PostMapping("/partnerList")
     @ResponseBody
-    public List<String> getPartnerList(Principal principal) {
+    public List<String> getPartnerList(@NonNull Principal principal) {
         return noteService.readDialog(principal.getName());
     }
 }

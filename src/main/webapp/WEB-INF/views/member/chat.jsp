@@ -7,7 +7,7 @@
     <title>Document</title>
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css">
-<%--    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>--%>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/chat.css">
     <sec:authorize access="!isAuthenticated()">
@@ -36,28 +36,28 @@
     </div>
     <div class="chat-main">
         <div class="chat-main-wrapper">
-<%--            <div class="chat">--%>
-<%--                <div class="chat-box-header mine">--%>
-<%--                    <div class="chat-nickname">내 닉네임</div>--%>
-<%--                </div>--%>
-<%--                <div class="chat-box-main mine">--%>
-<%--                    <div class="chat-content">내가 보낸 메세지</div>--%>
-<%--                    <div class="chat-time-wrapper">--%>
-<%--                        <div class="chat-time">00:00</div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="chat">--%>
-<%--                <div class="chat-box-header opponent">--%>
-<%--                    <div class="chat-nickname">상대 닉네임</div>--%>
-<%--                </div>--%>
-<%--                <div class="chat-box-main opponent">--%>
-<%--                    <div class="chat-content">상대가 보낸 메세지</div>--%>
-<%--                    <div class="chat-time-wrapper">--%>
-<%--                        <div class="chat-time">00:00</div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <%--            <div class="chat">--%>
+            <%--                <div class="chat-box-header mine">--%>
+            <%--                    <div class="chat-nickname">내 닉네임</div>--%>
+            <%--                </div>--%>
+            <%--                <div class="chat-box-main mine">--%>
+            <%--                    <div class="chat-content">내가 보낸 메세지</div>--%>
+            <%--                    <div class="chat-time-wrapper">--%>
+            <%--                        <div class="chat-time">00:00</div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
+            <%--            <div class="chat">--%>
+            <%--                <div class="chat-box-header opponent">--%>
+            <%--                    <div class="chat-nickname">상대 닉네임</div>--%>
+            <%--                </div>--%>
+            <%--                <div class="chat-box-main opponent">--%>
+            <%--                    <div class="chat-content">상대가 보낸 메세지</div>--%>
+            <%--                    <div class="chat-time-wrapper">--%>
+            <%--                        <div class="chat-time">00:00</div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
         </div>
     </div>
     <div class="chat-footer">

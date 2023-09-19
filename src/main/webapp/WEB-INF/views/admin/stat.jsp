@@ -39,7 +39,8 @@
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                     tabindex="0">
                     <div class="chart-wrapper">
                         <div id="chart1"></div>
                     </div>
@@ -52,7 +53,7 @@
     </div>
 </section>
 <script>
-    google.charts.load("current", {packages:["corechart", "bar"]});
+    google.charts.load("current", {packages: ["corechart", "bar"]});
 
     google.charts.setOnLoadCallback(drawGenderChart);
     google.charts.setOnLoadCallback(drawAgeChart);
@@ -61,7 +62,7 @@
         let data = google.visualization.arrayToDataTable([
             ['Gender', 'percentage'],
             <c:forEach var="g" items="${genderData}">
-                ['${g.get("GENDER")}(${g.get("VALUE")})', ${g.get("VALUE")}],
+            ['${g.get("GENDER")}(${g.get("VALUE")})', ${g.get("VALUE")}],
             </c:forEach>
         ]);
 
@@ -74,11 +75,12 @@
         let chart = new google.visualization.PieChart(document.getElementById('chart1'));
         chart.draw(data, options);
     }
+
     function drawAgeChart() {
         let data = google.visualization.arrayToDataTable([
             ['Age', 'age'],
             <c:forEach var="a" items="${ageData}">
-                ['${a.get("AGE")}(${a.get("VALUE")})', ${a.get("VALUE")}],
+            ['${a.get("AGE")}(${a.get("VALUE")})', ${a.get("VALUE")}],
             </c:forEach>
         ]);
 
@@ -93,11 +95,12 @@
 
         chart.draw(data, options);
     }
+
     function drawBestBoardView() {
         var data = google.visualization.arrayToDataTable([
             ['번호(제목)', '조회수'],
             <c:forEach var="b" items="${boardViewData}">
-                ['${b.get("TITLE")}', ${b.get("BOARDVIEW")}],
+            ['${b.get("TITLE")}', ${b.get("BOARDVIEW")}],
             </c:forEach>
         ]);
 
@@ -113,11 +116,12 @@
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
+
     function drawBestBoardReply() {
         var data = google.visualization.arrayToDataTable([
             ['번호(제목)', '댓글'],
             <c:forEach var="b" items="${boardReplyData}">
-                ['${b.get("TITLE")}', ${b.get("REPLYCOUNT")}],
+            ['${b.get("TITLE")}', ${b.get("REPLYCOUNT")}],
             </c:forEach>
         ]);
 
@@ -133,17 +137,18 @@
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
+
     function drawBoardLastWeek() {
         var data = google.visualization.arrayToDataTable([
             ['일자', '개수'],
             <c:forEach var="b" items="${boardLastWeekData}">
-                ['${b.get("WRITEDATE")}'.substring(5), ${b.get("BOARDCOUNT")}],
+            ['${b.get("WRITEDATE")}'.substring(5), ${b.get("BOARDCOUNT")}],
             </c:forEach>
         ]);
 
         var options = {
             title: '지난 1주간 작성된 게시글',
-            legend: { position: 'bottom' },
+            legend: {position: 'bottom'},
             width: 700,
             height: 500
         };
@@ -152,17 +157,18 @@
 
         chart.draw(data, options);
     }
+
     function drawReplyLastWeek() {
         var data = google.visualization.arrayToDataTable([
             ['일자', '개수'],
             <c:forEach var="b" items="${replyLastWeekData}">
-                ['${b.get("WRITEDATE")}'.substring(5), ${b.get("REPLYCOUNT")}],
+            ['${b.get("WRITEDATE")}'.substring(5), ${b.get("REPLYCOUNT")}],
             </c:forEach>
         ]);
 
         var options = {
             title: '지난 1주간 작성된 댓글',
-            legend: { position: 'bottom' },
+            legend: {position: 'bottom'},
             width: 700,
             height: 500
         };

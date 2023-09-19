@@ -4,33 +4,32 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/member/ticket.js" defer></script>
 
 <section>
-
     <div class="reserve-container">
         <div class="movie-part part">
             <div class="reserve-title">극장</div>
             <div class="list-wrapper">
                 <div class="theater-list" id="theater-list">
-    <%--                <div class="item">--%>
-    <%--                    <div class="right top">영화 이름</div>--%>
-    <%--                </div>--%>
-    <%--                <div class="item">--%>
-    <%--                    <div class="right top">영화 이름</div>--%>
-    <%--                </div>--%>
-    <%--                <div class="item">--%>
-    <%--                    <div class="right top">영화 이름</div>--%>
-    <%--                </div>--%>
-    <%--                <div class="item">--%>
-    <%--                    <div class="right top">영화 이름</div>--%>
-    <%--                </div>--%>
-    <%--                <div class="item">--%>
-    <%--                    <div class="right top">영화 이름</div>--%>
-    <%--                </div>--%>
-    <%--                <div class="item">--%>
-    <%--                    <div class="right top">영화 이름</div>--%>
-    <%--                </div>--%>
-    <%--                <div class="item">--%>
-    <%--                    <div class="right top">영화 이름</div>--%>
-    <%--                </div>--%>
+                    <%--                <div class="item">--%>
+                    <%--                    <div class="right top">영화 이름</div>--%>
+                    <%--                </div>--%>
+                    <%--                <div class="item">--%>
+                    <%--                    <div class="right top">영화 이름</div>--%>
+                    <%--                </div>--%>
+                    <%--                <div class="item">--%>
+                    <%--                    <div class="right top">영화 이름</div>--%>
+                    <%--                </div>--%>
+                    <%--                <div class="item">--%>
+                    <%--                    <div class="right top">영화 이름</div>--%>
+                    <%--                </div>--%>
+                    <%--                <div class="item">--%>
+                    <%--                    <div class="right top">영화 이름</div>--%>
+                    <%--                </div>--%>
+                    <%--                <div class="item">--%>
+                    <%--                    <div class="right top">영화 이름</div>--%>
+                    <%--                </div>--%>
+                    <%--                <div class="item">--%>
+                    <%--                    <div class="right top">영화 이름</div>--%>
+                    <%--                </div>--%>
                 </div>
             </div>
         </div>
@@ -69,11 +68,11 @@
             <div class="reserve-title">정보</div>
             <div class="list-wrapper">
                 <div class="ticket-list">
-<%--                    <div class="ticket-item">--%>
-<%--                        <div class="ticket-item-info">1관</div>--%>
-<%--                        <div class="ticket-item-info">17:10</div>--%>
-<%--                        <div class="ticket-item-info">13/130</div>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="ticket-item">--%>
+                    <%--                        <div class="ticket-item-info">1관</div>--%>
+                    <%--                        <div class="ticket-item-info">17:10</div>--%>
+                    <%--                        <div class="ticket-item-info">13/130</div>--%>
+                    <%--                    </div>--%>
                 </div>
             </div>
         </div>
