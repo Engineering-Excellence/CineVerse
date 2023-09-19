@@ -139,15 +139,15 @@
                     <p>SOTD Challenge : Insprired by <a href="https://aanstekelijk.nl/">aanstekelijk.nl</a> website
                         animation (SOTD, Apr 13, 2023)</p>
                     <figure>
-                        <video loop autoplay muted
+                        <video loop autoplay muted data-keepplaying
                                poster="https://images.unsplash.com/photo-1494253188410-ff0cdea5499e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80">
-                            <source src="https://www.paulrogerdev.fr/codepen/pexels-artem-podrez-4832087-1280x720-30fps.mp4"
+                            <source src="${pageContext.request.contextPath}/images/main.mp4"
                                     type="video/mp4">
                         </video>
                     </figure>
-                    <video class="clip__bg" loop autoplay muted
+                    <video class="clip__bg" loop autoplay muted data-keepplaying
                            poster="https://images.unsplash.com/photo-1494253188410-ff0cdea5499e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80">
-                        <source src="https://www.paulrogerdev.fr/codepen/pexels-artem-podrez-4832087-1280x720-30fps.mp4"
+                        <source src="${pageContext.request.contextPath}/images/main.mp4"
                                 type="video/mp4">
                     </video>
                     <svg width="0" height="0">
