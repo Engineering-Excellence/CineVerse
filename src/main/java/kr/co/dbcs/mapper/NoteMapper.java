@@ -23,5 +23,4 @@ public interface NoteMapper {
 	
 	@SelectProvider(type= NoteSqlProvider.class, method = "selectDialogParter")
 	List<String> selectDialogParter(String username);
-	
 }

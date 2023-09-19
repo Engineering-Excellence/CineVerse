@@ -233,7 +233,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<String> test(String username) {
-        return memberMapper.test(username);
+    public List<String> getUsernameList() {
+        return memberMapper.getUsernameList();
     }
 }

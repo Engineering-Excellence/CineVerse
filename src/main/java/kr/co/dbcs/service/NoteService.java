@@ -12,5 +12,4 @@ public interface NoteService extends CRUDService<NoteVO, Integer>{
 	List<String> readDialog(String username);
 
 	List<NoteVO> detailDialog(Map<String, String> map);
-
 }

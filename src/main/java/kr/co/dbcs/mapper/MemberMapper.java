@@ -59,6 +59,6 @@ public interface MemberMapper {
     @UpdateProvider(type = MemberSqlProvider.class, method = "deleteImg")
     int deleteImg(String username);
 
-    @SelectProvider(type = MemberSqlProvider.class, method = "test")
-    List<String> test(String username);
+    @SelectProvider(type = MemberSqlProvider.class, method = "getUsernameList")
+    List<String> getUsernameList();
 }

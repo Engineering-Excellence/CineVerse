@@ -108,17 +108,11 @@ public class MemberSqlProvider {
         }}.toString();
     }
 
-    public String test(String username) {
+    public String getUsernameList() {
         return new SQL() {{
-            SELECT("notelistener AS person");
-            FROM("note");
-            WHERE("notewriter = #{username}");
-        }}
-                + " UNION "
-                + new SQL() {{
-            SELECT("notewriter AS person");
-            FROM("note");
-            WHERE("notelistener = #{username}");
-        }};
+            SELECT("USERNAME");
+            FROM("MEMBER");
+            ORDER_BY("USERNAME");
+        }}.toString();
     }
 }

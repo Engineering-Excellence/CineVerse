@@ -61,10 +61,4 @@ public class MovieController {
         log.info("TEST : {}", ret);
         return ret;
     }
-
-    @ResponseBody
-    @GetMapping("/test")
-    public List<String> test() {
-        return memberService.test("testtest");
-    }
 }
