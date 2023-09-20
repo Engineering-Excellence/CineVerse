@@ -117,6 +117,7 @@
 
 				</div>
 			</c:forEach>
+		<sec:authorize access="isAuthenticated()">
 			<form action="/reply/insert" method="post" class="reply-form">
 
 
@@ -128,6 +129,10 @@
 					 <button type="submit"><img src="${pageContext.request.contextPath}/images/check.png">등록</button>
 				</div>
 			</form>
+		</sec:authorize>
+		<sec:authorize access="!isAuthenticated()">
+			<textarea name="replyContent" class="reply-content-input" placeholder="로그인 후 이용 가능합니다." readonly></textarea>
+		</sec:authorize>
 		</div>
 
 

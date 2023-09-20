@@ -56,7 +56,7 @@
                 <%@ include file="/WEB-INF/views/board/list.jsp" %>
             </c:when>
             <c:when test="${paths[1] eq 'search'}">
-                <%@ include file="/WEB-INF/views/board/list.jsp" %>
+                <%@ include file="/WEB-INF/views/board/search.jsp" %>
             </c:when>
             <c:when test="${paths[1] eq 'write'}">
                 <%@ include file="/WEB-INF/views/board/write.jsp" %>
