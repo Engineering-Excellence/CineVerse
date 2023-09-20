@@ -1,6 +1,7 @@
 package kr.co.dbcs.service;
 
 import kr.co.dbcs.mapper.ReplyMapper;
+import kr.co.dbcs.model.MyReplyVO;
 import kr.co.dbcs.model.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @Service
@@ -44,7 +46,7 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<ReplyVO> readByUsername(String username) {
+    public List<MyReplyVO> readByUsername(String username) {
         return replyMapper.readByUsername(username);
     }
 }

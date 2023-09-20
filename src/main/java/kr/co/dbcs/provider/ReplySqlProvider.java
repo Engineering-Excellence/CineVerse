@@ -30,9 +30,10 @@ public class ReplySqlProvider {
 
     public String selectReplyByUsername(String username) {
         return new SQL() {{
-            SELECT("*");
-            FROM("REPLY");
-            WHERE("USERNAME = #{username}");
+            SELECT("B.BOARDNO, BOARDTITLE, REPLYCONTENT, REPLYDATE");
+            FROM("REPLY R");
+            INNER_JOIN("BOARD B ON R.BOARDNO = B.BOARDNO");
+            WHERE("R.USERNAME = #{username}");
         }}.toString();
     }
 }
