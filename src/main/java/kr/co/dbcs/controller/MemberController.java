@@ -40,6 +40,9 @@ public class MemberController {
                 model.addAttribute("reply", replyService.readByUsername(principal.getName()));
                 model.addAttribute("relPath", memberService.getRelPath(principal.getName()));
                 break;
+            case "reply":
+                model.addAttribute("reply", replyService.readByUsername(principal.getName()));
+                break;
             default:
                 break;
         }

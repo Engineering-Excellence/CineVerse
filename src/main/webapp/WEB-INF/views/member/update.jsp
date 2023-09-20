@@ -246,7 +246,7 @@
                                             <div class="reply-preview">
                                                 <div class="reply-preview-boardNo">${reply[i].boardNo}</div>
                                                 <div class="reply-preview-replyContent"><a
-                                                        href="/board/view/${board[i].boardNo}">${reply[i].replyContent}</a>
+                                                        href="/board/view/${reply[i].boardNo}">${reply[i].replyContent}</a>
                                                 </div>
                                                 <div class="reply-preview-replyDate">
                                                     <fmt:formatDate value="${reply[i].replyDate}"
@@ -272,7 +272,7 @@
                     <!-- NAME OF THE COMPANY YOUWORK WITH  -->
                     <!-- THE TIME YOU WORK WITH THE COMPANY  -->
                 </div>
-                <a href="#">전체보기</a>
+                <a href="/member/reply">전체보기</a>
             </div>
             <!--Skill experience-->
             <div class="section-wrapper clearfix">

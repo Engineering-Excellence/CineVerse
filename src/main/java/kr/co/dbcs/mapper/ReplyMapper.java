@@ -1,5 +1,6 @@
 package kr.co.dbcs.mapper;
 
+import kr.co.dbcs.model.MyReplyVO;
 import kr.co.dbcs.model.ReplyVO;
 import kr.co.dbcs.provider.ReplySqlProvider;
 import org.apache.ibatis.annotations.DeleteProvider;
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ReplyMapper {
@@ -22,5 +24,5 @@ public interface ReplyMapper {
     int deleteReply(int replyNo);
 
     @SelectProvider(type = ReplySqlProvider.class, method = "selectReplyByUsername")
-    List<ReplyVO> readByUsername(String username);
+    List<MyReplyVO> readByUsername(String username);
 }

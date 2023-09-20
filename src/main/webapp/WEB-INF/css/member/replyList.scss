@@ -1,0 +1,50 @@
+section {
+
+
+}
+
+.reply-list-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.reply-list {
+  margin-top: 20px;
+
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .reply-card {
+    grid-template-areas: "reply-img reply-comment";
+    grid-template-columns: 10% 90%;
+    display: grid;
+    align-items: center;
+
+    .reply-comment {
+      padding: 20px;
+      display: grid;
+
+    }
+    a {
+      color: white;
+    }
+    a:visited {
+      color: white;
+    }
+  }
+}
+
+.reply-img {
+  img {
+    width: 100%;
+  }
+}
+
+.reply-comment {
+  background-color: #3d4073;
+  color: white;
+  height: 130px;
+  border-radius: 5px;
+
+}

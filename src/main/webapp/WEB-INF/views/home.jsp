@@ -14,6 +14,9 @@
             <c:when test="${paths[1] eq 'note'}">
                 <%@ include file="/WEB-INF/views/note/note.jsp" %>
             </c:when>
+            <c:when test="${paths[1] eq 'reply'}">
+                <%@ include file="/WEB-INF/views/member/replyList.jsp" %>
+            </c:when>
         </c:choose>
     </c:when>
     <c:when test="${not empty paths and paths[0] eq 'note'}">
