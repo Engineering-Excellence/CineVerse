@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface MemberService extends UserDetailsService, CRUDService<MemberVO, String> {
+
     boolean uploadProfile(MultipartFile file, String username);
 
     boolean deleteProfile(String username);

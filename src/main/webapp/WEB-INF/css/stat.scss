@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 section {
   display: flex;
   flex-direction: column;
@@ -34,12 +36,15 @@ section {
 
       border-radius: 5px;
       color: white;
+
       &.member {
         background-color: #0d6efd;
       }
+
       &.board {
         background-color: #dc3545;
       }
+
       &.reply {
         background-color: #198754;
       }
@@ -50,11 +55,13 @@ section {
         font-size: 20px;
 
         display: flex;
+
         img {
           width: 32px;
           margin-right: 10px;
         }
       }
+
       .stat-count {
         flex-basis: 75%;
         font-size: 48px;
@@ -62,6 +69,7 @@ section {
       }
     }
   }
+
   .stat-body {
     margin-top: 20px;
     width: 100%;
@@ -89,6 +97,7 @@ section {
         display: flex;
         align-items: center;
         justify-content: center;
+
         .board-chart {
           width: 50%;
         }

@@ -30,10 +30,10 @@ public interface BoardMapper {
 
     @SelectProvider(type = BoardSqlProvider.class, method = "selectBoardByUsername")
     List<BoardVO> readByUsername(String username);
-    
+
     @SelectProvider(type = BoardSqlProvider.class, method = "searchBoard")
     List<BoardVO> searchBoard(Map<String, Object> map);
-    
+
     @UpdateProvider(type = BoardSqlProvider.class, method = "updateView")
     int updateView(int boardNo);
 

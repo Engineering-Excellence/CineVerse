@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages = {"kr.co.dbcs.controller", "kr.co.dbcs.exception"})
+@ComponentScan(basePackages = {"kr.co.dbcs.controller", "kr.co.dbcs.exception" })
 public class ServletConfig implements WebMvcConfigurer {
     // dispatcher-servlet.xml을 대신하는 java class
 

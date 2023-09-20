@@ -28,7 +28,8 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">s
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    s
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/userHeader.css">
 
@@ -101,16 +102,16 @@
         <a href="/"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
     </div>
     <div class="main-menu">
-            <a href="/movie/list" class="menu-list-name">전체영화</a>
-            <a href="/movie/ticket" class="menu-list-name">예매현황</a>
-            <a href="/board/list" class="menu-list-name">게시판</a>
-            <a href="/note/note" class="menu-list-name">쪽지</a>
+        <a href="/movie/list" class="menu-list-name">전체영화</a>
+        <a href="/movie/ticket" class="menu-list-name">예매현황</a>
+        <a href="/board/list" class="menu-list-name">게시판</a>
+        <a href="/note/note" class="menu-list-name">쪽지</a>
 
-            <sec:authorize access="isAuthenticated()">
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a href="/admin/stat" class="menu-list-name">통계</a>
-                </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <a href="/admin/stat" class="menu-list-name">통계</a>
             </sec:authorize>
+        </sec:authorize>
     </div>
     <div class="main-login">
         <sec:authorize access="isAuthenticated()">

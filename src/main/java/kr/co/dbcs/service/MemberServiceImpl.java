@@ -111,7 +111,7 @@ public class MemberServiceImpl implements MemberService {
         List<MovieVO> movieList = new ArrayList<>();
 
 
-        for (String theaterNo : (List<String>)paramsMap.get("megabox")) {
+        for (String theaterNo : (List<String>) paramsMap.get("megabox")) {
             // 메가박스 크롤링
             String brchNo1 = theaterNo;   // 지점
             String playDe = paramsMap.get("date").toString();    // 상영일
@@ -132,7 +132,7 @@ public class MemberServiceImpl implements MemberService {
             }
         }
 
-        for (String theaterNo : (List<String>)paramsMap.get("lottecinema")) {
+        for (String theaterNo : (List<String>) paramsMap.get("lottecinema")) {
             JSONObject obj = new JSONObject();
             obj.put("MethodName", "GetPlaySequence");
             obj.put("channelType", "MA");
@@ -164,7 +164,7 @@ public class MemberServiceImpl implements MemberService {
                 movieList.add(new MovieVO(movie));
             }
         }
-            // 롯데시네마 크롤링
+        // 롯데시네마 크롤링
 
         return movieList;
     }

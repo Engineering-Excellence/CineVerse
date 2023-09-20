@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface StatService {
+
     public int getMemberCount();
+
     public int getBoardCount();
+
     public int getReplyCount();
 
     List<Map<String, BigDecimal>> getGenderData();

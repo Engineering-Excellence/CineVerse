@@ -17,6 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class StatServiceImpl implements StatService {
     private final StatMapper statMapper;
+
     @Override
     public int getMemberCount() {
         return statMapper.getMemberCount();
@@ -46,8 +47,7 @@ public class StatServiceImpl implements StatService {
             if (m.get("AGE").intValue() <= 1) {
                 if (!map.containsKey("10대 이하")) map.put("10대 이하", 0);
                 map.put("10대 이하", map.get("10대 이하") + m.get("VALUE").intValue());
-            }
-            else if (m.get("AGE").intValue() == 2)
+            } else if (m.get("AGE").intValue() == 2)
                 map.put("20대", m.get("VALUE").intValue());
             else if (m.get("AGE").intValue() == 3)
                 map.put("30대", m.get("VALUE").intValue());
@@ -79,14 +79,17 @@ public class StatServiceImpl implements StatService {
     public List<Map<String, Object>> getBoardViewData() {
         return statMapper.getBoardViewData();
     }
+
     @Override
     public List<Map<String, Object>> getBoardReplyData() {
         return statMapper.getBoardReplyData();
     }
+
     @Override
     public List<Map<String, Object>> getBoardLastWeekData() {
         return statMapper.getBoardLastWeekData();
     }
+
     @Override
     public List<Map<String, Object>> getReplyLastWeekData() {
         return statMapper.getReplyLastWeekData();
