@@ -115,6 +115,7 @@
 
 html, body {
   background-color: black;
+  font-family: "Gowun Dodum", sans-serif !important;
 }
 
 body {
@@ -138,7 +139,6 @@ ul, li {
 }
 
 .main-logo {
-  position: absolute;
   left: 1%;
   height: 50px;
 }
@@ -179,36 +179,6 @@ ul, li {
 /* .main-section4{
   background-color:black;
 } */
-.main-menu {
-  position: fixed;
-  z-index: 9;
-  top: 30px;
-  left: 0;
-  text-align: right;
-  width: 100%;
-  padding: 10px;
-  background-color: white;
-  margin-top: -30px;
-}
-
-.main-menu > ul {
-  display: inline-block;
-  margin: 5px;
-}
-
-.main-menu > ul > li {
-  transition: 1s;
-}
-
-.main-menu > ul > li:hover {
-  color: rgb(114, 46, 198);
-}
-
-.main-menu > ul > li {
-  padding-right: 20px;
-  padding-left: 20px;
-  font-size: 20px;
-}
 
 .footer-wrap {
   background-color: ivory;
@@ -736,7 +706,7 @@ body {
   margin: 0;
   font-family: var(--font1);
   background-color: #000;
-/*   color: #fff; */
+  /*   color: #fff; */
   overflow-x: hidden;
 }
 
@@ -822,7 +792,7 @@ main.flex__col {
   letter-spacing: -.75vw;
   line-height: 100%;
   margin: 0;
- overflow: hidden; 
+  overflow: hidden;
   transform: translate(-50%, -50%) scaleY(2);
 }
 
@@ -953,7 +923,53 @@ main.flex__col {
   }
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: white;
+  display: grid;
+  grid-template-areas: "main-logo main-menu main-login";
+  grid-template-columns: 20% 60% 20%;
+  z-index: 2;
+  box-shadow: 2px 6px 15px -4px #a1a1a1;
+}
+.header .main-logo img {
+  height: 50px;
+  position: relative;
+  top: 10px;
+  left: 11.865px;
+}
+.header .main-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.header .main-menu {
+  list-style: none;
+  display: flex;
+  padding: 0px;
+}
+.header .main-menu {
+  padding: 17px;
+}
+.header .main-menu .menu-list-name {
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+  margin-left: 30px;
+}
+.header .main-login {
+  display: flex;
+  justify-content: right;
+  margin: 19px;
+}
+.header .main-login .menu-list-name {
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+  margin-left: 30px;
+}
 
-
-/*# sourceMappingURL=index.css.map */

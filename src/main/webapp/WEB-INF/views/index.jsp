@@ -28,6 +28,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">s
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/userHeader.css">
 
@@ -95,21 +96,31 @@
 
 <body>
 <fmt:requestEncoding value="UTF-8"/>
-<div class="main-menu">
-    <a href="/"><img src="${pageContext.request.contextPath}/images/logo.png" class="main-logo"></a>
-    <ul class="main-row">
-        <li class="main-cell"><a href="/movie/list" class="menu-a">전체영화</a></li>
-        <li class="main-cell"><a href="/movie/ticket" class="menu-a">예매현황</a></li>
-        <li class="main-cell"><a href="/board/list" class="menu-a">게시판</a></li>
-        <li class="main-cell"><a href="/note/note" class="menu-a">쪽지</a></li>
+<div class="header">
+    <div class="main-logo">
+        <a href="/"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
+    </div>
+    <div class="main-menu">
+            <a href="/movie/list" class="menu-list-name">전체영화</a>
+            <a href="/movie/ticket" class="menu-list-name">예매현황</a>
+            <a href="/board/list" class="menu-list-name">게시판</a>
+            <a href="/note/note" class="menu-list-name">쪽지</a>
+
+            <sec:authorize access="isAuthenticated()">
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <a href="/admin/stat" class="menu-list-name">통계</a>
+                </sec:authorize>
+            </sec:authorize>
+    </div>
+    <div class="main-login">
         <sec:authorize access="isAuthenticated()">
-            <li class="main-cell"><a href="/member/update" class="menu-a">마이페이지</a></li>
-            <li class="main-cell"><a href="/logout" class="menu-a">로그아웃</a></li>
+            <a href="/member/update" class="menu-list-name">마이페이지</a>
+            <a href="/logout" class="menu-list-name">로그아웃</a>
         </sec:authorize>
         <sec:authorize access="!isAuthenticated()">
-            <li class="main-cell"><a href="/login" class="menu-a">로그인</a></li>
+            <a href="/login" class="menu-list-name">로그인</a>
         </sec:authorize>
-    </ul>
+    </div>
 </div>
 
 <div class="fullpage">
@@ -117,14 +128,6 @@
     <div class="section main-section1">
         <main class="flex__col">
             <nav class="menu flex">
-                <a href="#" class="menu__left">
-                    Lorem ipsum
-                </a>
-                <div class="menu__right flex__col">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
             </nav>
             <section class="intro flex">
                 Loading
