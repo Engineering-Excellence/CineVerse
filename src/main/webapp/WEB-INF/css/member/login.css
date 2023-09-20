@@ -31,9 +31,12 @@ section {
 }
 
 .wrapper {
-  position: relative;
+  position: absolute;
   width: 35rem;
   height: 50rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media (min-width: 540px) {
@@ -43,8 +46,6 @@ section {
 }
 .wrapper .form-container {
   position: absolute;
-  top: 5%;
-  left: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

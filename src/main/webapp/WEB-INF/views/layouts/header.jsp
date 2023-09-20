@@ -46,7 +46,7 @@
             <li class="menu-li"><a href="/note/note" class="menu-list-name">쪽지</a></li>
 
             <sec:authorize access="isAuthenticated()">
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="menu-li"><a href="/admin/stat" class="menu-list-name">통계</a></li>
                 </sec:authorize>
             </sec:authorize>

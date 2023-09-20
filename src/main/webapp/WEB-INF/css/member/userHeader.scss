@@ -19,6 +19,7 @@ header {
   display: grid;
   grid-template-areas: "main-logo main-menu main-login";
   grid-template-columns: 20% 60% 20%;
+  z-index: 2;
 
   .main-logo {
     img {
@@ -77,6 +78,7 @@ footer {
   background: #707070;
   grid-area: footer;
   height: fit-content;
+  z-index: 2;
 
   ul {
     padding: 0 !important;
