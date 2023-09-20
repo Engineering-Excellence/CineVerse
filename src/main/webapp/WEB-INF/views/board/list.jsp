@@ -7,7 +7,7 @@
 <script src="https://kit.fontawesome.com/9e5ba2e3f5.js"
         crossorigin="anonymous"></script>
 <section>
-    <h1 class="board-title">전체 게시판</h1>
+    <a href="/board/list"><h1 class="board-title">전체 게시판</h1></a>
     <div class="board-search search-div">
         <div id="search" style="display:flex;">
             <form action="/board/search" method="get">

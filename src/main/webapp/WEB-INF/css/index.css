@@ -217,7 +217,7 @@ h2 {
     border-radius: 10px;
     overflow: hidden;
     margin-right: 70PX;
-    margin-top: 70px;
+    margin-top: -60px;
     padding-bottom: 20px;
     background-color: white;
 }
@@ -275,18 +275,33 @@ h2 {
 /* 2page */
 .boxoffice-title {
     margin-left: 320px;
-    margin-top: 240px;
+    margin-top: 200px;
     position: absolute;
     font-weight: 600;
 }
 
 .wrapper {
-    background: linear-gradient(60deg, #96e485, #cee9c2);
+    /* background: linear-gradient(60deg, #96e485, #cee9c2); */
+    
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
+    
 }
+.wrapper::before{
+        content: "";
+        position: absolute;
+        background-image:url("../images/movie.jpg") !important;
+    	background-size: 100%;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: #000;
+         filter: blur(5px);
+    -webkit-filter: blur(5px);
+    }
 
 .carousel {
     position: relative;
@@ -297,7 +312,7 @@ h2 {
     flex-direction: column;
     margin-right: 100px;
     margin-left: 100px;
-    margin-top: 180px;
+    margin-top: 100px;
 }
 
 .carousel__item {
@@ -998,4 +1013,71 @@ main.flex__col {
     font-size: 22px;
     margin-left: 30px;
 }
+.title-loved{
+	
+	position: absolute;
+    margin-top: 25%;
+    margin-left: 3%;
+    color: wheat;
+
+}
+
+.boxoffice-title{
+  text-align: center;
+  font-size: 36px;
+
+  line-height: 1;
+  text-decoration: none;
+  color: #fff;
+}
+
+
+
+
+.logo b{
+  font: 400 50px;
+  color: #fee;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+}
+.logo b span{
+  animation: blink linear infinite 2s;
+}
+.logo b span:nth-of-type(2){
+  animation: blink linear infinite 3s;
+}
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: #333;
+  }
+  80% {
+    
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}
+
+
 
