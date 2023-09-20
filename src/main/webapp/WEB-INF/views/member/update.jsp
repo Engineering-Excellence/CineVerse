@@ -7,24 +7,23 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/myPage.css"/>
 <script src="${pageContext.request.contextPath}/js/member/memberMypage.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/member/update.js" defer></script>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js" defer></script> --%>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    // 분리 불가
     <sec:authorize access="isAuthenticated()">
     var username = '${data.username}'
     var password = '${data.password}'
     var email = '${data.email}'
     var mobile = '${data.mobile}'
-    var gender =
-    ${data.gender}
+    var gender = ${data.gender}
     var birthDate = '${data.birthDate}'
     var regDate = '${data.regDate}'
     </sec:authorize>
     <sec:authorize access="!isAuthenticated()">
-    alert("로그인해주세요");
+    swal(
+        'Error!',
+        '로그인해주세요.',
+        'error'
+    )
     window.location.href = "/login";
     </sec:authorize>
 </script>

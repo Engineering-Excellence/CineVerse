@@ -4,11 +4,12 @@
       href="${pageContext.request.contextPath}/css/board/list.css">
 <link rel="stylesheet"
       href="${pageContext.request.contextPath}/css/member/movieList.css">
-
+<script src="https://kit.fontawesome.com/9e5ba2e3f5.js"
+        crossorigin="anonymous"></script>
 <section>
     <h1 class="board-title">전체 게시판</h1>
     <div class="board-search search-div">
-        <div id="search">
+        <div id="search" style="display:flex;">
             <form action="/board/search" method="get">
                 <select class="search-select" id="searchType" name="searchType">
                     <option value="1">제목</option>
@@ -22,6 +23,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
+        	<th></th>
             <th scope="col" class="center content-no">글번호</th>
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
@@ -31,9 +33,10 @@
         </thead>
         <tbody>
         <c:forEach var="notice" items="${notice}">
-            <tr onClick="location.href='/board/view/${notice.boardNo}'">
-                <th scope="row" class="center content-no">${notice.boardNo}</th>
-                <td class="content-title">${notice.boardTitle}</td>
+            <tr onClick="location.href='/board/view/${notice.boardNo}'" class="notice-table">
+            	<td class="notice-icon"><img src="${pageContext.request.contextPath}/images/megaphone.png" class="megaphone"></td>
+                <td scope="row" class="center content-no">${notice.boardNo}</td>
+                <th class="notice-title">${notice.boardTitle}</th>
                 <td>${notice.username}</td>
                 <td class="center">${notice.boardDate}</td>
                 <td class="center">${notice.boardView}</td>
@@ -41,7 +44,8 @@
         </c:forEach>
         <c:forEach var="boardList" items="${boardList}">
             <tr onClick="location.href='/board/view/${boardList.boardNo}'">
-                <th scope="row" class="center content-no">${boardList.boardNo}</th>
+            	<td></td>
+                <td scope="row" class="center content-no">${boardList.boardNo}</td>
                 <td class="content-title">${boardList.boardTitle}</td>
                 <td>${boardList.username}</td>
                 <td class="center">${boardList.boardDate}</td>
@@ -50,35 +54,35 @@
         </c:forEach>
         </tbody>
     </table>
-    <table>
+    <table class="paging-table">
         <tr>
             <td>
                 <!-- <!— 처음 이전 링크 —> -->
                 <c:if test="${page > 1}">
-                    [<a href="list?page=1">◀︎◀︎</a>]
-                    [<a href="list?page=${page - 1}">◀︎</a>]
+                    <a href="list?page=1"><i class="fa-solid fa-angles-left"></i></a>
+                    <a href="list?page=${page - 1}"><i class="fa-solid fa-angle-left"></i></a>
                 </c:if>
                 <c:if test="${page <= 1}">
-                    [<span style="color: gray">◀︎◀︎</span>]
-                    [<span style="color: gray">◀︎</span>]
+                    <span style="color: gray"><i class="fa-solid fa-angles-left"></i></span>
+                    <span style="color: gray"><i class="fa-solid fa-angle-left"></i></span>
                 </c:if>
 
                 <!-- <!— 블록 범위 출력 —> -->
                 <c:forEach begin="${fromPage}" end="${toPage}" var="i">
-                    <c:if test="${i == page}">[${i}]</c:if>
+                    <c:if test="${i == page}"><a>${i}</a></c:if>
                     <c:if test="${i != page}">
-                        [<a href="list?page=${i}">${i}</a>]
+                        <a href="list?page=${i}">${i}</a>
                     </c:if>
                 </c:forEach>
 
                 <!-- <!— 다음, 이후 링크 —> -->
                 <c:if test="${page < allPage}">
-                    [<a href="list?page=${page + 1}">▶︎</a>]
-                    [<a href="list?page=${allPage}">▶︎▶︎</a>]
+                    <a href="list?page=${page + 1}"><i class="fa-solid fa-angle-right"></i></a>
+                    <a href="list?page=${allPage}"><i class="fa-solid fa-angles-right"></i></a>
                 </c:if>
                 <c:if test="${page >= allPage}">
-                    [<span style="color: gray">▶︎</span>]
-                    [<span style="color: gray">▶︎▶︎</span>]
+                    <span style="color: gray"><i class="fa-solid fa-angle-right"></i></span>
+                    <span style="color: gray"><i class="fa-solid fa-angles-right"></i></span>
                 </c:if>
             </td>
         </tr>

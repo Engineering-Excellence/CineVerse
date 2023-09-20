@@ -185,7 +185,6 @@ public class MemberServiceImpl implements MemberService {
 
         File uploadDirectory;
         uploadDirectory = new File(getUploadDirectory());
-        log.info("uploadDirectory: {}", getUploadDirectory());
         if (!uploadDirectory.exists()) {    // 업로드 디렉토리가 존재하지 않을 경우 생성
             log.info("mkdir: {}", uploadDirectory.mkdir());
         }

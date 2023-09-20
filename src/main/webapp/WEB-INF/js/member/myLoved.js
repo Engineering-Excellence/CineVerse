@@ -1,5 +1,5 @@
-var apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
-var userLoved;
+const apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
+let userLoved;
 
 const setLoveBtnHandler = () => {
     $(".heart-div").each((idx, e) => {
@@ -20,8 +20,7 @@ const setLoveBtnHandler = () => {
                         }
                     },
                 });
-            }
-            else {
+            } else {
                 $.ajax({
                     url: "/movie/loved/" + username + "/" + $(e).attr("id"),
                     type: "post",
@@ -104,4 +103,3 @@ if (isLogin) {
     $(".movie-list").append(html);
     if (isLogin) setLoveBtnHandler();
 }
-

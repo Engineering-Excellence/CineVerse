@@ -1,7 +1,8 @@
 'use strict'
 
-var apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
-var movieId = new URLSearchParams(window.location.search).get("id");
+const apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
+let movieId = new URLSearchParams(window.location.search).get("id");
+
 $.ajax({
     url: `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=ko-KR&region=KR&append_to_response=release_dates`,
     type: "get",
@@ -154,4 +155,3 @@ $.ajax({
         $(".content-wrapper").append(html);
     },
 });
-

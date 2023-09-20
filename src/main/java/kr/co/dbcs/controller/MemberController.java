@@ -47,60 +47,59 @@ public class MemberController {
         return "/home";
     }
 
+    @ResponseBody
     @PostMapping(value = "/join")
-    public String joinSubmit(@ModelAttribute(value = "memberVO") MemberVO memberVO) {
-        log.info("회원가입 {}", memberService.create(memberVO) ? "성공" : "실패");
-        return "redirect:/login";
+    public boolean joinSubmit(@RequestBody @NonNull MemberVO memberVO) {
+        return memberService.create(memberVO);
     }
 
     @ResponseBody
-    @PostMapping("/check")
+    @PostMapping(value = "/check")
     public boolean idCheck(@RequestBody @NonNull MemberVO memberVO) {
         return memberService.loadUserByUsername(memberVO.getUsername()) != null;
     }
 
+    @ResponseBody
     @PostMapping(value = "/delete")
     @PreAuthorize("hasAnyRole('ROLE_USER')")
-    @ResponseBody
     public boolean deleteMember(@RequestBody @NonNull MemberVO memberVO, @NonNull Principal principal) {
         MemberVO vo = memberService.read(principal.getName()); //암호화된 비밀번호를 담기 위한 VO 선언
         memberVO.setUsername(principal.getName()); //그냥 정보를 가져오기위해 사용한 VO에서 setusername을 가져온다.
         return memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo);
     }
 
+    @ResponseBody
     @PostMapping(value = "/update")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
-    @ResponseBody
     public String updateSubmit(@RequestBody MemberVO memberVO) {
-
         log.info("회원수정 {}", memberService.update(memberVO) ? "성공" : "실패");
         return "redirect:/";
     }
 
+    @ResponseBody
     @PostMapping(value = "/updatePassword")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
-    @ResponseBody
     public boolean updatePassword(@RequestBody Map<String, Object> map, @NonNull Principal principal) {
         MemberVO vo = memberService.read(principal.getName());
         return memberService.updatePassword(map, vo);
     }
 
     @ResponseBody   // Ajax
-    @PostMapping("/uploadProfile")
+    @PostMapping(value = "/uploadProfile")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
     public boolean uploadProfile(@RequestParam("file") @NonNull MultipartFile file, @NonNull Principal principal) {
         return !file.isEmpty() && memberService.uploadProfile(file, principal.getName());
     }
 
     @ResponseBody
-    @PostMapping("/deleteProfile")
+    @PostMapping(value = "/deleteProfile")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
     public boolean deleteProfile(@NonNull Principal principal) {
         return memberService.deleteProfile(principal.getName());
     }
 
     @ResponseBody
-    @PostMapping("/lists")
+    @PostMapping(value = "/lists")
     public List<String> getUsernameList() {
         return memberService.getUsernameList();
     }

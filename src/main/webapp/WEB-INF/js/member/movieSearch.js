@@ -10,7 +10,6 @@
 //     });
 // });
 
-
 // var animateButton = function(e) {
 //
 //   e.preventDefault;
@@ -29,13 +28,13 @@
 //   bubblyButtons[i].addEventListener('click', animateButton, false);
 // }
 
-var currPage = 0; // 현재 페이지
+let currPage = 0; // 현재 페이지
 // (api 호출 페이지는 currPage/2 + 1 해서 20개씩 받고
 // 데이터는 20개씩 받은 것을 10개, 10개씩 나눠서 보여줘야 한다
 // 첫 호출 20개 중 10개는 바로 보여주고, 다음 10개는 더보기 버튼을 누르면 보여주며
 // 이후 다시 더보기 버튼을 누르면 api 호출을 하는 방식
 // 0부터 시작하므로 page가 짝수면 새로 호출하여 10개를, 홀수면 이미 있던 데이터에서 나머지를 보여주는 상황
-var apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
+const apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
 var currData;
 var query = encodeURIComponent(new URLSearchParams(window.location.search).get("query"));
 var userLoved;
@@ -152,8 +151,7 @@ const setLoveBtnHandler = () => {
                         }
                     },
                 });
-            }
-            else {
+            } else {
                 $.ajax({
                     url: "/movie/loved/" + username + "/" + $(e).attr("id"),
                     type: "post",
