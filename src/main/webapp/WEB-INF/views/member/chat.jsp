@@ -1,15 +1,16 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.css">
-    <%--    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>--%>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/chat.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/member/chat.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>--%>
     <sec:authorize access="!isAuthenticated()">
         <script>
             alert("로그인 후 이용 가능합니다");
@@ -21,7 +22,6 @@
             var nickName = '<sec:authentication property="principal.username"/>'
         </script>
     </sec:authorize>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/member/chat.js"></script>
 </head>
 <body>
 <div class="chat-container">

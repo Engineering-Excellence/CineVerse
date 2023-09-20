@@ -5,10 +5,6 @@
       href="${pageContext.request.contextPath}/css/board/list.css"> --%>
 <link rel="stylesheet"
       href="${pageContext.request.contextPath}/css/board/view.css">
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 
 <sec:authorize access="isAuthenticated()">
     <sec:authentication var="user" property="principal"/>
