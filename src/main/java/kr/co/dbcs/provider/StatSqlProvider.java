@@ -1,6 +1,5 @@
 package kr.co.dbcs.provider;
 
-import kr.co.dbcs.model.ReplyVO;
 import org.apache.ibatis.jdbc.SQL;
 
 public class StatSqlProvider {
@@ -11,12 +10,14 @@ public class StatSqlProvider {
             FROM("MEMBER");
         }}.toString();
     }
+
     public String getBoardCount() {
         return new SQL() {{
             SELECT("COUNT(*)");
             FROM("BOARD");
         }}.toString();
     }
+
     public String getReplyCount() {
         return new SQL() {{
             SELECT("COUNT(*)");
@@ -54,6 +55,7 @@ public class StatSqlProvider {
             WHERE("ROWNUM <= 5");
         }}.toString();
     }
+
     public String getBoardReplyData() {
         return new SQL() {{
             SELECT("TITLE, REPLYCOUNT");
@@ -70,15 +72,16 @@ public class StatSqlProvider {
             WHERE("ROWNUM <= 5");
         }}.toString();
     }
+
     public String getBoardLastWeekData() {
         return new SQL() {{
             SELECT("A.writedate, nvl(B.boardCount, 0) boardcount");
-            FROM("(" + new SQL(){{
+            FROM("(" + new SQL() {{
                 SELECT("to_char(sysdate-7 + LEVEL,'YYYY-MM-DD') AS writedate");
                 FROM("DUAL CONNECT BY LEVEL <= 7) A");
-                LEFT_OUTER_JOIN("(" + new SQL(){{
+                LEFT_OUTER_JOIN("(" + new SQL() {{
                     SELECT("writeDate, count(*) boardCount");
-                    FROM("(" + new SQL(){{
+                    FROM("(" + new SQL() {{
                         SELECT("trunc(boarddate) writeDate, trunc(sysdate) - trunc(boarddate) AS DIFF");
                         FROM("BOARD");
                     }} + ")");
@@ -90,15 +93,16 @@ public class StatSqlProvider {
             ORDER_BY("A.WRITEDATE");
         }}.toString();
     }
+
     public String getReplyLastWeekData() {
         return new SQL() {{
             SELECT("A.writedate, nvl(B.REPLYCOUNT, 0) REPLYCOUNT");
-            FROM("(" + new SQL(){{
+            FROM("(" + new SQL() {{
                 SELECT("to_char(sysdate-7 + LEVEL,'YYYY-MM-DD') AS writedate");
                 FROM("DUAL CONNECT BY LEVEL <= 7) A");
-                LEFT_OUTER_JOIN("(" + new SQL(){{
+                LEFT_OUTER_JOIN("(" + new SQL() {{
                     SELECT("writeDate, count(*) REPLYCOUNT");
-                    FROM("(" + new SQL(){{
+                    FROM("(" + new SQL() {{
                         SELECT("trunc(REPLYDATE) WRITEDATE, trunc(sysdate) - trunc(REPLYDATE) as diff");
                         FROM("reply");
                     }} + ")");

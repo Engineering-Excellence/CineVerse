@@ -1,3 +1,5 @@
+'use strict'
+
 const apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
 const boxOfficeApiKey = "65ae15380317da54a96c6c7306a46bf4";
 

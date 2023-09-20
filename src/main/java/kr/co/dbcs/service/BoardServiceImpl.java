@@ -56,12 +56,12 @@ public class BoardServiceImpl implements BoardService {
     public List<BoardVO> readByUsername(String username) {
         return boardMapper.readByUsername(username);
     }
-    
+
     @Override
     public List<BoardVO> search(Map<String, Object> map) {
         return boardMapper.searchBoard(map);
     }
-    
+
     @Override
     public boolean updateView(Integer boardNo) {
         return boardMapper.updateView(boardNo) >= 1;

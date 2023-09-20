@@ -1,4 +1,5 @@
 'use strict'
+
 function throttle(callback, delay) {
     let timer
     return event => {
@@ -9,6 +10,7 @@ function throttle(callback, delay) {
         }, delay, event)
     }
 }
+
 function Trie() {
     this.output = new Set();
     this.fail = null;
@@ -38,9 +40,9 @@ let partnerList;
 let root = new Trie();
 
 $.ajax({
-    url :   "/member/lists",
-    type :  "post",
-    success : (data) => {
+    url: "/member/lists",
+    type: "post",
+    success: (data) => {
         userList = data;
         userList.forEach((u, idx) => {
             for (let i = 0; i < u.length; i++)
@@ -57,9 +59,9 @@ $("#home-tab").click(() => {
 });
 const getPartnerList = () => {
     $.ajax({
-        url :   "/note/partnerList",
-        type :  "post",
-        success : (data) => {
+        url: "/note/partnerList",
+        type: "post",
+        success: (data) => {
             partnerList = data;
             let html = "";
             partnerList.forEach((p) => {
@@ -93,18 +95,18 @@ $("#search-input").keyup(throttle(() => {
 }, 300))
 
 const addDialogPartnerHandler = (selector) => {
-    $(`${selector} .dialogPartner`).each((i, e)=>{
+    $(`${selector} .dialogPartner`).each((i, e) => {
         $(e).click((event) => {
             const partnerName = $(e).find("li").find("span").text();
             // console.log(  $(e).find("li").find("span").text());
             $.ajax({
-                url :   "/note/dialog",
-                type :  "post",
-                contentType : "application/json",
-                data : JSON.stringify({
+                url: "/note/dialog",
+                type: "post",
+                contentType: "application/json",
+                data: JSON.stringify({
                     id: partnerName// 상대이름
                 }),
-                success : (data) => {
+                success: (data) => {
                     chatData(data);
                     $("#partnerName").text(partnerName);
                     $("#noteListener").val(partnerName);
@@ -117,24 +119,24 @@ const addDialogPartnerHandler = (selector) => {
     })
 }
 
-const sendNote = ()=>{ //쪽지전송 함수
-    $.ajax({     
-        url :   "/note/insertNote",
-        type :  "post",
-        contentType : "application/json",
-        data : JSON.stringify({
-            noteWriter : $("#myAccount").val(),
-            noteListener : $("#noteListener").val(),
-            content : $("#content").val()
+const sendNote = () => { //쪽지전송 함수
+    $.ajax({
+        url: "/note/insertNote",
+        type: "post",
+        contentType: "application/json",
+        data: JSON.stringify({
+            noteWriter: $("#myAccount").val(),
+            noteListener: $("#noteListener").val(),
+            content: $("#content").val()
         }),
-        success : (data) => {
-            if(data){
+        success: (data) => {
+            if (data) {
                 let html = "";
                 html += `<div class="bubble me">`
                 html += $("#content").val()
                 html += `</div>`
                 $(".chat-list").append(html);
-            }else{
+            } else {
                 alert("fail");
             }
             $("#content").val("");
@@ -143,26 +145,26 @@ const sendNote = ()=>{ //쪽지전송 함수
 }
 
 $("#content").keypress((event) => {
-    if(event.keyCode == 13 && $("#content").val().length > 0) sendNote();
+    if (event.keyCode == 13 && $("#content").val().length > 0) sendNote();
 });
 
 $(".send").click((event) => {
-    if($("#content").val().length > 0)  sendNote();
+    if ($("#content").val().length > 0) sendNote();
 });
 
 
-function chatData(data){
+function chatData(data) {
     let html = "";
     console.log(data);
     // console.log($("#myAccount").val());
     data.forEach(element => {
-        if(element.noteWriter == $("#myAccount").val()){
+        if (element.noteWriter == $("#myAccount").val()) {
             html += `<div class="bubble me">`
-            html += `${element.content }`
+            html += `${element.content}`
             html += `</div>`
-        }else{
+        } else {
             html += `<div class="bubble you">`
-            html += `${element.content }`
+            html += `${element.content}`
             html += `</div>`
         }
     });
