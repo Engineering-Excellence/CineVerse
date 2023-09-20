@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Log4j2
@@ -97,7 +98,7 @@ public class BoardController {
         Map<String, Object> map = new HashMap<>();
         map.put("keyword", keyword);
         map.put("searchType", searchType);
-        model.addAttribute("data", boardService.search(map));
+        model.addAttribute("data",  boardService.search(map));
         return "/home";
     }
 }
