@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&amp;display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/Physics2DPlugin3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js" defer></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/Physics2DPlugin3.min.js" defer></script>
 <link rel="stylesheet"
       href="${pageContext.request.contextPath}/css/member/login.css">
 <link rel="stylesheet"
@@ -10,7 +10,7 @@
         src="${pageContext.request.contextPath}/js/member/join.js" defer></script>
 <script src="${pageContext.request.contextPath}/js/login.js" defer></script>
 <script src="https://kit.fontawesome.com/9e5ba2e3f5.js"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous" defer></script>
 <%@ include file="/WEB-INF/views/layouts/header.jsp" %>
 
 <!-- 이미 로그인된 상태에서는 로그인 페이지 진입시 홈 화면으로 이동 -->
@@ -49,7 +49,6 @@
         </form>
     </div> -->
 
-
     <div class="wrapper">
         <div class="form-container sign-up" style="align-items: flex-start">
             <form action="/member/join" method="post" id="join-form" style="margin-top:5%">
@@ -57,7 +56,7 @@
                 <h2>sign up</h2>
                 <div class="form-group" style="display: flex;">
                     <input class="join-input-id" class="check-input" id="username"
-                           name="username" type="text" style="width: 70%;"/> <label for="">ID</label>
+                           name="username" type="text" style="width: 70%;"/> <label for="username">ID</label>
                     <i class="fas fa-user"></i>
                     <button class="join-input-btn join-btn" id="check-dup">중복확인</button>
                 </div>
@@ -80,36 +79,35 @@
                 </div>
                 <div class="form-group">
                     <input class="join-input" id="password" name="password"
-                           type="password"/> <label for="">password</label> <i
+                           type="password"/> <label for="password">password</label> <i
                         class="fas fa-lock"></i>
                 </div>
                 <div class="form-group">
                     <input class="join-input" id="password-confirm" type="password"/>
-                    <label for="">confirm password</label> <i class="fas fa-lock"></i>
+                    <label>confirm password</label> <i class="fas fa-lock"></i>
                 </div>
 
                 <div class="form-group">
                     <input class="join-input" id="mobile" name="mobile" type="text"/>
-                    <label for="">phone</label> <i class="fa-solid fa-mobile-retro"></i>
+                    <label>phone</label> <i class="fa-solid fa-mobile-retro"></i>
                 </div>
-                <label for="" class="label-name">생년월일</label>
+                <label class="label-name">생년월일</label>
                 <div class="form-group" style="margin-top: 2px;">
                     <input class="join-input" type="date" id="birth-date"
                            name="birthDate"/>
                     <!-- <i class="fas fa-lock"></i> -->
                 </div>
                 <div>
-                    <label for="" class="label-name">성별</label>
+                    <label class="label-name">성별</label>
                     <div>
-                        <label> <input type="radio" name="gender" value="1"/> <span><i
+                        <label> <input type="radio" name="gender" value="true"/> <span><i
                                 class="fa-solid fa-person"></i>&nbsp;&nbsp;남</span>
-                        </label> <label> <input type="radio" name="gender" value="0"/> <span><i
+                        </label> <label> <input type="radio" name="gender" value="false"/> <span><i
                             class="fa-solid fa-person-dress"></i>&nbsp;&nbsp;여</span>
                     </label>
                     </div>
                 </div>
                 <button type="submit" class="btn">sign up</button>
-
                 <div class="link">
                     <p>
                         You already have an account?<a href="#" class="signin-link">
@@ -118,18 +116,17 @@
                 </div>
             </form>
 
-
         </div>
         <div class="form-container sign-in">
             <form action="/login" method="post">
                 <h2>login</h2>
                 <div class="form-group">
                     <input type="text" required name="username"> <i
-                        class="fas fa-user"></i> <label for="">username</label>
+                        class="fas fa-user"></i> <label for="username">username</label>
                 </div>
                 <div class="form-group">
                     <input type="password" required name="password"> <i
-                        class="fas fa-lock"></i> <label for="">password</label>
+                        class="fas fa-lock"></i> <label for="username">password</label>
                 </div>
                 <div class="forgot-pass">
                     <a href="#">forgot password?</a>
@@ -142,7 +139,6 @@
                     </p>
                 </div>
             </form>
-
         </div>
     </div>
 </section>

@@ -1,4 +1,7 @@
-var apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
+'use strict'
+
+const apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
+
 $(document).ready(() => {
     $.ajax({
         url: "/movie/loved/" + username,

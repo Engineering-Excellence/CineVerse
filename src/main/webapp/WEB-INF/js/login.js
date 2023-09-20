@@ -19,10 +19,7 @@ function showHide() {
     }
 }
 
-
-
-
-    let wrapper = document.querySelector('.wrapper'),
+let wrapper = document.querySelector('.wrapper'),
     signUpLink = document.querySelector('.link .signup-link'),
     signInLink = document.querySelector('.link .signin-link');
 
@@ -36,12 +33,8 @@ signInLink.addEventListener('click', () => {
     wrapper.classList.remove('animated-signin');
 });
 
-
-
-
 // 이메일 인증번호
-
-/* var $checkEmail = $("#checkEmail"); 
+/* var $checkEmail = $("#checkEmail");
 
 $checkEmail.click(function() {
    $.ajax({
@@ -68,7 +61,6 @@ $checkEmail.click(function() {
 					"color" : "#FA3E3E",
 					"font-weight" : "bold",
 				"font-size" : "10px"
-
 				})
 				//console.log("중복아이디");
 			} else { // 아니면 중복아님
@@ -79,7 +71,6 @@ $checkEmail.click(function() {
 					"color" : "#0D6EFD",
 					"font-weight" : "bold",
 					"font-size" : "10px"
-
 				})
 			}
 		})
