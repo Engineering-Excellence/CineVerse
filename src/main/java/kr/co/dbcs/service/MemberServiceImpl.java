@@ -99,7 +99,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @SneakyThrows
     @Transactional
-    public List<MovieVO> crawl(@NonNull Map<String, String> paramsMap) {
+    public List<MovieVO> crawl(@NonNull Map<String, Object> paramsMap) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("User-Agent", "크롤링 연습중입니다(Crawling Practice)");
@@ -110,56 +110,61 @@ public class MemberServiceImpl implements MemberService {
 
         List<MovieVO> movieList = new ArrayList<>();
 
-        // 메가박스 크롤링
-        String brchNo1 = paramsMap.get("theaterNo");    // 지점
-        String playDe = paramsMap.get("date");    // 상영일
-        String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
 
-        // GET 요청 전송 및 응답을 Map으로 Parse
-        HttpEntity<String> request_megabox = new HttpEntity<>("parameters", headers);
-        ResponseEntity<Map> response_megabox = restTemplate.exchange(url, HttpMethod.GET, request_megabox, Map.class);
+        for (String theaterNo : (List<String>)paramsMap.get("megabox")) {
+            // 메가박스 크롤링
+            String brchNo1 = theaterNo;   // 지점
+            String playDe = paramsMap.get("date").toString();    // 상영일
+            String url = "https://www.megabox.co.kr/on/oh/ohc/Brch/schedulePage.do?masterType=brch&detailType=area&firstAt=N&brchNo1=" + brchNo1 + "&playDe=" + playDe;
 
-        // 응답으로부터 movieFormList 얻기
-        assert response_megabox != null;
-        Map<String, Object> response_megabox_map = response_megabox.getBody();
-        List<Map<String, Object>> movieFormList_megabox = (List<Map<String, Object>>) ((Map<String, Object>) response_megabox_map.get("megaMap")).get("movieFormList");
+            // GET 요청 전송 및 응답을 Map으로 Parse
+            HttpEntity<String> request_megabox = new HttpEntity<>("parameters", headers);
+            ResponseEntity<Map> response_megabox = restTemplate.exchange(url, HttpMethod.GET, request_megabox, Map.class);
 
-        for (Map<String, Object> movieData : movieFormList_megabox) {
-            MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
-            movieList.add(new MovieVO(movie));
+            // 응답으로부터 movieFormList 얻기
+            assert response_megabox != null;
+            Map<String, Object> response_megabox_map = response_megabox.getBody();
+            List<Map<String, Object>> movieFormList_megabox = (List<Map<String, Object>>) ((Map<String, Object>) response_megabox_map.get("megaMap")).get("movieFormList");
+
+            for (Map<String, Object> movieData : movieFormList_megabox) {
+                MegaboxVO movie = mapper.convertValue(movieData, MegaboxVO.class);
+                movieList.add(new MovieVO(movie));
+            }
         }
 
-        // 롯데시네마 크롤링
-        JSONObject obj = new JSONObject();
-        obj.put("MethodName", "GetPlaySequence");
-        obj.put("channelType", "MA");
-        obj.put("osVersion", "");
-        obj.put("osType", "");
-        obj.put("cinemaID", "1|1|9010");    // paramsMap에 롯데시네마 지점 코드 추가 필요
-        obj.put("representationMovieCode", "");
-        obj.put("playDate", paramsMap.get("date").replaceAll("(\\d{4})(\\d{2})(\\d{2})", "$1-$2-$3"));
+        for (String theaterNo : (List<String>)paramsMap.get("lottecinema")) {
+            JSONObject obj = new JSONObject();
+            obj.put("MethodName", "GetPlaySequence");
+            obj.put("channelType", "MA");
+            obj.put("osVersion", "");
+            obj.put("osType", "");
+            obj.put("cinemaID", "1|1|" + theaterNo);    // paramsMap에 롯데시네마 지점 코드 추가 필요
+            obj.put("representationMovieCode", "");
+            obj.put("playDate", paramsMap.get("date").toString().replaceAll("(\\d{4})(\\d{2})(\\d{2})", "$1-$2-$3"));
 
-        url = "https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx";
+            String url = "https://www.lottecinema.co.kr/LCWS/Ticketing/TicketingData.aspx";
 
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("paramList", obj.toJSONString());
+            MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+            map.add("paramList", obj.toJSONString());
 
-        HttpEntity<MultiValueMap<String, String>> request_lotte = new HttpEntity<>(map, headers);
+            HttpEntity<MultiValueMap<String, String>> request_lotte = new HttpEntity<>(map, headers);
 
-        ResponseEntity<String> response_lotte = restTemplate.postForEntity(url, request_lotte, String.class);
+            ResponseEntity<String> response_lotte = restTemplate.postForEntity(url, request_lotte, String.class);
 
-        JSONParser parser = new JSONParser();
-        JSONObject res = (JSONObject) parser.parse(response_lotte.getBody());
-        Map<String, Object> ret = new ObjectMapper().readValue(res.get("PlaySeqs").toString(), Map.class);
+            JSONParser parser = new JSONParser();
+            JSONObject res = (JSONObject) parser.parse(response_lotte.getBody());
+            Map<String, Object> ret = new ObjectMapper().readValue(res.get("PlaySeqs").toString(), Map.class);
 
-        List<Map<String, Object>> movieFormList_lotte = (List<Map<String, Object>>) ret.get("Items");
+            List<Map<String, Object>> movieFormList_lotte = (List<Map<String, Object>>) ret.get("Items");
 
-        for (Map<String, Object> movieData : movieFormList_lotte) {
-            LotteCinemaVO movie = mapper.convertValue(movieData, LotteCinemaVO.class);
-            movieList.add(new MovieVO(movie));
+            for (Map<String, Object> movieData : movieFormList_lotte) {
+                LotteCinemaVO movie = mapper.convertValue(movieData, LotteCinemaVO.class);
+                movieList.add(new MovieVO(movie));
+            }
         }
+            // 롯데시네마 크롤링
 
         return movieList;
     }

@@ -1,58 +1,25 @@
 'use strict'
-
-const theater = [{
-    "name": "강동",
-    "code": "1341"
-},
-    {
-        "name": "홍대",
-        "code": "1212"
+var theater = [{
+        "name": "강동구",
+        "code": {
+            "megaBox": ["1341"],
+            "lotteCinema": ["9010"]
+        }
     },
     {
-        "name": "상암",
-        "code": "1211"
+        "name": "마포구",
+        "code": {
+            "megaBox": ["1211", "1212"],
+            "lotteCinema": ["1005", "1010"]
+        }
     },
     {
-        "name": "송파",
-        "code": "1381"
-    },
-    {
-        "name": "강남",
-        "code": "1372"
-    },
-    {
-        "name": "동대문",
-        "code": "1003"
-    },
-    {
-        "name": "강남대로",
-        "code": "0023"
-    },
-    {
-        "name": "목동현대백화점",
-        "code": "0041"
-    },
-    {
-        "name": "목동",
-        "code": "1581"
-    },
-    {
-        "name": "마곡",
-        "code": "1572"
-    },
-    {
-        "name": "성수",
-        "code": "1331"
-    },
-    {
-        "name": "센트럴",
-        "code": "1371"
-    },
-    {
-        "name": "상봉",
-        "code": "1311"
-    }]; // 일단은 테스트용 데이터, 나중에 db에서 가져오던 말던
-
+        "name": "송파구",
+        "code": {
+            "megaBox": ["1381"],
+            "lotteCinema": ["1016"]
+        }
+    }]
 var ticketingData;
 var megaBoxList;
 var titleSet = new Set();
@@ -60,9 +27,9 @@ var isTheaterSelected = false;
 var isDateSelected = false;
 
 $(() => {
-    theater.forEach((i) => {
+    theater.forEach((i, idx) => {
         let html = "";
-        html += `<div class="theater-item item" id="${i["code"]}">`
+        html += `<div class="theater-item item" id="${idx}">`
         html += `<div class="right top">${i["name"]}</div>`
         html += `</div>`
         $(".theater-list").append(html);
@@ -75,13 +42,14 @@ const addMovieHandler = () => {
             if ($(e).hasClass("selected")) {
                 $(e).removeClass("selected");
                 $(".ticket-list").html("");
-            } else {
+            }
+            else {
                 $(".movie-item").each((i, e_) => {
                     $(e_).removeClass("selected");
                 })
                 $(e).addClass("selected");
                 let title = $(e).find(".right").text();
-                let filteredList = ticketingData.filter(data => data["title"] == title);
+                let filteredList = ticketingData.filter(data =>  data["title"] == title);
                 console.log(filteredList);
                 let html = "";
 
@@ -89,10 +57,15 @@ const addMovieHandler = () => {
                     html += `<div class="item">`
                     html += `<div class="ticket-item-info">상영 정보가 없습니다.</div>`
                     html += `</div>`
-                } else {
+                }
+                else {
                     filteredList.forEach((item) => {
                         html += `<div class="ticket-item">`
-                        html += `<div class="ticket-item-info">${item["company"]}</div>`
+                        html += `<div class="ticket-item-info">`
+                        if (item["company"] === "메가박스") html += `<a href="https://www.megabox.co.kr/booking" target="_blank">${item["company"]}</a>`
+                        else if (item["company"] === "롯데시네마") html += `<a href="https://www.lottecinema.co.kr/NLCHS/Ticketing" target="_blank">${item["company"]}</a>`
+                        html += `</div>`
+                        html += `<div class="ticket-item-info">${item["branch"]}</div>`
                         html += `<div class="ticket-item-info">${item["theater"]}</div>`
                         html += `<div class="ticket-item-info">${item["startTime"]}</div>`
                         html += `<div class="ticket-item-info">${item["restSeat"]}/${item["totSeat"]}</div>`
@@ -113,7 +86,8 @@ const addDateHandler = () => {
             if ($(e).hasClass("selected")) {
                 $(e).removeClass("selected");
                 isDateSelected = false;
-            } else {
+            }
+            else {
                 $(".date-item").each((i, e_) => {
                     $(e_).removeClass("selected");
                 })
@@ -130,7 +104,8 @@ const addTheaterHandler = () => {
             if ($(e).hasClass("selected")) {
                 $(e).removeClass("selected");
                 isTheaterSelected = false;
-            } else {
+            }
+            else {
                 $(".theater-item").each((i, e_) => {
                     $(e_).removeClass("selected");
                 })
@@ -152,7 +127,8 @@ const getMovieData = () => {
             url: "/movie/crawl",
             contentType: "application/json",
             data: JSON.stringify({
-                theaterNo: $(".theater-list").find(".selected").attr("id"),
+                megabox: theater[$(".theater-list").find(".selected").attr("id")]["code"]["megaBox"],
+                lottecinema: theater[$(".theater-list").find(".selected").attr("id")]["code"]["lotteCinema"],
                 date: $(".reserve-date").find(".selected").find("input").val()
             }),
             success: (res) => {
@@ -171,7 +147,8 @@ const getMovieData = () => {
                 addMovieHandler();
             },
         })
-    } else {
+    }
+    else {
         $("#movie-title-list").html("");
         $(".ticket-list").html("");
     }
@@ -193,7 +170,7 @@ const month = date.getMonth() + 1
 const getDateFormatString = (date) => {
     let ret = "";
     ret += date.getFullYear();
-    ret += pad(date.getMonth() + 1, 2);
+    ret += pad(date.getMonth() + 1,2);
     ret += pad(date.getDate(), 2);
     return ret;
 }

@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-
+        <a href="https://www.megabox.co.kr/booking"></a>
         <div class="time-part part">
             <div class="reserve-title">정보</div>
             <div class="list-wrapper">

@@ -78,7 +78,7 @@
   border-radius: 3px;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
   .ticket-item-info {
     text-align: center;
@@ -107,7 +107,7 @@
 }
 
 .time-part {
-  width: 384px;
+  width: 700px;
 }
 
 .list-wrapper {
