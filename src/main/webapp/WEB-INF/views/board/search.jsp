@@ -5,7 +5,7 @@
 <link rel="stylesheet"
       href="${pageContext.request.contextPath}/css/member/movieList.css">
 <section>
-    <h1 class="board-title">전체 게시판</h1>
+    <a href="/board/list"><h1 class="board-title">전체 게시판</h1></a>
     <div class="board-search search-div">
         <div id="search">
             <form action="/board/search" method="get">
