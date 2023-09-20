@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @PropertySource("classpath:db.properties")
 @MapperScan(basePackages = "kr.co.dbcs.mapper")
-@ComponentScan(basePackages = {"kr.co.dbcs.model", "kr.co.dbcs.service", "kr.co.dbcs.aop"})
+@ComponentScan(basePackages = {"kr.co.dbcs.model", "kr.co.dbcs.service", "kr.co.dbcs.aop" })
 public class RootConfig {
     // applicationContext.xml을 대신하는 java class
 

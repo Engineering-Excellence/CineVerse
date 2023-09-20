@@ -23,10 +23,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/boxicons.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/userHeader.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js"
+            defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>

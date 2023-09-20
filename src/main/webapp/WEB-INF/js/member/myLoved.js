@@ -1,3 +1,5 @@
+'use strict'
+
 const apiKey = "06b1c66d3baf07cdfabaf28b3876e74a";
 let userLoved;
 

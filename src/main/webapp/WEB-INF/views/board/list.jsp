@@ -23,7 +23,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
-        	<th></th>
+            <th></th>
             <th scope="col" class="center content-no">글번호</th>
             <th scope="col">제목</th>
             <th scope="col">작성자</th>
@@ -34,7 +34,8 @@
         <tbody>
         <c:forEach var="notice" items="${notice}">
             <tr onClick="location.href='/board/view/${notice.boardNo}'" class="notice-table">
-            	<td class="notice-icon"><img src="${pageContext.request.contextPath}/images/megaphone.png" class="megaphone"></td>
+                <td class="notice-icon"><img src="${pageContext.request.contextPath}/images/megaphone.png"
+                                             class="megaphone"></td>
                 <td scope="row" class="center content-no">${notice.boardNo}</td>
                 <th class="notice-title">${notice.boardTitle}</th>
                 <td>${notice.username}</td>
@@ -44,7 +45,7 @@
         </c:forEach>
         <c:forEach var="boardList" items="${boardList}">
             <tr onClick="location.href='/board/view/${boardList.boardNo}'">
-            	<td></td>
+                <td></td>
                 <td scope="row" class="center content-no">${boardList.boardNo}</td>
                 <td class="content-title">${boardList.boardTitle}</td>
                 <td>${boardList.username}</td>

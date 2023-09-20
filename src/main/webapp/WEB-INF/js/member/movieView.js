@@ -90,40 +90,39 @@ $.ajax({
 
         if (isLogin) {
             $(".heart-div").click(() => {
-                    if (userLoved.includes(movieId)) {
-                        $.ajax({
-                            url: "/movie/loved/" + username + "/" + movieId,
-                            type: "delete",
-                            async: false,
-                            success: (ret) => {
-                                if (ret) {
-                                    $(".heart-div").find('.heart').toggleClass('love');
-                                    $(".heart-div").find('.line, .heart').addClass("active").delay(300).queue((next) => {
-                                        $(".heart-div").removeClass("active");
-                                        next();
-                                    });
-                                    userLoved = userLoved.filter(v => v != movieId);
-                                }
-                            },
-                        });
-                    }
-                    else {
-                        $.ajax({
-                            url: "/movie/loved/" + username + "/" + movieId,
-                            type: "post",
-                            async: false,
-                            success: (ret) => {
-                                if (ret) {
-                                    $(".heart-div").find('.heart').toggleClass('love');
-                                    $(".heart-div").find('.line, .heart').addClass("active").delay(300).queue((next) => {
-                                        $(".heart-div").removeClass("active");
-                                        next();
-                                    });
-                                    userLoved.push(movieId);
-                                }
-                            },
-                        });
-                    }
+                if (userLoved.includes(movieId)) {
+                    $.ajax({
+                        url: "/movie/loved/" + username + "/" + movieId,
+                        type: "delete",
+                        async: false,
+                        success: (ret) => {
+                            if (ret) {
+                                $(".heart-div").find('.heart').toggleClass('love');
+                                $(".heart-div").find('.line, .heart').addClass("active").delay(300).queue((next) => {
+                                    $(".heart-div").removeClass("active");
+                                    next();
+                                });
+                                userLoved = userLoved.filter(v => v != movieId);
+                            }
+                        },
+                    });
+                } else {
+                    $.ajax({
+                        url: "/movie/loved/" + username + "/" + movieId,
+                        type: "post",
+                        async: false,
+                        success: (ret) => {
+                            if (ret) {
+                                $(".heart-div").find('.heart').toggleClass('love');
+                                $(".heart-div").find('.line, .heart').addClass("active").delay(300).queue((next) => {
+                                    $(".heart-div").removeClass("active");
+                                    next();
+                                });
+                                userLoved.push(movieId);
+                            }
+                        },
+                    });
+                }
             });
         }
     },
