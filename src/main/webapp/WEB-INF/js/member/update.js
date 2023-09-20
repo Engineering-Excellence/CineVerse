@@ -156,7 +156,10 @@ $(() => {
                         '성공!',
                         '회원탈퇴가 되었습니다.',
                         'success'
-                    );
+                    ).then(() => {
+                        window.location.href = "/logout";
+                    });
+
                 } else {
                     swal(
                         '실패!',
