@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -39,10 +37,6 @@ a {
   height: 100%;
 }
 
-.container {
-  //min-height: 800px;
-}
-
 .profile {
   background: #fff;
   width: 40%;
@@ -55,7 +49,6 @@ a {
     width: 100%;
   }
 }
-
 .profile .name-wrapper {
   float: left;
   width: 60%;
@@ -76,14 +69,12 @@ a {
     padding-top: 20px;
   }
 }
-
 @media (max-width: 450px) {
   .profile h1 {
     font-size: 1.8em;
     padding-top: 20px;
   }
 }
-
 .profile li {
   margin-bottom: 10px;
 }
@@ -99,7 +90,6 @@ a {
     width: 100%;
   }
 }
-
 .profile .picture-resume {
   width: 220px;
   height: 220px;
@@ -130,35 +120,30 @@ a {
     width: 80px;
   }
 }
-
 @media (max-width: 1200px) {
   .profile .picture-resume img {
     width: 120px;
     height: 120px;
   }
 }
-
 @media (max-width: 1500px) {
   .profile .picture-resume {
     width: 150px;
     height: 150px;
   }
 }
-
 @media (max-width: 1200px) {
   .profile .picture-resume {
     width: 200px;
     height: 200px;
   }
 }
-
 @media (max-width: 450px) {
   .profile .picture-resume {
     width: 180px;
     height: 180px;
   }
 }
-
 .profile .contact-info {
   margin-top: 100px;
   font-weight: 300;
@@ -169,13 +154,11 @@ a {
     margin-top: 70px;
   }
 }
-
 @media (max-width: 450px) {
   .profile .contact-info {
     margin-top: 50px;
   }
 }
-
 .profile .list-titles {
   float: left;
   text-align: left;
@@ -204,14 +187,12 @@ a {
     margin-bottom: 70px;
   }
 }
-
 @media (max-width: 850px) {
   .profile .contact-presentation {
     margin-top: 50px;
     margin-bottom: 50px;
   }
 }
-
 .profile svg {
   width: 100%;
   position: absolute;
@@ -243,7 +224,6 @@ a {
     width: 100%;
   }
 }
-
 .experience h3.experience-title {
   color: #66cc99;
   text-align: left;
@@ -259,10 +239,9 @@ a {
   text-align: left;
   /* padding-right: 5%; */
   margin-bottom: 30px;
-
-  table {
-    width: 100%;
-  }
+}
+.experience .company-wrapper table {
+  width: 100%;
 }
 
 @media (max-width: 450px) {
@@ -271,7 +250,6 @@ a {
     margin-bottom: 20px;
   }
 }
-
 .experience .job-wrapper {
   width: 70%;
   float: left;
@@ -286,7 +264,6 @@ a {
     margin-bottom: 40px;
   }
 }
-
 .experience .experience-title {
   color: white;
   margin-bottom: 15px;
@@ -304,13 +281,11 @@ a {
     padding: 80px 15% 40px 10%;
   }
 }
-
 @media (max-width: 450px) {
   .section-padding {
     padding: 40px 10% 20px 5%;
   }
 }
-
 .section-wrapper {
   width: 100%;
   float: left;
@@ -325,7 +300,6 @@ a {
     width: 100%;
   }
 }
-
 .section-wrapper:nth-child(3) {
   padding-right: 8%;
 }
@@ -361,4 +335,106 @@ a {
 .reply-preview {
   display: grid;
   grid-template-columns: 1fr 4fr 2fr;
+}
+
+/*# sourceMappingURL=myPage.css.map */
+
+.nav-link {
+	color: black;
+}
+.nav-link.active {
+	color: #7202ae!important;
+}
+
+.tab-content{
+	padding-top: 15px;
+}
+
+.btn {
+	background-color: #7202ae; 	
+	color: white;
+}
+.btn:hover {
+	background-color: #7202ae; 
+	color: white;
+}
+
+.input-group-text{
+	width:120px;
+}
+
+.clearfix{
+	margin-top:10%;
+}
+.profile h1 {
+    position: absolute;
+    top: 12%;
+    left: 18%;
+}
+#deleteProfile{
+	background-color: red;
+	width: 90%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 40px;
+}
+.deletebtn-div{
+	margin-left:8%;
+}
+.delete-img{
+	margin-top: 12%;
+	margin-left: 5%;
+}
+.btn-danger {
+	span{
+		display: flex;
+    	width: 100%;
+    	justify-content: center;
+    	align-items: center;
+	}
+}
+.btn-danger:hover {
+  animation: rotate 0.7s ease-in-out both;
+}
+.btn-danger:hover span {
+  animation: storm 0.7s ease-in-out both;
+  animation-delay: 0.06s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: rotate(3deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(-3deg) translate3d(0, 0, 0);
+  }
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+@keyframes storm {
+  0% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+  25% {
+    transform: translate3d(4px, 0, 0) translateZ(0);
+  }
+  50% {
+    transform: translate3d(-3px, 0, 0) translateZ(0);
+  }
+  75% {
+    transform: translate3d(2px, 0, 0) translateZ(0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+  
 }
