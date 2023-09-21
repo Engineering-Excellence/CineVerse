@@ -110,7 +110,6 @@ public class MemberServiceImpl implements MemberService {
 
         List<MovieVO> movieList = new ArrayList<>();
 
-
         for (String theaterNo : (List<String>) paramsMap.get("megabox")) {
             // 메가박스 크롤링
             String brchNo1 = theaterNo;   // 지점
@@ -122,7 +121,6 @@ public class MemberServiceImpl implements MemberService {
             ResponseEntity<Map> response_megabox = restTemplate.exchange(url, HttpMethod.GET, request_megabox, Map.class);
 
             // 응답으로부터 movieFormList 얻기
-            assert response_megabox != null;
             Map<String, Object> response_megabox_map = response_megabox.getBody();
             List<Map<String, Object>> movieFormList_megabox = (List<Map<String, Object>>) ((Map<String, Object>) response_megabox_map.get("megaMap")).get("movieFormList");
 

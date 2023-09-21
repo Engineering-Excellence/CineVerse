@@ -43,7 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .requiresChannel()
                 .anyRequest().requiresSecure()  // 모든 요청에 대해 HTTPS를 강제
-
+                .and()
+                .portMapper()
+                .http(8080).mapsTo(8443)
+                .http(8090).mapsTo(8443)
                 .and()
 
                 .headers()
