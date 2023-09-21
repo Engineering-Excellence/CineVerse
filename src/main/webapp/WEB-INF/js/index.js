@@ -25,7 +25,7 @@ $(document).ready(function () {
     let today = new Date();
     today.setDate(today.getDate() - 1);
     $.ajax({
-        url: `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${boxOfficeApiKey}&targetDt=${getDateFormatString(today)}&itemPerPage=5`,
+        url: `https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${boxOfficeApiKey}&targetDt=${getDateFormatString(today)}&itemPerPage=5`,
         type: "get",
         async: true,
         success: (data) => {
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
     today.setDate(today.getDate() - 6);
     $.ajax({
-        url: `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=${boxOfficeApiKey}&targetDt=${getDateFormatString(today)}&weekGb=0&itemPerPage=5`,
+        url: `https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=${boxOfficeApiKey}&targetDt=${getDateFormatString(today)}&weekGb=0&itemPerPage=5`,
         type: "get",
         async: true,
         success: (data) => {

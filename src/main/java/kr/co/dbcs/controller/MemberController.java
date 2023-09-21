@@ -5,7 +5,6 @@ import kr.co.dbcs.service.BoardService;
 import kr.co.dbcs.service.MemberService;
 import kr.co.dbcs.service.ReplyService;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
@@ -67,7 +65,7 @@ public class MemberController {
 
     @ResponseBody
     @PostMapping(value = "/delete")
-    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public boolean deleteMember(@RequestBody @NonNull MemberVO memberVO, @NonNull Principal principal) {
         MemberVO vo = memberService.read(principal.getName()); //암호화된 비밀번호를 담기 위한 VO 선언
         memberVO.setUsername(principal.getName()); //그냥 정보를 가져오기위해 사용한 VO에서 setusername을 가져온다.
@@ -90,7 +88,7 @@ public class MemberController {
         return memberService.updatePassword(map, vo);
     }
 
-    @ResponseBody   // Ajax
+    @ResponseBody
     @PostMapping(value = "/uploadProfile")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
     public boolean uploadProfile(@RequestParam("file") @NonNull MultipartFile file, @NonNull Principal principal) {

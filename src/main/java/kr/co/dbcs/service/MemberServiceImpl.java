@@ -97,12 +97,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    @SneakyThrows
     @Transactional
+    @SneakyThrows(Exception.class)
     public List<MovieVO> crawl(@NonNull Map<String, Object> paramsMap) {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("User-Agent", "크롤링 연습중입니다(Crawling Practice)");
+        headers.add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15");
 
         RestTemplate restTemplate = new RestTemplate();
         ObjectMapper mapper = new ObjectMapper();
@@ -133,12 +133,13 @@ public class MemberServiceImpl implements MemberService {
         }
 
         for (String theaterNo : (List<String>) paramsMap.get("lottecinema")) {
+            // 롯데시네마 크롤링
             JSONObject obj = new JSONObject();
             obj.put("MethodName", "GetPlaySequence");
             obj.put("channelType", "MA");
             obj.put("osVersion", "");
             obj.put("osType", "");
-            obj.put("cinemaID", "1|1|" + theaterNo);    // paramsMap에 롯데시네마 지점 코드 추가 필요
+            obj.put("cinemaID", "1|1|" + theaterNo);
             obj.put("representationMovieCode", "");
             obj.put("playDate", paramsMap.get("date").toString().replaceAll("(\\d{4})(\\d{2})(\\d{2})", "$1-$2-$3"));
 
@@ -164,7 +165,6 @@ public class MemberServiceImpl implements MemberService {
                 movieList.add(new MovieVO(movie));
             }
         }
-        // 롯데시네마 크롤링
 
         return movieList;
     }
