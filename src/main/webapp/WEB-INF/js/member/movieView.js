@@ -9,11 +9,6 @@ $.ajax({
     async: true,
     success: (detail) => {
         let releaseData = detail["release_dates"]["results"].filter((d) => d["iso_3166_1"] == "KR")
-        // detail["release_d1ates"]["results"].forEach((d) => {
-        //     if (d["iso_3166_1"] == "KR") {
-        //         releaseData = d["release_dates"][0];
-        //     }
-        // })
         if (releaseData.length == 0) releaseData = detail["release_dates"]["results"][0]["release_dates"][0];
         else releaseData = releaseData[0]["release_dates"][0];
         console.log(releaseData);
