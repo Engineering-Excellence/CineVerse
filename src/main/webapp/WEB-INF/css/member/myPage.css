@@ -240,6 +240,7 @@ a {
   /* padding-right: 5%; */
   margin-bottom: 30px;
 }
+
 .experience .company-wrapper table {
   width: 100%;
 }
@@ -337,29 +338,111 @@ a {
   grid-template-columns: 1fr 4fr 2fr;
 }
 
-/*# sourceMappingURL=myPage.css.map */
 
 .nav-link {
-	color: black;
-}
-.nav-link.active {
-	color: #7202ae!important;
+  color: black;
 }
 
-.tab-content{
-	padding-top: 15px;
+.nav-link.active {
+  color: #7202ae !important;
+}
+
+.tab-content {
+  padding-top: 15px;
 }
 
 .btn {
-	background-color: #7202ae; 	
-	color: white;
+  background-color: #7202ae;
+  color: white;
 }
+
 .btn:hover {
-	background-color: #7202ae; 
-	color: white;
+  background-color: #7202ae;
+  color: white;
 }
 
-.input-group-text{
-	width:120px;
+.input-group-text {
+  width: 120px;
 }
 
+.clearfix {
+  margin-top: 10%;
+}
+
+.profile h1 {
+  position: absolute;
+  top: 10%;
+  left: 18%;
+}
+
+#deleteProfile {
+  background-color: red;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 40px;
+}
+
+.deletebtn-div {
+  margin-left: 8%;
+}
+
+.delete-img {
+  margin-top: 12%;
+  margin-left: 5%;
+}
+
+.btn-danger span {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-danger:hover {
+  animation: rotate 0.7s ease-in-out both;
+}
+
+.btn-danger:hover span {
+  animation: storm 0.7s ease-in-out both;
+  animation-delay: 0.06s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: rotate(3deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(-3deg) translate3d(0, 0, 0);
+  }
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+@keyframes storm {
+  0% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+  25% {
+    transform: translate3d(4px, 0, 0) translateZ(0);
+  }
+  50% {
+    transform: translate3d(-3px, 0, 0) translateZ(0);
+  }
+  75% {
+    transform: translate3d(2px, 0, 0) translateZ(0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+}
+
+/*# sourceMappingURL=myPage.css.map */

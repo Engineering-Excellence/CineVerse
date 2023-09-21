@@ -78,9 +78,9 @@
                         </g>
                     </svg>
                 </div>
-                <div>
+                <div class="deletebtn-div">
                     <button class="btn btn-danger" id="deleteProfile">
-                        <i class="fas fa-trash-alt"></i>
+                        <span><i class="fas fa-trash-alt"></i><p class="delete-img">이미지 삭제</p></span>
                     </button>
                 </div>
             </div>
