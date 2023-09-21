@@ -1,9 +1,11 @@
 package kr.co.dbcs.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,13 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final DataSource dataSource;
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    @SneakyThrows(Exception.class)
+    public void configureGlobal(@NonNull AuthenticationManagerBuilder auth) {
 
         auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("{noop}user").roles("USER")
-//                .and()
-//                .withUser("admin").password("{noop}admin").roles("ADMIN", "USER");
                 .jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
@@ -39,9 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(@NonNull HttpSecurity http) throws Exception {
 
         http
+                .requiresChannel()
+                .anyRequest().requiresSecure()  // 모든 요청에 대해 HTTPS를 강제
+
+                .and()
+
                 .headers()
                 .addHeaderWriter(
                         // 모든 URL에 대한 접근 허용
@@ -53,10 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .csrf().disable()       // POST 요청 허용
                 .authorizeRequests()    // 요청에 권한 설정을 적용
-                .antMatchers("/css/**", "/js/**", "/images/**", "/profile/**").permitAll() // 정적 리소스에 모든 사용자 접근 허용
+                .antMatchers("/css/**", "/js/**", "/images/**").permitAll() // 정적 리소스에 모든 사용자 접근 허용
                 .antMatchers("/member/join").permitAll() // 회원가입 페이지에 모든 사용자 접근 허용
                 .antMatchers("/member/check").permitAll() // 중복체크 접근 허용
-                .antMatchers("/member/chat").permitAll()
+                .antMatchers("/member/chat").authenticated()
                 .antMatchers("/movie/**").permitAll()
                 .antMatchers("/ticket/**").permitAll()
                 .antMatchers("/board/**").permitAll()
@@ -77,7 +81,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 }

@@ -1,5 +1,6 @@
 package kr.co.dbcs.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -7,6 +8,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import javax.servlet.Filter;
 import javax.servlet.ServletRegistration;
 
+@Configuration
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
     // web.xml을 대신하는 java class
 
