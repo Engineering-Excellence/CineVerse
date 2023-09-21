@@ -23,14 +23,13 @@ public class SocketController {
         log.info("create socket");
     }
 
-    @OnOpen  // socket 연결 시
+    @OnOpen
     public void onOpen(@NonNull Session session) {
         log.info("open session: {}", session.getId());
         int roomId = Integer.parseInt(session.getPathParameters().get("roomId"));
         log.info("room ID: {}", roomId);
         try {
             final Basic basic = session.getBasicRemote();
-//            basic.sendText("연결 완료"); ~~님이 입장하였습니다 메세지로 보내기
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -48,14 +47,11 @@ public class SocketController {
     @OnMessage
     public void onMessage(String message, Session session) throws ParseException {
         try {
-            //메세지 보낸 사람에게 표시됨
             final Basic basic = session.getBasicRemote();
-//            basic.sendText("변경하였습니다."); // ~~님이 퇴장하였습니다
         } catch (Exception e) {
             log.error(e.getMessage());
         }
         log.info(message);
-        // 다른 사람에게 메세지 보내기
         JSONParser parser = new JSONParser();
 
         JSONObject obj = (JSONObject) parser.parse(message);
@@ -91,8 +87,6 @@ public class SocketController {
             log.info(obj.toString());
             for (Session s : sessionMapping.get(roomId).keySet()) {
                 s.getBasicRemote().sendText(obj.toString());
-//                if(!self.getId().equals(s.getId())){
-//                }
             }
         } catch (Exception e) {
             log.error(e.getMessage());

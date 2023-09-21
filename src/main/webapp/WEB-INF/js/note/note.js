@@ -48,9 +48,6 @@ $.ajax({
             for (let i = 0; i < u.length; i++)
                 root.insert(root, u.substring(i), 0, idx);
         })
-        showListPeople(userList);
-        addDialogPartnerHandler(".search-list");
-
     }
 });
 
