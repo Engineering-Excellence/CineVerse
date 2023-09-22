@@ -117,8 +117,8 @@ public class MemberController {
 
     @ResponseBody
     @PostMapping(value = "/lists")
-    public List<String> getUsernameList() {
-        return memberService.getUsernameList();
+    public List<String> getUsernameList(Principal principal) {
+        return memberService.getUsernameList(principal.getName());
     }
     
     @GetMapping("/resetpwd")

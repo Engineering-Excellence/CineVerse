@@ -110,10 +110,11 @@ public class MemberSqlProvider {
         }}.toString();
     }
 
-    public String getUsernameList() {
+    public String getUsernameList(String username) {
         return new SQL() {{
             SELECT("USERNAME");
             FROM("MEMBER");
+            WHERE("USERNAME <> #{username}");
             ORDER_BY("USERNAME");
         }}.toString();
     }
