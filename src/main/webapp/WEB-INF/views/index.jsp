@@ -97,6 +97,7 @@ s
     <script type="text/javascript"
         src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
         defer></script> --%>
+        <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon">
 <script>
         <sec:authorize access="isAuthenticated()">
         var isLogin = true;

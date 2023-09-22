@@ -1,18 +1,25 @@
 package kr.co.dbcs.service;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import kr.co.dbcs.mapper.MemberMapper;
-import kr.co.dbcs.model.*;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import lombok.extern.log4j.Log4j2;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,15 +31,21 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kr.co.dbcs.mapper.MemberMapper;
+import kr.co.dbcs.mapper.PwdResetQueueMapper;
+import kr.co.dbcs.model.CustomUser;
+import kr.co.dbcs.model.LotteCinemaVO;
+import kr.co.dbcs.model.MegaboxVO;
+import kr.co.dbcs.model.MemberImgVO;
+import kr.co.dbcs.model.MemberVO;
+import kr.co.dbcs.model.MovieVO;
+import kr.co.dbcs.model.PwdResetQueueVO;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Service
@@ -40,6 +53,7 @@ import java.util.Map;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberMapper memberMapper;
+    private final PwdResetQueueMapper pwdResetQueueMapper;
     private final PasswordEncoder passwordEncoder;
     private final ResourceLoader resourceLoader;
 
@@ -85,9 +99,24 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.updatePassword(memberVO) > 0;
     }
 
+    
+    @Override
+    public boolean findPwCheck(@NonNull MemberVO memberVO) {
+    	return memberMapper.findPwCheck(memberVO) >= 1;
+    }
+
     @Override
     public boolean delete(String id) {
         return memberMapper.deleteMember(id) > 0;
+    }
+    
+    @Override
+    public boolean insertPwdResetQueue(@NonNull PwdResetQueueVO pwdResetQueueVO) {
+    	return pwdResetQueueMapper.insertPwdResetQueue(pwdResetQueueVO) >= 1;
+    }
+    
+    public boolean selectPwdResetQueue(Map<String, String> map) {
+    	return pwdResetQueueMapper.selectPwdResetQueue(map) >= 1;
     }
 
     @Override
@@ -238,4 +267,17 @@ public class MemberServiceImpl implements MemberService {
     public List<String> getUsernameList() {
         return memberMapper.getUsernameList();
     }
+
+	@Override
+	public boolean updatePasswordByEmail(MemberVO vo) {
+		vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+		return memberMapper.updatePassword(vo) >= 1;
+	}
+
+	@Override
+	public boolean deletePwdResetQueue(Map<String, String> map) {
+		return pwdResetQueueMapper.deletePwdResetQueue(map) >= 1;
+	}
+  
+    
 }

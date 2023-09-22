@@ -1,0 +1,326 @@
+:root {
+  --mainColor: #89216b;
+  --whiteColor: #ffffff;
+  --titleColor: #555555;
+  --labelColor: #333333;
+}
+
+section {
+  background: linear-gradient(to right, #da4453, var(--mainColor));
+  font-weight: 400;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  overflow: hidden;
+}
+
+
+.check-input {
+  width: 70%;
+
+}
+
+.join-btn {
+  width: 150px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.birth {
+  margin-top: 2px;
+  position: relative;
+  width: 32rem;
+}
+
+.wrapper {
+  position: absolute;
+  width: 35rem;
+  height: 50rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media(min-width: 540px) {
+  .wrapper {
+    width: 50rem;
+  }
+}
+
+.wrapper .form-container {
+	position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    top: 15%;
+    height: 80%;
+    background-color: var(--whiteColor);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
+
+}
+
+.wrapper .form-container h2 {
+	font-family: "Gowun Dodum", sans-serif !important;
+  font-size: 3rem;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--titleColor);
+}
+
+.wrapper .form-container .form-group {
+  position: relative;
+  width: 32rem;
+  margin: 1rem 0;
+}
+
+.wrapper .form-container .form-group i,
+.wrapper .form-container .form-group label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  text-transform: capitalize;
+  color: var(--labelColor);
+  padding: 0 .5rem;
+  pointer-events: none;
+  transition: all .5s ease;
+}
+.fas{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  text-transform: capitalize;
+  color: var(--labelColor);
+  padding: 0 .5rem;
+  pointer-events: none;
+  transition: all .5s ease;
+}
+.wrapper .form-container .form-group i {
+  left: .5rem;
+}
+
+.wrapper .form-container .form-group label {
+  left: 2.5rem
+}
+
+.wrapper .form-container .form-group input {
+  width: 100%;
+  height: 3rem;
+  padding: 0 3rem;
+  border-radius: .5rem;
+  border: none;
+  outline: none;
+  border: .1rem solid var(--labelColor);
+  font-size: 1rem;
+  color: var(--labelColor);
+  background: transparent;
+}
+
+form .form-group input:focus ~ label,
+form .form-group input:valid ~ label,
+form .form-group input:focus ~ i,
+form .form-group input:valid ~ i {
+  top: 0 !important;
+  font-size: 1.2rem !important;
+  background-color: var(--whiteColor);
+}
+
+.form-group input[type="email"]:focus ~ label,
+.form-group input[type="email"]:not(:placeholder-shown) ~ label,
+.form-group input[type="email"]:valid ~ label {
+  top: 0 !important;
+  font-size: 1.2rem !important;
+  background-color: var(--whiteColor);
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group input:valid ~ label,
+form .form-group input:focus ~ i,
+form .form-group input:valid ~ i,
+form .form-group input:not(:placeholder-shown) ~ i {
+  top: 0 !important;
+  font-size: 1.2rem !important;
+  background-color: var(--whiteColor);
+}
+
+.wrapper .form-container .forgot-pass {
+  margin: 1.5rem 0 1.5rem;
+}
+
+.wrapper .form-container .forgot-pass a {
+  color: var(--labelColor);
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: capitalize;
+  transform: all .5s ease;
+}
+
+.wrapper .form-container .forgot-pass a:hover {
+  color: var(--mainColor);
+}
+
+.wrapper .form-container .btn {
+  background: linear-gradient(to right, #da4453, var(--mainColor));
+  color: var(--whiteColor);
+  text-transform: capitalize;
+  width: 65%;
+  height: 4rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  border-radius: .5rem;
+  cursor: pointer;
+  box-shadow: 0 .2rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+.wrapper .form-container .link {
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--labelColor);
+  margin: 2.5rem 0;
+}
+
+.wrapper .form-container .link a {
+  text-transform: capitalize;
+  color: var(--mainColor);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all .5s ease;
+}
+
+.wrapper .form-container .link a:hover {
+  color: #da4453;
+}
+
+.wrapper .sign-up {
+  transform: rotate(7deg);
+}
+
+.wrapper.animated-signin .form-container.sign-in {
+  animation: signin-flip 1s ease-in-out forwards;
+}
+
+@keyframes signin-flip {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-50rem) scale(1.1);
+  }
+
+  100% {
+    transform: translateX(0) rotate(7deg) scale(1);
+  }
+}
+
+.wrapper.animated-signin .form-container.sign-up {
+  animation: rotatecard .7s ease-in-out forwards;
+  animation-delay: .3s;
+}
+
+@keyframes rotatecard {
+  0% {
+    transform: rotate(7deg);
+  }
+
+  100% {
+    transform: rotate(0);
+    z-index: 1;
+  }
+}
+
+.wrapper.animated-signup .form-container.sign-up {
+  animation: signup-flip 1s ease-in-out forwards;
+}
+
+@keyframes signup-flip {
+  0% {
+    transform: translateX(0);
+    z-index: 1;
+  }
+
+  50% {
+    transform: translateX(50rem) scale(1.1);
+  }
+
+  100% {
+    transform: translateX(0) rotate(7deg) scale(1);
+  }
+}
+
+.wrapper.animated-signup .form-container.sign-in {
+  transform: rotate(7deg);
+  animation: rotatecard .7s ease-in-out forwards;
+  animation-delay: .3s;
+}
+
+@keyframes rotatecard {
+  0% {
+    transform: rotate(7deg);
+  }
+
+  100% {
+    transform: rotate(0);
+    z-index: 1;
+  }
+}
+
+input[type=radio] {
+  display: none;
+}
+
+input[type=radio] + span {
+  display: inline-flex;
+  padding: 15px 10px;
+  border: 1.5px solid black;
+  background-color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  width: 252px;
+  height: 50px;
+  font-size: 16px;
+  /* text-align: center; */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+input[type=radio]:checked + span {
+  background-color: #483D8B;
+  border: 1px solid white;
+  color: #ffffff;
+}
+
+.label-name {
+  font-size: 18px;
+}
+
+
+#check-dup.checked {
+  background-color: rgb(61, 64, 115);
+  color: #fff;
+}
+.btn-outline-primary{
+	width: 100%;
+    margin-left: 0;
+      background: linear-gradient(to right, #da4453, var(--mainColor));
+  color: var(--whiteColor);
+  text-transform: capitalize;
+  height: 4rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  border-radius: .5rem;
+  cursor: pointer;
+  box-shadow: 0 .2rem 1rem rgba(0, 0, 0, 0.4);
+}
+/*# sourceMappingURL=login.css.map */
