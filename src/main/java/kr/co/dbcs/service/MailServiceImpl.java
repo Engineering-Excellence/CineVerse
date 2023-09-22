@@ -1,17 +1,23 @@
 package kr.co.dbcs.service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+import java.io.UnsupportedEncodingException;
+import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
-import java.io.UnsupportedEncodingException;
-import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+import kr.co.dbcs.mapper.MemberMapper;
+import kr.co.dbcs.mapper.PwdResetQueueMapper;
+import kr.co.dbcs.model.MemberVO;
+import kr.co.dbcs.model.PwdResetQueueVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Service
@@ -19,6 +25,8 @@ import java.util.Random;
 public class MailServiceImpl implements MailService {
 
     private final JavaMailSender emailSender;
+    private final MemberMapper memberMapper;
+    private final PwdResetQueueMapper pwdResetQueueMapper;
 
     private String ePw;
 
@@ -47,7 +55,7 @@ public class MailServiceImpl implements MailService {
 
         message.setText(msgg, "utf-8", "html");
 
-        message.setFrom(new InternetAddress("kjy970715@naver.com", "jy"));
+        message.setFrom(new InternetAddress("kjy970715@naver.com", "CINEVERSE"));
 
         return message;
     }
@@ -86,4 +94,69 @@ public class MailServiceImpl implements MailService {
 
         return ePw; //
     }
-}
+    
+    
+    
+    @Override
+    public MimeMessage createResetPasswordMessage(String to, String username) throws MessagingException, UnsupportedEncodingException {
+    log.info("메일받을 사용자: {}", to);
+
+       MimeMessage message = emailSender.createMimeMessage();
+
+       message.addRecipients(RecipientType.TO, to);
+       message.setSubject("[CineVerse] 비밀번호 재설정 안내");
+
+       String msgg = "";
+       msgg += "<h1>안녕하세요</h1>";
+       msgg += "<h1>CineVerse 입니다</h1>";
+       msgg += "<br>";
+
+       String resetLink = "https://13.125.65.147:8443/member/resetpwd" + "?" +"code="+ ePw + "&"+ "username="+username; // 비밀번호 재설정 링크
+
+       msgg += "<p>비밀번호를 재설정하려면 아래 링크를 클릭하세요:</p>";
+       msgg += "<a href='" + resetLink + "'>" + resetLink + "</a>";
+
+     	message.setText(msgg, "utf-8", "html");
+
+     	message.setFrom(new InternetAddress("kjy970715@naver.com", "CINEVERSE"));
+
+     	return message;
+    }
+
+    
+    @Override
+    public boolean sendResetPasswordEmail(String to, String username) throws Exception {
+    	MemberVO vo = new MemberVO();
+    	vo.setUsername(username);
+    	vo.setEmail(to);
+    	
+    	if (memberMapper.findPwCheck(vo) >= 1) {
+    		ePw= createKey(); 
+
+           	log.info("********생성된 랜덤 인증코드******** => : {}", ePw);
+
+           	MimeMessage message= createResetPasswordMessage(to, username);
+
+           	log.info("********생성된 메시지******** => : {}",message);
+
+           	try { 
+               	emailSender.send(message);
+               	
+                PwdResetQueueVO pwdResetQueueVO = new PwdResetQueueVO();
+                pwdResetQueueVO.setUsername(username);
+                pwdResetQueueVO.setCode(ePw);
+                
+                pwdResetQueueMapper.insertPwdResetQueue(pwdResetQueueVO);
+                
+               } catch (Exception e) {
+               	e.printStackTrace();
+               	throw new IllegalArgumentException();
+               }
+           	
+           	return true;
+    	}
+    	
+    	return false;
+    }
+
+  }

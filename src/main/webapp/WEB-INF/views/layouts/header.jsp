@@ -14,7 +14,7 @@
     <meta name="description" content="Spring Legacy Final Project">
     <meta name="author" content="Team Annotation">
     <title>CineVerse</title>
-   <!--  <link rel="icon" href="#"> -->
+	<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.bundle.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js" defer></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 
     <sec:authentication var="user" property="principal"/>
 </head>

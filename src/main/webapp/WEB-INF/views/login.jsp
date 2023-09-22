@@ -6,6 +6,7 @@
       href="${pageContext.request.contextPath}/css/member/login.css">
 <link rel="stylesheet"
       href="${pageContext.request.contextPath}/css/member/userHeader.css"/>
+      
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/js/member/join.js" defer></script>
 <script src="${pageContext.request.contextPath}/js/login.js" defer></script>
@@ -129,7 +130,7 @@
                         class="fas fa-lock"></i> <label for="username">password</label>
                 </div>
                 <div class="forgot-pass">
-                    <a href="#">forgot password?</a>
+                    <a href="/member/resetpwdmail">forgot password?</a>
                 </div>
                 <button type="submit" class="btn">login</button>
 

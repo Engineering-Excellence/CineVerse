@@ -3,6 +3,8 @@ package kr.co.dbcs.service;
 import java.util.Collections;
 import java.util.List;
 
+import kr.co.dbcs.model.PwdResetQueueVO;
+
 public interface CRUDService<T, ID> {
     /*
         제네릭 타입 정의
@@ -21,4 +23,6 @@ public interface CRUDService<T, ID> {
     boolean update(T vo);
 
     boolean delete(ID id);
+
+
 }

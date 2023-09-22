@@ -125,4 +125,25 @@ button:hover .button-text {
   width: 95%;
 }
 
+.checkbox {
+  display: flex;
+  margin-left: 89%;
+}
+
+.wite-title {
+  display: flex;
+}
+
+.form-check-input {
+  margin-right: 10px;
+  border-radius: 50px;
+  border: black 2px solid;
+  width: 20px;
+  height: 20px;
+}
+
+.notice-label {
+  font-weight: 800;
+}
+
 /*# sourceMappingURL=write.css.map */

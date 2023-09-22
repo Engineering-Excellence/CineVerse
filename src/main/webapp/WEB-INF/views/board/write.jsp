@@ -9,12 +9,18 @@
     <form action="/board/write" method="POST">
         <div class="board-content-div">
             <!-- 관리자에게만 공지박스 노출 -->
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                <input type="hidden" name="isNotice" value="false"/>
-                <th><label for="notice">공지글</label><input id="notice" class="form-check-input" type="checkbox"
-                                                          name="notice" checked="checked"/></th>
-            </sec:authorize>
+            
+			<div class="wite-title">
             <p class="write-p">제목</p>
+            
+             <sec:authorize access="hasRole('ROLE_ADMIN')">
+   				<div class="checkbox">
+                <input type="hidden" name="isNotice" value="false"/>
+                <input id="notice" class="form-check-input" type="checkbox" name="notice" checked="checked"/>
+                <label name="cb" for="notice" class="notice-label">공지글</label>
+             </div>
+             </div>
+            </sec:authorize>
             <input type="text" name="boardTitle" class="board-title-input" placeholder="글 제목을 입력하세요.">
             <!-- <p class="write-p">내용</p> -->
             <textarea name="boardContent" id="editor" placeholder="글 내용을 입력하세요."></textarea>

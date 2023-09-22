@@ -1,12 +1,21 @@
 package kr.co.dbcs.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.DeleteProvider;
+import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.UpdateProvider;
+
 import kr.co.dbcs.model.AuthVO;
 import kr.co.dbcs.model.MemberImgVO;
 import kr.co.dbcs.model.MemberVO;
+import kr.co.dbcs.model.PwdResetQueueVO;
 import kr.co.dbcs.provider.MemberSqlProvider;
-import org.apache.ibatis.annotations.*;
-
-import java.util.List;
 
 @Mapper
 public interface MemberMapper {
@@ -60,4 +69,12 @@ public interface MemberMapper {
 
     @SelectProvider(type = MemberSqlProvider.class, method = "getUsernameList")
     List<String> getUsernameList();
+    
+    @UpdateProvider(type = MemberSqlProvider.class, method = "updatePassword")
+    int resetPassword(MemberVO memberVO);
+    
+    @SelectProvider(type = MemberSqlProvider.class, method = "findPwCheck")
+    int findPwCheck(MemberVO memberVO); 
+    
+
 }

@@ -17,6 +17,12 @@
             <c:when test="${paths[1] eq 'reply'}">
                 <%@ include file="/WEB-INF/views/member/replyList.jsp" %>
             </c:when>
+            <c:when test="${paths[1] eq 'resetpwd'}">
+                <%@ include file="/WEB-INF/views/member/resetPwd.jsp" %>
+            </c:when>
+            <c:when test="${paths[1] eq 'resetpwdmail'}">
+                <%@ include file="/WEB-INF/views/member/resetPwdMail.jsp" %>
+            </c:when>
         </c:choose>
     </c:when>
     <c:when test="${not empty paths and paths[0] eq 'note'}">
