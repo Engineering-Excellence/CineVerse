@@ -264,8 +264,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<String> getUsernameList() {
-        return memberMapper.getUsernameList();
+    public List<String> getUsernameList(String username) {
+        return memberMapper.getUsernameList(username);
     }
 
 	@Override

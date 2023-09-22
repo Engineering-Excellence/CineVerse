@@ -30,15 +30,15 @@ public interface MemberService extends UserDetailsService, CRUDService<MemberVO,
 
     boolean deleteUserByPasswordChk(String username, String password, MemberVO vo);
 
-    List<String> getUsernameList();
-
 	boolean findPwCheck(MemberVO memberVO);
-	
+
 	boolean insertPwdResetQueue(PwdResetQueueVO pwdResetQueueVO);
 
 	boolean selectPwdResetQueue(Map<String, String> map);
 
 	boolean updatePasswordByEmail(MemberVO vo);
-	
+
 	boolean deletePwdResetQueue(Map<String, String> map);
+
+    List<String> getUsernameList(String username);
 }
