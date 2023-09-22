@@ -412,3 +412,34 @@ $baby-blue: #f8faff;
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
+
+.movie-title-now{
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 800;
+    margin-top: 1%;
+}
+
+.search-div {
+    display: flex;
+    margin-left: 1.3%;
+}
+.heart-btn{
+	width: 250px;
+    border: 0;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    font-weight: 800;
+}
+.heart-img{
+	width: 30px;
+    margin-right: 15px;
+}
+
+   
+   
+
+
+

@@ -12,6 +12,7 @@
     </sec:authorize>
 </script>
 <section>
+	<div ><a href="/movie/list" class="movie-title-now">현재 상영중인 영화</a></div>
     <div class="search-div">
     </div>
     <div class="master">

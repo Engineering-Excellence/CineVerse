@@ -12,7 +12,12 @@
     </sec:authorize>
 </script>
 <section>
+	<div ><a href="/movie/list" class="movie-title-now">현재 상영중인 영화</a></div>
     <div class="search-div">
+    <sec:authorize access="isAuthenticated()">
+    	<button class="heart-btn" onclick="location.href='/movie/myLoved'"><img src="${pageContext.request.contextPath}/images/heart.png" class="heart-img">찜목록 바로가기</button>
+     </sec:authorize>
+        
         <div id="search">
             <input id="input" placeholder="영화 제목을 입력하세요"/>
             <button class="search-btn">Search</button>
