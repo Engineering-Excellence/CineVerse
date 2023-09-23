@@ -51,8 +51,9 @@ public class BoardSqlProvider {
 
     public String selectBoard(int boardNo) {
         return new SQL() {{
-            SELECT("*");
-            FROM("BOARD");
+            SELECT("B.*, I.RELPATH");
+            FROM("BOARD B");
+            INNER_JOIN("MEMBERIMG I ON B.USERNAME = I.USERNAME");
             WHERE("BOARDNO = #{boardNo}");
         }}.toString();
     }

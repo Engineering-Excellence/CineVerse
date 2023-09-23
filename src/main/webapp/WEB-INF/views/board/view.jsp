@@ -15,7 +15,8 @@
         <p class="title-name">${data.boardTitle}</p>
         <div class="board-user">
             <div class="user-info">
-                <img src="${pageContext.request.contextPath}/images/user.png">
+                <img id="profileImg" src="${data.relPath}" alt="profileImg"
+                     onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/images/user.png';"/>
                 <div class="user-info-name">
                     <p class="user-name">${data.username}</p>
                     <p>
@@ -32,7 +33,7 @@
                         <c:if test="${user.username eq data.username}">
                             <div class="write-btn">
                                 <button class="learn-more update-btn"
-                                        onClick="location.href='/board/update/${data.boardNo }'">
+                                        onClick="location.href='/board/update/${data.boardNo}'">
 									<span class="button-text btn-update"><img
                                             src="${pageContext.request.contextPath}/images/update.png">수정</span>
                                 </button>
@@ -54,13 +55,13 @@
                         <c:if test="${user.username eq data.username}">
                             <div class="write-btn">
                                 <button class="learn-more  update-btn"
-                                        onClick="location.href='/board/update/${data.boardNo }'">
+                                        onClick="location.href='/board/update/${data.boardNo}'">
 									<span class="button-text"><img
                                             src="${pageContext.request.contextPath}/images/update.png">수정</span>
                                 </button>
                             </div>
 
-                            <%--    <form action="/board/delete/${data.boardNo }" method="post"> --%>
+                            <%--    <form action="/board/delete/${data.boardNo}" method="post"> --%>
                             <div class="write-btn text-center">
                                 <button class="learn-more delete-btn" id="deleteButton"
                                         type="submit">
@@ -82,13 +83,13 @@
             <c:forEach var="r" items="${reply}">
             <div class="line">
                 <div class="reply-title">
-                    <img class="reply-user"
-                         src="${pageContext.request.contextPath}/images/replyuser.png">
+                    <img class="reply-user" src="${r.relPath}" alt="profileImg"
+                         onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/images/user.png';"/>
                     <div class="reply-name">
-                        <p>${ r.username }&nbsp;</p>
-                        <p>${ r.replyContent }</p>
+                        <p>${r.username}&nbsp;</p>
+                        <p>${r.replyContent}</p>
                         <p class="reply-date">
-                            <fmt:formatDate value="${ r.replyDate }"
+                            <fmt:formatDate value="${r.replyDate}"
                                             pattern="yyyy.MM.dd hh:mm" type="date"/>
                         </p>
                     </div>
@@ -115,7 +116,7 @@
             <form action="/reply/insert" method="post" class="reply-form">
 
 
-                <input type="text" value="${data.boardNo }" name="boardNo" hidden>
+                <input type="text" value="${data.boardNo}" name="boardNo" hidden>
                 <textarea name="replyContent" class="reply-content-input" placeholder="댓글을 작성해주세요."></textarea>
 
 
@@ -137,7 +138,7 @@
             <c:if test="${user.username eq data.username}">
                 <div class="write-btn">
                     <button class="learn-more"
-                            onClick="location.href='/board/update/${data.boardNo }'">
+                            onClick="location.href='/board/update/${data.boardNo}'">
                         <span class="circle" aria-hidden="true"> <span
                                 class="icon arrow"></span>
                         </span> <span class="button-text">수정</span>
@@ -145,7 +146,7 @@
                 </div>
             </c:if>
 
-            <form action="/board/delete/${data.boardNo }" method="post">
+            <form action="/board/delete/${data.boardNo}" method="post">
                 <div class="write-btn">
                     <button class="learn-more" type="submit">
                 <span class="circle" aria-hidden="true"> <span
@@ -159,14 +160,14 @@
             <c:if test="${user.username eq data.username}">
                 <div class="write-btn">
                     <button class="learn-more"
-                            onClick="location.href='/board/update/${data.boardNo }'">
+                            onClick="location.href='/board/update/${data.boardNo}'">
                     <span class="circle" aria-hidden="true"> <span
                             class="icon arrow"></span>
                     </span> <span class="button-text">수정</span>
                     </button>
                 </div>
 
-                <form action="/board/delete/${data.boardNo }" method="post">
+                <form action="/board/delete/${data.boardNo}" method="post">
                     <div class="write-btn">
                         <button class="learn-more" type="submit">
                 <span class="circle" aria-hidden="true"> <span
@@ -193,7 +194,7 @@
         <form action="/reply/insert" method="post" class="reply-form">
             <div>
 
-                <input type="text" value="${data.boardNo }" name="boardNo" hidden>
+                <input type="text" value="${data.boardNo}" name="boardNo" hidden>
                 <textarea name="replyContent" class="reply-content-input" placeholder="댓글을 작성해주세요."></textarea>
 
             </div>
@@ -208,9 +209,9 @@
     <div class="line">
         <div class="reply-title">
             <div class="reply-name">
-                <p>${ r.username }&nbsp;</p>
+                <p>${r.username}&nbsp;</p>
                 <p class="reply-date">
-                    <fmt:formatDate value="${ r.replyDate }" pattern="yyyy.MM.dd hh:mm" type="date"/>
+                    <fmt:formatDate value="${r.replyDate}" pattern="yyyy.MM.dd hh:mm" type="date"/>
                 </p>
             </div>
             <sec:authorize access="isAuthenticated()">
@@ -225,7 +226,7 @@
             </sec:authorize>
 
         </div>
-        <p>${ r.replyContent }</p>
+        <p>${r.replyContent}</p>
 
 
     </div>
@@ -244,28 +245,28 @@
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-        }).then(function () {
+       }).then(function () {
             $.ajax({
                 type: "POST",
                 url: "/board/delete/" + boardNo,
                 data: {
                     boardNo: boardNo,
-                },
+               },
                 success: function () {
                     swal({
                         title: 'Deleted!',
                         text: '삭제가 완료되었습니다.',
                         type: 'success'
-                    }).then(function () {
+                   }).then(function () {
                         window.location.href = "/board/list";
-                    });
-                },
+                   });
+               },
                 error: function () {
                     alert("오류가 발생하였습니다.");
-                }
-            });
-        });
-    });
+               }
+           });
+       });
+   });
 
     var replyNo = "${r.replyNo}";
 
@@ -279,7 +280,7 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
-            }).then(function () {
+           }).then(function () {
                 $.ajax({
                     type: "POST",
                     url: "/reply/delete/" + $(e).attr("id"),
@@ -288,15 +289,15 @@
                             title: 'Deleted!',
                             text: '삭제가 완료되었습니다.',
                             type: 'success'
-                        }).then(function () {
+                       }).then(function () {
                             window.location.reload();
-                        });
-                    },
+                       });
+                   },
                     error: function () {
                         alert("오류가 발생하였습니다.");
-                    }
-                });
-            });
-        });
-    });
+                   }
+               });
+           });
+       });
+   });
 </script>
