@@ -14,7 +14,8 @@
     var password = '${data.password}'
     var email = '${data.email}'
     var mobile = '${data.mobile}'
-    var gender = ${data.gender}
+    var gender =
+    ${data.gender}
     var birthDate = '${data.birthDate}'
     var regDate = '${data.regDate}'
     </sec:authorize>

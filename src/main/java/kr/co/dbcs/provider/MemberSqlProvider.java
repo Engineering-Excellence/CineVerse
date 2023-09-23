@@ -1,10 +1,8 @@
 package kr.co.dbcs.provider;
 
-import org.apache.ibatis.jdbc.SQL;
-
 import kr.co.dbcs.model.MemberImgVO;
 import kr.co.dbcs.model.MemberVO;
-import kr.co.dbcs.model.PwdResetQueueVO;
+import org.apache.ibatis.jdbc.SQL;
 
 public class MemberSqlProvider {
 
@@ -120,13 +118,12 @@ public class MemberSqlProvider {
     }
 
     public String findPwCheck() {
-    	return new SQL() {{
-    		SELECT("COUNT(*)");
-            FROM ("MEMBER");
+        return new SQL() {{
+            SELECT("COUNT(*)");
+            FROM("MEMBER");
             WHERE("USERNAME = #{username} and EMAIL = #{email}");
-    	}}.toString();
+        }}.toString();
     }
 
-    
-    
+
 }
