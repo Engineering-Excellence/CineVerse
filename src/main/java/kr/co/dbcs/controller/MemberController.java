@@ -1,32 +1,24 @@
 package kr.co.dbcs.controller;
 
-import java.security.Principal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
 import kr.co.dbcs.model.MemberVO;
 import kr.co.dbcs.service.BoardService;
 import kr.co.dbcs.service.MemberService;
 import kr.co.dbcs.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @Controller
@@ -75,10 +67,14 @@ public class MemberController {
     @ResponseBody
     @PostMapping(value = "/delete")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public boolean deleteMember(@RequestBody @NonNull MemberVO memberVO, @NonNull Principal principal) {
+    public boolean deleteMember(@RequestBody @NonNull MemberVO memberVO, @NonNull Principal principal, HttpServletRequest request) {
         MemberVO vo = memberService.read(principal.getName()); //암호화된 비밀번호를 담기 위한 VO 선언
         memberVO.setUsername(principal.getName()); //그냥 정보를 가져오기위해 사용한 VO에서 setusername을 가져온다.
-        return memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo);
+        boolean ret = memberService.deleteUserByPasswordChk(principal.getName(), memberVO.getPassword(), vo);
+        if (ret) {
+            request.getSession().invalidate();
+        }
+        return ret;
     }
 
     @ResponseBody
@@ -107,12 +103,8 @@ public class MemberController {
     @ResponseBody
     @PostMapping(value = "/deleteProfile")
     @PreAuthorize("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
-    public boolean deleteProfile(@NonNull Principal principal, HttpServletRequest request) {
-        boolean ret = memberService.deleteProfile(principal.getName());
-        if (ret) {
-            request.getSession().invalidate();
-        }
-        return ret;
+    public boolean deleteProfile(@NonNull Principal principal) {
+        return memberService.deleteProfile(principal.getName());
     }
 
     @ResponseBody
@@ -120,31 +112,31 @@ public class MemberController {
     public List<String> getUsernameList(Principal principal) {
         return memberService.getUsernameList(principal.getName());
     }
-    
+
     @GetMapping("/resetpwd")
     public String resetPassword(Model model,
-    		@RequestParam(required = false, defaultValue = "") String username,
-    		@RequestParam(required = false, defaultValue = "") String code) {
-    	
-    	Map<String, String> map = new HashMap<>();
-    	map.put("username", username);
-    	map.put("code", code);
-    	
-    	model.addAttribute("valid", memberService.selectPwdResetQueue(map));
-    	return "/home";
+                                @RequestParam(required = false, defaultValue = "") String username,
+                                @RequestParam(required = false, defaultValue = "") String code) {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("username", username);
+        map.put("code", code);
+
+        model.addAttribute("valid", memberService.selectPwdResetQueue(map));
+        return "/home";
     }
-    
+
     @PostMapping("/resetpwd")
     public String resetPassword(@RequestParam Map<String, String> map) {
-    	
-    	MemberVO vo = new MemberVO();
-    	vo.setUsername(map.get("username"));
-    	vo.setPassword(map.get("password"));
-    	memberService.updatePasswordByEmail(vo);
-    	
-    	memberService.deletePwdResetQueue(map);
-    	
-    	return "/login";
+
+        MemberVO vo = new MemberVO();
+        vo.setUsername(map.get("username"));
+        vo.setPassword(map.get("password"));
+        memberService.updatePasswordByEmail(vo);
+
+        memberService.deletePwdResetQueue(map);
+
+        return "/login";
     }
 }
 
