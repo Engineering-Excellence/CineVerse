@@ -15,8 +15,9 @@ public class ReplySqlProvider {
 
     public String selectAllReply(int boardNo) {
         return new SQL() {{
-            SELECT("*");
-            FROM("REPLY");
+            SELECT("R.*, I.RELPATH");
+            FROM("REPLY R");
+            INNER_JOIN("MEMBERIMG I ON R.USERNAME = I.USERNAME");
             WHERE("BOARDNO = #{boardNo}");
         }}.toString();
     }

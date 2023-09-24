@@ -66,6 +66,4 @@ public interface MemberMapper {
 
     @SelectProvider(type = MemberSqlProvider.class, method = "findPwCheck")
     int findPwCheck(MemberVO memberVO);
-
-
 }
