@@ -90,7 +90,7 @@ $(document).ready(function () {
                                 html += `<div class="Summary">`;
                                 html += `<h2>${list[i]["title"]}</h2>`;
                                 html += `<p>${list[i]["overview"].substr(0, 150)}${list[i]["overview"].length >= 150 ? "..." : ""}</p>`;
-                                html += `<a href="/movie/view?id=${list[i]["id"]}}" class="moivie-sum">상세보기</a>`;
+                                html += `<a href="/movie/view?id=${list[i]["id"]}" class="moivie-sum">상세보기</a>`;
                                 html += `</div>`;
                                 html += `</div>`;
                             }
@@ -111,7 +111,7 @@ $(document).ready(function () {
                                 html += `<div class="Summary">`;
                                 html += `<h2>${list[i]["title"]}</h2>`;
                                 html += `<p>${list[i]["overview"].substr(0, 150)}${list[i]["overview"].length >= 150 ? "..." : ""}</p>`;
-                                html += `<a href="/movie/view?id=${list[i]["id"]}}" class="moivie-sum">상세보기</a>`;
+                                html += `<a href="/movie/view?id=${list[i]["id"]}" class="moivie-sum">상세보기</a>`;
                                 html += `</div>`;
                                 html += `</div>`;
                             }
@@ -135,7 +135,7 @@ $(document).ready(function () {
                     html += `<div class="Summary">`;
                     html += `<h2>${list[i]["title"]}</h2>`;
                     html += `<p>${list[i]["overview"].substr(0, 150)}${list[i]["overview"].length >= 150 ? "..." : ""}</p>`;
-                    html += `<a href="/movie/view?id=${list[i]["id"]}}" class="moivie-sum">상세보기</a>`;
+                    html += `<a href="/movie/view?id=${list[i]["id"]}" class="moivie-sum">상세보기</a>`;
                     html += `</div>`;
                     html += `</div>`;
                 }
